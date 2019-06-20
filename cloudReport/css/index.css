@@ -1,0 +1,459 @@
+@charset "utf-8";
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  color: #333;
+  background-color: #F3F3F4;
+  font-family: 'MicrosoftYaHei', sans-serif;
+}
+
+.cloudMirrorReport {
+  padding: 0 10px;
+  margin: 0 auto;
+  background-color: #fff;
+  max-width: 1640px;
+  min-width: 1028px;
+}
+
+.header {
+  padding-top: 30px;
+}
+
+.header .title {
+  margin:0 auto;
+  width:183px;
+  height:33px;
+}
+.header .title .titleLeft{
+  float: left;
+}
+.header .title .titleLeft img{
+  display:block;
+  width:44px;
+  height:33px;
+}
+.header .title .titleRight{
+  float: right;
+  font-size: 22px;
+  color:#35b5ce;
+  line-height: 30px;
+}
+
+.noReport{
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  color: #666;
+}
+.container {
+  margin-top: 10px;
+}
+
+/* 综合结论start */
+
+.conclusion .title {
+  position: relative;
+  text-indent: 16px;
+  line-height: 46px;
+  font-size:16px;
+  border-bottom:1px solid #e6e6e6;
+}
+
+.conclusion .title .ico {
+  position: absolute;
+  width: 5px;
+  height: 26px;
+  top: 10px;
+  left: 0;
+  background-color: #00cca3;
+}
+
+.conclusionContent {
+  margin-top: 10px;
+  width: 100%;
+  background-color: #F5F5F5;
+  background-image:url('../img/index/bg.png');
+  background-repeat:repeat;
+  background-position:30px 30px;
+}
+
+.conclusionContent .results {
+  position: relative;
+  float: left;
+  width: 120px;
+  height: 120px;
+  margin: 28px 6.09% 28px 9.14%;
+  border-radius: 62px;
+}
+
+.conclusionContent .resultsColor {
+  border: 2px solid #00cca3;
+  color: #00cca3;  
+}
+
+.conclusionContent .resultsColor2 {
+  border: 2px solid #FAA429;
+  color: #FAA429;
+}
+
+.conclusionContent .resultsColor3 {
+  border: 2px solid #ff3b30;
+  color: #ff3b30;
+}
+
+.conclusionContent .results img {
+  display: block;
+  width: 37px;
+  height: 44px;
+  margin: 20px auto;
+  margin-bottom: 6px;
+}
+
+.conclusionContent .results .tip {
+  text-align: center;
+  font-size: 20px;
+}
+
+.conclusionContent .personInfoList {
+  float: left;
+  width: 72%;
+  margin: 28px 0;
+}
+
+.conclusionContent .personInfoList li {
+  float: left;
+  width: 18%;
+  margin-right: 2%;
+}
+
+.conclusionContent .personInfoList li .person {
+  position: relative;
+  height: 40px;
+  line-height: 40px;
+  font-size:16px;
+}
+
+.conclusionContent .personInfoList li .person .name{
+  display:inline-block;
+}
+
+.conclusionContent .personInfoList li .person .icon .popup {
+  position: absolute;
+  width: 60px;
+  top: -36px;
+  left: 50%;
+  margin-left: -30px;
+  background-color: #FFF4F5;
+  border: 1px solid #EBEBEB;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.conclusionContent .personInfoList li .person .icon .popup p {
+  padding: 8px;
+  text-align:center;
+  font-size: 12px;
+  line-height: 14px;
+  color: #666;
+}
+
+.conclusionContent .personInfoList li .person .icoPerson {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: url('../img/index/13.png') no-repeat center center;
+  background-size: 100% 100%;
+  top: 11px;
+  left: 40px;
+}
+
+.conclusionContent .personInfoList li .person .icoPerson2 {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: url('../img/index/12.png') no-repeat center center;
+  background-size: 100% 100%;
+  top: 11px;
+  left: 40px;
+}
+
+.conclusionContent .personInfoList li .person .icoPerson3 {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: url('../img/index/14.png') no-repeat center center;
+  background-size: 100% 100%;
+  top: 11px;
+  left: 40px;
+}
+
+.conclusionContent .personInfoList li .person2 {
+  margin-bottom:6px;
+  font-size:14px;
+  color:#999;
+}
+
+.conclusionContent .personInfoList li .warn {
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+  text-indent: 17%;
+  color: #666;
+}
+
+.conclusionContent .personInfoList li .warn .icoWarn {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: url('../img/index/7.png') no-repeat center center;
+  background-size: 100% 100%;
+  top: 6px;
+  left: 0;
+}
+.conclusionContent .personInfoList li .warn .icoWarn2 {
+  position: absolute;
+  width: 15px;
+  height: 18px;
+  background: url('../img/index/15.png') no-repeat center center;
+  background-size: 100% 100%;
+  top: 6px;
+  left: 0;
+}
+.conclusionContent .personInfoList li .warn .icoWarn3 {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: url('../img/index/icon1.png') no-repeat center center;
+  background-size: 100% 100%;
+  top: 6px;
+  left: 0;
+}
+.conclusionContent .personInfoList li .warn .icoWarn4 {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: url('../img/index/icon2.png') no-repeat center center;
+  background-size: 100% 100%;
+  top: 6px;
+  left: 0;
+}
+.conclusionContent .personInfoList li .warn .icoWarn5 {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: url('../img/index/icon3.png') no-repeat center center;
+  background-size: 100% 100%;
+  top: 6px;
+  left: 0;
+}
+
+.conclusionContent .noRisk {
+  position: relative;
+  float: left;
+  width: 72%;
+  font-size: 26px;
+  color: #999;
+  line-height: 180px;
+  text-indent: 20%;
+}
+
+.conclusionContent .noRisk .ico10 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: url('../img/index/1.png') no-repeat center center;
+  background-size: 100% 100%;
+  top: 75px;
+  left: 23.4%;
+}
+
+/* 综合结论end */
+
+.reportList {
+  margin-top: 30px;
+}
+
+.report .title {
+  position: relative;
+  text-indent: 16px;
+  line-height: 46px;
+  font-size:16px;
+  border-bottom:1px solid #e6e6e6;
+}
+
+.report .title .ico {
+  position: absolute;
+  width: 5px;
+  height: 26px;
+  top: 10px;
+  left: 0;
+  background-color: #00cca3;
+}
+
+/* 黑名单start*/
+.blacklist {
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+.blacklist .blacklistPart {
+  float: left;
+  width: 32.8%;
+}
+
+.blacklist .blacklistPart3 {
+  float: right;
+}
+
+.blacklist .black {
+  width: 100%;
+}
+
+.blacklist .black2 {
+  margin-top: 20px;
+}
+
+.blacklist .black .headline {
+  height: 40px;
+  line-height: 40px;
+  text-indent: 16px;
+  background-color: #E6E6E6;
+  border: 1px solid #E6E6E6;
+  border-bottom: none;
+}
+.blacklist .black .headline2 {
+  height: 40px;
+  line-height: 40px;
+  text-indent: 16px;
+  background-color: #f3f3f3;
+  border: 1px solid #f3f3f3;
+  border-bottom: none;
+  color:#ccc;
+}
+
+.blacklist .black table {
+  width: 100%;
+}
+
+.blacklist .black table td {
+  border: 1px solid #E6E6E6;
+}
+
+.blacklist .black table .td1 {
+  width: 64%;
+}
+.blacklist .black table .td1 p{
+  padding:5px 8%;
+  line-height: 30px;  
+}
+
+.blacklist .black table .td2 {
+  width: 36%;
+}
+.blacklist .black table .td2 p{
+  padding:5px 11%;
+  line-height: 30px;  
+}
+
+.blacklist .black table .td3 {
+  width: 36%;
+}
+.blacklist .black table .td4 {
+  width: 64%;
+}
+
+.blacklist .black .noblack {
+  height: 76px;
+  line-height: 76px;
+  text-align: center;
+  color: #ccc;
+  border:1px solid #f3f3f3;
+}
+/* 黑名单end*/
+
+/* 右边固定导航条start */
+.menuFixed{
+  position: fixed;
+  width:116px;
+  top:150px;
+  right:0;
+  border:1px solid #E6E6E6;
+  z-index: 10000;
+  background-color:#fff;
+  opacity:0;
+  filter:Alpha(opacity=0);
+}
+.menuFixed li{
+  width:114px;
+  height:34px;
+  line-height:34px;
+  border-bottom:1px solid #E6E6E6;
+  text-align:center;
+}
+.menuFixed li:hover{
+  background-color:#00cca3;
+  color:#fff;
+  border-bottom:1px solid #00cca3;
+}
+.menuFixed li.active{
+  background-color:#00cca3;
+  color:#fff;
+  border-bottom:1px solid #00cca3;			
+}
+
+.menuIcon{
+  position: fixed;
+  width:32px;
+  height:32px;
+  top:150px;
+  right:0;
+  z-index: 10010;
+  background:url('../img/index/11.png') no-repeat center center;
+  background-size:100% 100%; 
+}
+/* 右边固定导航条end */
+
+
+
+/* 分辨率适配start */
+@media (max-width: 1200px ) { 
+  html,
+  body{
+    font-size:12px;
+  }  
+
+  .conclusionContent .results .tip {
+    font-size:18px;
+  }  
+
+  .report .creditScore .score .scoreList .scorePart .scoreTip span {
+    font-size:16px;
+  }  
+  .report .creditScore .score .scoreList .scorePart .scoreTip2 span {
+    font-size:16px;
+  }
+  .report .creditScore .score .scoreList .scorePart .scoreTip3 span {
+    font-size:16px;
+  }  
+  .report .creditScore .score .scoreList .scorePart .icoProblem{
+    right:10%;
+  }
+}
+
+@media (min-width: 1200px ) and (max-width: 1400px ) { 
+  .conclusionContent .results .tip {
+    font-size:18px;
+  }   
+
+  .report .creditScore .score .scoreList .scorePart .scoreTip3 span {
+    font-size:16px;
+  }
+
+  .report .creditScore .score .scoreList .scorePart .icoProblem{
+    right:8%;
+  } 
+
+}
+/* 分辨率适配end */
