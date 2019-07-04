@@ -90,11 +90,7 @@ $(function () {
     $('#noReport').addClass('dn');
     $('#hasReport').removeClass('dn');
   }
-  //综合结论-有风险项
-  function hasRisks() {
-    $('#noRisk').addClass('dn');
-    $('#personInfoList').removeClass('dn');
-  }
+
 
   //方法定义end
 
@@ -102,15 +98,15 @@ $(function () {
   //综合结论左边图标展示和结论展示
   function showEndResults(conclusion, result) {
     //一次综合决策
-    function onlyOneResults(conclusion) {
-      if (conclusion === 1) {
+    function onlyOneResults(dataOnlyOneResults) {
+      if (dataOnlyOneResults === 1) {
         $('#resultsTip').text(result);
         $('#results').addClass('resultsColor');
         $('#resultsImg').attr('src', './img/index/1.png');
         return;
       }
 
-      if (conclusion === 0) {
+      if (dataOnlyOneResults === 0) {
         $('#results').addClass('resultsColor3');
         $('#resultsImg').attr('src', './img/index/3.png');
         $('#resultsTip').text('拒绝');
@@ -124,31 +120,18 @@ $(function () {
     //获取风险列表
     function showRiskList(arr) {
       //获取一个人风险列表
-      function getRisk(arr) {
-        var html = '';
+      function getRisk(arrGetRisk) {
+        var htmlGetRisk = '';
 
-        if(role === '1') {
-          return html;    
-        }        
-
-        // if (arr.length === 0) {
-        //   html = html + [
-        //     "<div class='warn'>",
-        //     "<div class='icoWarn2'></div>",
-        //     "无风险项",
-        //     "</div>",
-        //   ].join("");
-        // } else {
-          for (var i = 0; i < arr.length; i++) {
-            html = html + [
-              "<div class='warn'>",
-              "<div class='icoWarn'></div>",
-              riskTypeFilter(arr[i]),
-              "</div>",
-            ].join("");
-          }
-        // }
-        return html;
+        for (var j = 0; j < arrGetRisk.length; j++) {
+          htmlGetRisk = htmlGetRisk + [
+            "<div class='warn'>",
+            "<div class='icoWarn'></div>",
+            riskTypeFilter(arrGetRisk[j]),
+            "</div>",
+          ].join("");
+        }
+        return htmlGetRisk;
       }
       var html = '';
       var icoType = '';
@@ -208,7 +191,7 @@ $(function () {
     if (risks.length === 0) {
       return;
     }
-    hasRisks();
+
     showRiskList(risks);
     creditIconAuto();
   }
@@ -274,33 +257,33 @@ $(function () {
       //当前个人报告对象
       var data = resHtmlArr[index].data;
       //遍历黑名单表格方法
-      function getBlackTable(num, blackData, code) {
+      function getBlackTable(numGetBlackTable, blackData, code) {
         //判断当前对象属性值是不是全部为null(除show属性)
-        function judgeDataAllNull(obj, code) {
+        function judgeDataAllNull(obj, codeJudgeDataAllNull) {
           var isTrue = true;
           var length = attributeCount(obj) - 1;
-          var num = 0;
+          var numJudgeDataAllNull = 0;
           for (var name in obj) {
             if (name !== 'show') {
 
-              if (blacklistFilter2(code, name, obj[name]) === '') {
-                num = num + 1;
+              if (blacklistFilter2(codeJudgeDataAllNull, name, obj[name]) === '') {
+                numJudgeDataAllNull = numJudgeDataAllNull + 1;
               }              
 
-              if (blacklistFilter2(code, name, obj[name]) === '未命中') {
-                num = num + 1;
+              if (blacklistFilter2(codeJudgeDataAllNull, name, obj[name]) === '未命中') {
+                numJudgeDataAllNull = numJudgeDataAllNull + 1;
               }
 
-              if (blacklistFilter2(code, name, obj[name]) === '0') {
-                num = num + 1;
+              if (blacklistFilter2(codeJudgeDataAllNull, name, obj[name]) === '0') {
+                numJudgeDataAllNull = numJudgeDataAllNull + 1;
               }
 
-              if (blacklistFilter2(code, name, obj[name]) === 0) {
-                num = num + 1;
+              if (blacklistFilter2(codeJudgeDataAllNull, name, obj[name]) === 0) {
+                numJudgeDataAllNull = numJudgeDataAllNull + 1;
               }
             }
           }
-          if (num !== length) {
+          if (numJudgeDataAllNull !== length) {
             isTrue = false;
           }
           return isTrue;
@@ -310,7 +293,7 @@ $(function () {
         //获取对象属性个数
         var count = judgeDataAllNull(blackData, code);
         //是否有black2样式
-        var black2 = num > 3 ? 'black2' : '';
+        var black2 = numGetBlackTable > 3 ? 'black2' : '';
         //如果只有一个属性，返回无结果  或者属性都是未命中
         if (count) {
           html = html + [
@@ -323,7 +306,7 @@ $(function () {
         } else {
           //黑名单table的td遍历
           function getBlackTd(blackData2) {
-            var html = '';
+            var htmlGetBlackTd = '';
             for (var name in blackData2) {
               var value = blackData2[name];
               //人行征信做特殊处理
@@ -331,7 +314,7 @@ $(function () {
               var td4 = code === 0 ? 'td4' : '';              
               if (name !== 'show') {
                 if ((blacklistFilter2(code, name, value) !== '') && (blacklistFilter2(code, name, value) !== '0') && (blacklistFilter2(code, name, value) !== 0) && (blacklistFilter2(code, name, value) !== '未命中')) {
-                  html = html + [
+                  htmlGetBlackTd = htmlGetBlackTd + [
                     "<tr>",
                     "<td class='td1 " + td3 + "'><p>" + blacklistFilter(code, name) + "</p></td>",
                     "<td class='td2 " + td4 + "'><p>" + blacklistFilter2(code, name, value) + "</p></td>",
@@ -340,7 +323,7 @@ $(function () {
                 }
               }
             }
-            return html;
+            return htmlGetBlackTd;
           }
           html = html + [
             "<div class='black " + black2 + "'>",
@@ -442,7 +425,6 @@ $(function () {
           als_d7_id_nbank_sloan_allnum: 0,
           als_d7_id_nbank_cons_allnum: 0,
           als_d7_id_nbank_finlea_allnum: 0,
-          als_d7_id_nbank_oth_allnum: 0,
           als_d7_id_nbank_orgnum: 0,
           als_d7_id_nbank_p2p_orgnum: 0,
           als_d7_id_nbank_mc_orgnum: 0,
@@ -455,7 +437,6 @@ $(function () {
           als_d7_id_nbank_sloan_orgnum: 0,
           als_d7_id_nbank_cons_orgnum: 0,
           als_d7_id_nbank_finlea_orgnum: 0,
-          als_d7_id_nbank_oth_orgnum: 0,
           als_d7_id_nbank_night_allnum: 0,
           als_d7_id_nbank_night_orgnum: 0,
           als_d7_cell_pdl_allnum: 0,
@@ -484,7 +465,6 @@ $(function () {
           als_d7_cell_nbank_sloan_allnum: 0,
           als_d7_cell_nbank_cons_allnum: 0,
           als_d7_cell_nbank_finlea_allnum: 0,
-          als_d7_cell_nbank_oth_allnum: 0,
           als_d7_cell_nbank_orgnum: 0,
           als_d7_cell_nbank_p2p_orgnum: 0,
           als_d7_cell_nbank_mc_orgnum: 0,
@@ -497,7 +477,6 @@ $(function () {
           als_d7_cell_nbank_sloan_orgnum: 0,
           als_d7_cell_nbank_cons_orgnum: 0,
           als_d7_cell_nbank_finlea_orgnum: 0,
-          als_d7_cell_nbank_oth_orgnum: 0,
           als_d7_cell_nbank_night_allnum: 0,
           als_d7_cell_nbank_night_orgnum: 0,
           als_d15_id_pdl_allnum: 0,
@@ -526,7 +505,6 @@ $(function () {
           als_d15_id_nbank_sloan_allnum: 0,
           als_d15_id_nbank_cons_allnum: 0,
           als_d15_id_nbank_finlea_allnum: 0,
-          als_d15_id_nbank_oth_allnum: 0,
           als_d15_id_nbank_orgnum: 0,
           als_d15_id_nbank_p2p_orgnum: 0,
           als_d15_id_nbank_mc_orgnum: 0,
@@ -539,7 +517,6 @@ $(function () {
           als_d15_id_nbank_sloan_orgnum: 0,
           als_d15_id_nbank_cons_orgnum: 0,
           als_d15_id_nbank_finlea_orgnum: 0,
-          als_d15_id_nbank_oth_orgnum: 0,
           als_d15_id_nbank_night_allnum: 0,
           als_d15_id_nbank_night_orgnum: 0,
           als_d15_cell_pdl_allnum: 0,
@@ -568,7 +545,6 @@ $(function () {
           als_d15_cell_nbank_sloan_allnum: 0,
           als_d15_cell_nbank_cons_allnum: 0,
           als_d15_cell_nbank_finlea_allnum: 0,
-          als_d15_cell_nbank_oth_allnum: 0,
           als_d15_cell_nbank_orgnum: 0,
           als_d15_cell_nbank_p2p_orgnum: 0,
           als_d15_cell_nbank_mc_orgnum: 0,
@@ -581,7 +557,6 @@ $(function () {
           als_d15_cell_nbank_sloan_orgnum: 0,
           als_d15_cell_nbank_cons_orgnum: 0,
           als_d15_cell_nbank_finlea_orgnum: 0,
-          als_d15_cell_nbank_oth_orgnum: 0,
           als_m1_id_pdl_allnum: 0,
           als_m1_id_pdl_orgnum: 0,
           als_m1_id_caon_allnum: 0,
@@ -611,7 +586,6 @@ $(function () {
           als_m1_id_nbank_sloan_allnum: 0,
           als_m1_id_nbank_cons_allnum: 0,
           als_m1_id_nbank_finlea_allnum: 0,
-          als_m1_id_nbank_oth_allnum: 0,
           als_m1_id_nbank_orgnum: 0,
           als_m1_id_nbank_p2p_orgnum: 0,
           als_m1_id_nbank_mc_orgnum: 0,
@@ -624,7 +598,6 @@ $(function () {
           als_m1_id_nbank_sloan_orgnum: 0,
           als_m1_id_nbank_cons_orgnum: 0,
           als_m1_id_nbank_finlea_orgnum: 0,
-          als_m1_id_nbank_oth_orgnum: 0,
           als_m1_id_nbank_night_allnum: 0,
           als_m1_id_nbank_night_orgnum: 0,
           als_m1_cell_pdl_allnum: 0,
@@ -653,7 +626,6 @@ $(function () {
           als_m1_cell_nbank_sloan_allnum: 0,
           als_m1_cell_nbank_cons_allnum: 0,
           als_m1_cell_nbank_finlea_allnum: 0,
-          als_m1_cell_nbank_oth_allnum: 0,
           als_m1_cell_nbank_orgnum: 0,
           als_m1_cell_nbank_p2p_orgnum: 0,
           als_m1_cell_nbank_mc_orgnum: 0,
@@ -666,7 +638,6 @@ $(function () {
           als_m1_cell_nbank_sloan_orgnum: 0,
           als_m1_cell_nbank_cons_orgnum: 0,
           als_m1_cell_nbank_finlea_orgnum: 0,
-          als_m1_cell_nbank_oth_orgnum: 0,
           als_m1_cell_nbank_night_allnum: 0,
           als_m1_cell_nbank_night_orgnum: 0,
           als_m3_id_avg_monnum: 0,
@@ -697,7 +668,6 @@ $(function () {
           als_m3_id_nbank_sloan_allnum: 0,
           als_m3_id_nbank_cons_allnum: 0,
           als_m3_id_nbank_finlea_allnum: 0,
-          als_m3_id_nbank_oth_allnum: 0,
           als_m3_id_nbank_orgnum: 0,
           als_m3_id_nbank_p2p_orgnum: 0,
           als_m3_id_nbank_mc_orgnum: 0,
@@ -710,7 +680,6 @@ $(function () {
           als_m3_id_nbank_sloan_orgnum: 0,
           als_m3_id_nbank_cons_orgnum: 0,
           als_m3_id_nbank_finlea_orgnum: 0,
-          als_m3_id_nbank_oth_orgnum: 0,
           als_m3_id_nbank_avg_monnum: 0,
           als_m3_id_nbank_night_allnum: 0,
           als_m3_id_nbank_night_orgnum: 0,
@@ -742,7 +711,6 @@ $(function () {
           als_m3_cell_nbank_sloan_allnum: 0,
           als_m3_cell_nbank_cons_allnum: 0,
           als_m3_cell_nbank_finlea_allnum: 0,
-          als_m3_cell_nbank_oth_allnum: 0,
           als_m3_cell_nbank_orgnum: 0,
           als_m3_cell_nbank_p2p_orgnum: 0,
           als_m3_cell_nbank_mc_orgnum: 0,
@@ -755,7 +723,6 @@ $(function () {
           als_m3_cell_nbank_sloan_orgnum: 0,
           als_m3_cell_nbank_cons_orgnum: 0,
           als_m3_cell_nbank_finlea_orgnum: 0,
-          als_m3_cell_nbank_oth_orgnum: 0,
           als_m3_cell_nbank_avg_monnum: 0,
           als_m3_cell_nbank_night_allnum: 0,
           als_m3_cell_nbank_night_orgnum: 0,
@@ -785,7 +752,6 @@ $(function () {
           als_m6_id_nbank_sloan_allnum: 0,
           als_m6_id_nbank_cons_allnum: 0,
           als_m6_id_nbank_finlea_allnum: 0,
-          als_m6_id_nbank_oth_allnum: 0,
           als_m6_id_nbank_orgnum: 0,
           als_m6_id_nbank_p2p_orgnum: 0,
           als_m6_id_nbank_mc_orgnum: 0,
@@ -798,7 +764,6 @@ $(function () {
           als_m6_id_nbank_sloan_orgnum: 0,
           als_m6_id_nbank_cons_orgnum: 0,
           als_m6_id_nbank_finlea_orgnum: 0,
-          als_m6_id_nbank_oth_orgnum: 0,
           als_m6_id_nbank_avg_monnum: 0,
           als_m6_id_nbank_night_allnum: 0,
           als_m6_id_nbank_night_orgnum: 0,
@@ -828,7 +793,6 @@ $(function () {
           als_m6_cell_nbank_sloan_allnum: 0,
           als_m6_cell_nbank_cons_allnum: 0,
           als_m6_cell_nbank_finlea_allnum: 0,
-          als_m6_cell_nbank_oth_allnum: 0,
           als_m6_cell_nbank_orgnum: 0,
           als_m6_cell_nbank_p2p_orgnum: 0,
           als_m6_cell_nbank_mc_orgnum: 0,
@@ -841,7 +805,6 @@ $(function () {
           als_m6_cell_nbank_sloan_orgnum: 0,
           als_m6_cell_nbank_cons_orgnum: 0,
           als_m6_cell_nbank_finlea_orgnum: 0,
-          als_m6_cell_nbank_oth_orgnum: 0,
           als_m6_cell_nbank_avg_monnum: 0,
           als_m6_cell_nbank_night_allnum: 0,
           als_m6_cell_nbank_night_orgnum: 0,
@@ -871,7 +834,6 @@ $(function () {
           als_m12_id_nbank_sloan_allnum: 0,
           als_m12_id_nbank_cons_allnum: 0,
           als_m12_id_nbank_finlea_allnum: 0,
-          als_m12_id_nbank_oth_allnum: 0,
           als_m12_id_nbank_orgnum: 0,
           als_m12_id_nbank_p2p_orgnum: 0,
           als_m12_id_nbank_mc_orgnum: 0,
@@ -884,7 +846,6 @@ $(function () {
           als_m12_id_nbank_sloan_orgnum: 0,
           als_m12_id_nbank_cons_orgnum: 0,
           als_m12_id_nbank_finlea_orgnum: 0,
-          als_m12_id_nbank_oth_orgnum: 0,
           als_m12_id_nbank_avg_monnum: 0,
           als_m12_id_nbank_night_allnum: 0,
           als_m12_id_nbank_night_orgnum: 0,
@@ -914,7 +875,6 @@ $(function () {
           als_m12_cell_nbank_sloan_allnum: 0,
           als_m12_cell_nbank_cons_allnum: 0,
           als_m12_cell_nbank_finlea_allnum: 0,
-          als_m12_cell_nbank_oth_allnum: 0,
           als_m12_cell_nbank_orgnum: 0,
           als_m12_cell_nbank_p2p_orgnum: 0,
           als_m12_cell_nbank_mc_orgnum: 0,
@@ -927,7 +887,6 @@ $(function () {
           als_m12_cell_nbank_sloan_orgnum: 0,
           als_m12_cell_nbank_cons_orgnum: 0,
           als_m12_cell_nbank_finlea_orgnum: 0,
-          als_m12_cell_nbank_oth_orgnum: 0,
           als_m12_cell_nbank_avg_monnum: 0,
           als_m12_cell_nbank_night_allnum: 0,
           als_m12_cell_nbank_night_orgnum: 0,
@@ -1019,7 +978,7 @@ $(function () {
       $('.blacklistPart').eq(0 + index * 3).append(blackPartAddArr[0]);
       $('.blacklistPart').eq(1 + index * 3).append(blackPartAddArr[1]);
       $('.blacklistPart').eq(2 + index * 3).append(blackPartAddArr[2]);
-    };
+    }
     for (var i = 0; i < resHtmlArr.length; i++) {
       //改变demo报告名和添加描点-让菜单可以定位到描点
       changeTitleAndId(i);
@@ -1034,11 +993,11 @@ $(function () {
       var resHtml = '';
 
       //去掉数组中的undefined
-      function clearArrUndefined(resHtmlArr) {
+      function clearArrUndefined(dataClearArrUndefined) {
         var data = [];
-        for (var i = 0; i < resHtmlArr.length; i++) {
-          if (resHtmlArr[i] !== undefined) {
-            data.push(resHtmlArr[i]);
+        for (var k = 0; k < dataClearArrUndefined.length; k++) {
+          if (dataClearArrUndefined[k] !== undefined) {
+            data.push(dataClearArrUndefined[k]);
           }
         }
         return data;
@@ -1074,7 +1033,7 @@ $(function () {
     getMenuList(reportArrInfo);
 
     //生成每个人数据html
-    getFinalReport(resHtmlArr);
+    getFinalReport();
 
     //适配去除加载状态
     centerResults();
@@ -1154,8 +1113,8 @@ $(function () {
                   memberType: memberType,
                   appId: appId,
                 },
-                success: function (res) {
-                  getOneReport(memberType, res.detail);
+                success: function (res3) {
+                  getOneReport(memberType, res3.detail);
                 }
               });
             }

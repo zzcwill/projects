@@ -248,27 +248,6 @@ body {
   top: 6px;
   left: 0;
 }
-
-.conclusionContent .noRisk {
-  position: relative;
-  float: left;
-  width: 72%;
-  font-size: 26px;
-  color: #999;
-  line-height: 180px;
-  text-indent: 20%;
-}
-
-.conclusionContent .noRisk .ico10 {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background: url('../img/index/1.png') no-repeat center center;
-  background-size: 100% 100%;
-  top: 75px;
-  left: 23.4%;
-}
-
 /* 综合结论end */
 
 .reportList {

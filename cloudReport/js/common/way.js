@@ -40,7 +40,7 @@ function attributeCount(obj) {
 //复制对象
 function dataToData(data1, data2) {
 	var data = {}
-	for (key in data1) {
+	for (var key in data1) {
 		data[key] = data2[key];
 	}
 
@@ -49,7 +49,7 @@ function dataToData(data1, data2) {
 //复制对象-数据处理-针对人行征信
 function dataToData2(data1, data2) {
 	var data = {}
-	for (key in data1) {
+	for (var key in data1) {
 		if(data2[key] === null) {
 			data[key] = '';
 		}else{
@@ -68,7 +68,6 @@ function scrollDomToPlace(id) {
 		scrollTop: top
 	}, 1000);
 }
-
 //封装ajax方法
 function yjAjax(request) {
 	$.ajax({
