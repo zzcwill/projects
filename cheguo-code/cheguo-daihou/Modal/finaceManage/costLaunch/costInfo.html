@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css"/>
+    <title>费用申请发起</title>
+  </head>
+  <body class="gray-bg">
+      <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+          <div class="ibox-content">
+            <div class="page-header">
+              <h3 class="text-center" id="flowTitle">费用申请发起</h3>
+            </div>
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#info" data-toggle="tab">基本信息</a></li>
+              <li><a href="#opinion" id="opinionTab">过程信息</a></li>
+            </ul>
+            <div class="tab-content">
+              <p></p>
+              <div id="info" class="tab-pane active">
+                <div class="row">
+                  <div class="col-xs-24 col-sm-24 col-md-24">
+                    <div class="ibox float-e-margins">
+                      <form class="form-horizontal" id="costForm">
+                      <input type="hidden" value="" name="mobilePhone" id="mobilePhone"/>
+                      <input type="hidden" value="" name="cardNo" id="cardNo" />
+                      <input type="hidden" name="status" id="status" />
+                      <fieldset class="disabledClass">
+                        <input type="hidden" name="id" id="id">
+                        <input type="hidden" name="isIncome" value="1">
+                        <div class="form-group form-group-sm">
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>费用类型：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <select name="feeTypeCode" class="form-control required" id="feeTypeCode">
+                                <option value="">--请选择--</option>
+                                <option value="1">业务费用</option>
+                                <option value="2" selected>风险费用</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>费用类别：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <select name="feeCategoryCode" class="form-control required" id="feeCategoryCode">
+                              </select>
+                            </div>
+                          </div>
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>费用名称：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <select name="feeCode" class="form-control required" id="feeCode">
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="switch_1"> </div>
+                        <div class="form-group form-group-sm hide" id="costInfoEd">
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>审批金额：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="approveAmount" value="" placeholder="请输入审批金额" class="form-control number required" aria-required="true"/>
+                            </div>
+                          </div>
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>付款金额：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="paymentAmount" value="" placeholder="请输入审批金额" class="form-control number required" aria-required="true"/>
+                            </div>
+                          </div>
+                        </div>
+                        </fieldset>
+
+                        <div class="form-group form-group-sm adLine"> </div>
+
+                        <div class="form-group form-group-sm">
+                          <div class="input-tip">
+                            <div class="col-md-3 col-xs-3 col-sm-3 text-right">
+                            </div>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <button type="button" class="btn btn-primary" id="getFinace" disabled>查看贷款档案</button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                          <div class="input-tip">
+                            <div class="col-xs-24 col-sm-24 col-md-24 text-right buttonBox">
+                              <button type="button" class="btn btn-primary" id="btn-comit">提交</button>
+                              <button type="button" class="btn btn-primary" id="btn-save">保存</button>
+                              <button type="button" class="btn btn-primary hide" id="undo">撤销</button>
+                              <button type="button" class="btn btn-primary" id="cancel">取消</button>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="opinion" class="tab-pane">
+                <div data-url="../../common/commonOpinion/opinion.html"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+		<div class="row">
+			<div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+				<div class="ibox float-e-margins">
+					<form id="opinionForm" class="form-horizontal ibox-content hide">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">流程意见</h3>
+							</div>
+							<div class="panel-body">
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span class="text-danger">*</span>意见结论：</label>
+										<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+											<label class="checkbox-inline">
+												<input type="radio" name="conclusion" value="1" checked required="required" /> 同意
+											</label>
+											<label class="checkbox-inline">
+												<input type="radio" name="conclusion" value="0" /> 不同意
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group form-group-sm">
+									<div class="input-tip">
+										<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span class="text-danger">*</span>意见说明：</label>
+										<div class="col-xs-13 col-sm-13 col-md-13 col-lg-13">
+											<textarea class="form-control" rows="3" name="opinion" id="opinionText"></textarea>
+										</div>
+									</div>
+								</div>
+                <div class="form-group form-group-sm">
+                  <div class="col-xs-24 col-sm-24 col-md-24 text-right">
+                    <button type="button" class="btn btn-primary" id="saveBtn"><span>保存</span>
+                    </button>
+                  </div>
+                </div>
+							</div>
+						</div>
+						<div class="form-group form-group-sm">
+							<div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-right">
+								<button type="button" class="btn btn-primary" id="btn-opinion-save"><span>提交</span>
+								</button>
+								<button type="button" class="btn btn-primary" id="btn-loanReview-back" style="display: none;">
+									<span>退回上一步</span></button>
+								<button type="button" class="btn btn-primary" id="btn-save-money"><span>保存</span>
+								</button>
+                <button type="button" class="btn btn-primary hide" id="btn-close-loan"><span>关闭费用申请</span> </button>
+                <button type="button" class="btn btn-primary" id="btn-cancel">取消</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+      </div>
+
+      <template id="tpl_30" class="hide">
+        <div class="form-group form-group-sm">
+          <div class="input-tip ">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"> <span class="text-danger">*&nbsp;</span>贷款编号：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <div class="input-group input-group-sm">
+                <input type="text" name="bussinessId" class="hide">
+                <input type="text" name="projectId" class="hide">
+                <input type="text" name="customerId" class="hide">
+                <input type="text" name="projectNo" placeholder="请输入贷款编号" readonly class="form-control required"><span class="input-group-btn">
+                <button type="button" data-toggle="modal" data-target="#loanChoice" class="btn btn-primary">...</button></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>客户名称：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="customerName" placeholder="请输入客户名称" class="form-control required" readonly/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">客户经理：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="managerName" placeholder="请输入客户经理" class="form-control" readonly/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-sm">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>业务机构：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="orgName" placeholder="请输入业务机构" class="form-control required" readonly/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>垫款金额：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="applyAmount" placeholder="请输入垫款金额" class="form-control number required" aria-required="true" />
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>付款方式：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+			  <fieldset>
+				  <select name="paymentMethod" class="form-control required" id="PaymentMethod_30">
+					<option value="" >--请选择--</option>
+					<option value="1" >现金</option>
+					<option value="2" selected>银行转账</option>
+				  </select>
+			  </fieldset>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-sm" id="isCashPaymentMethod_30">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"> <span class="text-danger">*&nbsp;</span>收款人名称：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <div class="input-group input-group-sm">
+                <input type="text" name="accountName" placeholder="请输入收款人名称" maxlength="50" class="form-control required"><span class="input-group-btn">
+                <button type="button" data-toggle="modal" data-target="#payeeChoice" id="accountNameChoice" class="btn btn-primary">...</button></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">收款账号：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="accountNo" placeholder="请输入收款账号" maxlength="50" class="form-control" />
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">收款银行：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="bankName" placeholder="请输入收款银行" maxlength="50" class="form-control" />
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-sm">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>经办人：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="hidden" name="userId" />
+              <input type="text" name="operator" placeholder="请输入经办人" class="form-control required"/>
+            </div>
+          </div>
+          <div class="input-tip isActualDate">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>费用发生日期：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="actualDate" placeholder="请输入费用发生日期" class="form-control date required"/>
+            </div>
+          </div>
+        </div>
+
+		<div class="form-group form-group-sm">
+			<div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">备注：</label>
+            <div class="col-xs-21 col-sm-21 col-md-21">
+              <textarea rows="5" name="remark" placeholder="请输入备注!" maxlength="250" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+      </template>
+      <template id="tpl_10" class="hide">
+        <div class="form-group form-group-sm">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"> <span class="text-danger">*&nbsp;</span>诉讼申请编号 ：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <div class="input-group input-group-sm">
+                <input type="text" name="bussinessId" class="hide">
+                <input type="text" name="projectId" class="hide">
+                <input type="text" name="customerId" class="hide">
+                <input type="text" name="lawsuitNum" placeholder="请输入诉讼申请编号" readonly class="form-control required"><span class="input-group-btn">
+                <button type="button" data-toggle="modal" data-target="#caseChoice" class="btn btn-primary">...</button></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">经办法务：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="launchUserName" placeholder="请输入经办法务" class="form-control" readonly/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">案件进程：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="lawsuitStatus" class="hide">
+              <input type="text" name="lawsuitStatusName" placeholder="请输入案件进程" class="form-control" readonly/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-sm">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">贷款编号：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="projectNo" placeholder="请输入贷款编号" class="form-control" readonly/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">客户名称：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="customerName" placeholder="请输入客户名称" class="form-control" readonly/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">客户经理：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="managerName" placeholder="请输入客户经理" class="form-control" readonly/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-sm">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">业务机构：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="orgName" placeholder="请输入业务机构" class="form-control" readonly/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>申请金额：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="applyAmount" placeholder="请输入申请金额" class="form-control number required" aria-required="true" />
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>付款方式：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <select name="paymentMethod" class="form-control required" id="PaymentMethod_10">
+                <option value="" >--请选择--</option>
+                <option value="1" >现金</option>
+                <option value="2" selected>银行转账</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-sm" id="isCashPaymentMethod_10">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>收款人名称：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="accountName" placeholder="请输入收款人名称" maxlength="50" class="form-control required" />
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>收款账号：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="accountNo" placeholder="请输入收款账号" maxlength="50" class="form-control required"/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>收款银行：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="bankName" placeholder="请输入收款银行" maxlength="50" class="form-control required"/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-sm">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>经办人：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <!--<div class="input-group input-group-sm">-->
+                <input type="hidden" name="userId" />
+                <input type="text" name="operator" placeholder="请输入经办人" class="form-control required">
+				<!--<span class="input-group-btn"> <button type="button" data-toggle="modal" data-target="#agentChoice" class="btn btn-primary">...</button></span>-->
+              </div>
+            <!--</div>-->
+          </div>
+          <div class="input-tip isActualDate">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>费用发生日期：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="actualDate" placeholder="请输入费用发生日期" class="form-control date required"/>
+            </div>
+          </div>
+        </div>
+		<div class="form-group form-group-sm">
+			<div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">备注：</label>
+            <div class="col-xs-21 col-sm-21 col-md-21">
+              <textarea rows="5" name="remark" placeholder="请输入备注!" maxlength="250" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </template>
+      <template id="tpl_40" class="hide">
+        <div class="form-group form-group-sm">
+          <div class="input-tip ">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">贷款编号：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <div class="input-group input-group-sm">
+                <input type="text" name="bussinessId" class="hide">
+                <input type="text" name="projectId" class="hide">
+                <input type="text" name="customerId" class="hide">
+                <input type="text" name="projectNo" placeholder="请输入贷款编号" readonly class="form-control required"><span class="input-group-btn">
+                <button type="button" data-toggle="modal" data-target="#loanChoice" class="btn btn-primary">...</button></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">客户名称：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="customerName" placeholder="请输入客户名称" class="form-control" readonly/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">客户经理：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="managerName" placeholder="请输入客户经理" class="form-control" readonly/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-sm">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">业务机构：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="orgName" placeholder="请输入业务机构" class="form-control" readonly/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>申请金额：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="applyAmount" placeholder="请输入申请金额" class="form-control number required" aria-required="true"/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">付款方式：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <select name="paymentMethod" class="form-control" id="PaymentMethod_40">
+                <option value="" >--请选择--</option>
+                <option value="1" >现金</option>
+                <option value="2" selected>银行转账</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-sm" id="isCashPaymentMethod_40">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>收款人名称：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="accountName" placeholder="请输入收款人名称" maxlength="50" class="form-control required" />
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>收款账号：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="accountNo" placeholder="请输入收款账号" maxlength="50" class="form-control required"/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>收款银行：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="bankName" placeholder="请输入收款银行" maxlength="50" class="form-control required"/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-sm">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>经办人：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="hidden" name="userId" />
+              <input type="text" name="operator" placeholder="请输入经办人" class="form-control required" />
+            </div>
+          </div>
+          <div class="input-tip isActualDate">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>费用发生日期：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="actualDate" placeholder="请输入费用发生日期" class="form-control date required"/>
+            </div>
+          </div>
+        </div>
+
+		<div class="form-group form-group-sm">
+			<div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">备注：</label>
+            <div class="col-xs-21 col-sm-21 col-md-21">
+              <textarea rows="5" name="remark" placeholder="请输入备注!" maxlength="250" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </template>
+      <template id="tpl_20" class="hide">
+        <div class="form-group form-group-sm">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"> <span class="text-danger">*&nbsp;</span>拖车编号：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <div class="input-group input-group-sm">
+                <input type="text" name="bussinessId" class="hide">
+                <input type="text" name="projectId" class="hide">
+                <input type="text" name="customerId" class="hide">
+                <input type="text" name="dragCarNum" placeholder="请输入拖车编号" readonly class="form-control required"><span class="input-group-btn">
+                <button type="button" data-toggle="modal" data-target="#trailerChoice" class="btn btn-primary">...</button></span>
+              </div>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">拖车申请人：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="launchUserName" placeholder="请输入拖车申请人" class="form-control" readonly/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-sm">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">贷款编号：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="projectNo" placeholder="请输入贷款编号" class="form-control" readonly/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">客户名称：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="customerName" placeholder="请输入客户名称" class="form-control" readonly/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">客户经理：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="managerName" placeholder="请输入客户经理" class="form-control" readonly/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-sm">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">业务机构：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="orgName" placeholder="请输入业务机构" class="form-control" readonly/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>申请金额：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="applyAmount" placeholder="请输入申请金额" class="form-control number required" aria-required="true"/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>付款方式：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <select name="paymentMethod" class="form-control required" id="PaymentMethod_20">
+                <option value="" >--请选择--</option>
+                <option value="1" >现金</option>
+                <option value="2" selected>银行转账</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-sm" id="isCashPaymentMethod_20">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>收款人名称：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="accountName" placeholder="请输入收款人名称" maxlength="50" class="form-control required" />
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>收款账号：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="accountNo" placeholder="请输入收款账号" maxlength="50" class="form-control required"/>
+            </div>
+          </div>
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>收款银行：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="bankName" placeholder="请输入收款银行" maxlength="50" class="form-control required"/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group form-group-sm">
+          <div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">经办人：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <!--<div class="input-group input-group-sm">-->
+                <!--<input type="hidden" name="userId" />-->
+                <input type="text" name="operator" placeholder="请输入经办人" class="form-control">
+				<!--<span class="input-group-btn"> <button type="button" data-toggle="modal" data-target="#agentChoice" class="btn btn-primary">...</button></span>-->
+              </div>
+            <!--</div>-->
+          </div>
+          <div class="input-tip isActualDate">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>费用发生日期：</label>
+            <div class="col-xs-5 col-sm-5 col-md-5">
+              <input type="text" name="actualDate" placeholder="请输入费用发生日期" class="form-control date required"/>
+            </div>
+          </div>
+        </div>
+		<div class="form-group form-group-sm">
+			<div class="input-tip">
+            <label class="col-xs-3 col-sm-3 col-md-3 control-label">备注：</label>
+            <div class="col-xs-21 col-sm-21 col-md-21">
+              <textarea rows="5" name="remark" placeholder="请输入备注!" maxlength="250" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+      </template>
+
+    <!--任务提交人员选择-->
+    <div class="modal fade" id="signModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">任务提交</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <p>请选择流转人员&nbsp;&nbsp;&nbsp;后续流程环节:<span id="nextNode"></span></p>
+              <table id="table_sign" data-ajax="table_sign">
+                <thead>
+                  <tr>
+                    <th data-switchable="false" data-field="userId" data-formatter="handle_sign" data-events="tableEvent_sign">选择</th>
+                    <th data-field="organization">机构名称</th>
+                    <th data-field="department">部门</th>
+                    <th data-field="userName">姓名</th>
+                    <th data-field="taskCount">当前代办量</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+          <input type="hidden" id="nextNodeUserId" />
+          <input type="hidden" id="nextNodeUserName" />
+          <div class="modal-footer">
+            <input type="hidden" id="signUserName" name="" />
+            <button type="button" class="btn btn-primary" id="select-sign-btn">确定</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="modal fade" id="loanChoice">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">选择垫款客户</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-xs-24 col-sm-24 col-md-24">
+                  <div class="ibox float-e-margins">
+                    <div>
+                      <form id="searchForm_1" class="form-horizontal">
+                        <div class="form-group form-group-sm">
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">客户名称：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="customerName" placeholder="请输入客户名称" class="form-control">
+                            </div>
+                          </div>
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">证件号码：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="cardNo" placeholder="请输入证件号码" class="form-control">
+                            </div>
+                          </div>
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">手机号码：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="mobilePhone" placeholder="请输入手机号码" class="form-control">
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="form-group form-group-sm">
+                          <div class="input-tip">
+                            <label class="control-label col-md-3 col-xs-3 col-sm-3">逾期情况:
+                            </label>
+                            <div class="col-md-5 col-xs-5 col-sm-5">
+                              <select class="form-control" name="continuousOverdueTimes">
+                                <option value="-1" selected>全部</option>
+                                <option value="1">N1</option>
+                                <option value="2">N2</option>
+                                <option value="3">N3</option>
+                                <option value="-2">N4及以上</option>
+                                <option value="-3">仅垫款</option>
+                              </select>
+
+                            </div>
+                          </div>
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">贷款编号：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="projectNo" placeholder="请输入贷款编号" class="form-control">
+                            </div>
+                          </div>
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">合作银行：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <select name="coBankId" class="form-control">
+                                <option value="" selected>--请选择--</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                          <div class="input-tip">
+                            <label class="control-label col-md-3 col-xs-3 col-sm-3">数据范围:
+                            </label>
+                            <div class="col-md-5 col-xs-5 col-sm-5">
+                              <select class="form-control" name="type">
+                                <option value="0">全部</option>
+                                <option value="1" selected>当前逾期</option>
+                                <option value="2">历史逾期</option>
+                              </select>
+
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-xs-24 col-sm-24 col-md-24 text-center">
+                            <button type="button" class="btn btn-primary" id="btn-search_1" modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                            </button>
+                            <button type="button" class="btn btn-white" modal="reset"><span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="ibox float-e-margins">
+                    <div>
+                      <table id="table_1" data-ajax="dataLoad_1">
+                        <thead>
+                          <tr>
+                            <th data-field="projectNo">贷款编号</th>
+                            <th data-field="customerName">客户名称</th>
+                            <th data-field="cardNo">证件号码</th>
+                            <th data-field="repaymentCardNo">还款卡号</th>
+                            <!--<th data-field="cardType" data-formatter="cardType">证件类型</th>-->
+                            <th data-field="companyPhone">单位电话</th>
+                            <th data-field="mobilePhone">手机号码</th>
+                            <th data-field="continuousOverdueTimes" data-formatter="continuousOverdueTimes">逾期情况</th>
+                            <th data-field="overdueTotalAmount">比较金额</th>
+                            <th data-field="modifyTime">逾期最后更新时间</th>
+                            <th data-switchable="false" data-formatter="handle_1" data-events="tableEvent_1">操作</th>
+                          </tr>
+                        </thead>
+                      </table>
+                      <div id="toolbar"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="caseChoice">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">选择案件</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-xs-24 col-sm-24 col-md-24">
+                  <div class="ibox float-e-margins">
+                    <div>
+                      <form id="searchForm_2" class="form-horizontal">
+                        <div class="form-group form-group-sm">
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">客户名称：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="customerName" placeholder="请输入客户名称" class="form-control">
+                            </div>
+                          </div>
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">证件号码：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="cardNo" placeholder="请输入证件号码" class="form-control">
+                            </div>
+                          </div>
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">手机号码：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="mobile" placeholder="请输入手机号码" class="form-control">
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="form-group form-group-sm">
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">案件编号：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="lawCaseNo" placeholder="请输入案件编号" class="form-control">
+                            </div>
+                          </div>
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">贷款编号：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="projectNo" placeholder="请输入贷款编号" class="form-control">
+                            </div>
+                          </div>
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">合作银行：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <select name="bankId" class="form-control">
+                                <option value="" selected>--请选择--</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-xs-24 col-sm-24 col-md-24 text-center">
+                            <button type="button" class="btn btn-primary" id="btn-search_2" modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                            </button>
+                            <button type="button" class="btn btn-white" modal="reset"><span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="ibox float-e-margins">
+                    <div>
+                      <table id="table_2" data-ajax="dataLoad_2">
+                        <thead>
+                          <tr>
+                            <th data-field="lawsuitNum">诉讼申请编号</th>
+                            <th data-field="lawCaseNo">案件编号</th>
+                            <th data-field="userName">经办法务</th>
+                            <th data-field="lawsuitStatus" data-formatter='lawsuitStatus'>案件进程</th>
+                            <th data-field="projectNo">贷款编号</th>
+                            <th data-field="customerName">客户名称</th>
+                            <th data-field="cardNo">证件号码</th>
+                            <th data-field="customerMobile">手机号码</th>
+                            <th data-field="targetAmount">诉讼金额</th>
+                            <th data-switchable="false" data-formatter="handle_2" data-events="tableEvent_2">操作</th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="modal fade" id="trailerChoice">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">选择案件</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-xs-24 col-sm-24 col-md-24">
+                  <div class="ibox float-e-margins">
+                    <div>
+                      <form id="searchForm_4" class="form-horizontal">
+                        <div class="form-group form-group-sm">
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">客户名称：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="customerName" placeholder="请输入客户名称" class="form-control">
+                            </div>
+                          </div>
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">证件号码：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="cardNo" placeholder="请输入证件号码" class="form-control">
+                            </div>
+                          </div>
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">手机号码：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="mobile" placeholder="请输入手机号码" class="form-control">
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="form-group form-group-sm">
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">拖车编号：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="dragCarNum" placeholder="请输入拖车编号" class="form-control">
+                            </div>
+                          </div>
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">贷款编号：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <input type="text" name="projectNo" placeholder="请输入贷款编号" class="form-control">
+                            </div>
+                          </div>
+                          <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">合作银行：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                              <select name="bankId" class="form-control">
+                                <option value="" selected>--请选择--</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <div class="col-xs-24 col-sm-24 col-md-24 text-center">
+                            <button type="button" class="btn btn-primary" id="btn-search_4" modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                            </button>
+                            <button type="button" class="btn btn-white" modal="reset"><span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="ibox float-e-margins">
+                    <div>
+                      <table id="table_4" data-toggle="table" data-ajax="dataLoad_4">
+                        <thead>
+                          <tr>
+                            <th data-field="dragCarNum">拖车编号</th>
+                            <th data-field="launchUserName">拖车申请人</th>
+                            <th data-field="projectNo">贷款编号</th>
+                            <th data-field="customerName">客户名称</th>
+                            <th data-field="cardNo">证件号码</th>
+                            <th data-field="mobile">手机号码</th>
+                            <th data-switchable="false" data-formatter="handle_4" data-events="tableEvent_4">操作</th>
+                          </tr>
+                        </thead>
+                      </table>
+                      <div id="toolbar"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="agentChoice" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+              <h4 class="modal-title">经办人</h4>
+            </div>
+            <div class="modal-body">
+              <table data-toggle="table" data-ajax="dataLoad_5">
+                <thead>
+                  <tr>
+                    <th data-radio="true"></th>
+                    <th data-field="realname">用户名</th>
+                    <th data-field="bzGroupName">业务组</th>
+                    <th data-field="departmentName">部门</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button id="btnSure" class="btn btn-info">确定</button>
+              <button data-dismiss="modal" class="btn btn-default">关闭</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!--选择收款人-->
+    <div class="modal fade" id="payeeChoice" style="display: none;">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">请选择收款人</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <table id="table_pay" data-ajax="table_pay">
+                <thead>
+                  <tr>
+                    <th data-switchable="false" data-field="id" data-formatter="handle_pay" data-events="tableEvent_pay">选择</th>
+                    <th data-field="accountName">收款人全称</th>
+                    <th data-field="subBankName">收款人开户支行</th>
+                    <th data-field="cardNumber">收款人账号</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!--保存确认操作模态框-->
+      <div class="modal fade" id="feeSureModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">提示信息</h4>
+            </div>
+            <div class="modal-body">
+              <p id="feeTipText" class="tipText"></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="settlementSureOption">确定</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=eb649edd14c8348e9f34a8ca6157c2b6"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.min.js?rev=424557ef2a8b89693026b3b43d4b1e1c"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/js/flow.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+</html>
+<script type="text/javascript" charset="utf-8">
+  $("head").append([
+    '<script src="../../../common/js/URL.js"><\/script>',
+    '<script src="../../../common/js/iframeCommon.js"><\/script>',
+    '<script src="../../../js/finaceManage/costLaunch/costInfo.js"><\/script>'
+  ].join(""));
+</script>

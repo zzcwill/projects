@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="./common/amui.min.css">
+    <script src="./common/zepto.min.js?t=@@hash"></script>
+    <script src="./common/mock-min.js?t=@@hash"></script>
+    <script src="./common/amui.js?t=@@hash"></script>
+    <script src="./common/global.js?t=@@hash"></script>
+    <title>合同信息</title>
+    <div id="page">
+      <p class="am-list-title-p">信用卡贷款登记</p>
+      <div am-mode="flat chip 43px" class="am-list">
+        <div class="am-list-body">
+          <div class="am-list-item">
+            <div class="am-list-title">银行合同编号</div>
+            <div data-name="contractNo" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">附加贷合同编号</div>
+            <div data-name="additionalContractNo" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">合同金额</div>
+            <div data-name="contractAmount" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">分期手续费</div>
+            <div data-name="bankInstallmentFee" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">还款方式</div>
+            <div data-name="repayType" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">贷款银行</div>
+            <div data-name="coBankName" class="am-list-extra"></div>
+          </div>
+        </div>
+      </div>
+      <p class="am-list-title-p">用卡须知</p>
+      <div am-mode="flat chip 43px" class="am-list">
+        <div class="am-list-body">
+          <div class="am-list-item">
+            <div class="am-list-title">首期偿还本金</div>
+            <div data-name="noticeDownpaymentCapital" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">每期偿还本金</div>
+            <div data-name="noticePeriodpaymentCapital" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">末期偿还本金</div>
+            <div data-name="noticeFinalpaymentCapital" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">首期利息</div>
+            <div data-name="noticeDownpaymentInterest" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">每期利息</div>
+            <div data-name="noticePeriodpaymentInterest" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">末期利息</div>
+            <div data-name="noticeFinalpaymentInterest" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">首期偿还总额</div>
+            <div data-name="noticeDownpaymentAmount" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">每期偿还总额</div>
+            <div data-name="noticePeriodpaymentAmount" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">末期偿还总额</div>
+            <div data-name="noticeFinalpaymentAmount" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">服务费每期偿还本金</div>
+            <div data-name="servicePerRepayAmount" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">服务费每期偿还利息</div>
+            <div data-name="servicePerInterest" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">服务费首期偿还本金</div>
+            <div data-name="serviceFirstRepayAmount" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">服务费首期偿还利息</div>
+            <div data-name="serviceFirstInterest" class="am-list-extra"></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="am-list-title-p">还款合同</p>
+      <div am-mode="flat chip 43px" class="am-list">
+        <div class="am-list-body">
+          <div class="am-list-item">
+            <div class="am-list-title">首期偿还本金</div>
+            <div data-name="contractDownpaymentCapital" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">每期偿还本金</div>
+            <div data-name="contractPeriodpaymentCapital" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">末期偿还本金</div>
+            <div data-name="contractFinalpaymentCapital" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">首期利息</div>
+            <div data-name="contractDownpaymentInterest" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">每期利息</div>
+            <div data-name="contractPeriodpaymentInterest" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">末期利息</div>
+            <div data-name="contractFinalpaymentInterest" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">首期偿还总额</div>
+            <div data-name="contractDownpaymentAmount" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">每期偿还总额</div>
+            <div data-name="contractPeriodpaymentAmount" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">末期偿还总额</div>
+            <div data-name="contractFinalpaymentAmount" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">还款卡号</div>
+            <div data-name="repaymentNo" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">开始息日</div>
+            <div data-name="interestStartDate" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">结束息日</div>
+            <div data-name="interestEndDate" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">首个扣款日</div>
+            <div data-name="firstRepaymentDate" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">登记日期</div>
+            <div data-name="registerDate" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">账单日</div>
+            <div data-name="billDate" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">备注</div>
+            <div data-name="note" class="am-list-extra"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </head>
+</html>
+<script src="./js/contractInfo.js"></script>

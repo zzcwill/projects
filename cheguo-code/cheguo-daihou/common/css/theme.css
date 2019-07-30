@@ -1,0 +1,49 @@
+/*!
+ @Name: theme
+ @Author: zlp
+ */
+/* login */
+.signin{ background-image: url("../../images/login-background_shengan.jpg")}
+.navbar{ background: #121010}
+.signinpanel form button{ background: #ff8b33}
+.signinpanel form button:hover,
+.signinpanel form button:focus, .signinpanel form button:active{ background: #ef7416}
+/* main */
+.nav>li>a{ color: #d9d9d9}
+#page-wrapper .navbar, .bg-ff{ background: #ff8b33}
+.navbar-static-side, .navbar-default .nav>li.active a:hover{background: #393939;}
+.navbar-default .nav>li>a:focus, .navbar-default .nav>li a:hover{
+    background: #2d2d2d;
+}
+.nav>li.active { background: #2d2d2d; border-left: 4px solid #ff8b33}
+.content-tabs {
+    border-bottom: solid 1px #d9d9d9;
+}
+.navBox-main li{ color:#fff}
+.navBox-main li[for='03'] {  padding-left: 40px;  background: url(../../images/icon_cherongOut.png) no-repeat 13px 7px  }
+.navBox-main li:first-child{  border-right: none;}
+nav.page-tabs{ background: #fff;  color: #808080;}
+.page-tabs a{ height: 35px;}
+.page-tabs a.active i:hover, .page-tabs a.active { background: #eee; font-weight: bold; color: #4c4c4c; margin-top: -3px; height: 38px; border-radius: 3px 3px 0 0; }
+nav.page-tabs{ overflow: inherit}
+.toast,.toast-success {
+    background-color: #ff8b33
+}
+
+.btn-info.active,
+.btn-info:active,
+.btn-info:focus,
+.btn-info:hover,
+.btn-info,
+#logOut .btn-info:active,
+.open .dropdown-toggle.btn-info,
+.btn-success:active:hover,
+.btn-success.active:hover,
+.open>.dropdown-toggle.btn-success:hover,
+.btn-success:active:focus,
+.btn-success.active:focus,
+.open>.dropdown-toggle.btn-success:focus{
+    background: #ff8b33;
+    border-color: #ff8b33;
+    color: #fff;
+}

@@ -1,0 +1,310 @@
+<!--非总部审批中心评分卡-->
+<link rel="stylesheet" href="../../../css/main.css"/>
+<style type="text/css">
+    .customerScoreText i{ font-style: normal; padding-right: 15px;}
+</style>
+<div class="row">
+    <form id="formCustomerScore" class="form-horizontal hide">
+        <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">客户评分项</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group form-group-sm">
+                <div class="input-tip">
+                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">
+                        <span class="text-danger">*</span>驾驶证情况：
+                    </label>
+                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                        <select name="driverLicence" class="form-control required">
+                            <option value="" selected="">--请选择--</option>
+                            <option value="2">主贷人有驾照</option>
+                            <option value="3">配偶有驾照</option>
+                            <option value="4">父母/子女有驾照</option>
+                            <option value="5">非直系担保人有驾照</option>
+                            <option value="6">主贷人通过科目一及以上考试</option>
+                            <option value="7">主贷人通过科目二及以上考试</option>
+                            <option value="8">主贷人通过科目三及以上考试</option>
+                            <option value="1">主贷人或担保人科目一以下或无驾照</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-tip hide" id="maritalHasChildren">
+                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">
+                        <span class="text-danger">*</span>有无子女：
+                    </label>
+                    <input type="hidden" name="hasChildren" id="hasChildren" value="0"/>
+                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                        <label class="radio-inline">
+                            <input type="radio" name="hasChildren" value="1" class="hasChildren required" aria-required="true">有</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label class="radio-inline">
+                            <input type="radio" name="hasChildren" value="0" class="hasChildren required" aria-required="true">无</label>
+                    </div>
+                </div>
+                <!--<div class="input-tip hide" id="spouseDriverLicence">-->
+                    <!--<label class="col-md-3 col-xs-3 col-sm-3 control-label">-->
+                        <!--<span class="text-danger">*</span>配偶驾驶证情况：-->
+                    <!--</label>-->
+                    <!--<div class="col-md-5 cl-sm-5 col-xs-5">-->
+                        <!--<select name="spouseDriverLicence" class="form-control required">-->
+                            <!--<option value="" selected="">&#45;&#45;请选择&#45;&#45;</option>-->
+                            <!--<option value="2">有</option>-->
+                            <!--<option value="1">无</option>-->
+                            <!--<option value="3">学车</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="input-tip">-->
+                    <!--<label class="col-md-3 col-xs-3 col-sm-3 control-label">担保人驾驶证情况：</label>-->
+                    <!--<div class="col-md-5 cl-sm-5 col-xs-5">-->
+                        <!--<select name="guarantorDriverLicence" class="form-control">-->
+                            <!--<option value="" selected="">&#45;&#45;请选择&#45;&#45;</option>-->
+                            <!--<option value="2">有</option>-->
+                            <!--<option value="1">无</option>-->
+                            <!--<option value="3">学车</option>-->
+                        <!--</select>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+            <div class="form-group form-group-sm">
+                <div class="input-tip">
+                    <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span
+                            class="text-danger">*</span>最高学历：</label>
+
+                    <div class="col-xs-5 col-sm-5 col-md-5">
+                        <select name="education" class="form-control required"
+                                required="required">
+                            <option value="">--请选择--</option>
+                            <option value="1">初中及以下</option>
+                            <option value="2">高中</option>
+                            <option value="3">大专</option>
+                            <option value="4">本科</option>
+                            <option value="5">硕士及以上</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-tip">
+                    <label class="col-md-3 col-xs-3 col-sm-3 control-label"><span class="text-danger">*</span>职业：</label>
+                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                        <input type="hidden" name="profession" id="professionName" value="">
+                        <select name="professionCode" class="form-control required" id="profession_Code">
+                        </select>
+                    </div>
+                </div>
+                <div class="input-tip">
+                    <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span
+                            class="text-danger">*</span>所属行业：</label>
+                    <div class="col-xs-5 col-sm-5 col-md-5">
+                        <select name="industry" class="form-control required"
+                                required="required">
+                            <option value="" selected>--请选择--</option>
+                            <option value="1">邮电通讯行业</option>
+                            <option value="2">房地产行业</option>
+                            <option value="3">交通运输行业</option>
+                            <option value="4">法律/司法行业</option>
+                            <option value="5">文化/娱乐/体育行业</option>
+                            <option value="6">医疗行业</option>
+                            <option value="7">计算机/网络行业</option>
+                            <option value="8">商业贸易行业</option>
+                            <option value="9">财政行业</option>
+                            <option value="10">税务行业</option>
+                            <option value="11">咨询行业</option>
+                            <option value="12">社会服务行业</option>
+                            <option value="13">旅游/饭店行业</option>
+                            <option value="14">部队系统</option>
+                            <option value="15">证券行业</option>
+                            <option value="16">银行业</option>
+                            <option value="17">保险业</option>
+                            <option value="18">其他金融行业</option>
+                            <option value="19">采矿业</option>
+                            <option value="20">建筑业</option>
+                            <option value="21">工业</option>
+                            <option value="22">制造业</option>
+                            <option value="23">水电气供应</option>
+                            <option value="24">机关团体</option>
+                            <option value="25">农林牧渔</option>
+                            <option value="27">汽修</option>
+                            <option value="26">其它</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <div class="input-tip">
+                    <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*</span>住房状况：</label>
+                    <div class="col-xs-5 col-sm-5 col-md-5">
+                        <select name="housingStatus" class="form-control required"
+                                required="required" id="housingStatus">
+                            <option value="" selected>--请选择--</option>
+                            <option value="1">自有商品住房（1套）</option>
+                            <option value="7">自有商品住房（2套及以上）</option>
+                            <option value="2">自有厂房或者商铺</option>
+                            <option value="3">自建房</option>
+                            <option value="4">父母住房</option>
+                            <option value="5">租借房</option>
+                            <option value="6">其他</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-tip">
+                    <label class="col-md-3 col-xs-3 col-sm-3 control-label"><span class="text-danger">*</span>公积金情况：</label>
+                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                        <select name="reservedFundsYear" class="form-control required">
+                            <option value="">--请选择--</option>
+                            <option value="1">无</option>
+                            <option value="2">1年以内</option>
+                            <option value="3">1年-3年</option>
+                            <option value="4">3年以上</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-tip">
+                    <label class="col-md-3 col-xs-3 col-sm-3 control-label"><span class="text-danger">*</span>社保情况：</label>
+                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                        <select name="socialYear" class="form-control required">
+                            <option value="">--请选择--</option>
+                            <option value="1">无</option>
+                            <option value="2">1年以内</option>
+                            <option value="3">1年-3年</option>
+                            <option value="4">3年以上</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <div class="col-xs-24 col-sm-24 col-md-24 text-right">
+                    <button type="button" class="btn btn-primary" id="btn_saveScoreCard" modal="enter"><span>&nbsp;计算客户评分&nbsp;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+        <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">客户预评分</h3>
+        </div>
+        <div class="panel-body">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h3 class="text-center">评分结果</h3>
+                <p class="customerScoreText text-center"><label>预计得分：</label><i id="CustomerScoreA"></i></p>
+                <div id="myChart" style="width: 100%;height:400px;"> </div>
+            </div>
+            <!--<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">-->
+                <!--<h3>根据公司政策：</h3>-->
+                <!--<p>A类客户&nbsp;  90—100 ：15万以下（含）免家访</p>-->
+                <!--<p>B类客户&nbsp;  80—89 ：10万以下（含）免家访</p>-->
+                <!--<p>C类客户&nbsp;  70—79 ：7万以下（含）免家访</p>-->
+                <!--<p>D类客户&nbsp;  60—69 ：符合准入，需要家访</p>-->
+            <!--</div>-->
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+                <button type="button" class="btn btn-primary" id="refreshScoreCard">
+                    刷新
+                </button>
+            </div>
+            <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+                <h2><span class="text-danger">重要提醒</span>：尊敬的客户经理！以上评分结果为预计得分，实际得分受【评分解读】中提交资料真实性影响，
+                提交虚假信息审批中心核实后分值自动降低，同时也将影响您的【客户经理资质评级】。</h2>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">提高评分方法</h3>
+        </div>
+        <div class="panel-body">
+            <form id="scoreForm" class="form-horizontal">
+                <fieldset disabled>
+                <div id="relativeShipFile"></div>
+
+                <div class="form-group form-group-sm">
+                    <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-center">
+                        <button type="button" class="btn btn-primary" id="saveScore" style="display: none">
+                            保存
+                        </button>
+                    </div>
+                </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">【提醒】评分材料收集清单</h3>
+        </div>
+        <div class="panel-body" id="scoreComment">
+
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">审批中心拒绝材料清单</h3>
+        </div>
+        <div class="panel-body">
+            <table id="scoreTable" data-toggle="table" data-cookie="true" data-ajax="scoreTable"  data-pagination="false">
+                <thead>
+                <tr>
+                    <th data-field="itemName">得分项目</th>
+                    <th data-field="isCheck" data-formatter="isCheck">是否需核实</th>
+                    <th data-field="checkName">核实材料内容</th>
+                    <th data-field="checkResult" data-formatter="checkResult">核实结果</th>
+                    <!--<th data-field="itemScore">当前分值</th>-->
+                    <th data-field="realScore">实际得分</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="relativeShip_temp hide">
+        <h3></h3>
+        <input type="hidden" name="withRelationship">
+        <input type="hidden" name="relativeObjectId">
+        <input type="hidden" name="customerName">
+        <div class="form-group form-group-sm">
+            <div class="input-tip">
+                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">
+                    <span class="text-danger">*</span>营业执照：</label>
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <select class="form-control" name="provideBusinessLicence">
+                        <option value="1">无</option>
+                        <option value="2">有，成立时间1年以下且有经营场所</option>
+                        <option value="3">有，成立时间1-3年且有经营场所</option>
+                        <option value="4">有，成立时间3年以上且有经营场所</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-tip">
+                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">
+                    <span class="text-danger">*</span>银行流水：</label>
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <select class="form-control" name="provideAccountStatement">
+                        <option value="1">无</option>
+                        <option value="2">有，近半年月均存款余额还贷比高于1:1</option>
+                        <option value="3">有，近半年月均存款余额还贷比高于2:1</option>
+                        <option value="4">有，近半年月均存款余额还贷比高于0.5:1</option>
+                        <option value="5">有，近半年月均存款余额还贷比高于1.5:1</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group form-group-sm">
+            <div class="input-tip">
+                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">其他材料：</label>
+                <div class="col-xs-21 col-sm-21 col-md-21 col-lg-21">
+                    <div class="otherFiles">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=1512011716000"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/plugs/echarts/echarts.min.js"></script>
+<script src="../../../js/common/commonScoreCard/scoreCard1.js"></script>
+

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../common/css/style.min.css" />
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a" />
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/extensions/editable/css/bootstrap-editable.css"/>
+    <title>区域申请入库</title>
+</head>
+</html>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form id="searchForm" class="form-horizontal">
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-xs-3 col-sm-3 col-md-3 control-label">所属机构：</label>
+                                <div class="col-xs-5 col-sm-5 col-md-5">
+                                    <select name="orgId" class="form-control" id="orgId" readonly>
+                                        <option value="">--请选择--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-xs-3 col-sm-3 col-md-3 control-label">所属区域：</label>
+                                <div class="col-xs-5 col-sm-5 col-md-5">
+                                    <select name="groupId" class="form-control" id="groupId">
+                                        <option value="">--请选择--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-xs-3 col-sm-3 col-md-3 control-label">供应商：</label>
+                                <div class="col-xs-5 col-sm-5 col-md-5">
+                                    <select name="supplierId" class="form-control supplier">
+                                        <option value="">--请选择--</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip" id="isStatus">
+                                <label class="col-xs-3 col-sm-3 col-md-3 control-label">申请状态：</label>
+                                <div class="col-xs-5 col-sm-5 col-md-5">
+                                    <select name="status" class="form-control" id="applyStatus">
+                                        <option value="">--请选择--</option>
+                                        <option value="1">待审批</option>
+                                        <option value="2">待分配</option>
+                                        <option value="3">审批未通过</option>
+                                        <option value="4">待签收</option>
+                                        <option value="5">待提交</option>
+                                        <option value="6">已撤销</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-xs-3 col-sm-3 col-md-3 control-label">申请日期：</label>
+                                <div class="col-xs-5 col-sm-5 col-md-5">
+                                    <input type="text" name="entryTimeStart" placeholder="请输入申请开始日期" class="form-control date">
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-xs-3 col-sm-3 col-md-3 control-label">至：</label>
+                                <div class="col-xs-5 col-sm-5 col-md-5">
+                                    <input type="text" name="entryTimeEnd" placeholder="请输入申请结束日期" class="form-control date">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-center clearfix">
+                                <button type="button" class="btn btn-primary pull-right" id="isShowBtn" modal="enter"><span>新增申请</span>
+                                </button>
+                                <button type="button" class="btn btn-primary" id="btn-search" modal="enter">
+                                    <span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                                </button>
+                                <button type="button" class="btn btn-white" modal="reset">
+                                    <span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#applied" data-toggle="tab" id="useListTab">未签收</a></li>
+                        <li><a href="#stockDetail" data-toggle="tab">已签收</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <p></p>
+                        <div id="applied" class="tab-pane active">
+                            <table id="table1" data-toggle="table" data-ajax="dataLoad_1">
+                                <thead>
+                                <tr>
+                                    <th data-field="applyOrgName">所属机构</th>
+                                    <th data-field="groupName">所属区域</th>
+                                    <th data-field="supplierName">供应商</th>
+                                    <th data-field="productType" data-formatter="gpsType">产品类型</th>
+                                    <th data-field="applyAmount">申请数量</th>
+                                    <th data-field="applyDate">申请日期</th>
+                                    <th data-field="distributeUserName">分配人</th>
+                                    <th data-field="distributeAmount">分配数量</th>
+                                    <th data-field="distributeDate">分配时间</th>
+                                    <th data-field="status" data-formatter="gpsStatusType">申请状态</th>
+                                    <th data-field="remark">申请备注</th>
+                                    <th data-formatter="handle_1" data-events="tableEvent_1">操作</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div id="stockDetail" class="tab-pane">
+                            <table id="table2" data-toggle="table" data-ajax="dataLoad_2">
+                                <thead>
+                                <tr>
+                                    <th data-field="applyOrgName">所属机构</th>
+                                    <th data-field="groupName">所属区域</th>
+                                    <th data-field="supplierName">供应商</th>
+                                    <th data-field="productType" data-formatter="gpsType">产品类型</th>
+                                    <th data-field="applyAmount">申请数量</th>
+                                    <th data-field="applyDate">申请日期</th>
+                                    <th data-field="distributeUserName">分配人</th>
+                                    <th data-field="distributeAmount">分配数量</th>
+                                    <th data-field="distributeDate">分配时间</th>
+                                    <th data-field="status" data-formatter="gpsStatusType">申请状态</th>
+                                    <th data-field="remark">申请备注</th>
+                                    <th data-formatter="handle_2" data-events="tableEvent_2">操作</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--查看详情-->
+<div id="divTable1" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+                <h4 class="modal-title">详情</h4>
+            </div>
+            <div class="modal-body">
+                <div class="ibox float-e-margins">
+                    <table data-ajax="dataLoad_4" id="table4">
+                        <thead>
+                        <tr>
+                            <th data-field="orgName">所属机构</th>
+                            <th data-field="supplierName">供应商</th>
+                            <th data-field="productSpec">规格型号</th>
+                            <th data-field="productType" data-formatter="gpsType">产品类型</th>
+                            <th data-field="price">入库价格</th>
+                            <th data-field="imei">IMEI</th>
+                            <th data-field="sim">SIM</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--确认到货-->
+<div id="arrived" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+                <h4 class="modal-title">确认到货</h4>
+            </div>
+            <div class="modal-body">
+                <form id="arrivedForm" class="form-horizontal">
+                    <fieldset disabled>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="control-label col-md-3 col-xs-3 col-sm-3">所属机构：</label>
+                                <div class="col-xs-9 col-sm-9 col-md-9">
+                                    <input type="text" name="applyOrgName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="control-label col-md-3 col-xs-3 col-sm-3">所属区域：</label>
+                                <div class="col-xs-9 col-sm-9 col-md-9">
+                                    <input type="text" name="groupName" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="control-label col-md-3 col-xs-3 col-sm-3">申请数量：</label>
+                                <div class="col-xs-9 col-sm-9 col-md-9">
+                                    <input type="text" name="applyAmount" class="form-control">
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="control-label col-md-3 col-xs-3 col-sm-3">已分配数量：</label>
+                                <div class="col-xs-9 col-sm-9 col-md-9">
+                                    <input type="text" id="distributeAmount" name="distributeAmount"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <input type="hidden" name="applyNo" value="" id="applyNo">
+                </form>
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <table id="table3" data-toggle="table" data-ajax="dataLoad_3">
+                            <thead>
+                            <tr>
+                                <th data-field="supplierName">供应商</th>
+                                <th data-field="productSpec">规格型号</th>
+                                <th data-field="productType" data-formatter="gpsType">产品类型</th>
+                                <th data-field="price">入库价格</th>
+                                <th data-field="imei">IMEI</th>
+                                <th data-field="sim">SIM</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn_repairNum" class="btn btn-info" >确定到货</button>
+                    <button data-dismiss="modal" class="btn btn-default">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--任务提交-->
+<div class="modal fade" id="signModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">任务提交</h4>
+            </div>
+            <div class="modal-body">
+                <p>请选择流转人员&nbsp;&nbsp;&nbsp;后续流程环节:<span id="nextNode"></span></p>
+                <div class="row">
+                    <table id="table_sign" data-ajax="table_sign">
+                        <thead>
+                        <tr>
+                            <th data-switchable="false" data-field="userId" data-formatter="handle_sign" data-events="tableEvent_sign">选择
+                            </th>
+                            <th data-field="organization">机构名称</th>
+                            <th data-field="department">部门</th>
+                            <th data-field="userName">姓名</th>
+                            <th data-field="taskCount">当前代办量</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <input type="hidden" id="nextNodeUserId" />
+            <input type="hidden" id="nextNodeUserName" />
+            <div class="modal-footer">
+                <input type="hidden" id="signUserName" name="" />
+                <button type="button" class="btn btn-primary" id="select-sign-btn">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=1512011716000"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../common/js/flow.js"><\/script>',
+        '<script src="../../../js/stockManage/GPSBatchApply/index.js"><\/script>'
+    ].join(""));
+</script>

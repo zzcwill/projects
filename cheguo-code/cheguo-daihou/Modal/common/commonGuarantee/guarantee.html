@@ -1,0 +1,549 @@
+<div class="row hide">
+    <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+        <div class="">
+            <form id="approvalGuarantorForm" class="form-horizontal">
+                <fieldset disabled>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">抵/质押信息</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">资产编号：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="assetNo" placeholder=""
+                                               class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">资产名称：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="assetName" placeholder=""
+                                               class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">确认价值：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="assetValue" placeholder=""
+                                               class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">币种：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select name="currency" class="form-control">
+                                            <option value="">--请选择--</option>
+                                            <option value="1">人民币</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">申请担保债权本息：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="appliedGuaranteedAmount" placeholder=""
+                                               class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">已设定担保额：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="settedGuaranteedAmount" placeholder=""
+                                               class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">担保类型：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select class="form-control" name="guaranteeType">
+                                            <option value="">请选择</option>
+                                            <option value="1">抵押</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">保证人信息</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table id="table_guarantor" data-ajax="table_guarantor">
+                            <thead>
+                            <tr>
+                                <th data-field="guarantorName">保证人姓名</th>
+                                <th data-field="guarantyRelationship" data-formatter="guarantyRelationship">担保关系</th>
+                                <th data-field="cardType" data-formatter="cardType">证件类型</th>
+                                <th data-field="cardNo">证件号码</th>
+                                <th data-field="mobileNo">手机号码</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="row hide" id="btnGuarantor">
+	<div class="col-md-24 col-xs-24 col-sm24 text-left">
+		<button class="btn btn-sm btn-primary" type="button" id="relationGuarantor">关联担保人</button> 
+		<button class="btn btn-sm btn-primary" type="button" id="addGuarantor">添加反担保人</button>
+	</div>
+</div>
+
+<template id="tpl" class="hide">
+	<form class="form-horizontal">
+		<fieldset disabled>
+		<input class="hide" type="text" name="id">
+		<input class="hide" type="text" name="applyId">
+		<input class="hide" type="text" name="projectId">
+		<input class="hide" type="text" name="creditId">
+		<input class="hide" type="text" name="guarantorId">
+		<input class="hide" type="text" name="customerType">
+		<input class="hide" type="text" name="customerSource">
+		<input class="hide" type="text" name="sourceSerialno">
+		<input class="hide" type="text" name="degree">
+		<input class="hide" type="text" name="companyAddressLongitude">
+		<input class="hide" type="text" name="companyAddressLatitude">
+		<input class="hide" type="text" name="homeAddressLongitude">
+		<input class="hide" type="text" name="homeAddressLatitude">
+		<input class="hide" type="text" name="spouseName">
+		<input class="hide" type="text" name="spouseCardType">
+		<input class="hide" type="text" name="spouseCardNo">
+		<input class="hide" type="text" name="spouseMobilePhone">
+		<input class="hide" type="text" name="spousePermantAddress">
+		<input class="hide" type="text" name="spouseReservedFunds">
+		<input class="hide" type="text" name="spouseCompanyName">
+		<input class="hide" type="text" name="spouseCompanyAddressPid">
+		<input class="hide" type="text" name="spouseCompanyAddressPname">
+		<input class="hide" type="text" name="spouseCompanyAddressCid">
+		<input class="hide" type="text" name="spouseCompanyAddressCname">
+		<input class="hide" type="text" name="spouseCompanyAddressRid">
+		<input class="hide" type="text" name="spouseCompanyAddressRname">
+		<input class="hide" type="text" name="spouseCompanyAddressLongitude">
+		<input class="hide" type="text" name="spouseCompanyAddressLatitude">
+		<input class="hide" type="text" name="spouseCompanyAddress">
+		<input class="hide" type="text" name="spouseCompanyPhone">
+		<input class="hide" type="text" name="spouseMonthlyIncome">
+		<input class="hide" type="text" name="relationshipWithLoaner">
+		<input class="hide" type="text" name="guarantyRelationship">
+		<input class="hide" type="text" name="isInuse">
+		<input class="hide" type="text" name="userId">
+		<input class="hide" type="text" name="userName">
+		<input class="hide" type="text" name="orgId">
+		<input class="hide" type="text" name="orgName">
+		<!--<input class="hide" type="text" name="modifyTime">-->
+		<input class="hide" type="text" name="loanApplyId">
+		<input class="hide" type="text" name="guarantorNo">
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">{title}</h3>
+			</div>
+			<div class="panel-body">
+				<fieldset>
+					<div class="form-group form-group-sm">
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">
+								<span class="text-danger">*</span>保证人姓名：</label> 
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input type="text" name="guarantorName" placeholder="" class="form-control required {sign}">
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">建档日期：</label> 
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input type="text" name="registerDate" class="form-control date" disabled>
+							</div>
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">证件类型：</label>
+
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<select name="cardType" class="form-control required {sign}">
+									<option value="">--请选择--</option>
+									<option value="1">身份证</option>
+									<option value="2">军官证</option>
+									<option value="3">侨胞证</option>
+									<option value="4">外籍人士</option>
+								</select>
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">证件号码：</label>
+
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input type="text" name="cardNo" class="form-control required {sign}" >
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label"><span class="text-danger">*</span>性别：</label>
+
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<select name="sex" class="form-control required">
+									<option value="">--请选择--</option>
+									<option value="1">男</option>
+									<option value="0">女</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3  control-label">
+								<span class="text-danger">*</span>出生日期：</label> 
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input type="text" name="birthday" class="form-control date required">
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label"><span class="text-danger">*</span>年龄：</label>
+
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input type="text" name="age" class="form-control required"/>
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label"><span class="text-danger">*</span>婚姻状况：</label> 
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<select name="maritalStatus" class="form-control required">
+									<option value="">--请选择--</option>
+									<option value="1">已婚</option>
+									<option value="2">未婚</option>
+									<option value="3">离异</option>
+									<option value="4">丧偶</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">
+								<span class="text-danger">*</span>手机号码：</label> 
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input type="text" name="mobilePhone" placeholder="" class="form-control mobile required">
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">
+								<span class="text-danger">*</span>家庭电话：</label>
+
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input type="text" name="homePhone" placeholder="" class="form-control phone required">
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">籍贯：</label>
+
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input type="text" name="nativePlace" placeholder="" class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">
+								<span class="text-danger">*</span>最高学历：</label> 
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<select name="education" class="form-control required">
+									<option value="">--请选择--</option>
+									<option value="1">初中及以下</option>
+									<option value="2">高中</option>
+									<option value="3">大专</option>
+									<option value="4">本科</option>
+									<option value="5">硕士及以上</option>
+								</select>
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">
+								<span class="text-danger">*</span>住房状况：</label> 
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<select name="housingStatus" class="form-control housingStatus required">
+									<option value="">--请选择--</option>
+									<option value="1">自有住房</option>
+									<option value="2">贷款购房</option>
+									<option value="3">租房</option>
+									<option value="4">其他</option>
+								</select>
+							</div>
+						</div>
+						<div class="input-tip mortgageRepayment" style="display: none;">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label"></label>
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input type="text" name="mortgageRepayment" class="form-control required" />
+							</div>
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">
+								<span class="text-danger">*</span>职业：</label> 
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input type="text" name="profession" placeholder="" class="form-control required" />
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">
+								<span class="text-danger">*</span>所属行业：</label> 
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<select name="industry" class="form-control required">
+									<option value="">--请选择--</option>
+									<option value="1">邮电通讯行业</option>
+									<option value="2">房地产行业</option>
+									<option value="3">交通运输行业</option>
+									<option value="4">法律/司法行业</option>
+									<option value="5">文化/娱乐/体育行业</option>
+									<option value="6">医疗行业</option>
+									<option value="7">计算机/网络行业</option>
+									<option value="8">商业贸易行业</option>
+									<option value="9">财政行业</option>
+									<option value="10">税务行业</option>
+									<option value="11">咨询行业</option>
+									<option value="12">社会服务行业</option>
+									<option value="13">旅游/饭店行业</option>
+									<option value="14">部队系统</option>
+									<option value="15">证券行业</option>
+									<option value="16">银行业</option>
+									<option value="17">保险业</option>
+									<option value="18">其他金融行业</option>
+									<option value="19">采矿业</option>
+									<option value="20">建筑业</option>
+									<option value="21">工业</option>
+									<option value="22">制造业</option>
+									<option value="23">水电气供应</option>
+									<option value="24">机关团体</option>
+									<option value="25">农林牧渔</option>
+									<option value="26">其它</option>
+								</select>
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">
+								<span class="text-danger">*</span>个人月收入：</label> 
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<select name="monthlyIncome" class="form-control required">
+									<option value="">--请选择--</option>
+									<option value="1">1-4999</option>
+									<option value="2">5000-9999</option>
+									<option value="3">10000-14999</option>
+									<option value="4">15000-19999</option>
+									<option value="5">2万以上</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">
+								<span class="text-danger">*</span>工作单位：</label>
+
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input type="text" name="companyName" placeholder="" class="form-control required" />
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">
+								<span class="text-danger">*</span>单位电话：</label>
+
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input type="text" name="companyPhone" placeholder="" class="form-control required"/>
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">
+								<span class="text-danger">*</span>公积金：</label> 
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<select name="reservedFunds" class="form-control required">
+									<option value="">--请选择--</option>
+									<option value="1">无</option>
+									<option value="2">1-500</option>
+									<option value="3">1001-1500</option>
+									<option value="4">1501-2000</option>
+									<option value="5">2001-2500</option>
+									<option value="6">2501-3000</option>
+									<option value="7">3000以上</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">
+								<span class="text-danger">*</span>单位地址（省/直辖市）：</label> 
+							<div class="col-md-5 cl-sm-5 col-xs-5"> 
+								<input class="hide" type="text" name="companyAddressPname" id="provinceCode_name_{index}">
+								<select name="companyAddressPid" class="form-control required" id="provinceCode_{index}">
+									<option value="" selected>--请选择--</option>
+								</select>
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">市/区：</label> 
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input class="hide" type="text" name="companyAddressCname" id="cityCode_name_{index}">
+								<select name="companyAddressCid" class="form-control required" id="cityCode_{index}">
+									<option value="" selected>--请选择--</option>
+								</select>
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">市/区/县：</label>
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input class="hide" type="text" name="companyAddressRname" id="areaCode_name_{index}">
+								<select name="companyAddressRid" class="form-control required" id="areaCode_{index}">
+									<option value="" selected>--请选择--</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">
+								<span class="text-danger">*</span>单位地址：</label> 
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input type="text" name="companyAddressDetail" placeholder="" class="form-control required"/> 
+							</div>
+						</div>
+					</div>
+					<div class="form-group form-group-sm">
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label"><span class="text-danger">*</span>家庭地址（省/直辖市）：</label> 
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input class="hide" type="text" name="homeAddressPname" id="provinceCode_name_1_{index}">
+								<select name="homeAddressPid" class="form-control required" id="provinceCode_1_{index}">
+									<option value="" selected>--请选择--</option>
+								</select>
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">市/区：</label>
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input class="hide" type="text" name="homeAddressCname" id="cityCode_name_1_{index}">
+								<select name="homeAddressCid" class="form-control required" id="cityCode_1_{index}">
+									<option value="" selected>--请选择--</option>
+								</select>
+							</div>
+						</div>
+						<div class="input-tip">
+							<label class="col-md-3 col-xs-3 col-sm-3 control-label">市/区/县：</label>
+
+							<div class="col-md-5 cl-sm-5 col-xs-5">
+								<input class="hide" type="text" name="homeAddressRname" id="areaCode_name_1_{index}">
+								<select name="homeAddressRid" class="form-control required" id="areaCode_1_{index}">
+									<option value="" selected>--请选择--</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+				<div class="form-group form-group-sm">
+					<div class="input-tip">
+						<label class="col-md-3 col-xs-3 col-sm-3 control-label">详细地址：</label> 
+						<div class="col-md-5 cl-sm-5 col-xs-5">
+							<input type="text" name="homeAddressDetail" class="form-control required"/>
+						</div>
+					</div>
+
+					<div class="col-md-16 cl-sm-16 col-xs-16 text-right">
+						<button class="btn btn-sm btn-primary btnSave" type="button">保存</button>
+						<button class="btn btn-sm btn-white btnDelete" type="button">删除</button>
+					</div> 
+				</div>
+			</div>
+		</div>
+	</form> 
+	</fieldset>
+</template>
+<div id="getLoanGuarantorInfo" style="margin-top: 10px;"></div>
+
+<div class="modal fade" id="guarantorModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">选择担保人信息</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal" id="searchGuarantor">
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-4 control-label">客户名称：</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="customerName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-md-4 control-label">证件号码：</label>
+                                <div class="col-md-8">
+                                    <input type="text" name="cardNo" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="col-md-24 text-right">
+                                <button type="button" class="btn btn-primary" id="btn-guarantor-search2" modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                                </button>
+                                <button type="button" class="btn btn-white" modal="reset"><span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <table id="table_rGuarantor" data-ajax="table_rGuarantor">
+                        <thead>
+                        <tr>
+                            <th data-field="customerId" data-formatter="handle_rGuarantor" data-events="tableEvent_rGuarantor">选择</th>
+                            <th data-field="customerName">客户名称</th>
+                            <th data-field="cardNo">证件号码</th>
+                            <th data-field="cardType"  data-formatter="cardType">证件类型</th>
+                            <th data-field="inquryBank">调查银行</th>
+                            <th data-field="creditStatus" data-formatter="financialType">征信结果</th>
+                            <th data-field="submitTime">调查日期</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteLoanGuarantor">
+  <div class="modal-dialog">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title">删除担保人</h4>
+	  </div>
+	  <div class="modal-body">
+		<p>确定删除担保人？</p>
+	  </div>
+	  <div class="modal-footer">
+		<button type="button" class="btn btn-primary" id="deleteBtnSure">确定</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	  </div>
+	</div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script src="../../../js/common/commonGuarantee/guarantee.js"></script>

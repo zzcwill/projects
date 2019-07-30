@@ -1,0 +1,53 @@
+#page {
+  width: 100%;
+  height: 100%;
+}
+#page .am-button:not([am-version])[am-mode~=green] {
+  border: 0;
+  background-color: #00cca3;
+}
+#header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 46px;
+}
+#header .am-header {
+  background-color: #263238;
+}
+#content {
+  position: absolute;
+  top: 46px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: _;
+  overflow: auto;
+}
+#footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #263238;
+  height: 60px;
+  line-height: 60px;
+}
+.ft-pass {
+  color: #3CCB96;
+}
+.ft-nopass {
+  color: #FF6868;
+}
+.ft-nostart {
+  color: #FFC134;
+}
+.ft-Invalid {
+  color: #9C9C9C;
+}
+.ft-progress {
+  color: #42C6FF;
+}
+#page .am-list-title img {
+  vertical-align: sub;
+  width: 18px;
+}

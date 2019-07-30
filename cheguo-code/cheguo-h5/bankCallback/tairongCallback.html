@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>银行存管开户</title>
+		<link type="text/css" rel="stylesheet" href="mui.min.css" />
+		<link type="text/css" rel="stylesheet" href="style.css" />
+	</head>
+
+	<body>
+		<div class="mui-content tc" id="mui-content">
+		</div>
+	</body>
+	<script type="text/javascript" src="mui.min.js"></script>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript">
+
+		function GetQueryString(name)
+		{
+		     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+		     var r = window.location.search.substr(1).match(reg);
+		     if(r!=null) return  (r[2]); return null;
+		}
+		var cipherText = GetQueryString('code');
+		var message = GetQueryString('data');
+		var html = '';
+        if (cipherText === 'success') {
+        	html = '<img src="success.png" class="w18b mtb50"><div class="mt15 mb20 c666">该客户已开通银行存管账户</div><button class="mui-btn mui-btn-primary bradius30 f16 w50b h40" onclick="appNative.back()"> 返回认证页面</button>';
+        } else {
+        	//html = '<img src="failure.png" class="w18b mtb50"><div class="mt15 mb20 c666">'+ (message?decodeURI(message):'参数错误') +'</div><button class="mui-btn mui-btn-primary bradius30 f16 w50b h40" onclick="appNative.back()"> 返回认证页面</button>';
+        	html = '<img src="failure.png" class="w18b mtb50"><div class="mt15 mb20 c666">'+ (message?decodeURIComponent(message):'参数错误') +'</div><button class="mui-btn mui-btn-primary bradius30 f16 w50b h40" onclick="appNative.back()"> 返回认证页面</button>';
+        }
+        $('#mui-content').empty().append(html);
+	</script>
+</html>

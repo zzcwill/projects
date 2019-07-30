@@ -1,0 +1,72 @@
+<style type="text/css">
+    .img_role{ display: block; margin: 5px auto; position: relative}
+    .isIdentification{ position: absolute; left: 0; top: 5px; z-index:1; color:#f00; width:100%; text-align: center}
+    .btn-role{ width:80px;}
+    .role-textarea{ height:80px!important;}
+    .paddingBottom20{ margin-bottom:25px;}
+    .greenColor{ color:#18a689}
+    .redColor{ color:#f00}
+</style>
+<div class="row">
+    <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+        <form id="" class="form-horizontal">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">预警规则</h3>
+                </div>
+                <div class="panel-body">
+                    <table id="tableVentureWarning" data-ajax="table_ventureWarning">
+                        <thead>
+                        <tr>
+                            <th data-field="rulename">规则名称</th>
+                            <th data-field="risklevel">风险等级</th>
+                            <th data-field="description">预警详情</th>
+                            <th data-formatter="handleVenture" data-events="tableEventVenture">操作</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24" id="isManageDepartment">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">人脸识别信息</h3>
+            </div>
+            <div class="panel-body form-horizontal" id="loadRoleInfo">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="risk" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" aria-hidden="true" data-dismiss="modal">×</button>
+                <h4 class="modal-title">关联数据</h4>
+            </div>
+            <div class="modal-body" style="padding-bottom: 50px;">
+                <table id="table_2" data-ajax="dataLoad_2">
+                    <thead>
+                    <tr>
+                        <th data-field="name">姓名</th>
+                        <th data-field="cardNo">身份证号</th>
+                        <th data-field="mobile">手机号 </th>
+                        <th data-field="createTime">发生日期</th>
+                        <th data-field="riskType">数据类型</th>
+                        <th data-field="relationprojectno">编号</th>
+                        <th data-field="loanAmount">贷款额</th>
+                        <th data-field="overDue">逾期状态</th>
+                        <th data-field="relationloanrole">当前主体类型</th>
+                        <th data-switchable="false" data-formatter="handle_2" data-events="tableEvent_2">操作</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../common/plugs/viewer/js/viewer.js"></script>
+<script src="../../../js/common/commonVentureWarning/ventureWarning.js"></script>

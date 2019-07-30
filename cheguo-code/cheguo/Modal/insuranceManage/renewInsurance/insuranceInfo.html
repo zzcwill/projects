@@ -1,0 +1,114 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-md-24 col-xs-24 col-sm-24">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <ul class="nav nav-tabs" id="nav" style="position: relative;">
+                        <li class="active"><a href="#todo" data-toggle="tab">保单信息</a></li>
+                        <li><a href="#done" data-toggle="tab">续保电话记录</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <p></p>
+                        <div id="todo" class="tab-pane active">
+                            <table id="table_insurance" data-toggle="table" data-ajax="table_insurance" class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th data-field="id" class="hidden">id</th>
+                                    <th data-field="status" data-formatter="insuranceStatus">保单类型</th>
+                                    <th data-field="insuranceNo">保单号</th>
+                                    <th data-field="insuranceCompanyName">保险公司</th>
+                                    <th data-field="insuranceTypeName">保险类型</th>
+                                    <th data-field="insuranceStartTime">保险开始日期</th>
+                                    <th data-field="insuranceEndTime">保险结束日期</th>
+                                    <th data-field="insuranceFeeTotal">保费合计</th>
+                                    <th data-field="insuranceStatus" data-formatter="insuranceStatusTemp">保险状态</th>
+                                    <th data-field="userName">登记人</th>
+                                    <th data-field="status" data-formatter="insuranceStatus_1">是否首保</th>
+                                    <th data-field="projectId" data-switchable="false" data-formatter="handle_1" data-events="tableEvent_1">操作</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div id="done" class="tab-pane">
+                            <div class="form-horizontal" id="contactInfo">
+                                <div class="form-group form-group-sm">
+                                    <div class="input-tip">
+                                        <label class="control-label col-md-3 col-xs-3 col-sm-3">客户姓名:
+                                        </label>
+                                        <div class="col-md-5 col-xs-5 col-sm-5">
+                                            <p data-name="customerName" class="form-control-static"></p>
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="control-label col-md-3 col-xs-3 col-sm-3">手机号码:
+                                        </label>
+                                        <div class="col-md-5 col-xs-5 col-sm-5">
+                                            <p data-name="mobilePhone" class="form-control-static"></p>
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="control-label col-md-3 col-xs-3 col-sm-3">家庭住址:
+                                        </label>
+                                        <div class="col-md-5 col-xs-5 col-sm-5">
+                                            <p data-name="address" class="form-control-static"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm" id="hiddenSection">
+                                    <div class="input-tip">
+                                        <label class="control-label col-md-3 col-xs-3 col-sm-3">配偶姓名:
+                                        </label>
+                                        <div class="col-md-5 col-xs-5 col-sm-5">
+                                            <p data-name="spouseName" class="form-control-static"></p>
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="control-label col-md-3 col-xs-3 col-sm-3">手机号码:
+                                        </label>
+                                        <div class="col-md-5 col-xs-5 col-sm-5">
+                                            <p data-name="spouseMobilePhone" class="form-control-static"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table id="table_insuranceTel" data-toggle="table" data-ajax="table_insuranceTel" class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th data-field="id" class="hidden">id</th>
+                                    <th data-field="phoneObject"  data-formatter="contactObj">联系对象</th>
+                                    <th data-field="phoneName">姓名</th>
+                                    <th data-field="userName">经办人</th>
+                                    <th data-field="orgnaizationTime">时间</th>
+                                    <th data-field="phoneResult"  data-formatter="resultsTracking">跟踪结果</th>
+                                    <th data-field="note">情况描述</th>
+                                    <th data-field="projectId" data-switchable="false" data-formatter="handle_2" data-events="tableEvent_2">操作</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--确认操作模态框-->
+<div class="modal fade" id="sureModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">提示信息</h4>
+            </div>
+            <div class="modal-body">
+                <p id="tipText"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="sureBtn">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../../js/common/insuranceInfo/insuranceInfo.js"></script>

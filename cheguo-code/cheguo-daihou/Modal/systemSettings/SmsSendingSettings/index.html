@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Expires" CONTENT="0">
+  <meta http-equiv="Cache-Control" CONTENT="no-cache">
+  <meta http-equiv="Pragma" CONTENT="no-cache">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../../common/css/style.min.css" />
+  <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a" />
+  <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+  <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css" />
+  <title>短信发送设置</title>
+</head>
+<style>
+  .tableWidth{
+    width:50%;
+  }
+  .tableColor{
+    color:#000;
+  }
+</style>
+
+</html>
+
+<body class="gray-bg">
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div class="tab-content">
+            <p></p>
+            <div class="tab-pane active">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">短信发送设置</h3>
+                </div>
+                <div class="panel-body">                  
+                  <table id="table" class="table table-bordered tableWidth">
+                    <thead>
+                      <tr>
+                        <th>序号</th>
+                        <th>名称</th>
+                        <th>内容</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td class="tableColor">还款提醒类设置：</td>
+                        <td>
+                          <form id='saveForm'>
+                            <div class="input-group">
+                              <span class="input-group-addon">提前还款</span>
+                              <input type="text" name="advanceWarningDay" placeholder="请输入天数（大于等于0）" class="form-control">
+                              <span class="input-group-addon">天提醒</span>
+                            </div>
+                            <p></p>
+                            <div class="input-group">
+                              <span class="input-group-addon">发送时间</span>
+                              <input type="text" name="sendDate" placeholder="请输入每天发送时间" autocomplete="off" class="form-control date1"
+                                id="sendTime1">
+                            </div>
+                          </form>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td class="tableColor">逾期通知类设置：</td>
+                        <td>
+                          <form id='saveForm2'>
+                            <div class="input-group">
+                              <span class="input-group-addon">发送时间</span>
+                              <input type="text" name="sendDate" placeholder="请选择每天发送时间" autocomplete="off" class="form-control date1"
+                                id="sendTime2">
+                            </div>
+                            <p></p>
+                            <div class="input-group">
+                              <span class="input-group-addon">发送间隔</span>
+                              <input type="text" name="intervalTime" placeholder="请输入发送间隔时间(大于0)" class="form-control">
+                              <span class="input-group-addon">小时</span>
+                            </div>
+                            <p></p>
+                            <div class="input-group">
+                              <span class="input-group-addon">发送频次</span>
+                              <input type="text" name="frequency" placeholder="请输入发送频次(大于0)" class="form-control">
+                              <span class="input-group-addon">次/天</span>
+                            </div>
+                            <p></p>
+                            <div class="input-group">
+                              <span class="input-group-addon">发送天数</span>
+                              <input type="text" name="sendDays" placeholder="请输入发送天数(大于0)" class="form-control">
+                              <span class="input-group-addon">天</span>
+                            </div>
+                          </form>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td class="tableColor">待办提醒类设置（触发时首次发送）：</td>
+                        <td>
+                          <form id='saveForm3'>
+                            <div class="input-group">
+                              <span class="input-group-addon">发送间隔</span>
+                              <input type="text" name="intervalTime" placeholder="请输入发送间隔时间(大于0)" class="form-control">
+                              <span class="input-group-addon">小时</span>
+                            </div>
+                            <p></p>
+                            <div class="input-group">
+                              <span class="input-group-addon">时间范围</span>
+                              <input type="text" name="startDate" placeholder="请输入发送开始时间" autocomplete="off" class="form-control date1"
+                                id="sendTime3">
+                              <span class="input-group-addon">至</span>
+                              <input type="text" name="endDate" placeholder="请输入发送结束时间" autocomplete="off" class="form-control date1"
+                                id="sendTime4">
+                            </div>
+                            <p></p>
+                            <div class="input-group">
+                              <span class="input-group-addon">发送次数</span>
+                              <input type="text" name="sendTimes" placeholder="请输入发送次数(大于0)" class="form-control">
+                              <span class="input-group-addon">次</span>
+                            </div>
+                          </form>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="row showBtn">
+                <div class="form-group form-group-sm btn_box">
+                  <div class="col-xs-24 col-sm-24 col-md-24 text-left btnBox">
+                    <button type="button" class="btn btn-primary" id="btnSave"><span>保存</span></button>
+                    <button type="button" class="btn btn-primary" id="refresh"><span>刷新</span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="../../../common/plugs/layer/layer.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $("head").append([
+    '<script src="../../../common/js/URL.js"><\/script>',
+    '<script src="../../../common/js/iframeCommon.js"><\/script>',
+    '<script src="../../../js/systemSettings/SmsSendingSettings/index.js"><\/script>'
+  ].join(""));
+</script>

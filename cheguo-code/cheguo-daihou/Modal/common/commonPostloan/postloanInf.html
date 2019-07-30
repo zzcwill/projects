@@ -1,0 +1,187 @@
+<style type="text/css">
+.postloanHeight .fixed-table-body{ max-height:300px;}
+</style>
+<input type="hidden" name="planNo">
+<input type="hidden" name="overdueTotalAmount">
+<input type="hidden" name="advanceBalanceAmount">
+<div class="wrapper wrapper-content animated fadeInRight postloanHeight">
+    <div class="row">
+        <div class="col-md-24 col-xs-24 col-sm-24">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">逾期催收情况</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">逾期记录</h3>
+                                </div>
+                                <div class="panel-body panel-default">
+                                    <table id="table1" data-ajax="table_1">
+                                        <thead>
+                                        <tr>
+                                            <th data-field="planNo" data-formatter="qi">当前期数</th>
+                                            <th data-field="currentBankRepaymentTime">当前还款日</th>
+                                            <th data-field="monthRepaymentAmount" data-formatter="yuan">计划应还</th>
+                                            <th data-field="overdueTotalAmount" data-formatter="yuan">比较金额</th>
+                                            <th data-field="advanceBalanceAmount" data-formatter="yuan">净垫款额</th>
+                                            <th data-field="inKeepBalanceAmount" data-formatter="yuan">在保余额</th>
+                                            <th data-field="collectionNum">催收次数</th>
+                                            <th data-field="collectionDate">最近催收时间</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="panel panel-default hide">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">催收记录</h3>
+                                </div>
+                                <div class="panel-body panel-default">
+                                    <table id="table2">
+                                        <thead>
+                                        <tr>
+                                            <th data-field="planNo" data-formatter="qi">催收期数</th>
+                                            <th data-field="collectionDate">催收日期</th>
+                                            <th data-field="collectionType" data-formatter="collectionType">催收方式</th>
+                                            <th data-field="collectionResult" data-formatter="collectionResult">还款意愿</th>
+                                            <th data-field="willPaymentAmount" data-formatter="yuan">意愿还款金额</th>
+                                            <th data-field="willPaymentDate">意愿还款日期</th>
+                                            <th data-field="collectionObjRealname">催收对象</th>
+                                            <th data-field="collectionAddressDetail">上门地址</th>
+                                            <th  data-formatter="handle_num" data-events="tableEvent_num">催收附件</th>
+                                            <th data-field="collectionUserRealname">催收人</th>
+                                            <!-- <th data-field="remark" data-switchable="false" data-formatter="handle_2" data-events="tableEvent_2">操作</th> -->
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">费用收支情况</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div id="BalanceFees" class="tab-pane">
+                                <div class="row" style="display:-webkit-box;">
+                                    <div style="width:80px;line-height:35px;text-align:right;">费用类别：</div>
+                                    <div style="-webkit-box-flex:1;">
+                                        <div class="checkbox feeCategoryCode">
+                                            <label class="labelMargin"><input type="checkbox" value="30" checked>垫款费用</label>
+                                            <label class="labelMargin"><input type="checkbox" value="10"> 司法费用</label>
+                                            <label class="labelMargin hide"><input type="checkbox" value="20"> 拖车费用</label>
+                                            <label class="labelMargin hide"><input type="checkbox" value="40"> 其它费用</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fy_s">
+                                    <table id="table3" data-ajax="table_3">
+                                        <thead>
+                                        <tr>
+                                            <th data-field="actualDate">发生日期</th>
+                                            <th data-field="feeCategoryName">费用类别</th>
+                                            <th data-field="feeName">费用名称</th>
+                                            <th data-field="isIncome" data-formatter="isIncome">收支</th>
+                                            <th data-field="paymentAmount">支出金额</th>
+                                            <th data-field="collectedAmount">回收金额</th>
+                                            <th data-field="operator">经办人</th>
+                                            <th data-field="status" data-formatter="feeStatus">费用状态</th>
+                                            <th data-field="remark" style="width: 40%; height: 15px; overflow: hidden;">备注</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <form id="TotalSpending" class="form-horizontal panel-body">
+                                    <div class="form-group form-group-sm">
+                                        <fieldset disabled>
+                                            <div class="input-tip">
+                                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">合计支出：</label>
+                                                <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                    <input type="text" name="totalPayment" placeholder="" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="input-tip">
+                                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">合计回收：</label>
+                                                <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                    <input type="text" name="totalIncome" readonly class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="input-tip">
+                                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">差额：</label>
+                                                <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                    <input type="text" name="diffTotalAmount" readonly class="form-control">
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default hide">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">拖车情况</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table id="table4" data-ajax="table_4">
+                                <thead>
+                                <tr>
+                                    <th data-field="status" data-formatter="dragStatus">拖车状态</th>
+                                    <th data-field="dragTime">拖车日期</th>
+                                    <th data-field="dragFee">拖车费用</th>
+                                    <th data-field="inTime">入库日期</th>
+                                    <th data-field="pipeUserPhone">占管联系方式</th>
+                                    <th data-field="outTime">出库日期</th>
+                                    <th data-field="checkoutReason" data-formatter="checkoutReason">出库理由</th>
+                                    <th data-switchable="false" data-formatter="handle_table_4" data-events="tableEvent_table_4">操作</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">诉讼情况</h3>
+                        </div>
+                        <div class="panel-body">
+                            <table id="table5" data-toggle="table" data-ajax="table_5">
+                                <thead>
+                                <tr>
+                                    <th data-field="lawCaseNo">案件编号</th>
+                                    <th data-field="lawsuitStatus" data-formatter="lawsuitStatus">诉讼状态</th>
+                                    <th data-field="filingCaseDate">日期</th>
+                                    <th data-field="userName">经办人</th>
+                                    <th data-field="targetAmount">诉讼标的</th>
+                                    <th data-field="receivableAmount">回收金额</th>
+                                    <th data-switchable="false" data-formatter="handle_table_5" data-events="tableEvent_table_5">操作</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="detailModal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+                <h4 class="modal-title">催收详情</h4>
+            </div>
+            <div class="modal-body">
+                <div class="detail"></div>
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../js/common/commonPostloan/postloanInf.js"></script>

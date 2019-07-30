@@ -1,0 +1,44 @@
+<style type="text/css">
+	.ltFirst, .gtFirst{ display: inline-block}
+	.table-hover th, .table-hover td{ border:1px solid #e7eaec!important;}
+	.panelMargin20{ margin:0 15px 15px;}
+	.table-hover li ul li{ list-style: none; margin: 0; padding: 0}
+</style>
+<link rel="stylesheet" href="../../../common/plugs/viewer/css/viewer.min.css">
+<div class="row">
+  <div class="col-md-24 col-xs-24 col-sm-24">
+		<div class="ibox float-e-margins" id="documentList_credit">
+			<form id="creditInfoForm" class="form-horizontal">
+				<fieldset class="disabledBox">
+					<div class="partyBox"> </div>
+					<div id="wife"> </div>
+					<div id="partyBox"> </div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- 查看详情 -->
+<div id="showDetail" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+				<h4 class="modal-title">备注信息</h4>
+			</div>
+			<div class="modal-body" style="height:500px; overflow-y: auto">
+				<form id="courtForm" class="form-horizontal">
+					<div class="form-group form-group-sm hide" id="court-detail">
+
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button id="btn_yes" class="btn btn-info">确定</button>
+				<button data-dismiss="modal" class="btn btn-default">关闭</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="../../../common/plugs/viewer/js/viewer.js"></script>
+<script type="text/javascript" src="../../../js/common/commonCreditInfo/credit.js"></script>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="email=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" href="./common/amui.min.css">
+	<script src="./common/zepto.min.js?t=@@hash"></script>
+	<script src="./common/global.js?t=@@hash"></script>
+	<title>线上签约</title>
+	<style type="text/css">
+		a{ color: #2772ff; border: none;}
+		#page{ padding-bottom: 15px;}
+		#page h3{ font-size: 16px; font-weight: 600; padding: 10px 15px 0;}
+		#isSigning{ float: right}
+		#page .am-list{ background: #fff; padding: 0; margin: 10px 0;}
+		#page .am-list-item {
+			background: none;
+			padding:0;
+			margin: 0 15px;
+			border-bottom: 1px solid #ebebeb;
+			font-size: 14px;
+		}
+		#page .am-list-item:last-child{ border-bottom: none}
+		.am-list:not([am-version]) .am-list-item .am-list-title{ line-height: 44px;}
+		.am-list:not([am-version]) .am-list-item .am-list-extra{ color: #666}
+		.contractCont{ padding: 5px 15px; font-size:14px;}
+		.agreeContract label{ display: inline-block; margin-bottom: 10px; color: #999; font-size: 12px;}
+		.agreeContract input { margin-right: 5px; vertical-align: middle;}
+		#contractList{ display: block; padding-left: 7px}
+		#contractList a{ display: block}
+		.getIdentifyingCode{ height: 44px; line-height: 44px; padding:0 10px; background-color: #f9f9f9; position: relative}
+		.getIdentifyingCode input{ border:none; background: none; border-radius: inherit;}
+		.getIdentifyingCode input.fillIdentifyingCode{  padding: 5px 0;  background-color: #f9f9f9;  width: 100%;  line-height: 34px;  }
+		.getIdentifyingCode .btn_getIdentifyingCode{ position: absolute; right:0; top: 0; z-index: 1; line-height: 44px; width: 120px; text-align: center; background: #ccc; color: #fff; font-size: 14px;}
+		.getIdentifyingCode .activeTime{ background-color: #5179c9;}
+		.activeBtn{  background-color: #5179c9; color: #fff;}
+		.contractCheckBox{ background: url(images/selectBtn.png) no-repeat 0 -12px; background-size: 12px 24px; width: 12px; height: 12px; margin-right: 5px; display: inline-block; vertical-align: middle}
+		.activeCheckbox{ background-position: 0 0;}
+		.hide{ display: none}
+		.layer_identifyConter{ padding: 18px 15px;}
+		.submitNoActive, .btn_toSubmit{ margin-top: 13px; font-size:16px;  border-radius: 4px; background-color: #5179c9; text-align: center; color: #fff; line-height: 44px; height: 44px;}
+		.layer_tip{ z-index: 100; background-color: #000; opacity: 0.8; border-radius: 8px; color: #fff; position: fixed; left: 50%; top: 50%; max-width: 80%; padding: 12px 15px; transform: translate(-50%, -50%)}
+		.errorTip{ color: #ff0000; font-size: 12px; padding-top: 5px;}
+		.tel{background: url(images/phone.png) no-repeat 0 0; background-size: 20px 20px; width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-left: 5px;}
+		.layer_black_loading{ position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: 90; background: rgba(0, 0, 0, 0.6)}
+		.submitNoActive{ background-color: #ccc;}
+		#relative  .am-list-item:last-child{ border-bottom: 1px solid rgb(235, 235, 235)}
+		.clearFix{ clear: both}
+	</style>
+	<div id="page" class="">
+		<h3><span class="creditTitle">贷款协议签约</span><span id="isSigning"></span></h3>
+		<div am-mode="flat chip 43px" class="am-list">
+			<div class="am-list-body">
+				<div class="am-list-item">
+					<div class="am-list-title">主贷人姓名</div>
+					<div data-name="customerName" class="am-list-extra"></div>
+				</div>
+				<div class="am-list-item">
+					<div class="am-list-title">身份证号</div>
+					<div data-name="cardNo" class="am-list-extra"></div>
+				</div>
+				<div class="am-list-item">
+					<div class="am-list-title">手机号码</div>
+					<div data-name="mobilePhone" class="am-list-extra"></div>
+				</div>
+				<div id="relative">
+				
+				</div>
+				<div class="am-list-item">
+					<div class="am-list-title">贷款编号</div>
+					<div data-name="projectNo" class="am-list-extra"></div>
+				</div>
+				<div class="am-list-item">
+					<div class="am-list-title">汽车信息</div>
+					<div data-name="carModelName" class="am-list-extra" style="white-space: pre-wrap; line-height: 24px; padding-left: 10px"></div>
+				</div>
+				<div class="am-list-item">
+					<div class="am-list-title">汽车价格</div>
+					<div class="am-list-extra"><span data-name="billingPrice"></span>元</div>
+				</div>
+				<div class="am-list-item">
+					<div class="am-list-title">每期月供</div>
+					<div class="am-list-extra"><span data-name="repaymentAmount"></span>元</div>
+				</div>
+				<div class="am-list-item">
+					<div class="am-list-title">贷款期数</div>
+					<div data-name="loanTerm" data-formatter="loanTerm" class="am-list-extra"></div>
+				</div>
+				<div class="am-list-item">
+					<div class="am-list-title">客户经理</div>
+					<div class="am-list-extra"><span data-name="userName"></span></div>
+				</div>
+				<div class="am-list-item">
+					<div class="am-list-title">签约机构</div>
+					<div data-name="coBankName" class="am-list-extra"></div>
+				</div>
+			</div>
+		</div>
+		<div am-mode="flat chip 43px" class="contractCont">
+			<div class="agreeContract">
+				<label id="contractCheckBox"><span class="contractCheckBox"></span>本人已阅读并同意签署以下相关合同</label>
+				<span id="contractList"></span>
+			</div>
+		</div>
+	</div>
+	<div class="layer_identifyConter">
+		<div id="getIdentifyingCode">
+			<div class="getIdentifyingCode">
+				<input type="text" class="fillIdentifyingCode" name="checkCode" id="checkCode" placeholder="签约需要您的手机验证码" maxlength="6"><div class="btn_getIdentifyingCode" id="getTime">点击获取</div>
+			</div>
+			<p class="errorTip"></p>
+		</div>
+		<div class="btn_submit">
+			<div class="btn_toSubmit submitNoActive">提交</div>
+			<div class="clearFix"></div>
+		</div>
+	</div>
+	<div class="layer_tip hide" id="layer_tip"></div>
+	<div class="layer_black_loading hide"></div>
+</head>
+</html>
+<script src="./common/jquery.values.js"></script>
+<script src="./js/onlineSigning.js"></script>

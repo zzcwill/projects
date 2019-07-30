@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Expires" CONTENT="0">
+  <meta http-equiv="Cache-Control" CONTENT="no-cache">
+  <meta http-equiv="Pragma" CONTENT="no-cache">
+  <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+  <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+  <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css"/>
+  <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css"/>
+  <link rel="stylesheet" href="../../../common/plugs/bootstrap-select-1.10.0/dist/css/bootstrap-select.min.css"/>
+  <title>超抵情况统计报表</title>
+</head>
+</html>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-xs-24 col-sm-24 col-md-24">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <div class="page-header">
+            <h3 class="text-center">超抵情况统计报表</h3>
+          </div>
+          <form id="searchForm" class="form-horizontal">
+            <div class="form-group form-group-sm">
+              <div class="input-tip">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label">机构：
+                </label>
+                <div class="col-md-5 col-xs-5 col-sm-5">
+                  <select class="selectpicker form-control required" name="orgId" id="orgId" data-live-search="true" data-style="btn-white btn-sm">
+                    <option value="">--请选择--</option>
+                  </select>
+                </div>
+              </div>
+              <div class="input-tip">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label">业务组：
+                </label>
+
+                <div class="col-md-5 col-xs-5 col-sm-5">
+                  <select name="groupId" class="form-control" id="groupId">
+                    <option value="" selected>--请选择--</option>
+                  </select>
+                </div>
+              </div>
+              <div class="input-tip">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label">客户经理：
+                </label>
+
+                <div class="col-md-5 col-xs-5 col-sm-5">
+                  <input type="text" name="userName" placeholder="请输入客户经理"
+                         class="form-control">
+                </div>
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <div class="input-tip">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label">付款年月：
+                </label>
+
+                <div class="col-md-5 col-xs-5 col-sm-5">
+                  <input type="text" name="dealerPaymentYearMonth" placeholder="请选择"
+                         class="form-control date">
+                </div>
+              </div>
+              <div class="input-tip">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label">付款年月区间：
+                </label>
+
+                <div class="col-md-5 col-xs-5 col-sm-5">
+                  <input type="text" name="dealerPaymentYearMonthStart" placeholder="请输入付款年月区间"
+                         class="form-control date">
+                </div>
+              </div>
+              <div class="input-tip">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label">至：
+                </label>
+
+                <div class="col-md-5 col-xs-5 col-sm-5">
+                  <input type="text" name="dealerPaymentYearMonthEnd" placeholder="请输入结束日期"
+                         class="form-control date">
+                </div>
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <div class="input-tip">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label">放款年月：
+                </label>
+
+                <div class="col-md-5 col-xs-5 col-sm-5">
+                  <input type="text" name="bankPaymentYearMonth" placeholder="请输入放款年月"
+                         class="form-control date">
+                </div>
+              </div>
+              <div class="input-tip">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label">放款年月区间：
+                </label>
+
+                <div class="col-md-5 col-xs-5 col-sm-5">
+                  <input type="text" name="bankPaymentYearMonthStart" placeholder="请输入放款年月区间"
+                         class="form-control date">
+                </div>
+              </div>
+              <div class="input-tip">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label">至：
+                </label>
+
+                <div class="col-md-5 col-xs-5 col-sm-5">
+                  <input type="text" name="bankPaymentYearMonthEnd" placeholder="请输入结束日期"
+                         class="form-control date">
+                </div>
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <div class="input-tip">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label">汽车类型：
+                </label>
+
+                <div class="col-md-5 col-xs-5 col-sm-5">
+                  <select name="carType" class="form-control">
+                    <option value="" selected>--请选择--</option>
+                    <option value="1">新车</option>
+                    <option value="2">二手车</option>
+                  </select>
+                </div>
+              </div>
+              <div class="input-tip">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label">合作分行：
+                </label>
+
+                <div class="col-md-5 col-xs-5 col-sm-5">
+                  <select class="selectpicker form-control required" name="bankId" id="bankId" data-live-search="true" data-style="btn-white btn-sm">
+                    <option value="">--请选择--</option>
+                  </select>
+                  <!--<input type="text" name="loanInfoCooperationBank" placeholder="请输入合作银行"-->
+                  <!--class="form-control">-->
+                </div>
+              </div>
+              <div class="input-tip">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label">车商名称：
+                </label>
+
+                <div class="col-md-5 col-xs-5 col-sm-5">
+                  <input type="text" name="cardealerName" placeholder="请输入车商名称"
+                         class="form-control">
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group form-group-sm">
+              <div class="col-xs-24 col-sm-24 col-md-24 text-center">
+                <button type="button" class="btn btn-primary" id="btn-search"><span
+                  class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                </button>
+                <button type="button" class="btn btn-white" modal="reset" id="resetBtn"><span
+                  class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="ibox float-e-margins">
+        <div class="ibox-title">
+        <div class="text-right">
+          <button type="button" class="btn btn-primary btn-sm" id="exportBtn">导出报表数据</button>
+        </div>
+      </div>
+        <div class="ibox-content">
+          <div class="tab-pane active">
+            <table id="table" data-ajax="dataLoad_1">
+              <thead>
+              <tr>
+                <th data-field="orgName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业务机构&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th data-field="groupName">&nbsp;&nbsp;&nbsp;&nbsp;业务组&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th data-field="bankName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;合作分行&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th data-field="cardealerName" width="200">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;合作车商&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                <th data-field="carType" data-formatter="loanCarType">汽车类型</th>
+                <th data-field="dpYearMonth">付款年月</th>
+                <th data-field="bpYearMonth">放款年月</th>
+                <th data-field="userName">客户经理</th>
+                <th data-field="loanNum">业务总量</th>
+                <th data-field="loanAmount">贷款总额</th>
+                <th data-field="loanBalance">贷款余额</th>
+                <th data-field="loanBpNumNo">未放款业务量</th>
+                <th data-field="usecuredUnregNum">未抵押业务量（未登记）</th>
+                <th data-field="usecuredUnrecNum">未抵押业务量（未收件）</th>
+                <th data-field="pledgeOverdueUnregNum">超期未抵押业务量（未登记）</th>
+                <th data-field="pledgeOverdueUnrecNum">超期未抵押业务量（未收件）</th>
+                <th data-field="pledgeOverdueUnregAmount">超期未抵押贷款总额（未登记）</th>
+                <th data-field="pledgeOverdueUnrecAmount">超期未抵押贷款总额（未收件）</th>
+                <th data-field="pledgeOverdueUnregBalance">超期未抵押贷款余额（未登记）</th>
+                <th data-field="pledgeOverdueUnrecBalance">超期未抵押贷款余额（未收件）</th>
+                <th data-field="pledgeLoanOverdueUnregNum">超期未抵押且逾期业务量（未登记）</th>
+                <th data-field="pledgeLoanOverdueUnrecNum">超期未抵押且逾期业务量（未收件）</th>
+                <th data-field="pledgeOverdueUnregRate">超期未抵押率（未登记）</th>
+                <th data-field="pledgeOverdueUnrecRate">超期未抵押率（未收件）</th>
+              </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=eb649edd14c8348e9f34a8ca6157c2b6"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.min.js?rev=424557ef2a8b89693026b3b43d4b1e1c"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/plugs/bootstrap-select-1.10.0/dist/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+  function percent(value) {
+    return comn.accMul(value || 0, 100) + '%'
+  }
+</script>
+<script type="text/javascript" charset="utf-8">
+  $("head").append([
+    '<script src="../../../common/js/URL.js"><\/script>',
+    '<script src="../../../common/js/iframeCommon.js"><\/script>',
+    '<script src="../../../js/report/mortgage/index.js"><\/script>'
+  ].join(""));
+</script>

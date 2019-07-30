@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../common/css/style.min.css" />
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a" />
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/extensions/editable/css/bootstrap-editable.css"/>
+    <title>采购入库</title>
+</head>
+
+</html>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form id="searchForm" class="form-horizontal">
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-xs-3 col-sm-3 col-md-3 control-label">所属机构：</label>
+                                <div class="col-xs-5 col-sm-5 col-md-5">
+                                    <select name="orgId" class="form-control orgIdSelect" id="orgId">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-xs-3 col-sm-3 col-md-3 control-label">供应商：</label>
+                                <div class="col-xs-5 col-sm-5 col-md-5">
+                                    <select name="supplierId" class="form-control supplier">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-xs-3 col-sm-3 col-md-3 control-label">入库日期：</label>
+                                <div class="col-xs-2 col-sm-2 col-md-2">
+                                    <input type="text" name="entryTimeStart" id="entryTimeStart" placeholder="开始日期" class="form-control date">
+                                </div>
+                                <label class="col-xs-1 col-sm-1 col-md-1 text-center" style="float:left; line-height: 2.5;">至</label>
+                                <div class="col-xs-2 col-sm-2 col-md-2">
+                                    <input type="text" name="entryTimeEnd" id="entryTimeEnd" placeholder="结束日期" class="form-control date">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-center clearfix">
+                                <button type="button" class="btn btn-primary" id="btn-search" modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                                </button>
+                                <button type="button" class="btn btn-white" modal="reset"><span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="tab-content">
+                        <div class="ibox-content">
+                            <ul class="nav nav-tabs" style="position: relative;">
+                                <li class="active"><a href="#allot" data-toggle="tab">未确认</a></li>
+                                <li><a href="#alloted" data-toggle="tab">已确认</a></li>
+                                <div style="position: absolute; right: 0; top: -6px;">
+                                    <button type="button" class="btn btn-primary" id="importData" modal="enter"><span class="glyphicon btn-primary"></span><span>&nbsp;导入&nbsp;</span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="addPurch"  modal="enter"><span class="glyphicon btn-primary"></span><span>&nbsp;新增入库&nbsp;</span>
+                                    </button>
+                                </div>
+                            </ul>
+                            <div class="tab-content">
+                                <p></p>
+                                <div id="allot" class="tab-pane active">
+                                    <table data-toggle="table" id="table1" data-ajax="dataLoad_1">
+                                        <thead>
+                                        <tr>
+                                            <!--<th data-checkbox="true"></th>-->
+                                            <th data-field="factoryTime">厂家出库日期</th>
+                                            <th data-field="createTime">入库日期</th>
+                                            <th data-field="supplierName">供应商</th>
+                                            <th data-field="orgName">所属机构</th>
+                                            <th data-field="expressNo">快递单号</th>
+                                            <th data-field="count">入库数量</th>
+                                            <th data-field="stockStatusCompany" data-formatter="stockStatus">入库状态</th>
+                                            <th data-formatter="handle_1" data-events="tableEvent_1">操作</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div id="alloted" class="tab-pane">
+                                    <table data-toggle="table" id="table2" data-ajax="dataLoad_2">
+                                        <thead>
+                                        <tr>
+                                            <!--<th data-checkbox="true"></th>-->
+                                            <th data-field="factoryTime">厂家出库日期</th>
+                                            <th data-field="createTime">入库日期</th>
+                                            <th data-field="supplierName">供应商</th>
+                                            <th data-field="orgName">所属机构</th>
+                                            <th data-field="expressNo">快递单号</th>
+                                            <th data-field="count">入库数量</th>
+                                            <th data-field="stockStatusCompany" data-formatter="stockStatus">入库状态</th>
+                                            <th data-formatter="handle_2" data-events="tableEvent_1">操作</th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="divTable1" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+                <h4 class="modal-title">入库单详情</h4>
+            </div>
+            <div class="modal-body">
+                <div class="ibox float-e-margins">
+                    <table data-ajax="dataLoad_4" id="table4">
+                        <thead>
+                        <tr>
+                            <th data-field="orgName">所属机构</th>
+                            <th data-field="supplierName">供应商</th>
+                            <th data-field="productSpec">规格型号</th>
+                            <th data-field="productType" data-formatter="gpsType">设备类型</th>
+                            <th data-field="price">入库价格</th>
+                            <th data-field="imei">IMEI</th>
+                            <th data-field="sim">SIM</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="modal-footer hide" id="isShowBtn">
+                    <input type="hidden" id="stockNoVal" value="" />
+                    <button type="button" class="btn btn-primary" id="yesPurch" modal="enter"><span class="glyphicon btn-primary"></span><span>&nbsp;确认入库&nbsp;</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="importPurchaseStock">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">入库单导入</h4>
+            </div>
+            <form class="modal-body form-horizontal" id="importForm">
+                <div class="form-group form-group-sm">
+                    <div class="input-tip">
+                        <label class="col-xs-4 col-sm-4 col-md-4 control-label"><span style="color: red;">*</span>所属机构：</label>
+                        <div class="col-xs-20 col-sm-20 col-md-20">
+                            <input name="orgName" class="clearVal" type="hidden" value="">
+                            <select name="orgId" class="form-control orgIdSelect changeOrgId required">
+                                <option value="">--请选择--</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <div class="input-tip">
+                        <label class="col-xs-4 col-sm-4 col-md-4 control-label"><span style="color: red;">*</span>供应商：</label>
+                        <div class="col-xs-20 col-sm-20 col-md-20">
+                            <input type="hidden" name="supplierName" id="supplierImportName" class="form-control clearVal" value="">
+                            <select name="supplierId" class="form-control supplier required" id="supplierImportId">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <div class="input-tip">
+                        <label class="col-xs-4 col-sm-4 col-md-4 control-label"></label>
+                        <div class="col-xs-10 col-sm-10 col-md-10">
+                            <input type="button" value="下载导入模板" id="downloadTem" class="form-control">
+                        </div>
+                    </div>
+                    <div class="input-tip">
+                        <div class="col-xs-10 col-sm-10 col-md-10">
+                            <input type="button" value="选择导入文件" id="importFile" class="form-control">
+                            <input id="upFileInput" type="file" name="file" multiple class="hide">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-group-sm">
+                    <label class="col-xs-4 col-sm-4 col-md-4 control-label"></label>
+                    <div class="col-xs-20 col-sm-20 col-md-20">
+                        <input type="text" readonly id="fileName" style="border: none; width: 100%;">
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-primary" id="setLoanSure">确定上传</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--确认操作模态框-->
+<div class="modal fade" id="sureModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">提示信息</h4>
+            </div>
+            <div class="modal-body">
+                <p class="tipText"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="sureOption">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="failed" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+                <h4 class="modal-title">导入失败数据列表</h4>
+            </div>
+            <div class="modal-body">
+                <table id="failedData" data-toggle="table" data-ajax="">
+                    <thead>
+                    <tr>
+                        <th data-field="">IMEI</th>
+                        <th data-field="">失败原因</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button id="exportData" class="btn btn-info">导出失败数据</button>
+                <button data-dismiss="modal" class="btn btn-default">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--导入失败table-->
+<div id="unSuccess" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+                <h4 class="modal-title">失败数据</h4>
+            </div>
+            <div class="modal-body">
+                <table data-toggle="table" id="table6">
+                    <thead>
+                    <tr>
+                        <th data-field="expressNo">快递单号</th>
+                        <th data-field="factoryTime">发货时间　</th>
+                        <th data-field="productSpec">规格型号</th>
+                        <th data-field="productTypeName">设备类型</th>
+                        <th data-field="price">入库价格</th>
+                        <th data-field="imei">IMIE</th>
+                        <th data-field="sim">SIM</th>
+                        <th data-field="reason">错误信息</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--新增采购入库-->
+<div id="addPur" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+                <h4 class="modal-title">新增采购入库</h4>
+            </div>
+            <div class="modal-body">
+                <form id="addPurForm" class="form-horizontal">
+                    <div class="form-group form-group-sm">
+                        <div class="input-tip">
+                            <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3"><span style="color: red;">*</span>入库类型：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                                <select name="stockType" class="form-control required" id="stockType">
+                                    <option value="">--请选择--</option>
+                                    <option value="1" selected>采购入库</option>
+                                    <!--<option value="2">返修入库</option>-->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-tip hide" id="isReturn">
+                            <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3"><span style="color: red;">*</span>返修单号：</label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                                <div class="input-group input-group-sm">
+                                    <input type="text" name="refundNo" id="refundNo" placeholder="请输入返修单号" class="form-control" required="" disabled aria-required="true" readonly>
+                                    <span class="input-group-btn">
+                                        <button type="button" data-toggle="modal" data-target="#repairNum" id="repairNumTable" class="btn btn-primary">...</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <fieldset id="addList">
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="control-label col-md-3 col-xs-3 col-sm-3"><span style="color: red;">*</span>供应商：
+                                </label>
+                                <div class="col-xs-5 col-sm-5 col-md-5">
+                                    <input type="hidden" name="supplierName" id="supplierName" class="form-control" value="">
+                                    <select name="supplierId" id="supplierId" class="form-control supplier required">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3"><span style="color: red;">*</span>规格型号：</label>
+                                <div class="col-xs-5 col-sm-5 col-md-5">
+                                    <select name="productSpec" id="productSpec" class="form-control required">
+                                        <option value="">--请选择--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3"><span style="color: red;">*</span>产品类型：</label>
+                                <div class="col-xs-5 col-sm-5 col-md-5">
+                                    <select name="productType" class="form-control" id="productType" disabled>
+                                        <option value="">--请选择--</option>
+                                        <option value="1">有线</option>
+                                        <option value="2">无线</option>
+                                    </select>
+                                    <input type="hidden" name="productTypeName" id="productTypeName">
+                                    <input type="hidden" name="productType" id="productTypeId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="control-label col-md-3 col-xs-3 col-sm-3"><span style="color: red;">*</span>所属机构：</label>
+                                <div class="col-xs-5 col-sm-5 col-md-5">
+                                    <input class="form-control" name="orgName" type="hidden" value="">
+                                    <select name="orgId" class="form-control required orgIdSelect changeOrgId" id="addOrg">
+                                        <option value="">--请选择--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="control-label col-md-3 col-xs-3 col-sm-3">
+                                    <span style="color: red;">*</span>IMEI：
+                                </label>
+                                <div class="col-xs-5 col-sm-5 col-md-5">
+                                    <input type="text" name="imei" id="imei" class="form-control required digits">
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="control-label col-md-3 col-xs-3 col-sm-3">
+                                    <span style="color: red;">*</span>SIM：
+                                </label>
+                                <div class="col-xs-5 col-sm-5 col-md-5">
+                                    <input type="text" name="sim" id="sim" class="form-control required">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-group form-group-sm">
+                        <div class="input-tip">
+                            <label
+                                    class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">备注：
+                            </label>
+                            <div class="col-xs-21 col-sm-21 col-md-21 col-lg-21">
+                                <textarea name="remark" class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-right clearfix">
+                            <input type="hidden" name="id" id="suppId" />
+                            <input type="hidden" name="stockNo" id="stockNo" />
+                            <input type="hidden" id="index" />
+                            <button type="button" class="btn btn-primary" id="modify" modal="enter"><span class="glyphicon btn-primary"></span><span>&nbsp;新增&nbsp;</span></button>
+                            <button type="button" class="btn btn-primary" id="saveSupply" style="display:none" modal="enter">
+                                <span class="glyphicon btn-primary"></span><span>&nbsp;保存&nbsp;</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div class="ibox float-e-margins">
+                    <table id="table3" data-toggle="table">
+                        <thead>
+                        <tr>
+                            <th data-field="supplierName">供应商</th>
+                            <th data-field="productSpec">规格型号</th>
+                            <th data-field="productType" data-formatter="gpsType">产品类型</th>
+                            <th data-field="imei">IMEI</th>
+                            <th data-field="sim">SIM</th>
+                            <th data-field="refundNo">返修单号</th>
+                            <th data-formatter="handle_3" data-events="tableEvent_3">操作</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-right">
+                        <button data-dismiss="modal" class="btn btn-default" id="btn_closed">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--返修单号-->
+<div id="repairNum" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+                <h4 class="modal-title">选择返修单号</h4>
+            </div>
+            <div class="modal-body">
+                <div id="repairNumForm" class="form-horizontal">
+                    <div class="form-group form-group-sm">
+                        <div class="input-tip">
+                            <label class="control-label col-md-3 col-xs-3 col-sm-3">机构：</label>
+                            <div class="col-xs-9 col-sm-9 col-md-9">
+                                <input name="orgName" type="hidden" value="" id="orgNameNum">
+                                <select name="orgId" class="form-control orgIdSelect changeOrgId" id="orgIdNo">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-tip">
+                            <label class="control-label col-md-3 col-xs-3 col-sm-3">IMEI：</label>
+                            <div class="col-xs-9 col-sm-9 col-md-9">
+                                <input type="text" name="imei" class="form-control" id="imeiNum">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <div class="input-tip">
+                            <label class="control-label col-md-3 col-xs-3 col-sm-3">返修日期：</label>
+                            <div class="col-xs-9 col-sm-9 col-md-9">
+                                <input type="text" name="entryTimeStart" id="entryTimeStartNum" placeholder="请输入开始时间" class="form-control date">
+                            </div>
+                        </div>
+                        <div class="input-tip">
+                            <label class="control-label col-md-3 col-xs-3 col-sm-3">至：</label>
+                            <div class="col-xs-9 col-sm-9 col-md-9">
+                                <input type="text" name="entryTimeEnd" id="entryTimeEndNum" placeholder="请输入结束时间" class="form-control date">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-center clearfix">
+                            <button type="button" class="btn btn-primary" id="btnSearchRepairNum" modal="enter">
+                                <span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox float-e-margins">
+                    <table data-ajax="dataLoad_5" id="table_5" >
+                        <thead>
+                        <tr>
+                            <th data-formatter="handle_5" data-events="tableEvent_5"></th>
+                            <th data-field="createTime">维修时间</th>
+                            <th data-field="orgName">所属机构</th>
+                            <th data-field="supplierName">供应商</th>
+                            <th data-field="productSpec">规格型号</th>
+                            <th data-field="productType" data-formatter="gpsType">产品类型</th>
+                            <th data-field="imei">IMEI</th>
+                            <th data-field="sim">SIM</th>
+                            <th data-field="refundReason">维修原因</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=1512011716000"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/jquery-ajaxfileupload/jquery.ajaxfileupload.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/stockManage/purchaseStock/index.js"><\/script>'
+    ].join(""));
+</script>

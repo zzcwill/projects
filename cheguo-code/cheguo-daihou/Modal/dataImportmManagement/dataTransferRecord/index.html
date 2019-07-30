@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-select-1.12.1/dist/css/bootstrap-select.min.css" />
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css" />
+    <title>数据传输记录</title>
+    <style>
+      /* 贷款机构样式start */
+      .treeBankListBox{
+          position: relative;
+      }
+      .treeBankListBox .treeBankList{
+          position:absolute;
+          top:30px;
+          left:0;
+          right:0;
+          z-index:1000;
+          background-color:#fff;
+      }
+      .treeBankListBox .treeBankList .bankSelect{
+          height:150px;
+          border:1px solid rgb(229, 230, 231);
+          border-top:none;
+      }
+      .treeBankListBox .treeBankList .bankSelect .bankTip{
+          line-height:30px;
+          text-indent:20px;
+      }
+      .treeBankListBox .treeBankList .bankSelect2{
+          height:36px;
+      }    
+      .treeBankListBox .treeBankList .bankSelect2 .bankTip2{
+          text-indent:0;
+          text-align:center;
+      }
+      .treeBankListBox .treeBankList .bankSelect2 .bankTip2 button{
+          margin-top:4px;
+          padding:3px 6px;
+      }     
+
+      .treeBankListBox .treeBankList .bankSelect ul{
+          padding-left:0;
+          height:120px;
+          background-color:#fff;
+          border:1px solid rgb(229, 230, 231);
+          border-left:none;
+          border-right:none;
+          overflow-y:auto;
+      }
+      .treeBankListBox .treeBankList ul li{
+          list-style:none;
+          color: inherit;
+          height:27px;
+          line-height: 27px;
+          text-align: left;
+          font-weight: 400;                                                        
+      }
+      .treeBankListBox .treeBankList ul li:hover{
+          color:#999;
+          background-color:#f5f5f5;
+      }
+      .treeBankListBox .treeBankList ul li .text{
+          float: left;
+          margin-left:20px;
+      }
+      .treeBankListBox .treeBankList ul li .glyphicon{
+          float:right;
+          margin:5px 20px 0 0;
+      }
+      /* 贷款机构样式end */
+    </style>
+  </head>
+</html>
+<body class="gray-bg">
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-xs-24 col-sm-24 col-md-24">
+        <div class="ibox float-e-margins">
+          <div class="ibox-content">
+            <form class="form-horizontal" id="loanForm">
+              <div class="form-group form-group-sm">
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">贷款机构：</label>
+                  <div class="col-md-5 cl-sm-5 col-xs-5">
+                    <select class="form-control" name="templateId" id="templateId">
+                      <option value="">--请选择--</option>
+                    </select>
+
+                  </div>
+                </div>
+                <div class="input-tip">
+                  <label class="col-md-3 col-xs-3 col-sm-3 control-label">创建时间：</label>
+                  <div class="col-md-5 cl-sm-5 col-xs-5">
+                    <input type="text" name="createTime1" id="createTime1" placeholder="请选择创建开始时间" class="form-control date">
+                  </div>
+                </div>
+                <div class="input-tip">
+                  <label class="col-md-3 col-xs-3 col-sm-3 control-label">至：</label>
+                  <div class="col-md-5 cl-sm-5 col-xs-5">
+                    <input type="text" name="createTime2" id="createTime2"  placeholder="请选择创建结束时间" class="form-control date">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-sm">
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">匹配结果：</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5">
+                    <select name="matchStatus" id="matchStatus" class="form-control">
+                      <option value="">--请选择--</option>
+                      <option value="1">匹配成功</option>
+                      <option value="2">匹配失败</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-sm">
+                <div class="col-xs-24 col-sm-24 col-md-24 text-center">
+                  <button type="button" class="btn btn-primary" id="btn-search" modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                  </button>
+                  <button type="button" class="btn btn-white" modal="reset" id="btn-reset"><span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="ibox float-e-margins">
+          <div class="ibox-content">
+            <ul class="nav nav-tabs changeUl">
+              <li class="active"><a href="#todo" data-toggle="tab">线下导入</a></li>
+              <li><a href="#done" data-toggle="tab">接口对接</a></li>
+            </ul>
+            <div class="tab-content">
+              <p></p>
+              <div id="todo" class="tab-pane active">
+                <table id="table1" data-toggle="table" data-ajax="table_1">
+                  <thead>
+                    <tr>
+                      <th data-field="settlementFileName">文件名称</th>
+                      <th data-field="templetName">贷款机构</th>
+                      <th data-field="createTime">创建时间</th>
+                      <th data-field="totalAmount">传输数据总量</th>
+                      <th data-field="totalMatchSuccess">匹配成功总量</th>
+                      <th data-field="totalMatchFail">匹配失败总量</th>
+                      <th data-field="data7" data-formatter="match_result">匹配结果</th>
+                      <th data-field="data8" data-align="center" data-switchable="false" data-formatter="handle_1" data-events="tableEvent_1">操作</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+              <div id="done" class="tab-pane">
+                <table id="table2" data-toggle="table" data-ajax="table_2">
+                  <thead>
+                    <tr>
+                      <th data-field="transmissionNo">文件名称</th>
+                      <th data-field="bankName">贷款机构</th>
+                      <th data-field="transmissionStatusDesc">传输状态</th>
+                      <th data-field="createTime">创建时间</th>
+                      <th data-field="middlewareFinishTime">中间件完成时间</th>
+                      <th data-field="carLoanFinishTime">贷后完成时间</th>
+                      <th data-field="repaymentAmount">传输数据总量</th>
+                      <th data-field="matchSuccessAmount">匹配成功总量</th>
+                      <th data-field="matchFailureAmount">匹配失败总量</th>
+                      <th data-field="isSuccess" data-formatter="match_result2">匹配结果</th>
+                      <th data-field="data11" data-align="center" data-switchable="false" data-formatter="handle_2" data-events="tableEvent_2">操作</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+            <div id="toolbar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="doneTaskHandle">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" data-name="title"></h4>
+        </div>
+        <div class="modal-body">
+          <p>是否撤回流程？</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="">是</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">否</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="../../../common/plugs/layer/layer.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/bootstrap-select-1.12.1/dist/js/bootstrap-select.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $("head").append([
+    '<script src="../../../common/js/URL.js"><\/script>',
+    '<script src="../../../common/js/iframeCommon.js"><\/script>',
+    '<script src="../../../js/dataImportmManagement/dataTransferRecord/index.js"><\/script>'
+  ].join(""));
+</script>

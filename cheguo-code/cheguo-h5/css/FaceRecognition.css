@@ -1,0 +1,19 @@
+.leftImg{
+	padding: 15px 15px;
+}
+.img{
+	background: #FFF url() 0 0 no-repeat;
+	background-size: 100%;
+	width: 130px; 
+	height: 180px; 
+}
+.right{
+	height: 180px; 
+	padding-right: 5px;
+	font-size:  18px; 
+}
+
+.right span{
+	padding: 0 10px; 
+}
+

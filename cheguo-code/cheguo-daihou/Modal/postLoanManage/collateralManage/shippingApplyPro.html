@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css"/>
+    <title>出库申请审批</title>
+</head>
+</html>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-md-24 col-xs-24 col-sm-24">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="page_header" id="insuranceTitleDiv"><h3 class="text-center">车辆出库申请</h3></div>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#info" data-toggle="tab">基本信息</a></li>
+                        <li><a href="#opinion" id="opinionTab" data-toggle="tab">过程信息</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="info" class="tab-pane active">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">基本信息</h3>
+                                </div>
+                                <div class="panel-body panel-default">
+                                    <div class="form-horizontal" id="topInfo">
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">占管状态:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="status" data-formatter="statusHandle" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">入库时间:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="inTime" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">占管人:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="pipeUser" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">占管人联系方式:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="pipeUserPhone" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">客户姓名:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="customerName" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">贷款编号:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="projectNo" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">手机号:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="mobile" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">身份证号:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="cardNo" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">在保余额:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="inKeepBalanceAmount" data-formatter="inKeepHandle" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">净垫款额:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="advanceBalanceAmount" data-formatter="advanceHandle" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">贷款银行:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="bankName" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">所属机构:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="orgName" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">车牌号:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="plateNo" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">车架号:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="carFrameNo" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">上牌地:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="plateArea" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                              <label class="control-label col-md-3 col-xs-3 col-sm-3">车辆型号:
+                                              </label>
+                                              <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="carModelName" class="form-control-static"></p>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">出库申请</h3>
+                                </div>
+                                <div class="panel-body panel-default">
+                                  <fieldset id="formDisabled">
+                                      <form class="form-horizontal" id="collectionForm_2">
+                                          <input type="hidden" value="" id="keyId" />
+                                        <!-- <input type="hidden" name="projectId" id="projectId" />
+                                        <input type="hidden" name="dragCarId" id="dragCarId" /> -->
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                                <label class="control-label col-md-3 col-xs-3 col-sm-3">出库理由:
+                                                </label>
+                                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                                    <select name="checkoutReason" id="checkoutReason" class="form-control required">
+                                                        <option value="" selected>--请选择--</option>
+                                                        <option value="1">全额结清垫款本息及银行贷款，归还客户</option>
+                                                        <option value="2">结清当前垫款本息及银行月供，归还客户</option>
+                                                        <option value="3">公司处置</option>
+                                                        <option value="4">法院执行</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="input-tip">
+                                                <label class="control-label control-label col-md-3 col-xs-3 col-sm-3 inline">
+                                                  <input id="otherReasonCheck" type="checkbox" name="" class="inline" style="margin-right: 5px; vertical-align: sub;">其他
+                                                </label>
+                                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                                    <input name="otherReason" class="form-control" id="otherReason" disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                                <label class="control-label col-md-3 col-xs-3 col-sm-3">出库时间:
+                                                </label>
+                                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                                    <input type="text" class="form-control date" id="now" name="outTime" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">情况描述：</label>
+                                                <div class="col-md-21">
+                                                    <textarea class="form-control" rows="5" name="memo" id="remark"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </form>
+                                  </fieldset>
+                                    <div class="form-group form-group-sm dataUpload">
+                                        <div class="input-tip">
+                                            <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">申请材料(附件)：</label>
+                                            <div class="col-md-2 col-sm-2 col-lg-2 col-xs-2">
+                                                <button type="button" class="btn btn-primary btn-sm upImage" disabled><span>选择图片</span>
+                                                </button>
+                                                <button type="button" class="btn btn-primary btn-sm upload hide"><span>开始上传</span>
+                                                </button>
+                                                <input type="file" name="files[]" accept="image/*" class="hide upImageInput" multiple />
+                                            </div>
+                                            <ul class="col-md-19 col-sm-19 col-lg-19 col-xs-19 list-inline files-ul" id="fileType">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <form id="opinionForm" class="form-horizontal">
+                                <div class="panel panel-default hide" id="opinionFormHide">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">流程意见</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span
+                                                        class="text-danger">*</span>意见结论：</label>
+                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                    <label class="radio-inline">
+                                        <input type="radio" aria-required="true" required="" value="1" name="conclusion" checked="checked">同意</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                      <label class="radio-inline">
+                                        <input type="radio" aria-required="true" required="" value="0" name="conclusion">不同意</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">意见说明：</label>
+                                                <div class="col-xs-21 col-sm-21 col-md-21">
+                                                    <textarea class="form-control" rows="3" name="opinion"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-right" id="isHide">
+                                        <button type="button" class="btn btn-primary" id="save" val="0"><span>提交</span></button>
+                                        <button type="button" class="btn btn-primary hide" id="btn-loanReview-back" val="1"><span>退回上一步</span></button>
+                                        <button type="button" class="btn btn-primary" id="btn-close-loan"><span>撤销</span></button>
+                                        <button type="button" class="btn btn-primary" id="btn-save"><span>保存</span></button>
+                                        <button type="button" class="btn btn-white returnBtn" id="cancelBtn"><span>取消</span></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="opinion" class="tab-pane">
+                            <div data-url="../../common/commonOpinion/opinion.html"></div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--流转人员-->
+<div class="modal fade" id="signModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">任务提交</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <p>请选择流转人员&nbsp;&nbsp;&nbsp;后续流程环节:<span id="nextNode"></span></p>
+                    <table id="table_sign" data-ajax="table_sign">
+                        <thead>
+                            <tr>
+                                <th data-field="userId" data-formatter="handle_sign" data-events="tableEvent_sign">选择</th>
+                                <th data-field="organization">机构名称</th>
+                                <th data-field="department">部门</th>
+                                <th data-field="userName">姓名</th>
+                                <th data-field="taskCount">当前代办量</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <input type="hidden" id="nextNodeUserId" />
+            <input type="hidden" id="nextNodeUserName" />
+            <div class="modal-footer">
+                <input type="hidden" id="signUserName" name="" />
+                <button type="button" class="btn btn-primary" id="select-sign-btn">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/js/flow.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/js/LocalResizeIMG.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/common/commonImgUpload/imgUpload.js"><\/script>',
+        '<script src="../../../js/postLoanManage/collateralManage/shippingApplyPro.js"><\/script>'
+    ].join(""));
+</script>

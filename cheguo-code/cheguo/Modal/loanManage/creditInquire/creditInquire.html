@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css"/>
+
+    <title>征信查询</title>
+  </head>
+</html>
+<body class="gray-bg">
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-xs-24 col-sm-24 col-md-24">
+        <div class="ibox float-e-margins">
+          <div class="ibox-content">
+            <form class="form-horizontal" id="searchForm">
+              <div class="form-group form-group-sm">
+                <div class= 'page-header'>
+                    <h3 class= 'text-center'>征信查询</h3>
+                </div>
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">客户名称：</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5">
+                    <input type="text" name="customerName" placeholder="请输入客户名称" class="form-control">
+                  </div>
+                </div>
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">证件号码：</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5">
+                    <input type="text" name="cardId" placeholder="请输入证件号码" class= 'form-control'>
+                  </div>
+                </div>
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">征信结果：</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5">
+                    <select name="creditResult" id="creditResult" class="form-control">
+                      <option value="" selected>--请选择--</option>
+                      <option value="0" >初始化</option>
+                      <option value="1" >征信中</option>
+                      <option value="2" >征信通过</option>
+                      <option value="3" >征信不通过</option>
+                      <option value="4" >无效</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-sm">
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">提交日期：</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5">
+                     <input type="text" name="submitTimeBegin" placeholder="请输入提交开始日期" class= 'form-control date' id= 'submitTimeBegin'>
+                  </div>
+                </div>
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">至：</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5">
+                     <input type="text" name="submitTimeEnd" placeholder="请输入提交结束日期" class= 'form-control date' id= 'submitTimeEnd'>
+                  </div>
+                </div>
+
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">银行回复:</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5">
+                    <select name="checkResult" id="checkResult" class="form-control">
+                      <option value="" selected>--请选择--</option>
+                      <option value="2" >否</option>
+                      <option value="1" >是</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-sm">
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">调查日期：</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5">
+                    <input type="text" name="checkDateBegin" placeholder="请输入调查开始日期" class="form-control date">
+                  </div>
+                </div>
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">至：</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5">
+                    <input type="text" name="checkDateEnd" placeholder="请输入调查结束日期" class="form-control date">
+                  </div>
+                </div>
+                <div class="input-tip">
+                  <label class="col-md-3 col-xs-3 col-sm-3 control-label">调查银行：</label>
+                  <div class="col-md-5 cl-sm-5 col-xs-5">
+                    <input type="hidden" name="inquryBank" id="inquryBank">
+                    <select name="inquryBankId" id="bankDeraler" class="form-control">
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-sm">
+                <!--<input type="hidden" name="orgId">-->
+                <div class="input-tip">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-3">经办机构:</label>
+                  <div class="col-md-5 col-sm-5 col-xs-5">
+                    <select name="orgId" class="form-control" id="orgId">
+                      <option value="">--请选择--</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="input-tip">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-3">业务小组:</label>
+                  <div class="col-md-5 col-sm-5 col-xs-5">
+                    <select name="groupId" class="form-control" id="groupId">
+                      <option value="">--请选择--</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="input-tip">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-3">客户经理:</label>
+                  <div class="col-md-5 col-sm-5 col-xs-5">
+                    <input type="text" name="customerManager" placeholder="请输入客户经理" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-sm">
+                <div class="input-tip">
+                  <label class="col-md-3 col-xs-3 col-sm-3 control-label">征信主体类型：</label>
+                  <div class="col-md-5 cl-sm-5 col-xs-5">
+                    <select name="creditType" id="creditType" class="form-control required">
+                      <option value="">--请选择--</option>
+                      <option value="1">主贷人</option>
+                      <option value="2">配偶</option>
+                      <option value="3">担保人</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-sm">
+                <div class="col-xs-24 col-sm-24 col-md-24 text-center">
+                  <button type="button" class="btn btn-primary" id="btn-search" modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                  </button>
+                  <button type="button" class="btn btn-white" modal="reset" id="clear"><span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <div class="text-right">
+              <button class="btn btn-primary btn-sm" id="exportBtn">导出excel</button>
+            </div>
+          </div>
+          <div class="ibox-content">
+            <div class="tab-content">
+			       <p></p>
+              <div id="todo" class="tab-pane active">
+                <table id="table1" data-toggle="table" data-ajax="dataLoad_1">
+                  <thead>
+                    <tr>
+                      <!-- <th data-field="state" data-checkbox= 'true'></th> -->
+                      <th data-field="creditType" data-formatter="creditType">征信关系人</th>
+                      <th data-field="fullName">客户名称</th>
+                      <th data-field="cardType" data-formatter="cardType">证件类型</th>
+                      <th data-field="cardId">证件号码</th>
+                      <th data-field="inquryBank">调查银行</th>
+                      <th data-field="checkResult" data-formatter="checkResult">银行回复</th>
+                      <th data-field="creditResult" data-formatter="creditResult">征信结果</th>
+                      <th data-field="submitTime">提交日期</th>
+                      <th data-field="checkDate">调查日期</th>
+                      <th data-field="customerManager">客户经理</th>
+                      <th data-field="businessGroup">业务组</th>
+                      <th data-field="orgName">经办机构</th>
+                      <th data-field="operate" data-switchable="false" data-formatter="handle" data-events="tableEvent" data-width="80px">操作</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+              
+              </div>
+            <div id="toolbar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--确认操作模态框-->
+  <div class="modal fade" id="sureModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">提示信息</h4>
+        </div>
+        <div class="modal-body">
+          <p class="tipText"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="sureOption">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $("head").append([
+    '<script src="../../../common/js/URL.js"><\/script>',
+    '<script src="../../../common/js/iframeCommon.js"><\/script>',
+    '<script src="../../../js/loanManage/creditInquire/creditInquire.js"><\/script>'
+  ].join(""));
+</script>

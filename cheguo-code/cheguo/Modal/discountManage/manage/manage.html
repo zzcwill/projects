@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-select-1.10.0/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/viewer/css/viewer.min.css">
+    <link rel="stylesheet" href="../../../css/main.css"/>
+    <title>贴息管理</title>
+    <style>
+        .btn-default {
+            color: #333;
+            background-color: #fff;
+            border-color: #ccc;
+        }
+
+        .btn-default:hover {
+            color: #333;
+            background-color: #e6e6e6;
+            border-color: #adadad;
+        }
+        .selectedSection{
+            width: 100%;
+            max-height: 90px;
+            overflow-y: scroll;
+        }
+        .selectedSection {
+            width: 100%;
+            max-height: 360px;
+            overflow-y: scroll;
+        }
+
+        .selectedSection span.item {
+            display: inline-block;
+            margin-bottom: 20px;
+            margin-right: 10px;
+        }
+
+        .selectedSection span.item .btn {
+            max-width: 130px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .selectedSection .close {
+            float: none;
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content">
+            <div class="page-header">
+                <h3 class="text-center" id="flowTitle">主机厂贴息政策维护</h3>
+            </div>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#info" data-toggle="tab">基本信息</a></li>
+                <li><a href="#carDealer" data-toggle="tab">适用车行</a></li>
+                <li><a href="#scheme" data-toggle="tab">贴息方案</a></li>
+            </ul>
+            <div class="tab-content">
+                <p></p>
+
+                <div id="info" class="tab-pane active">
+                    <div class="row">
+                        <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+                            <div class="ibox float-e-margins">
+                                <form id="baseInfo" class="form-horizontal">
+                                    <fieldset class="seeFieldset">
+                                        <div class="panel panel-default">
+                                            <!--基本信息-->
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">贴息政策</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span
+                                                                class="text-danger">*</span>贴息政策名称：</label>
+
+                                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                            <input type="hidden" name="id" id="policyId"/>
+                                                            <input type="text" name="policyName" id="policyName"
+                                                                   placeholder="请输入贴息政策名称"
+                                                                   class="form-control required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span
+                                                                class="text-danger">*</span>适用主机厂：</label>
+
+                                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                            <select class="form-control required" name="hostFactories"
+                                                                    id="hostFactories" multiple></select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">联系人姓名：</label>
+
+                                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                            <input type="text" name="contactName" id="contactName"
+                                                                   placeholder="请输入联系人姓名" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">联系人手机号：</label>
+
+                                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                            <input type="text" name="contactPhone"
+                                                                   placeholder="请输入联系人手机号" class="form-control mobile">
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span
+                                                                class="text-danger">*</span>生效开始日期：</label>
+
+                                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                            <input type="text" name="startTime" id="startTime"
+                                                                   placeholder="请选择生效开始日期"
+                                                                   class="form-control date required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span
+                                                                class="text-danger">*</span>生效结束日期：</label>
+
+                                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                            <input type="text" name="endTime" placeholder="请选择生效结束日期"
+                                                                   class="form-control date required">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span
+                                                                class="text-danger">*</span>合作银行：</label>
+
+                                                        <div class="col-xs-21 col-sm-21 col-md-21 col-lg-21">
+                                                            <select name="cooBanks" id="cooBanks"
+                                                                    class="form-control required" multiple></select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm">
+                                            <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-right">
+                                                <button type="button" class="btn btn-primary" id="save-baseInfo"><span>保存</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="carDealer" class="tab-pane">
+
+                    <div class="row">
+                        <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+                            <div class="ibox float-e-margins">
+                                <div class="form-horizontal">
+                                    <div class="ibox-content">
+                                        <form id="searchCarDealer" class="form-horizontal">
+                                            <div class="form-group form-group-sm">
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">车行名称：
+                                                    </label>
+
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <input type="text" name="carDealerName" placeholder="请输入车行名称"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">经销商代码：
+                                                    </label>
+
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <input type="text" name="dealerCode" placeholder="请输入经销商代码"
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-24 col-xs-24 col-sm-24 text-center">
+                                                    <button type="button" class="btn btn-primary"
+                                                            id="btn-searchCarDealer" modal="enter"><span
+                                                            class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-white" modal="reset"><span
+                                                            class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                            <div class="panel panel-default">
+                                        <form>
+                                            <fieldset class="seeFieldset">
+                                                <div class="panel-heading">
+
+                                                    <div class="col-md-8">
+                                                        <h3 class="panel-title">适用车行</h3>
+                                                    </div>
+                                                    <div class="col-md-16">
+                                                        <ul class='btnList'>
+                                                            <li id="downloadTpl"><a href="javascript:;">导入模板下载</a></li>
+                                                            <li id="importCarDealer"><a href="javascript:;">导入适用车行</a>
+                                                            </li>
+                                                            <input id="upFileInput" type="file" name="excel" multiple
+                                                                   class="hide">
+                                                            <li id="addCarDealer"><a href="javascript:;">新增适用车行</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <table id="carDealerTable" data-toggle="table"
+                                                           data-ajax="dataLoad_carDealer">
+                                                        <thead>
+                                                        <tr>
+                                                            <th data-field="carDealerName">车行名称</th>
+                                                            <th data-field="dealerCode">经销商代码</th>
+                                                            <th data-field="status" data-formatter="statuss">状态</th>
+                                                            <th data-switchable="false"
+                                                                data-formatter="handle_carDealer"
+                                                                data-events="tableEvent_carDealer">操作
+                                                            </th>
+                                                        </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </fieldset>
+
+                                        </form>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="scheme" class="tab-pane">
+                    <form>
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+                                    <div class="ibox float-e-margins">
+                                        <div class="form-horizontal">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <div class="col-md-8">
+                                                        <h3 class="panel-title">贴息方案</h3>
+                                                    </div>
+                                                    <div class="col-md-16">
+                                                        <ul class='btnList'>
+                                                            <li id="addScheme"><a href="javascript:;">添加贴息方案</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <table id="schemeTable" data-toggle="table"
+                                                           data-ajax="dataLoad_scheme">
+                                                        <thead>
+                                                        <tr>
+                                                            <th data-field="schemeName">贴息方案名称</th>
+                                                            <th data-field="carBrandName">品牌</th>
+                                                            <th data-field="carMakeName" data-width="150">车系</th>
+                                                            <th data-field="discountRate36">36期贴息金额</th>
+                                                            <th data-field="discountRate24">24期贴息金额</th>
+                                                            <th data-field="discountRate12">12期贴息金额</th>
+                                                            <th data-field="downPayment">首付比例不低于(%)</th>
+                                                            <th data-field="cityType" data-formatter="cityType">城市类型
+                                                            </th>
+                                                            <th data-field="effectualStatus"
+                                                                data-formatter="effectualStatus">
+                                                                状态
+                                                            </th>
+                                                            <th data-switchable="false" data-formatter="handle_scheme"
+                                                                data-events="tableEvent_scheme">操作
+                                                            </th>
+                                                        </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--适用车行编辑模态框-->
+    <div class="modal fade" id="carDealerModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">提示信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" id="carDealerForm">
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="control-label col-xs-4 col-sm-4 col-md-4 col-lg-4"><span
+                                        class="text-danger"> * </span>车行名称：</label>
+
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                    <input type="text" name="carDealerName" placeholder="请输入车行名称"
+                                           class="form-control required">
+                                    <input type="hidden" name="id">
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="control-label col-xs-4 col-sm-4 col-md-4 col-lg-4">经销商代码：</label>
+
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                    <input type="text" name="dealerCode" placeholder="请输入经销商代码"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <p></p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="save-carDealer">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="margin-bottom: 5px;">
+                        取消
+                    </button>
+                    <button type="button" modal="reset" class="btn btn-white hide" id="resetCarDealerForm">重置
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--贴息方案编辑模态框-->
+    <div class="modal fade" id="schemeModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form class="form-horizontal" id="schemeForm">
+                    <fieldset id="schemeFieldset">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">贴息方案</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <input type="hidden" name="id" id="schemeId"/>
+
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3"><span
+                                            class="text-danger">*</span>贴息方案名称：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="schemeName" class="form-control required"
+                                               placeholder="请输入贴息方案名称">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm" id="carsBox">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">品牌：</label>
+
+                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                        <input type="hidden" name="carBrand">
+                                        <input name="carBrandName" class="form-control" id="getBrand"
+                                               placeholder="--请选择--" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">车系：</label>
+
+                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                        <input type="hidden" name="carMake">
+                                        <input name="carMakeName" class="form-control carSelect" id="getCarList" placeholder="--请选择--">
+                                        <!--<input type="hidden" name="carMakeName">-->
+                                        <!--<select name="carMake" class="form-control carSelect" id="getCarList">-->
+                                            <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+                                        <!--</select>-->
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">车型：</label>
+
+                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                        <input type="hidden" name="carModel" value="">
+                                        <input name="carModelName" class="form-control carSelect" id="getCarModel" placeholder="--请选择--">
+                                        <!--<input type="hidden" name="carModelName">-->
+                                        <!--<select name="carModel" class="form-control" id="getCarModel">-->
+                                            <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+                                        <!--</select>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">存放车型:</label>
+
+                                    <div class="col-xs-21 col-sm-21 col-md-21 col-lg-21">
+                                        <div id="selectedCars" class="selectedSection">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm" id="nper36">
+                                <div class="input-tip">
+                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">36期贴息金额：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <!--<div class="input-group">-->
+                                            <input type="hidden" name="nper" value="4">
+                                            <input type="text" name="discountRate" class="form-control money" placeholder="请输入贴息金额">
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                        <select name="discountType" class="form-control discountType required">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">36贴息上限：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="discountLimit" class="form-control money"
+                                               placeholder="请输入贴息上限" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm" id="nper24">
+                                <div class="input-tip">
+                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">24期贴息金额：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <!--<div class="input-group">-->
+                                            <input type="hidden" name="nper" value="3">
+                                            <input type="text" name="discountRate" class="form-control money"
+                                                   placeholder="请输入贴息金额">
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                        <select name="discountType" class="form-control discountType required">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">24贴息上限：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="discountLimit" class="form-control money"
+                                               placeholder="请输入贴息上限" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm" id="nper18">
+                                <div class="input-tip">
+                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">18期贴息金额：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <!--<div class="input-group">-->
+                                            <input type="hidden" name="nper" value="2">
+                                            <input type="text" name="discountRate" class="form-control money"
+                                                   placeholder="请输入贴息金额">
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                        <select name="discountType" class="form-control discountType required">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">18贴息上限：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="discountLimit" class="form-control money"
+                                               placeholder="请输入贴息上限" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm" id="nper12">
+                                <div class="input-tip">
+                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">12期贴息金额：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <!--<div class="input-group">-->
+                                            <input type="hidden" name="nper" value="1">
+                                            <input type="text" name="discountRate" class="form-control money"
+                                                   placeholder="请输入贴息金额">
+                                        <!--</div>-->
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                        <select name="discountType" class="form-control discountType required">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">12贴息上限：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="discountLimit" class="form-control money"
+                                               placeholder="请输入贴息上限" readonly>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span
+                                            class="text-danger">*</span>首付比例不低于(%)：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                        <input type="text" name="downPayment" placeholder="请输入首付比例下限"
+                                               class="form-control money required">
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span
+                                            class="text-danger">*</span>城市类型：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                        <select class="form-control required" name="cityType">
+                                            <option value="">--请选择--</option>
+                                            <option value="10">全国</option>
+                                            <option value="1">一二线城市</option>
+                                            <option value="2">三四五线城市</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span
+                                            class="text-danger">*</span>贴息模式：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                        <select class="form-control required" name="discountType">
+                                            <option value="">--请选择--</option>
+                                            <option value="1">综合模式</option>
+                                            <option value="2">一汽模式</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="save-scheme">保存</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" modal="reset" class="btn btn-white hide" id="resetSchemeForm">重置
+                            </button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--确认操作模态框-->
+    <div class="modal fade" id="sureModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">提示信息</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="tipText"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="sureOption">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/echarts.js"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=1512011716000"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/LocalResizeIMG.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/bootstrap-select-1.10.0/dist/js/bootstrap-select.js"></script>
+<script src="../../../common/plugs/jquery-ajaxfileupload/jquery.ajaxfileupload.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/discountManage/manage/manage.js"><\/script>',
+    ].join(""));
+</script>
+
+

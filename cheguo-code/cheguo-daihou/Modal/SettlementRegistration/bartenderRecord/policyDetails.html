@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <title>结清登记</title>
+  </head>
+</html>
+<body class="gray-bg">
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-xs-24 col-sm-24 col-md-24">
+        <div class="ibox float-e-margins">
+          <div class="ibox-content">
+            <form id="baoDanTateils" class="form-horizontal">
+              <div class="form-group form-group-sm">
+	                <div class="input-tip">
+	                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">保险公司：
+	                  </label>
+	                  <div class="col-xs-5 col-sm-5 col-md-5">
+	                    <input type="text" name="insuranceCompanyName" readonly placeholder="保险公司" class="form-control">
+	                  </div>
+	                </div>
+	                <div class="input-tip">
+	                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">保险类型：
+	                  </label>
+	                  <div class="col-xs-5 col-sm-5 col-md-5">
+	                    <input type="text" name="insuranceTypeName" readonly placeholder="保险类型" class="form-control">
+	                  </div>
+	                </div>
+	                <div class="input-tip">
+	                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">保险单号：
+	                  </label>
+	                  <div class="col-xs-5 col-sm-5 col-md-5">
+	                    <input type="text" name="insuranceNo" readonly placeholder="保险单号" class="form-control">
+	                  </div>
+	                </div>
+	                
+                </div>
+              <div class="form-group form-group-sm">
+					       <div class="input-tip">
+	                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">佣金比率(%)：
+	                  </label>
+	                  <div class="col-xs-5 col-sm-5 col-md-5">
+	                    <input type="text" name="CommissionRate" readonly placeholder="佣金比率" class="form-control">
+	                  </div>
+	                </div>
+              </div>
+                
+                <!-- 保险险种清单 -->
+                <div class="qingD" style="width:500px;margin-left:110px;">
+                  <h3>保险险种清单:</h3>
+                  <table data-toggle="table" data-ajax="xz">
+                      <thead>
+                        <tr>
+                          <th data-field="id">序号</th>
+                          <th data-field="insuranceTypeName">保险险种</th>
+                        </tr>
+                      </thead>
+                    </table>
+                </div>
+
+                <br>
+
+                <div class="form-group form-group-sm">
+                   <div class="input-tip">
+                      <label class="col-xs-3 col-sm-3 col-md-3 control-label">是否公司办理：</label>
+                      <div class="col-xs-5 col-sm-5 col-md-5" style="margin-top:5px;">
+                         <label class="labelMargin"><input type="radio" name="bl"> 是</label>
+                         <label class="labelMargin"><input type="radio" name="bl"> 否</label>
+                      </div>
+                    </div>
+
+                    <div class="input-tip">
+                      <label class="col-xs-3 col-sm-3 col-md-3 control-label">保费收取方式：</label>
+                      <div class="col-xs-5 col-sm-5 col-md-5" style="margin-top:5px;">
+                         <select name="premiumChargedWay" readonly class="form-control" required="required">
+                            <option value="">--请选择--</option>
+                            <option value="1">保险公司收取</option>
+                            <option value="2">公司代收</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="input-tip">
+                      <label class="col-xs-3 col-sm-3 col-md-3 control-label">是否冲抵履约保证金：</label>
+                      <div class="col-xs-5 col-sm-5 col-md-5" style="margin-top:5px;">
+                         <label class="labelMargin"><input type="radio" name="dl"> 是</label>
+                         <label class="labelMargin"><input type="radio" name="dl"> 否</label>
+                      </div>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group form-group-sm">
+                  <!-- 开始日期 -->
+                   <div class="input-tip">
+                      <label class="col-xs-3 col-sm-3 col-md-3 control-label">开始日期：</label>
+                      <div class="col-xs-5 col-sm-5 col-md-5">
+                        <input type="text" name="StartDate" placeholder="开始日期" readonly value="日期框（当前日期）" class="form-control">
+                      </div>
+                    </div>
+
+                    <!-- 结束日期 -->
+                    <div class="input-tip">
+                      <label class="col-xs-3 col-sm-3 col-md-3 control-label">结束日期：</label>
+                      <div class="col-xs-5 col-sm-5 col-md-5">
+                        <input type="text" name="EndDate" placeholder="结束日期" readonly value="日期框（当前日期加1年减1天）" class="form-control">
+                      </div>
+                    </div>
+
+
+                    <!-- 保费合计 -->
+                    <div class="input-tip">
+                      <label class="col-xs-3 col-sm-3 col-md-3 control-label">保费合计：</label>
+                      <div class="col-xs-5 col-sm-5 col-md-5">
+                        <input type="text" name="TotalPremium" placeholder="保费合计" readonly class="form-control">
+                      </div>
+                    </div>
+
+
+                </div>
+
+                <div class="form-group form-group-sm">
+                  
+                    <!-- 佣金合计 -->
+                    <div class="input-tip">
+                      <label class="col-xs-3 col-sm-3 col-md-3 control-label">佣金合计：</label>
+                      <div class="col-xs-5 col-sm-5 col-md-5">
+                        <input type="text" name="TotalPremium" placeholder="佣金合计" readonly value="1000" class="form-control">
+                      </div>
+                    </div>
+
+                    <!-- 佣金合计 -->
+                    <div class="input-tip">
+                      <label class="col-xs-3 col-sm-3 col-md-3 control-label">受益人：</label>
+                      <div class="col-xs-5 col-sm-5 col-md-5">
+                        <input type="text" name="TotalPremium" placeholder="受益人" readonly value="工行镇行支行" class="form-control">
+                      </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group form-group-sm">
+                    <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label">备注：</label>
+                        <div class="col-xs-21 col-sm-21 col-md-21">
+                          <textarea class="form-control" rows="3" name="scopeBusiness" readonly ></textarea>
+                        </div>
+                    </div>
+
+                    
+                    
+                </div>
+
+                <div class="form-group form-group-sm">
+                    <!-- 保单经办人 -->
+                    <div class="input-tip">
+                      <label class="col-xs-3 col-sm-3 col-md-3 control-label">保单经办人：</label>
+                      <div class="col-xs-5 col-sm-5 col-md-5">
+                        <input type="text" name="TotalPremium" placeholder="保单经办人" readonly value="" class="form-control">
+                      </div>
+                    </div>
+
+
+                    <!-- 保单经办人 -->
+                    <div class="input-tip">
+                      <label class="col-xs-3 col-sm-3 col-md-3 control-label">登记人员：</label>
+                      <div class="col-xs-5 col-sm-5 col-md-5">
+                        <input type="text" name="TotalPremium" placeholder="登记人员" value="" readonly class="form-control">
+                      </div>
+                    </div>
+                </div>
+
+            </form>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=eb649edd14c8348e9f34a8ca6157c2b6"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.min.js?rev=424557ef2a8b89693026b3b43d4b1e1c"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/SettlementRegistration/bartenderRecord/policyDetails.js"><\/script>'
+    ].join(""));
+</script>

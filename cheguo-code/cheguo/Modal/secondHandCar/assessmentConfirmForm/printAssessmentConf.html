@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <title>二手车评估确认表</title>
+    <style type="text/css">
+        #approvalBudgetInfoForm{ height: 100%;}
+        h1.text-center{ font-weight: 700; margin-top: 0; height: 5%;}
+        .table-responsive{ height: 95%;}
+        .table-bordered{ height: 90%;}
+        .price { padding-left:50px;}
+        .ymd{ text-align: right; padding-right:50px}
+        .col-top{ padding-top: 20px;}
+        .ymd i{ font-style: normal; padding-left:40px}
+        .col-half span{ display: inline-block; width: 50%;}
+        .bottomBorder{ padding: 0 10px; border-bottom: 1px solid #676a6c; margin: 0 8px; display: inline-block; min-width: 72px;}
+    </style>
+</head>
+</html>
+<body>
+<div class="wrapper wrapper-content animated fadeInRight" id="approvalBudgetInfoForm">
+    <h1 class="text-center" id="bankName">二手车评估确认表</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <colgroup>
+                <col width="20%">
+                <col width="30%">
+                <col width="20%">
+                <col width="30%">
+            </colgroup>
+            <tr height="35">
+                <td>所属分公司</td>
+                <td data-name="launchOrganizationName"></td>
+                <td>评估单号</td>
+                <td data-name="estimateNum"></td>
+            </tr>
+            <tr height="35">
+                <td>客户姓名</td>
+                <td data-name="customerName"></td>
+                <td>身份证号码</td>
+                <td data-name="cardNum"></td>
+            </tr>
+            <tr height="35">
+                <td>贷款金额</td>
+                <td data-name="loanAmount"></td>
+                <td>车辆型号(MT/AT)</td>
+                <td data-name="carModeName"></td>
+            </tr>
+            <tr height="35">
+                <td>初登日期</td>
+                <td data-name="licenseDate"></td>
+                <td>车牌号码</td>
+                <td data-name="plateNo"></td>
+            </tr>
+            <tr height="35">
+                <td>发动机号</td>
+                <td data-name="engineNo"></td>
+                <td>车辆VIN码<br>(17位车架号)</td>
+                <td data-name="carIdentifyNum"></td>
+            </tr>
+            <tr height="35">
+                <td>汽车排量</td>
+                <td data-name="carDisplacement"></td>
+                <td>里程表公里数</td>
+                <td data-name="kilometres"></td>
+            </tr>
+            <tr height="35">
+                <td>车辆颜色</td>
+                <td data-name="carColour"></td>
+                <td>初次上牌地区</td>
+                <td>
+                    <span data-name="provinceNamePlate"></span><span data-name="cityNamePlate"></span>
+                </td>
+            </tr>
+            <tr height="35">
+                <td>新车指导价</td>
+                <td data-name="newCarPrice"></td>
+                <td>累计过户次数</td>
+                <td data-name="cumulativeTransfers"></td>
+            </tr>
+            <tr height="35">
+                <td colspan="4">在线公允中间价<span class="bottomBorder" data-name="onlineIntermediatePrice"></span>元</td>
+            </tr>
+            <tr>
+                <td colspan="4" style="vertical-align: text-top; letter-spacing:3px">
+                    <p>分公司评估师签字：</p>
+                    <p class="col-top price">二手车确认评估价<span class="bottomBorder" data-name="secondEstimatePrice"></span>元</p>
+                    <p class="col-top ymd"><i>年</i><i>月</i><i>日</i></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="vertical-align: text-top; letter-spacing:3px">
+                    <p>分公司负责人结论及签字：</p>
+                    <p class="col-top price">确认二手车确认评估价<span class="bottomBorder" data-name="secondEstimatePrice"></span>元</p>
+                    <p class="col-top ymd"><i>年</i><i>月</i><i>日</i></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="vertical-align: text-top; letter-spacing:3px">
+                    <p>总部二手车评估师结论及签字：</p>
+                    <p class="col-top price">确认二手车确认评估价<span class="bottomBorder"></span>元</p>
+                    <p class="col-top ymd"><i>年</i><i>月</i><i>日</i></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="vertical-align: text-top; letter-spacing:3px">
+                    <p>银行评估意见：</p>
+                    <p class="col-top price">确认车辆评估指导价为：人民币（大写）:<span class="bottomBorder"></span>元</p>
+                    <p class="col-top col-half">
+                        <span style="padding-left: 50px;">调查人：</span><span>调查人：</span>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/secondHandCar/assessmentConfirmForm/printAssessmentConf.js"><\/script>'
+    ].join(""));
+</script>

@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">保单信息</h3>
+            </div>
+            <div class="panel-body">
+                <table id="table_insurance" data-ajax="table_insurance">
+                    <thead>
+                    <tr>
+                        <th data-formatter="handle_insurance1">保单类型</th>
+                        <th data-field="insuranceNo">保单号</th>
+                        <th data-field="insuranceCompanyName">保险公司</th>
+                        <th data-field="insuranceTypeName">保险类型</th>
+                        <th data-field="insuranceStartTime">保险开始日期</th>
+                        <th data-field="insuranceEndTime">保险结束日期</th>
+                        <th data-field="insuranceFeeTotal" data-formatter="yuan">保费合计</th>
+                        <th data-field="insuranceStatus" data-formatter="costType">保险状态</th>
+                        <th data-field="creator">登记人</th>
+                        <th data-field="id" data-switchable="false"
+                            data-formatter="handle_insurance"
+                            data-events="tableEvent_insurance">操作
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../js/common/commonInsuranceInfo/insurance.js"></script>

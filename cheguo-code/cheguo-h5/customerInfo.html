@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="./common/amui.min.css">
+    <script src="./common/zepto.min.js?t=@@hash"></script>
+    <script src="./common/mock-min.js?t=@@hash"></script>
+    <script src="./common/amui.js?t=@@hash"></script>
+    <script src="./common/global.js?t=@@hash"></script>
+    <title>客户信息</title>
+    <div id="page">
+      <div am-mode="flat chip 43px" class="am-list">
+        <div class="am-list-body">
+          <div class="am-list-item">
+            <div class="am-list-title">客户</div>
+            <div data-name="customerName" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">性别</div>
+            <div data-name="sex" data-formatter="sex" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">年龄</div>
+            <div data-name="age" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">证件类型</div>
+            <div data-name="cardType" data-formatter="cardType" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">证件号码</div>
+            <div data-name="cardNo" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">婚姻状况</div>
+            <div data-name="maritalStatus" data-formatter="maritalStatus" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">子女情况</div>
+            <div data-name="hasChildren" data-formatter="hasChildren" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">户籍地址</div>
+            <div data-name="nativePlace" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">户口类别</div>
+            <div data-name="householdType" data-formatter="householdType" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">住房状况</div>
+            <div data-name="housingStatus" data-formatter="housingStatus" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">月还款月租说明</div>
+            <div data-name="mortgageRepayment" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">家庭电话</div>
+            <div data-name="homePhone" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">家庭地址</div>
+            <div data-name="homeAddress" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">云镜大数据</div>
+            <div data-name="decisionStatus" data-formatter="decisionStatus" class="am-list-extra"></div>
+          </div>
+        </div>
+      </div>
+      <div class="am-list">
+        <div class="am-list-body">
+          <div class="am-list-item">
+            <div class="am-list-title">最高学历</div>
+            <div data-name="education" data-formatter="education" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">职业</div>
+            <div data-name="profession" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">所属行业</div>
+            <div data-name="industry" data-formatter="industry" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">个人月收入</div>
+            <div data-name="monthlyIncome" data-formatter="monthlyIncome" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">月平均收入</div>
+            <div data-name="averageMonthlyIncome" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">公积金</div>
+            <div data-name="reservedFunds" data-formatter="reservedFunds" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">单位电话</div>
+            <div data-name="companyPhone" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">工作单位</div>
+            <div data-name="companyName" class="am-list-extra"></div>
+          </div>
+        </div>
+      </div>
+      <div class="am-list" id="maritalStatus" style="display: none;">
+        <div class="am-list-body"><a id="spouseInfo" class="am-list-item">
+            <div class="am-list-title">配偶信息</div>
+            <div data-name="creditStatus" class="am-list-extra"> </div>
+            <div class="am-list-arrow">
+              <div am-mode="arrow-horizontal" class="am-icon"></div>
+            </div></a></div>
+      </div>
+      <div class="am-list">
+        <div class="am-list-body">
+          <div class="am-list-item">
+            <div class="am-list-title">是否代购</div>
+            <div data-name="isAgency" data-formatter="isAgency" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">实际用车人</div>
+            <div data-name="realCarOwner" class="am-list-extra"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </head>
+</html>
+<script src="./js/customerInfo.js"></script>

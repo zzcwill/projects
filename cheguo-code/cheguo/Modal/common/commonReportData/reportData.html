@@ -1,0 +1,102 @@
+<style type="text/css">
+    .tooltip-inner{ max-width:220px; width: 220px;}
+</style>
+<div class="row">
+    <div class="col-md-24 col-xs-24 col-sm-24">
+        <div class="ibox float-e-margins">
+            <form id="reportDataForm" class="form-horizontal">
+                <fieldset disabled>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">大数据核验报告</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">核验结果：</label>
+                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                        <div id="results">
+                                            <select name="authState" class="form-control">
+                                                <option value="process">审核中</option>
+                                                <option value="Accept">通过</option>
+                                                <option value="Reject">拒绝</option>
+                                            </select>
+                                            <span class="input-group-addon hide" id="isloseEfficacy" style="padding: 3px 12px">
+                                                <label class="text-danger" style="font-weight:bold; margin-bottom: 0">失效</label>
+                                                <span class="glyphicon glyphicon-info-sign" style="color:#1ab394; margin-right: 2px" data-toggle="tooltip" data-placement="bottom" title="若免上门补充申请提交后，相关信息有变更，或核验报告超过了3个月有效期，则核验结果失效。"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-tip Number">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">核验时间：</label>
+                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                        <input type="text" name="authTime" placeholder="请输入核验时间" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">借款人：</label>
+                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                        <input type="text" name="customerName" placeholder="请输入借款人" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">手机号：</label>
+                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                        <input type="text" name="mobile" placeholder="请输入手机号" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">有驾驶证：</label>
+                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                        <select name="driver" class="form-control">
+                                            <option value="0">无</option>
+                                            <option value="1">有</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">常用联系人</h3>
+                        </div>
+                        <div class="panel-body" id="isTipTable1">
+                            <table id="reportDataTable1" class="table table-hover">
+                                <thead>
+                                    <th>常用联系人</th>
+                                    <th>手机号</th>
+                                    <th>关系</th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">风险规则</h3>
+                        </div>
+                        <div class="panel-body" id="isTipTable2">
+                            <table id="reportDataTable2" class="table table-hover">
+                                <thead>
+                                    <th>风险规则</th>
+                                    <th>风险描述</th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="../../../js/common/commonReportData/reportData.js"></script>
+<script type="text/javascript">
+    $(function () { $("[data-toggle='tooltip']").tooltip()});
+</script>

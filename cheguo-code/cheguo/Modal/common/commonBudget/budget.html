@@ -1,0 +1,384 @@
+<link rel="stylesheet" href="../../../common/plugs/bootstrap-select-1.10.0/dist/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="../../../css/main.css" />
+<div class="row">
+    <div class="col-md-24 col-xs-24 col-sm-24">
+        <form id="approvalBudgetInfoForm" class="form-horizontal">
+            <fieldset class="form-group form-group-sm" :disabled="hasItem(['LOAN_MODIFY_LAUNCH', 'LOAN_OFFICE_STAFF_BUDGET', 'LOAN_LAUNCH', 'LOAN_MODIFY_OFFICE_STAFF_BUDGET','LOAN_FINANCE_EXECUTIVE'])">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">基本信息</h3>
+                    </div>
+                    <div class="panel-body">
+                        <fieldset disabled="hasItem()" class="form-group form-group-sm">
+                            <input type="hidden" name="loanType" v-model="loanType">
+                            <input type="hidden" name="discountCaseId" v-model="discountCaseId">
+                            <v-input name="projectNo" :m="projectNo" label="项目编号"></v-input>
+                            <v-select name="businessTypeId" :m="businessTypeId" label="业务品种" :options="['', '信用卡贷款(普通模式)', '银行直销-非垫款', '个人消费贷款', '银行直销-垫款','消费贷款(普通模式)']" type="1"></v-select>
+                            <input type="hidden" name="productId" v-model="productId">
+                            <v-input name="productName" :m="productName" label="金融产品"></v-input>
+                        </fieldset>
+                        <div class="form-group form-group-sm">
+                            <v-input name="loanAmount" :m.sync="loanAmount" label="贷款金额" class="required number" :readonly="payApply('LOAN_FINANCE_EXECUTIVE')"></v-input>
+                            <input type="hidden" name="loanTerm" v-model="loanTerm">
+                            <v-select name="loanTerm" :m="loanTerm" label="贷款期限" :options="loanTermArr" disabled="hasItem()" type="1"></v-select>
+                            <v-input name="handingFee" :m.sync="handingFee" class="required" label="手续费率(%)" :readonly="payApply('LOAN_FINANCE_EXECUTIVE')"></v-input>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <v-input name="annualRate" :m.sync="annualRate" label="年化利率(%)" disabled="disabled"></v-input>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <v-input label="车辆购置税（融贷)" name="fusePurchaseTaxFee" :m.sync="fusePurchaseTaxFee" class="required number" v-if="isPurchaseTaxFee == 1"></v-input>
+                            <v-input label="保费 (融贷)" name="fuseInsuranceFee" :m.sync="fuseInsuranceFee" class="required number" v-if="isInsuranceFee == 1"></v-input>
+                            <v-input label="服务费" name="fuseGpsFee" :m.sync="fuseGpsFee" class="required number" v-if="isGpsFee == 1"></v-input>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <v-select name="isPublicLicense" :m.sync="isPublicLicense" class="required" label="是否公牌" :options="isNoArr" type="1" :disabled="payApply('LOAN_FINANCE_EXECUTIVE')"></v-select>
+                            <input type="hidden" name="isPublicLicense" v-model="isPublicLicense">
+                            <v-input name="licenseCompany" :m.sync="licenseCompany" label="公司名称" v-if="isPublicLicense != 2" :readonly="payApply('LOAN_FINANCE_EXECUTIVE')"></v-input>
+                            <v-input name="licenseCompany" :m.sync="licenseCompany" label="公司名称" disabled="disabled" value="" v-else></v-input>
+                            <input type="hidden" name="carType" v-model="carType">
+                            <v-select name="carType" :m="carType" class="required" label="汽车状况类型" :options="['','新车', '二手车']" type="1" disabled="hasItem()"></v-select>
+                        </div>
+                        <fieldset disabled="hasItem()" class="form-group form-group-sm">
+                            <input type="hidden" name="carBrand" v-model="carBrand">
+                            <v-input name="carBrandName" :m="carBrandName" label="品牌"></v-input>
+                            <input type="hidden" name="carMake" v-model="carMake">
+                            <v-input name="carMakeName" :m="carMakeName" label="车系"></v-input>
+                            <input type="hidden" name="carModel" v-model="carModel">
+                            <v-input name="carModelName" :m="carModelName" label="车型"></v-input>
+                        </fieldset>
+                        <div class="form-group form-group-sm">
+                            <v-input name="bodyStructure" :m="bodyStructure" label="车辆类型" readonly="readonly" v-if="carType==1"></v-input>
+                            <v-radio name="isDidi" :m.sync="isDidi" label="滴滴业务" :options="['','是','否']" type="1" disabled="hasItem()"></v-radio>
+                        </div>
+                        <fieldset disabled="hasItem()" class="form-group form-group-sm" v-if="carType == 2">
+                            <v-input name="evaluationPrice" :m="evaluationPrice" label="复评价格" class="required"></v-input>
+                            <v-input name="sellPrice" :m="sellPrice" label="最高评估书价格" class="required"></v-input>
+                            <v-input name="secondHandCarPrice" :m="secondHandCarPrice" label="二手车销售价" class="required"></v-input>
+                        </fieldset>
+                        <div class="form-group form-group-sm">
+                            <v-radio name="isImported" :m.sync="isImported" class="required" label="是否进口车" :options="isNoArr" type="1"></v-radio>
+                            <v-input name="billingPrice" :m.sync="billingPrice" class="required" label="开票价" :readonly="payApply('LOAN_FINANCE_EXECUTIVE') && loanType!==7"></v-input>
+                            <input type="hidden" name="downPaymentAmount" v-model="downPaymentAmount">
+                            <v-input name="downPaymentAmount" :m.sync="downPaymentAmount" label="首付款" disabled="hasItem()"></v-input>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <input type="hidden" name="loanRatio" v-model="loanRatio">
+                            <v-input name="loanRatio" :m="loanRatio" label="贷款比例(%)" disabled="hasItem()"></v-input>
+                            <v-select name="paymentMethod" :m.sync="paymentMethod" label="打款方式" :options="['', '全额打款', '差额打款']" type="1" v-if="businessTypeId != 2" :disabled="payApply('LOAN_FINANCE_EXECUTIVE')"></v-select>
+                            <input type="hidden" name="paymentMethod" v-model="paymentMethod">
+                            <input type="hidden" name="coBankId" v-model="coBankId">
+                            <v-input name="coBankName" :m="coBankName" label="合作银行" disabled="hasItem()"></v-input>
+                        </div>
+                        <div v-if="isDiscount == 1" class="form-group form-group-sm">
+                            <input type="hidden" name="isDiscount" v-model="isDiscount">
+                            <v-radio name="isDiscount" :m.sync="isDiscount" class="required" label="是否贴息" :options="isNoArr" type="1" disabled="hasItem()"></v-radio>
+                            <v-input name="discountPolicyName" :m="discountPolicyName" label="贴息政策" disabled="hasItem()"></v-input>
+                            <v-input name="discountCaseName" :m="discountCaseName" label="贴息方案" disabled="hasItem()"></v-input>
+                        </div>
+                    </div>
+                </div>
+                <fieldset :disabled="payApply('LOAN_FINANCE_EXECUTIVE')">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">费用信息</h3>
+                        </div>
+                        <div id="common_money" class="panel-body">
+                            <h4 class="section-title">服务费</h4>
+                            <div class="form-group form-group-sm">
+                                <v-input name="guarantyRiskAmount" :m.sync="guarantyRiskAmount" label="按揭手续费"></v-input>
+                                <v-input name="serviceFee" :m.sync="serviceFee" label="按揭服务费"></v-input>
+                                <v-input name="bankIrsFee" :m.sync="bankIrsFee" label="银行利差"></v-input>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <v-input name="licenseFee" :m.sync="licenseFee" label="上牌费"></v-input>
+                                <v-input name="doorSurveyFee" :m.sync="doorSurveyFee" label="上门调查费"></v-input>
+                                <v-input name="valuationFee" :m.sync="valuationFee" label="评估费"></v-input>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <input type="hidden" name="discountAmount" v-model="discountAmount">
+                                <v-input name="discountAmount" :m="discountAmount" label="厂商贴息政策" disabled="hasItem()" v-if="isDiscount == 1"></v-input>
+                            </div>
+                            <h4 class="section-title">GPS费用情况</h4>
+                            <div class="form-group form-group-sm">
+                                <v-select name="gpsNumber" :m.sync="gpsNumber" class="required" label="GPS(台)" :options="[{name: '无', val: 0}, {name: '1台', val: 1}, {name: '2台', val: 2}]" type="0"></v-select>
+                                <v-select name="gpsType" :m.sync="gpsType" label="GPS类型" :options="['','有线', '无线', '有线+无线']" type="1" v-show="GPS"></v-select>
+                                <v-select name="gpsProducer" :m.sync="gpsProducer" label="GPS厂家" class="show-tick" :options="gpsProducerArr" type="0" v-show="GPS" id="gpsFactory" multiple></v-select>
+                                <!--<v-input name="gpsProducer" :m="gpsProducer" label="GPS厂家" v-show="GPS"></v-input>-->
+                            </div>
+                            <div v-show="GPS" class="form-group form-group-sm">
+                                <v-input name="gpsInstallationFee" :m.sync="gpsInstallationFee" label="GPS安装费"></v-input>
+                                <v-input name="liabilityAmount" :m.sync="liabilityAmount" label="责信险"></v-input>
+                            </div>
+                            <h4 class="section-title">暂收费用</h4>
+                            <div class="form-group form-group-sm">
+                                <v-select name="premiumType" :m.sync="premiumType" class="required" label="第一年保费" :options="['','公司','车行','客户']" type="1"></v-select>
+                                <v-input name="insuranceAmount" :m.sync="insuranceAmount" label="金额" v-if="premiumType == 1"></v-input>
+                                <v-input name="insuranceAmount" :m.sync="insuranceAmount" label="金额" readonly="readonly" v-else></v-input>
+                                <v-select name="insuranceCompanyId" :m="insuranceCompanyId" class="required" label="保险公司" :options="insuranceCompanyArr" type="0" v-if="premiumType == 1"></v-select>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <v-select name="isRenewal" :m.sync="isRenewal" class="required" label="是否续保" :options="isNoArr" type="1"></v-select>
+                                <v-input name="pbDeposit" :m.sync="pbDeposit" class="required" label="履约保证金"></v-input>
+                                <v-input name="accountDeposit" :m.sync="accountDeposit" label="上牌抵押押金"></v-input>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <v-select name="costType" :m.sync="costType" class="required" label="工本费" :options="['','公司','车行','客户']" type="1"></v-select>
+                                <v-input name="costAmount" :m.sync="costAmount" label="金额" v-if="costType == 1"></v-input>
+                                <v-input name="costAmount" :m.sync="costAmount" label="金额" readonly="readonly" value="0" v-else></v-input>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <v-select name="predictedPurchasetax" :m.sync="predictedPurchasetax" class="required" label="预计车辆购置税" :options="['','公司','车行','客户']" type="1"></v-select>
+                                <v-input name="purchaseTax" :m.sync="purchaseTax" label="金额" v-if="predictedPurchasetax == 1"></v-input>
+                                <v-input name="purchaseTax" :m.sync="purchaseTax" label="金额" readonly="readonly" value="0" v-else></v-input>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <v-input name="agencyFee" :m.sync="agencyFee" label="车行服务费"></v-input>
+                                <v-input name="outsourceSurveyFee" :m.sync="outsourceSurveyFee" label="外包调查费"></v-input>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <v-input name="totalFee" :m.sync="totalFee" label="费用合计" readonly="readonly"></v-input>
+                                <v-input name="carDealerCollectionFee" :m.sync="carDealerCollectionFee" label="代收服务费" readonly="readonly"></v-input>
+                                <v-input name="xzzDiscountAmount" :m.sync="xzzDiscountAmount" label="新总总贴息金额" v-show="businessTypeId == 4"></v-input>
+                            </div>
+                            <div v-if="isDiscount == 1" class="form-group form-group-sm">
+                                <v-input name="discountMargin" :m.sync="discountMargin" class="required" label="贴息差额"></v-input>
+                                <v-input name="discountCarPolicy" :m="discountCarPolicy" label="贴息金额" readonly="readonly"></v-input>
+                                <v-radio name="isAdvanceDiscount" :m.sync="isAdvanceDiscount" class="required" label="是否垫付贴息金额" :options="isNoArr" type="1"></v-radio>
+                            </div>
+                            <div class="form-group form-group-sm" v-if="businessTypeId != 2">
+                                <v-select name="deliveryMethod" :m.sync="deliveryMethod" class="required" label="提车方式" :options="['','现金','非现金']" type="1"></v-select>
+                                <v-select name="paymentLevel" :m.sync="paymentLevel" class="required" label="付款等级" :options="['','一般','紧急']" type="1"></v-select>
+                                <v-select name="settleMethod" :m.sync="settleMethod" class="required" label="结算方式" :options="['','车行结算','个人结算', '无需结算']" type="1"></v-select>
+                            </div>
+                            <div class="form-group form-group-sm" v-if="businessTypeId != 2">
+                                <input type="hidden" name="testedRepaymentAmount" v-model="testedRepaymentAmount">
+                                <v-input name="testedRepaymentAmount" :m="testedRepaymentAmount" class="required" label="试算月还款额" disabled="hasItem()"></v-input>
+                                <v-input name="collectedAmount" :m.sync="collectedAmount" class="required" label="已收金额"></v-input>
+                                <v-input name="preCollectedAmount" :m="preCollectedAmount" class="required" label="预收金额" readonly="readonly" placeholder="首付+费用合计-已收金额"></v-input>
+                            </div>
+                            <fieldset disabled="hasItem()" class="form-group form-group-sm">
+                                <v-input name="receivableAmount" :m="receivableAmount" label="应收金额" v-if="businessTypeId == 2"></v-input>
+                                <v-input name="payableAmount" :m="payableAmount" label="应付金额" v-else></v-input>
+                                <v-input name="guaranteeCorporationName" :m="guaranteeCorporationName" label="担保主体"></v-input>
+                                <v-input name="customerManagerName" :m="customerManagerName" label="客户经理"></v-input>
+                            </fieldset>
+                            <div class="form-group form-group-sm">
+                                <input type="hidden" name="mainSignerName" v-model="mainSignerName">
+                                <v-input name="mainSignerName" :m="mainSignerName" label="主调查员" readonly="readonly"></v-input>
+                                <v-input name="viceSignerName" :m="viceSignerName" label="次调查员" readonly="readonly" v-if="viceSignerName"></v-input>
+                                <v-input name="signDate" :m="signDate" class="date" label="签单日期" v-if="!hasItem(['LOAN_MODIFY_LAUNCH'])"></v-input>
+                                <v-input name="signDate" :m="signDate" label="签单日期" readonly="readonly" v-else></v-input>
+                            </div>
+                            <fieldset disabled="hasItem()" class="form-group form-group-sm">
+                                <input type="hidden" name="dealerId" v-model="dealerId">
+                                <v-input name="dealerName" :m="dealerName" class="required" label="推荐商"></v-input>
+                                <input type="hidden" name="employDealerId" v-model="employDealerId">
+                                <v-input name="employDealerName" :m="employDealerName" class="required" label="经销商"></v-input>
+                                <v-select name="dealerGrade" :m.sync="dealerGrade" label="推荐商级别" :options="[{name: '--请选择--', val: 0},{name: '品牌4S店', val: 3}, {name: '综合二网', val: 4},{name: '品牌展厅', val: 5},{name: '资源公司', val: 6},{name: '二手车专营店', val: 7}]" type="0"></v-select>
+                            </fieldset>
+                            <fieldset disabled="hasItem()" class="form-group form-group-sm">
+                                <input type="hidden" name="dealerGroupId" v-model="dealerGroupId">
+                                <v-input name="dealerGroupName" :m="dealerGroupName" label="营销品牌集团" ></v-input>
+                            </fieldset>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="control-label col-md-3 col-xs-3 col-sm-3">备注:</label>
+                                    <div class="col-md-21 col-xs-21 col-sm-21">
+                                        <textarea name="remark" rows="3" placeholder="备注" class="form-control" v-model="remark"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--微众预算单-->
+                        <div class="panel-body" id="weiBank_money">
+                            <fieldset disabled>
+                                <!--<h4 class="section-title">GPS费用情况</h4>-->
+                                <div class="form-group form-group-sm">
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">GPS安装费：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                            <input type="text" name="gpsInstallationFee"
+                                                   placeholder="请输入GPS安装费"
+                                                   class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">其他费用：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                            <input type="text" name="otherFee"
+                                                   placeholder="请输入其他费用"
+                                                   class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">保证金：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                            <input type="text" name="pbDeposit"
+                                                   placeholder="请输入保证金"
+                                                   class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">费用合计：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                            <input type="text" name="totalFee"
+                                                   placeholder="请输入费用合计"
+                                                   class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4 class="section-title">附加贷费用</h4>
+                                <div class="form-group form-group-sm">
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">加融购置税：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                            <input type="text" name="fusePurchaseTaxFee"
+                                                   placeholder="请输入加融购置税"
+                                                   class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">加融保险费：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                            <input type="text" name="fuseInsuranceFee"
+                                                   placeholder="请输入加融保险费"
+                                                   class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">加融GPS：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                            <input type="text" name="fuseGpsFee"
+                                                   placeholder="请输入加融GPS"
+                                                   class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4 class="section-title">其他信息</h4>
+                                <div class="form-group form-group-sm">
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">担保主体：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                            <input type="text" name="guaranteeCorporationName"
+                                                   placeholder="请输入担保主体" readonly
+                                                   class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">客户经理：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                            <input type="text" name="customerManagerName"
+                                                   placeholder="请输入客户经理" readonly
+                                                   class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                                class="text-danger"></span>业务组：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                            <input type="text" class="form-control" placeholder="" name="userGroup">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                                class="text-danger">*</span>推荐商：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                            <input type="text" class="form-control"
+                                                   placeholder="请输入推荐商" name="dealerName">
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span
+                                                class="text-danger">*</span>经销商：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5">
+                                            <input type="text" class="form-control"
+                                                   name="employDealerName" readonly>
+                                            <input type="hidden" name="employDealerId">
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">推荐商级别：</label>
+                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                            <input type="hidden" name="dealerGrade">
+                                            <select name="dealerGrade" class="form-control" disabled>
+                                                <option value="">--请选择--</option>
+                                                <option value="3">品牌4S店</option>
+                                                <option value="4">综合二网</option>
+                                                <option value="5">品牌展厅</option>
+                                                <option value="6">资源公司</option>
+                                                <option value="7">二手车专营店</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <div class="input-tip">
+                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">营销品牌集团：</label>
+                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                            <input type="hidden" name="dealerGroupId">
+                                            <input type="text" name="dealerGroupName" placeholder="请输入营销品牌集团" readonly="readonly" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">备注：</label>
+                                        <div class="col-xs-21 col-sm-21 col-md-21 col-lg-21">
+                                            <textarea class="form-control" rows="3" name="remark"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4 class="section-title">车商收款账户</h4>
+                                <div class="form-group form-group-sm">
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">账户名称：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                            <input type="text" name="dealerAccountName"
+                                                   placeholder="请输入账户名称"
+                                                   class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">开户支行：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                            <input type="text" name="dealerBank"
+                                                   placeholder="请输入开户支行"
+                                                   class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">收款账号：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                            <input type="text" name="dealerAccountNo"
+                                                   placeholder="请输入收款账号"
+                                                   class="form-control" aria-required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </fieldset>
+            </fieldset>
+        </form>
+        <div class="well">
+            <div class="row">
+                <div class="col-md-22 text-center">
+                    <button type="button" v-on:click="print" class="btn btn-sm btn-primary">打印预算单</button>
+                </div>
+                <div class="col-md-2 text-right">
+                    <button type="button" v-on:click="saveBudget" v-if="!hasItem(['LOAN_MODIFY_LAUNCH', 'LOAN_OFFICE_STAFF_BUDGET', 'LOAN_LAUNCH', 'LOAN_MODIFY_OFFICE_STAFF_BUDGET']) || (!hasItem(['LOAN_FINANCE_EXECUTIVE']) && loanType==7)" class="btn btn-sm btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../../common/plugs/bootstrap-select-1.10.0/dist/js/bootstrap-select.min.js"></script>
+<script src="../../../js/common/commonBudget/vue.min.js"></script>
+<script src="../../../js/common/commonBudget/budget.js"></script>

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-select-1.10.0/dist/css/bootstrap-select.min.css"/>
+    <title>贷款费用统计报表</title>
+    <style type="text/css">
+        .collapsed .glyphicon-chevron-up {
+            transform: rotate(180deg)
+        }
+    </style>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-xs-24 col-sm-24 col-md-24">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="page-header">
+                        <h3 class="text-center">贷款费用统计报表</h3>
+                    </div>
+                    <form id="searchForm" class="form-horizontal">
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">机构：
+                                </label>
+
+                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                    <select class="selectpicker form-control required" name="loanBranchCompanyId" id="loanBranchCompanyId" data-live-search="true" data-style="btn-white btn-sm">
+                                        <option value="">--请选择--</option>
+                                    </select>
+                                    <!--<select name="loanBranchCompanyId" class="form-control" id="loanBranchCompanyId"-->
+                                            <!--data-next="1">-->
+                                    <!--</select>-->
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">业务组：
+                                </label>
+
+                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                    <select name="loanBusinessGroupId" class="form-control" id="loanBusinessGroupId">
+                                        <option value="" selected>--请选择--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">客户名称：
+                                </label>
+
+                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                    <input type="text" name="customerInfoRealname" placeholder="请输入客户名称"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">风险经理：
+                                </label>
+
+                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                    <input type="text" name="loanRiskManagerRealname" placeholder="请输入风险经理"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">付款状态：
+                                </label>
+
+                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                    <select name="isCompanyPay" class="form-control">
+                                        <option value="" selected>--请选择--</option>
+                                        <option value="1">已付款</option>
+                                        <option value="2">未付款</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">放款状态：
+                                </label>
+
+                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                    <select name="isBankPay" class="form-control">
+                                        <option value="" selected>--请选择--</option>
+                                        <option value="1">已放款</option>
+                                        <option value="2">未放款</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseExample">
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">签单日期：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineLoanSign" placeholder="请输入签单日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">签单日期区间：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineLoanSignBegin" placeholder="请输入签单开始日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">至：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineLoanSignEnd" placeholder="请输入签单结束日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">贷款发起日期：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineLoanLaunch" placeholder="请输入贷款发起日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">贷款发起日期区间：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineLoanLaunchBegin" placeholder="请输入贷款发起开始日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">至：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineLoanLaunchEnd" placeholder="请输入贷款发起结束日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">付款日期：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineCompanyPay" placeholder="请输入付款日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">付款日期区间：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineCompanyPayBegin" placeholder="请输入付款开始日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">至：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineCompanyPayEnd" placeholder="请输入付款结束日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">放款日期：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineBankPay" placeholder="请输入放款日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">放款日期区间：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineBankPayBegin" placeholder="请输入放款开始日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">至：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineBankPayEnd" placeholder="请输入放款结束日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">分期日期：
+                                    </label>
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineBankStage" placeholder="请输入分期日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">分期日期区间：
+                                    </label>
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineBankStageBegin" placeholder="请输入分期开始日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">至：
+                                    </label>
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineBankStageEnd" placeholder="请输入分期结束日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">上牌情况：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="plateStatus" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">已上牌</option>
+                                            <option value="2">未上牌</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">上牌日期：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineLicensePlateBegin" placeholder="请输入上牌日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">至：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineLicensePlateEnd" placeholder="请输入上牌结束日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">抵押情况：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="pledgeStatus" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">已抵押</option>
+                                            <option value="2">未抵押</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">抵押日期：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelinePlegeBegin" placeholder="请输入抵押日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">至：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelinePlegeEnd" placeholder="请输入抵押结束日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">合同移交银行状态：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="isContractSend" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">已移交</option>
+                                            <option value="2">未移交</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">移交日期：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineContractSendBegin" placeholder="请输入移交开始日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">至：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="timelineContractSendEnd" placeholder="请输入移交结束日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">汽车类型：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="loanCarType" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">新车</option>
+                                            <option value="2">二手车</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">业务品种：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="loanInfoBusinessType" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">信用卡贷款（普通模式）</option>
+                                            <option value="2">信用卡贷款（银行直销）</option>
+                                            <option value="3">个人消费贷款</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">车商名称：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="carDealerCompany" placeholder="请输入车商名称"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">未登记间隔：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="unPledgeInterval" class="form-control">
+                                            <option value="-1" selected>--请选择--</option>
+                                            <option value="0">1-15天</option>
+                                            <option value="1">15-30天</option>
+                                            <option value="2">30-45天</option>
+                                            <option value="3">45-60天</option>
+                                            <option value="4">60天以上</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">流程状态：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="flowStatus" class="form-control">
+                                            <option value="-1" selected>--请选择--</option>
+                                            <option value="0">办理中</option>
+                                            <option value="1">审批中</option>
+                                            <option value="2">付款中</option>
+                                            <option value="3">未放款</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">是否贴息：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="loanInfoIsDiscount" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">是</option>
+                                            <option value="2">否</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">合作银行：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select class="selectpicker form-control required" name="loanInfoCooperationBankId" id="loanInfoCooperationBankId" multiple data-live-search="true" data-style="btn-white btn-sm">
+                                            <option value="">--请选择--</option>
+                                        </select>
+                                        <!--<input type="text" name="loanInfoCooperationBank" placeholder="请输入合作银行"-->
+                                               <!--class="form-control">-->
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">客户经理：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="loanCustomerManagerRealname" placeholder="请输入客户经理"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">滴滴业务：</label>
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="isDidi" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">是</option>
+                                            <option value="2">否</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <!--<div class="input-tip">-->
+                                    <!--<label class="col-md-3 col-xs-3 col-sm-3 control-label">渠道来源：-->
+                                    <!--</label>-->
+                                    <!--<div class="col-md-5 col-xs-5 col-sm-5">-->
+                                        <!--<select name="cannelStatus" class="form-control required" id="channelSource">-->
+                                            <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+                                            <!--<option value="1">银行推荐</option>-->
+                                            <!--<option value="2">分公司营销</option>-->
+                                            <!--<option value="3">车国营销</option>-->
+                                        <!--</select>-->
+
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="input-tip hide" id="isBranchMarketing">-->
+                                    <!--<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span class="text-danger">*&nbsp;</span>有无营销品牌集团：</label>-->
+                                    <!--<div class="col-md-5 cl-sm-5 col-xs-5">-->
+                                        <!--<label class="radio-inline">-->
+                                            <!--<input type="radio" name="isDealerGroup" value="1" required="" id="isDealerGroup1"-->
+                                                   <!--aria-required="true">有</label>&nbsp;&nbsp;&nbsp;&nbsp;-->
+                                        <!--<label class="radio-inline">-->
+                                            <!--<input type="radio" name="isDealerGroup" value="0" required="" id="isDealerGroup2"-->
+                                                   <!--aria-required="true">无</label>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">两证业务：</label>
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="twoCardBusiness" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="0">否</option>
+                                            <option value="1">是</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip" id="isDealerGroup">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">营销品牌集团：</label>
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select name="dealerGroupId" id="dealerGroupId" class="form-control">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">贷款状态：
+                                    </label>
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select class="form-control" name='loanInfoStatus'>
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">贷款拒绝</option>
+                                            <option value="2">审批通过</option>
+                                            <option value="3">贷款审核</option>
+                                            <option value="4">贷款发起</option>
+                                            <option value="5">贷款作废</option>
+                                            <option value="6">贷款结清</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">贷款产品</label>
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select class="form-control" name="loanType">
+                                            <option value="">--请选择--</option>
+                                            <option value="5">车主贷</option>
+                                            <option value="6">车价贷</option>
+                                            <option value="7">易融贷</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">资金通道：</label>
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select name="financeChannel" id="financeChannel" class="form-control"></select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-24 text-center">
+                            <a href="javascript:;" class="flexBtn collapsed"
+                               style="background: none; padding: 7px 0 10px; margin-bottom: 10px; display: block"
+                               data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                               aria-controls="collapseExample">
+                                <span class="glyphicon glyphicon-chevron-up"></span>
+                            </a>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="col-xs-24 col-sm-24 col-md-24 text-center">
+                                <button type="button" class="btn btn-primary" id="btn-search"><span
+                                        class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                                </button>
+                                <button type="button" class="btn btn-white" modal="reset" id="resetBtn"><span
+                                        class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <div class="text-right">
+                        <button type="button" class="btn btn-primary btn-sm" id="exportBtn">导出报表数据</button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <fieldset disabled>
+                        <form id="getForm" class="form-horizontal">
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-2 col-xs-2 col-sm-2 control-label">贷款总笔数:</label>
+
+                                    <div class="col-md-3 col-xs-3 col-sm-3">
+                                        <input type="text" name="totalCount" class="form-control required"
+                                               id="totalCount"/>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-2 col-xs-2 col-sm-2 control-label">贷款金额合计:</label>
+
+                                    <div class="col-md-3 col-xs-3 col-sm-3">
+                                        <input type="text" name="totalLoanAmount" class="form-control required"
+                                               id="totalLoanAmount"/>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-2 col-xs-2 col-sm-2 control-label">费用合计:</label>
+
+                                    <div class="col-md-3 col-xs-3 col-sm-3">
+                                        <input type="text" name="totalLoanFee" class="form-control required"
+                                               id="totalLoanFee"/>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-2 col-xs-2 col-sm-2 control-label">公司付款金额合计:</label>
+
+                                    <div class="col-md-3 col-xs-3 col-sm-3">
+                                        <input type="text" name="totalCompanyPayment" class="form-control required"
+                                               id="totalCompanyPayment"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm" >
+                                <div class="input-tip">
+                                    <label class="col-md-2 col-xs-2 col-sm-2 control-label">银行放款金额合计:</label>
+
+                                    <div class="col-md-3 col-xs-2 col-sm-3">
+                                        <input type="text" name="totalBankPayment" class="form-control required"
+                                               id="totalBankPayment"/>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-2 col-xs-2 col-sm-2 control-label">平均贷款额:</label>
+
+                                    <div class="col-md-3 col-xs-3 col-sm-3">
+                                        <input type="text" name="averageLoanAmount" class="form-control required"
+                                               id="averageLoanAmount"/>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-2 col-xs-2 col-sm-2 control-label">平均开票价:</label>
+
+                                    <div class="col-md-3 col-xs-3 col-sm-3">
+                                        <input type="text" name="averageOfficialPrice" class="form-control required"
+                                               id="averageOfficialPrice"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </fieldset>
+                    <div class="tab-pane active">
+                        <table id="table" data-ajax="dataLoad_1">
+                            <thead>
+                            <tr>
+                                <th data-field="loanStatusName">贷款状态</th>
+                                <th data-field="customerInfoRealname">客户名称</th>
+                                <th data-field="customerInfoPhone">手机号</th>
+                                <th data-field="loanInfoProjectNo">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;贷&nbsp;款&nbsp;编&nbsp;号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th data-field="loanCarType" data-formatter="loanCarType">汽车类型</th>
+                                <th data-field="loanCarBrandInfo">汽车品牌+车系+车型</th>
+                                <th data-field="timelineLoanSign">&nbsp;&nbsp;签单日期&nbsp;&nbsp;</th>
+                                <th data-field="timelineCompanyPay">公司付款日期</th>
+                                <th data-field="timelineBankPay">银行放款日期</th>
+                                <th data-field="repaymentNo">还款卡号</th>
+                                <th data-field="loanCarPlateNo">车牌号码</th>
+                                <th data-field="timelineLicensePlate">上牌日期</th>
+                                <th data-field="timelinePlege">抵押日期</th>
+                                <th data-field="loanInfoYears" data-formatter="loanInfoYears">
+                                    &nbsp;&nbsp;期数&nbsp;&nbsp;</th>
+                                <th data-field="dayCount">放款天数</th>
+                                <th data-field="loanFeeOfficialPrice">开票价(车价)</th>
+                                <th data-field="loanInfoAmmount">贷款金额</th>
+                                <th data-field="loanInfoInterestRate">手续费率(%)</th>
+                                <th data-field="loanFeeInitialPaymentPercentage" data-formatter="percent">首付比例</th>
+                                <th data-field="loanFeeCompanyPayment">公司付款金额</th>
+                                <th data-field="loanInfoRequiredAmount">申请金额</th>
+                                <th data-field="loanFeeBankPayment">银行放款金额</th>
+                                <th data-field="loanFeeInitialPremium">首年保费</th>
+                                <th data-field="loanFeePbDeposit">履约保证金</th>
+                                <th data-field="loanFeeAccountDeposit">上牌抵押押金</th>
+                                <th data-field="loanFeeGpsAmount">GPS台数</th>
+                                <th data-field="loanFeeGpsInstall">GPS安装费</th>
+                                <th data-field="loanFeeService">按揭服务费</th>
+                                <th data-field="loanFeeAssuranceRiskPayment">按揭手续费</th>
+                                <th data-field="loanFeeBankIrsFee">银行利差</th>
+                                <th data-field="loanFeeLicenseFee">上牌费</th>
+                                <th data-field="loanFeeDoorSurveyFee">上门调查费</th>
+                                <th data-field="loanFeeOutsourceSurveyFee">外包调查费</th>
+                                <th data-field="loanFeeAgencyFee">车行服务费</th>
+                                <th data-field="loanFeeOther">其他费用</th>
+                                <th data-field="loanFeeTotal">费用合计</th>
+                                <!--<th data-field="carDealerRewardPercentage">车行返点</th>-->
+                                <!--<th data-field="carDealerSalesPercentage">销售团队返点</th>-->
+                                <th data-field="loanfeeIsAdvanceDiscountName">是否垫付贴息金额</th>
+                                <th data-field="loanInfoDiscountAmount">厂商贴息政策</th>
+                                <th data-field="loanInfoDiscountCarPolicy">贴息金额</th>
+                                <th data-field="loanBranchCompanyName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;业务机构&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th data-field="loanBusinessGroupName">&nbsp;&nbsp;&nbsp;&nbsp;业务组&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th data-field="loanCustomerManagerRealname">客户经理</th>
+                                <th data-field="loanRiskManagerRealname">风险经理</th>
+                                <th data-field="carDealerCompany">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;推荐商&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th data-field="loanInfoCooperationBank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;合作银行&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th data-field="repaymentAmount">月还</th>
+                                <th data-field="carFrameNo">车架号码</th>
+                                <th data-field="loanfeeIsAdvanceDiscountName">是否贴息</th>
+                                <th data-field="isDidiName">是否滴滴</th>
+                                <th data-field="isTwoCardBussinessName">是否两证</th>
+                                <th data-field="loanType" data-formatter="loanTypeDetail">贷款产品</th>
+                                <th data-field="guaranteeServiceFee">担保服务费</th>
+                                <th data-field="fusePurchaseTaxFee">购置税融贷</th>
+                                <th data-field="fuseGpsFee">服务费</th>
+                                <th data-field="fuseInsuranceFee">保费融贷</th>
+                                <th data-field="contractNo">合同编号 </th>
+                                <th data-field="wararntNo">抵押权证号</th>
+                                <th data-field="channelDealerName">渠道商</th>
+                                <th data-field="guaranteeCompanyName">担保主体</th>
+                                <th data-field="financeChannelName">资金通道</th>
+                                <th data-field="carDealerCollectionFee">代收服务费</th>
+                                <th data-field="timelineBankStage">分期日期</th>
+                                <th data-field="carEmployDealerName">经销商</th>
+                                <th data-field="loanCarEstimatePlateArea">预计上牌地</th>
+                                <th data-field="loanCarPlateArea">实际上牌地</th>
+                                <th data-field="loanInfoHzFinanceNo">金投编号</th>
+                                <th data-formatter="handle" data-events="tableEvent">操作</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=eb649edd14c8348e9f34a8ca6157c2b6"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.min.js?rev=424557ef2a8b89693026b3b43d4b1e1c"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/plugs/bootstrap-select-1.10.0/dist/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    function percent(value) {
+        return comn.accMul(value || 0, 100) + '%'
+    }
+</script>
+</html>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/report/loanCostFlow/index.js"><\/script>'
+    ].join(""));
+</script>

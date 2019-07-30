@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+        <div class="">
+            <form id="" class="form-horizontal">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">过程信息</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table id="table" data-ajax="dataLoad_opinion">
+                            <thead>
+                            <tr>
+                                <th data-field="nodeName">环节名称</th>
+                                <th data-field="conclusion">结论</th>
+                                <th data-field="operator">签署人</th>
+                                <th data-field="opDate">签署时间</th>
+                                <th data-field="opinion">意见</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 hide" id="isLowFeeTable">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">低费率特批过程信息</h3>
+            </div>
+            <div class="panel-body">
+                <table id="lowFeeTable" data-toggle="table" data-ajax="lowFeeDataLoad_opinion">
+                    <thead>
+                    <tr>
+                        <th data-field="nodeName">环节名称</th>
+                        <th data-field="conclusion">结论</th>
+                        <th data-field="operator">签署人</th>
+                        <th data-field="opDate">签署时间</th>
+                        <th data-field="opinion">意见</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 hide" id="isLowFeeTable2">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">超抵特例审批信息</h3>
+            </div>
+            <div class="panel-body">
+                <table id="lowFeeTable2" data-toggle="table" data-ajax="lowFeeDataLoad_opinion2">
+                    <thead>
+                    <tr>
+                        <th data-field="nodeName">环节名称</th>
+                        <th data-field="conclusion">结论</th>
+                        <th data-field="operator">签署人</th>
+                        <th data-field="opDate">签署时间</th>
+                        <th data-field="opinion">意见</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../js/common/commonOpinion/opinion.js"></script>

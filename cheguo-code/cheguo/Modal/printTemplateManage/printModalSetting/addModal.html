@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <title>模板新增/修改</title>
+    <style>
+        .m-table{
+            width: 100%;
+            border:1px solid #d9d9d9;
+            height: 600px;
+            overflow: scroll;
+        }
+    </style>
+</head>
+</html>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ibox float-e-margins">
+                <form class="form-horizontal query-form" id="user-form">
+                    <div class="ibox-content">
+                        <div align="center" style="height: 60px;top: 20px;" id="insuranceTitleDiv"><h1>模板新增/修改</h1></div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-1 control-label">模板名称：</label>
+
+                                <div class="col-md-3">
+                                    <input type="text" name="name" placeholder="" class="form-control">
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-md-1 control-label">模板类型：</label>
+                                <div class="col-md-3">
+                                    <select class="form-control" name="type" id="type">
+                                         <option value="">--请选择--</option>
+                                         <option value="1">逾期导入</option>
+                                         <option value="2">合同导入</option>
+                                         <option value="3">银行放款导入</option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-1 control-label">适用银行：</label>
+                                <div class="col-md-3">
+                                    <select class="form-control" name="matchBank" id="matchBank">
+                                         <option value="">--请选择--</option>
+                                         <option value="1">宁波支行</option>
+                                         <option value="2">杭州总行</option>
+                                         <option value="3">你妹的总行</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-md-1 control-label">适用机构：</label>
+                                <div class="col-md-3">
+                                    <select class="form-control" name="matchOrganization" id="matchOrganization">
+                                         <option value="">--请选择--</option>
+                                         <option value="1">宁波支行</option>
+                                         <option value="2">杭州总行</option>
+                                         <option value="3">你妹的总行</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-xs-12 col-sm-12 text-right" style="margin-top: 5px;">
+                        <button type="button" class="btn btn-primary" id="addBtn"><span>新增</span>
+                        </button>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="table-responsive m-table">
+                            <table id="table1" class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th data-field="type">当前页</th>
+                                    <th data-field="name">背景图片</th>
+                                    <th data-field="matchBank">模板设计</th>
+                                    <th data-field="operation" data-switchable="false" data-formatter="handle_1" data-events="tableEvent_1">是否生成代码</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group form-group-sm" style="margin-top: 20px;">
+                            <div class="col-md-12 text-right">
+                                <button type="button" class="btn btn-primary" id="btn-search" modal="enter" style="margin-right: 5px;">
+                                    <span>&nbsp;保存&nbsp;</span>
+                                </button>
+                                <button type="button" class="btn btn-white" id="cancel" modal="reset">
+                                    <span>&nbsp;取消&nbsp;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="ibox float-e-margins">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/js/LocalResizeIMG.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/ztree/js/jquery.ztree.core-3.5.min.js"></script>
+<script src="../../../common/plugs/artTemplate/artTemplate.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/printTemplateManage/printModalSetting/addModal.js"><\/script>'
+    ].join(""));
+</script>

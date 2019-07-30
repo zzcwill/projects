@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap-multiselect.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <title>模板新增/修改</title>
+    <style>
+        .m-table{
+            width: 100%;
+            border:1px solid #d9d9d9;
+            height: 600px;
+            overflow: scroll;
+        }
+        .fixed-table-container .pagination-detail{
+            display: none;
+        }
+        .modal-body .bootstrap-table{
+            max-height: 500px;
+        }
+        .modal-body .bootstrap-table .fixed-table-container {
+            max-height: 450px;
+            border-bottom: none;
+        }
+        #table_1, #table_2{
+            max-height: 420px;
+        }
+    </style>
+</head>
+</html>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="ibox float-e-margins">
+                <form class="form-horizontal query-form" id="user-form">
+                    <input type="hidden" name="id" id="id"/>
+                    <div class="ibox-content">
+                        <div align="center" style="height: 60px;top: 20px;" id="insuranceTitleDiv"><h1>模板新增/修改</h1></div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-1 control-label">模板名称：</label>
+                                <div class="col-md-3">
+                                    <input type="text" name="templateName" placeholder="" class="form-control required" id="templateName">
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-md-1 control-label">模板类型：</label>
+                                <div class="col-md-3">
+                                    <select class="form-control required" name="templateTypeCode" id="templateTypeCode">
+                                         <option value="">--请选择--</option>
+                                         <option value="1">合同套打</option>
+                                         <option value="2">贷后打印</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-1 control-label">适用银行：</label>
+                                <div class="col-md-3">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" placeholder="" name="" class="form-control cursom required" id="bankList">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-primary" id="customerBtn" data-toggle="modal" data-target="#suitBank">...</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-md-1 control-label">适用机构：</label>
+                                <div class="col-md-3">
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" placeholder="" name="" class="form-control cursom required" id="orgsList">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-primary" id="customerBtn" data-toggle="modal" data-target="#suitOrgs">...</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-xs-12 col-sm-12 text-right" style="margin-top: 5px;">
+                        <button type="button" class="btn btn-primary" id="addBtn"><span>新增</span>
+                        </button>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="table-responsive m-table">
+                            <table id="table1" class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th data-field="page">当前页</th>
+                                    <th data-field="backgroundImg">背景图片</th>
+                                    <th data-field="modalDesign">模板设计</th>
+                                    <th data-field="codeStatus">是否生成代码</th>
+                                    <th data-field="operation">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-group form-group-sm" style="margin-top: 20px;">
+                            <div class="col-md-12 text-right">
+                                <button type="button" class="btn btn-primary" id="btn-search" modal="enter" style="margin-right: 5px;">
+                                    <span>&nbsp;保存&nbsp;</span>
+                                </button>
+                                <button type="button" class="btn btn-white" id="cancel" modal="reset" style="display: none;">
+                                    <span>&nbsp;取消&nbsp;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="ibox float-e-margins">
+            </div>
+        </div>
+    </div>
+</div>
+<div id="suitBank" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" aria-hidden="true" data-dismiss="modal">×</button>
+                <h4 class="modal-title">适用银行</h4>
+            </div>
+            <div class="modal-body" style="padding-bottom: 50px;">
+                <table id="table_1" data-toggle="table" data-ajax="dataLoad_1" class="table">
+                    <thead>
+                        <tr>
+                            <th data-field="state" data-checkbox="true"></th>
+                            <th data-field="id" class="hidden">机构id</th>
+                            <th data-field="bankName">银行名称</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-24 text-right">
+                    <button type="button" class="btn btn-primary" id="sureBtn"><span>确定</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="suitOrgs" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" aria-hidden="true" data-dismiss="modal">×</button>
+                <h4 class="modal-title">适用机构</h4>
+            </div>
+            <div class="modal-body" style="padding-bottom: 50px;">
+                <table id="table_2" data-toggle="table" data-ajax="dataLoad_2" class="table">
+                    <thead>
+                        <tr>
+                            <th data-field="state" data-checkbox="true"></th>
+                            <th data-field="id" class="hidden">机构id</th>
+                            <th data-field="name">机构名称</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-24 text-right">
+                    <button type="button" class="btn btn-primary" id="sure"><span>确定</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap-multiselect.js"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/iframeCommon.js?rev=1447835709081"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/js/LocalResizeIMG.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/ztree/js/jquery.ztree.core-3.5.min.js"></script>
+<script src="../../../common/plugs/lodop/LodopFuncs.js"></script>
+<script src="../../../common/plugs/artTemplate/artTemplate.js"></script>
+<script src="../../../js/printTemplateManage/printModalSetting/addModal.js"></script>

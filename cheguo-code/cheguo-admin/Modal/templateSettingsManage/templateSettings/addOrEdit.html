@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet"
+	href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../../common/css/style.min.css" />
+<link rel="stylesheet"
+	href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a" />
+<link rel="stylesheet"
+	href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+
+<link rel="stylesheet"
+	href="../../../common/plugs/bootstrap-select/css/bootstrap-select.css">
+
+
+<title>模板管理</title>
+
+<style type="text/css">
+.template-sttings-column-list {
+	border: 1px solid
+}
+</style>
+</head>
+
+
+</html>
+<body class="gray-bg">
+	<div
+		class="wrapper wrapper-content animated fadeInRight Dialog_about_template_settings">
+		<div class="row">
+			<div class="col-md-24 col-xs-24 col-sm-24">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<div align="center" style="height: 60px; top: 20px;"
+							id="insuranceTitleDiv">
+							<h1 class="templateTitle">模板新增</h1>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-body panel-default">
+								<form class="form-horizontal templateSttingsForm"
+									id="templateSttingsForm">
+									<input type="hidden" name="id" />
+									<div class="form-group form-group-sm">
+										<div class="input-tip">
+											<label class="col-md-2 col-xs-2 col-sm-2 control-label">模板名称：</label>
+											<div class="col-md-2 cl-sm-2 col-xs-2">
+												<input type="text" class="form-control required"
+													placeholder="" name="name">
+											</div>
+										</div>
+										<div class="input-tip">
+											<label class="col-md-2 col-xs-2 col-sm-2 control-label">模板类型：</label>
+											<div class="col-md-2 cl-sm-2 col-xs-2">
+												<select class="form-control required" name="type" id="type">
+													<option value="">--请选择--</option>
+													<option value="1">逾期导入</option>
+													<option value="2">合同导入</option>
+													<option value="3">银行放款导入</option>
+												</select>
+											</div>
+										</div>
+										<div class="input-tip">
+											<label class="col-md-2 col-xs-2 col-sm-2 control-label">数据开始行数：</label>
+											<div class="col-md-2 cl-sm-2 col-xs-2">
+												<input type="text" name="startRowNumber" id="startRowNumber"
+													class="form-control required">
+											</div>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<div class="input-tip">
+											<label class="col-md-2 col-xs-2 col-sm-2 control-label">合作银行：</label>
+											<div class="col-md-2 cl-sm-2 col-xs-2">
+												<input type="hidden" name="bankName" id="bankName" value="">
+												<input type="hidden" name="status" id="status" value="">
+												<input type="hidden" name="createTime" id="createTime"
+													value="">
+												<!-- <select class="form-control branch-cooperation-bank-list required" name="bankId" id="bankId" >
+                                            </select> -->
+												
+													
+          <select class="selectpicker" multiple data-hide-disabled="true" name="bankId" id="bankId">         
+          </select>
+        
+
+												
+
+												
+
+
+											</div>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<div class="input-tip">
+											<label class="col-md-2 col-xs-2 col-sm-2 control-label">备注：</label>
+											<div class="col-md-8">
+												<textarea class="form-control" rows="3" name="remark"
+													id="remark"></textarea>
+											</div>
+										</div>
+									</div>
+								</form>
+								<form class="form-horizontal templateSttingsColumnForm"
+									id="templateSttingsColumnForm">
+									<!-- 模板列表 -->
+									<div class="form-group form-group-sm">
+										<div class="input-tip">
+											<label class="col-md-2 col-xs-2 col-sm-2 control-label">匹配列表：</label>
+											<div class="col-md-8 template-sttings-column-list">
+
+
+												<table style="width: 98%;" id="table-1">
+													<tr role="3">
+														<td style="width: 30%; height: 30px;" align="center">系统字段名称</td>
+														<td align="center">EXCEL列ID</td>
+														<td align="center">字段类型</td>
+													</tr>
+													<tr>
+														<td style="width: 30%; height: 40px;" align="center">证件号码</td>
+														<td align="center" class="input-tip"><div>
+																<input type="text" name="execelId" data-name="证件号码"
+																	class="required">
+															</div>
+															<input type="hidden" name="fieldName" value="cardNo"></td>
+														<td align="center"><select name="type" class="se">
+																<option value="1">匹配项</option>
+																<option value="2">导入值</option>
+														</select></td>
+													</tr>
+													<tr>
+														<td style="width: 30%; height: 40px;" align="center">客户名称</td>
+														<td align="center"><input type="text" name="execelId"
+															data-name="客户名称" class="required"><input
+															type="hidden" name="fieldName" value="customerName"></td>
+														<td align="center"><select name="type" class="se">
+																<option value="1">匹配项</option>
+																<option value="2">导入值</option>
+														</select></td>
+													</tr>
+													<tr>
+														<td style="width: 30%; height: 40px;" align="center">手机号码</td>
+														<td align="center"><input type="text" name="execelId"
+															data-name="手机号码" class="required"><input
+															type="hidden" name="fieldName" value="mobilePhone"></td>
+														<td align="center"><select name="type" class="se">
+																<option value="1">匹配项</option>
+																<option value="2">导入值</option>
+														</select></td>
+													</tr>
+													<tr>
+														<td style="width: 30%; height: 40px;" align="center">月还款额</td>
+														<td align="center"><input type="text" name="execelId"
+															data-name="月还款额" class="required"><input
+															type="hidden" name="fieldName"
+															value="monthRepaymentAmount"></td>
+														<td align="center"><select name="type" class="se">
+																<option value="1">匹配项</option>
+																<option value="2">导入值</option>
+														</select></td>
+													</tr>
+													<tr>
+														<td style="width: 30%; height: 40px;" align="center">本期本金</td>
+														<td align="center"><input type="text" name="execelId"
+															data-name="本期本金" class="required"><input
+															type="hidden" name="fieldName"
+															value="currentTermPrinciple"></td>
+														<td align="center"><select name="type" class="se">
+																<option value="1">匹配项</option>
+																<option value="2">导入值</option>
+														</select></td>
+													</tr>
+													<tr>
+														<td style="width: 30%; height: 40px;" align="center">贷款余额</td>
+														<td align="center"><input type="text" name="execelId"
+															data-name="本期利息" class="required"><input
+															type="hidden" name="fieldName"
+															value="currentTermInterest"></td>
+														<td align="center"><select name="type" class="se">
+																<option value="1">匹配项</option>
+																<option value="2">导入值</option>
+														</select></td>
+													</tr>
+													<tr>
+														<td style="width: 30%; height: 40px;" align="center">连续逾期数</td>
+														<td align="center"><input type="text" name="execelId"
+															data-name="连续逾期数" class="required"><input
+															type="hidden" name="fieldName"
+															value="continuousOverdueTimes"></td>
+														<td align="center"><select name="type" class="se">
+																<option value="1">匹配项</option>
+																<option value="2">导入值</option>
+														</select></td>
+													</tr>
+													<tr>
+														<td style="width: 30%; height: 40px;" align="center">累计逾期数</td>
+														<td align="center"><input type="text" name="execelId"
+															data-name="累计逾期数" class="required"><input
+															type="hidden" name="fieldName"
+															value="accumulatedOverdueTimes"></td>
+														<td align="center"><select name="type" class="se">
+																<option value="1">匹配项</option>
+																<option value="2">导入值</option>
+														</select></td>
+													</tr>
+													<tr>
+														<td style="width: 30%; height: 40px;" align="center">逾期总额</td>
+														<td align="center"><input type="text" name="execelId"
+															data-name="逾期总额" class="required"><input
+															type="hidden" name="fieldName" value="overdueTotalAmount"></td>
+														<td align="center"><select name="type" class="se">
+																<option value="1">匹配项</option>
+																<option value="2">导入值</option>
+														</select></td>
+													</tr>
+													<tr>
+														<td style="width: 30%; height: 40px;" align="center">昨日最优还款</td>
+														<td align="center"><input type="text" name="execelId"
+															data-name="昨日最优还款" class="required"><input
+															type="hidden" name="fieldName"
+															value="yesterdayRepaymentAmount"></td>
+														<td align="center"><select name="type" class="se">
+																<option value="1">匹配项</option>
+																<option value="2">导入值</option>
+														</select></td>
+													</tr>
+													<tr>
+														<td style="width: 30%; height: 40px;" align="center">还款卡号</td>
+														<td align="center"><input type="text" name="execelId"
+															data-name="还款卡号" class="required"><input
+															type="hidden" name="fieldName" value="repaymentCardNo"></td>
+														<td align="center"><select name="type" class="se">
+																<option value="1">匹配项</option>
+																<option value="2">导入值</option>
+														</select></td>
+													</tr>
+													<tr>
+														<td style="width: 30%; height: 40px;" align="center">最近逾期日期</td>
+														<td align="center"><input type="text" name="execelId"
+															data-name="最近逾期日期" class="required"><input
+															type="hidden" name="fieldName" value="lastRepaymentDate"></td>
+														<td align="center"><select name="type" class="se">
+																<option value="1">匹配项</option>
+																<option value="2">导入值</option>
+														</select></td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+									<p></p>
+
+
+									<div class="form-group form-group-sm">
+										<div class="col-md-9 col-xs-24 col-sm-24 text-right">
+											<button type="button" class="btn btn-primary" id="btn-save">
+												<span>保存</span>
+											</button>
+											<a href="index.html"><button type="button"
+													class="btn btn-default" id="btn-close" data-dismiss="modal">&nbsp;&nbsp;取消&nbsp;&nbsp;</button></a>
+										</div>
+									</div>
+								</form>
+								<p></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<script
+	src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script
+	src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script
+	src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script
+	src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script
+	src="../../../common/plugs/jquery-validation/dist/additional-methods.min.js"></script>
+<script
+	src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/iframeCommon.js?rev=1447835709081"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/js/LocalResizeIMG.js"></script>
+<script
+	src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script
+	src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script
+	src="../../../common/plugs/ztree/js/jquery.ztree.core-3.5.min.js"></script>
+<script
+	src="../../../common/plugs/bootstrap-select/js/bootstrap-select.min.js"></script>
+
+<script src="../../../js/templateSettingsManage/addOrEdit.js"></script>

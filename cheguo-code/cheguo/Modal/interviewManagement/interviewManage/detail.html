@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Expires" CONTENT="0">
+	<meta http-equiv="Cache-Control" CONTENT="no-cache">
+	<meta http-equiv="Pragma" CONTENT="no-cache">
+	<link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../../../common/css/style.min.css" />
+	<link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a" />
+	<link rel="stylesheet" href="../../../common/plugs/video/css/video-js.min.css">
+	<link rel="stylesheet" href="../../../common/plugs/viewer/css/viewer.min.css">
+	<title>面签详情</title>
+	<style type="text/css">
+		.filePath{ display: flex}
+		.imgBlock{ margin-right: 10px; flex: 1; text-align: center}
+		.imgBlock span{ display: block; padding-top: 10px;}
+		.file{ margin-right: 0}
+	</style>
+</head>
+
+</html>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight" id="interviewManage">
+	<div class="row ibox-content">
+		<div class="col-md-24 col-xs-24 col-sm-24">
+			<div class="ibox float-e-margins">
+				<h3 class="text-center">查看面签详情</h3>
+				<hr>
+				<fieldset disabled>
+					<div class="panel panel-default">
+						<!--基本信息-->
+						<div class="panel-heading">
+							<h3 class="panel-title">贷款基本信息</h3>
+						</div>
+						<div class="panel-body">
+							<form id="interviewInfoForm" class="form-horizontal">
+								<div class="form-group form-group-sm">
+									<v-input label="客户姓名" name="customerName"></v-input>
+									<v-input label="证件类型" name="cardType"></v-input>
+									<v-input label="证件号码" name="cardNo"></v-input>
+								</div>
+								<div class="form-group form-group-sm">
+									<v-input label="性别" name="gender"></v-input>
+									<v-input label="婚姻状态" name="maritalStatus"></v-input>
+									<v-input label="手机号码" name="mobilePhone"></v-input>
+								</div>
+								<div class="form-group form-group-sm">
+									<v-input label="家庭地址" name="completeHomeAddress"></v-input>
+								</div>
+								<div class="form-group form-group-sm">
+									<v-input label="工作单位" name="company"></v-input>
+									<v-input label="单位地址" name="completeCompanyAddress"></v-input>
+									<v-input label="单位电话" name="workPhone"></v-input>
+								</div>
+								<div class="form-group form-group-sm">
+									<v-input label="贷款金额" name="loanAmount"></v-input>
+									<v-input label="贷款期限" name="loanTerm"></v-input>
+									<v-input label="月还款额" name="testedRepaymentAmount"></v-input>
+								</div>
+								<div class="form-group form-group-sm">
+									<v-input label="汽车类型" name="carType"></v-input>
+									<v-input label="车辆信息" name="completeCarInfo"></v-input>
+									<v-input label="车辆价值" name="billingPrice"></v-input>
+								</div>
+							</form>
+						</div>
+					</div>
+				</fieldset>
+				<!--面签信息-->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">面签信息</h3>
+					</div>
+					<div class="panel-body">
+						<fieldset disabled>
+							<form id="interviewForm" class="form-horizontal" disabled>
+								<div class="form-group form-group-sm">
+									<div class="interviewPic">
+										<div class="input-tip col-md-8 filePath" id="interviewPic">
+											<div class="imgBlock"></div>
+											<div class="imgBlock"></div>
+											<div class="imgBlock"></div>
+											<div class="imgBlock"></div>
+										</div>
+									</div>
+									
+									<div class="col-md-16 cl-sm-16 col-xs-16">
+										<div class="input-tip">
+											<label class="col-md-4 col-xs-4 col-sm-4 control-label">相似度(%)：</label>
+											<div class="col-md-8 cl-sm-8 col-xs-8">
+												<input type="text" name="idcardContrastSim" placeholder="请输入相似度" class="form-control"/>
+											</div>
+										</div>
+										<div class="input-tip">
+											<label class="col-md-4 col-xs-4 col-sm-4 control-label">识别时间：</label>
+											<div class="col-md-8 cl-sm-8 col-xs-8">
+												<input type="text" name="idcardContrastTime" placeholder="请输入相似度" class="form-control"  />
+											</div>
+										</div>
+										<div class="clearfix"></div>
+										<div class="input-tip" style="margin-top: 10px">
+											<label class="col-md-4 col-xs-4 col-sm-4 control-label">识别结果：</label>
+											<div class="col-md-20 cl-sm-20 col-xs-20">
+												<textarea name="idcardContrastResult" class="form-control"></textarea>
+											</div>
+										</div>
+									</div>
+								</div>
+								<hr>
+							</form>
+						</fieldset>
+						<div style="min-height: 200px">
+							<fieldset disabled>
+								<form id="interviewDetailForm" class="form-horizontal">
+									<div style="position: relative">
+										<div style="position: absolute; top: 0; left: 0; z-index: 0; width: 100%">
+											<div class="form-group form-group-sm">
+												<v-input label="合作银行" name="bankName"></v-input>
+											</div>
+											<div class="form-group form-group-sm">
+												<v-input label="客户经理" name="bankUserRealname"></v-input>
+											</div>
+											<div class="form-group form-group-sm">
+												<v-input label="面签方式" name="interviewType"></v-input>
+											</div>
+											<div class="form-group form-group-sm">
+												<v-input label="报告生成时间" name="createTime"></v-input>
+											</div>
+											<div class="form-group form-group-sm">
+												<v-input label="面签地址" name="addressGpsDetail" placeholder="位置信息获取失败"></v-input>
+											</div>
+											<input type="hidden" name="videoMarkOfTime" v-model="videoMarkOfTime">
+											<input type="hidden" name="videoMarkOfName" v-model="videoMarkOfName">
+											<input type="hidden" name="url" v-model="url">
+										</div>
+									</div>
+									
+								</form>
+							</fieldset>
+							<div class="col-md-16 cl-sm-16 col-xs-16 col-md-offset-8 hide" id="videoArea">
+								<div class="form-group form-group-sm">
+									<label class="col-md-4 col-xs-4 col-sm-4 control-label"></label>
+									<div class="col-md-8 cl-sm-8 col-xs-8">
+										<div class='file' data-file='' data-id=''>
+											<div class='image text-center' data-id='' style='position: relative; height: auto;' id="video">
+											</div>
+											<div class='file-name' style='text-overflow: ellipsis; overflow: hidden;'>
+												<p id="videoSend">{{videoMarkOfName}}<span style="padding-left: 10px;">{{videoMarkOfTime}}</span></p>
+												<p data-name="url" class="hide downloadVideoSrc">{{url}}</p>
+											</div>
+										</div>
+										
+										<button type="button" class="btn btn-primary" id="btnDownloadVideo" modal="enter" v-on:click="downloadVideo" data-src=""><span>&nbsp;视频文件下载&nbsp;</span>
+										</button>
+									</div>
+								</div>
+							</div>
+						
+						
+						
+						
+					</div>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/js/LocalResizeIMG.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/js/vue.min.js"></script>
+<script src="../../../common/plugs/viewer/js/viewer.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../common/js/vueComponent.js"><\/script>',
+        '<script src="../../../js/interviewManagement/interviewManage/detail.js"><\/script>'
+    ].join(""));
+</script>

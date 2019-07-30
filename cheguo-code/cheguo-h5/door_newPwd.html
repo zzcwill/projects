@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="./common/amui.min.css">
+    <script src="./common/zepto.min.js?t=@@hash"></script>
+    <script src="./common/mock-min.js?t=@@hash"></script>
+    <script src="./common/amui.js?t=@@hash"></script>
+    <script src="./common/global.js?t=@@hash"></script>
+    <title>忘记服务密码</title>
+  </head>
+</html>
+<body>
+  <div id="toast" class="am-toast">
+    <div class="am-toast-text"><span am-mode="toast-loading" class="am-toast-icon am-icon"> </span>正在加载 ...</div>
+  </div>
+  <form id="page">
+    <input type="hidden" name="account">
+    <input type="hidden" name="token">
+    <input type="hidden" name="website">
+    <div am-mode="flat chip form 43px" class="am-list">
+      <div class="am-list-body">
+        <div class="am-list-item am-input-autoclear">
+          <div class="am-list-label">验证码</div>
+          <div class="am-list-control">
+            <input type="text" name="captcha">
+          </div>
+          <div class="am-list-clear"><i am-mode="clear" class="am-icon-clear am-icon"></i></div>
+          <div class="am-list-button">
+            <button type="button" class="captcha">发送验证码</button>
+          </div>
+        </div>
+        <div class="am-list-item am-input-autoclear">
+          <div class="am-list-label">新密码</div>
+          <div class="am-list-control">
+            <input type="password" name="password">
+          </div>
+          <div class="am-list-clear"><i am-mode="clear" class="am-icon-clear am-icon"></i></div>
+        </div>
+      </div>
+    </div>
+    <div am-mode="20px" class="am-wingblank">
+      <div type="button" am-mode="blue 43px" class="button am-button">提交</div>
+    </div>
+  </form>
+</body>
+<script src="./js/door_newPwd.js"></script>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="./common/amui.min.css">
+    <script src="./common/zepto.min.js?t=@@hash"></script>
+    <script src="./common/amui.js?t=@@hash"></script>
+    <script src="./common/global.js?t=@@hash"></script>
+    <script src="./common/echarts.min.js"></script>
+    <title>客户评分卡B</title>
+    <style type="text/css">
+        .am-auto{ margin: 0 auto; position: relative;}
+        .am-modal-bd p{ padding:10px; font-size: 14px;}
+        .am-fontScore{ padding-top:55px; height: 145px;}
+        .am-fontScore p{ line-height: 30px; width:162px; margin: 0 auto; text-align: left; padding:5px 0}
+        .am-fontScore p i { font-size:46px; font-style: normal }
+        .customerScoreText span{ font-style: normal;}
+        #main, #mainB{ margin: 0 auto; width: 95%; height: 175px;}
+        .scoreBox{ width: 50%; float: left}
+        .AClass{ color: #008000}
+        .BClass{ color: #ff8000}
+        .CClass{ color: #ff0000}
+    </style>
+    <div id="page">
+        <div am-mode="flat chip form 43px" class="am-list">
+            <div class="am-list-body am-ft-center scoreBox">
+                <div class="am-auto customerScoreText">预计评分：<span id="CustomerScoreA"></span></div>
+                <div class="am-fontScore" id="am-fontScore" style="display: none">
+                </div>
+                <div id="main"></div>
+            </div>
+            <div class="am-list-body am-ft-center scoreBox">
+                <div class="am-auto customerScoreText">实际评分：<span id="CustomerScoreB"></span></div>
+                <div class="am-fontScore" id="am-fontScoreB" style="display: none">
+                </div>
+                <div id="mainB"></div>
+            </div>
+        </div>
+    </div>
+</head>
+</html>
+<script src="./js/customerScoreB.js"></script>

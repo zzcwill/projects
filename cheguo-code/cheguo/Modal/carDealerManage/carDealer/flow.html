@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../common/css/style.min.css" />
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a" />
+    <link rel="stylesheet" href="../../../common/plugs/ztree/css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+
+	<link rel="stylesheet" href="../../../common/plugs/viewer/css/viewer.min.css">
+    <link rel="stylesheet" href="../../../css/main.css" />
+    <title>车商管理</title>
+    <style type="text/css">
+        .list-inline>li{
+            vertical-align: top;
+        }
+        .putImg{
+            margin-bottom:7px;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="page-header">
+                    <h3 class="text-center" id="flowTitle"></h3>
+                </div>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#info" data-toggle="tab">基本信息</a></li>
+                    <li><a href="#feeManage" data-toggle="tab">费用管理</a></li>
+                    <li><a href="#setMiniRate" data-toggle="tab">最低利率设置</a></li>
+                    <li><a href="#teamManage" data-toggle="tab">管理团队</a></li>
+                    <li><a href="#opinion" data-toggle="tab">过程意见</a></li>
+                    <li><a href="#score" data-toggle="tab">车商评分</a></li>
+                </ul>
+                <div class="tab-content">
+                    <p></p>
+                    <div id="info" class="tab-pane active">
+                        <div class="row">
+                            <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+                                <div class="ibox float-e-margins">
+                                    <form id="carDealerForm" class="form-horizontal">
+                                            <div class="panel panel-default">
+                                                <!--基本信息-->
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">基本资料</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="form-group form-group-sm">
+                                                        <div class="input-tip">
+                                                            <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">车行名称：</label>
+                                                            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                <input type="text" name="dealerName" placeholder="请输入车行名称" class="form-control required" readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-tip">
+                                                            <fieldset disabled>
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span class="text-danger">*&nbsp;</span>车商等级：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <select name="productLevel" class="form-control required" id="productLevel">
+                                                                        <option value="">--请选择--</option>
+                                                                        <option value="A">A</option>
+                                                                        <option value="B">B</option>
+                                                                        <option value="C">C</option>
+                                                                        <option value="D" selected="selected">D</option>
+                                                                    </select>
+                                                                </div>
+                                                            </fieldset>
+                                                        </div>
+                                                    </div>
+                                                    <fieldset disabled>
+                                                        <div class="form-group form-group-sm">
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span class="text-danger">*&nbsp;</span>车商级别：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <select name="dealerGrade" class="form-control required" id="dealerGrade">
+                                                                        <option value="">--请选择--</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">车商类型：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <select name="carDealerType" class="form-control required" id="carDealerType">
+                                                                        <option value="">--请选择--</option>
+                                                                        <option value="1">经销商</option>
+                                                                        <option value="2">推荐商</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-tip hide" id="isDealerName">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">经销商名称：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="hidden" name="employDealerId" value="" id="employDealerId">
+                                                                    <input type="text" name="employDealerName" id="employDealerName" value="" placeholder="请输入经销商名称" class="form-control required">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!--渠道来源 :: 当选择银行推荐显示推荐银行-->
+                                                        <div class="form-group form-group-sm">
+                                                            <fieldset>
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span class="text-danger">* </span>渠道来源：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <select name="cannelStatus" class="form-control required" id="channelSource">
+                                                                            <option value="">--请选择--</option>
+                                                                            <option value="1">银行推荐</option>
+                                                                            <option value="2">分公司营销</option>
+                                                                            <option value="3">车国营销</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip hide" id="isBank">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span class="text-danger">*&nbsp;</span>推荐银行：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <input type="hidden" name="cannelBankName">
+                                                                        <select name="cannelBankId" class="form-control required">
+                                                                            <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip hide" id="isBranchMarketing">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span class="text-danger">*&nbsp;</span>有无营销品牌集团：</label>
+                                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                                        <label class="radio-inline">
+                                                                            <input type="radio" name="isDealerGroup" value="1" required=""
+                                                                                   aria-required="true">有</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                        <label class="radio-inline">
+                                                                            <input type="radio" name="isDealerGroup" value="0" required=""
+                                                                                   aria-required="true">无</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip hide" id="isDealerGroup">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span class="text-danger">*&nbsp;</span>营销品牌集团：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <input type="hidden" name="dealerGroupName" id="dealerGroupName">
+                                                                        <select name="dealerGroupId" id="dealerGroupId" class="form-control required">
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </fieldset>
+                                                        </div>
+                                                        <div class="form-group form-group-sm">
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">联系人姓名：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="text" placeholder="请输入联系人姓名" name="contactName" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">联系人手机号：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="text" name="contactPhone" placeholder="请输入联系人手机号" class="form-control mobile">
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 control-label">是否贴息：</label>
+                                                                <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" name="isInterestSubsidy" value="1" required=""
+                                                                               aria-required="true">是</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                    <label class="radio-inline">
+                                                                        <input type="radio" name="isInterestSubsidy" value="2" required=""
+                                                                               aria-required="true">否</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group form-group-sm">
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">联系地址：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <select name="province" class="form-control required" id="province_1">
+                                                                        <option value="">--请选择--</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">市：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <select name="city" class="form-control required" id="city_1">
+                                                                        <option value="">--请选择--</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">区：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <select name="area" class="form-control required" id="area_1">
+                                                                        <option value="">--请选择--</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group form-group-sm">
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">详细地址：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="text" name="detailedAddress" placeholder="请输入详细地址" class="form-control required">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group form-group-sm">
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">注册号：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="text" name="registrationNum" placeholder="请输入注册号" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">法人代表：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="text" name="legalRepresentative" placeholder="请输入法人代表" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">注册资本(万元)：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="text" name="registeredCapital" placeholder="请输入注册资本" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group form-group-sm">
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">营业期限自：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="text" name="validStartTime" placeholder="请输入营业期限" class="form-control date">
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">营业期限至：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="text" name="validEndTime" placeholder="请输入营业期限" class="form-control date">
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">成立时间：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="text" name="foundTime" placeholder="请输入成立时间" class="form-control date">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group form-group-sm">
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">核准日期：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="text" name="approvalTime" placeholder="请输入核准日期" class="form-control date">
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">登记状态：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="text" name="registrationStatus" placeholder="请输入登记状态" class="form-control">
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">法人代表证件号码：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="text" name="cardNo" placeholder="请输入法人代表证件号码" class="form-control idCard">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group form-group-sm">
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">在职员工数：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="text" name="employeeNum" placeholder="请输入在职员工数" class="form-control required number">
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">营业场所面积(㎡)：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="text" name="placeProportion" placeholder="请输入营业场所面积" class="form-control  required number">
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">月销售量(台)：</label>
+                                                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                    <input type="text" name="salesVolume" placeholder="请输入月销售量" class="form-control required number">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group form-group-sm">
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">经营范围：</label>
+                                                                <div class="col-xs-21 col-sm-21 col-md-21 col-lg-21">
+                                                                    <textarea class="form-control" rows="3" name="scopeBusiness"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="input-tip">
+                                                                <label class="col-xs-3 col-sm-3 col-md-3 control-label">代收服务费：</label>
+                                                                <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                                    <div>
+                                                                        <label class="radio-inline">
+                                                                            <input type="radio" name="isCollectionFee" value="1" required=""
+                                                                                   aria-required="true">是</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                                        <label class="radio-inline">
+                                                                            <input type="radio" name="isCollectionFee" value="0" required=""
+                                                                                   aria-required="true">否</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                    <div class="form-group form-group-sm dataUpload">
+                                                        <div class="input-tip">
+                                                            <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">营业执照：</label>
+                                                            <ul class="col-md-19 list-inline files-ul" id="fileType_801" data-type="801">
+                                                                <div class="uploadFile">
+                                                                    <div class="putImg busLicence" data-img="busLicence" data-remark="801_1" data-type="801"><span class='noUpload'></span></div>
+                                                                    <span>营业执照</span>
+                                                                </div>
+                                                            </ul>
+                                                            <!--<ul class="col-xs-21 col-sm-21 col-md-21 col-lg-21 list-inline files-ul" id="fileType_801" data-type="801">-->
+                                                            <!--</ul>-->
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group form-group-sm dataUpload">
+                                                        <div class="input-tip">
+                                                            <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">营业场所照片：</label>
+                                                            <!--<ul class="col-xs-21 col-sm-21 col-md-21 col-lg-21 list-inline files-ul" id="fileType_802" data-type="802">-->
+                                                            <!--</ul>-->
+                                                            <ul class="col-md-19 list-inline files-ul" id="fileType_802" data-type="802">
+                                                                <div class="uploadFile">
+                                                                    <div class="putImg  busPlace_01" data-img="busPlace_01" data-type="802" data-remark="802_1"><span class='noUpload'></span></div>
+                                                                    <span>正面整体</span>
+                                                                </div>
+                                                                <div class="uploadFile">
+                                                                    <div class="putImg  busPlace_02" data-img="busPlace_02" data-type="802" data-remark="802_2"><span class='noUpload'></span></div>
+                                                                    <span>左前侧面</span>
+                                                                </div>
+                                                                <div class="uploadFile">
+                                                                    <div class="putImg  busPlace_03" data-img="busPlace_03" data-type="802" data-remark="802_3"><span class='noUpload'></span></div>
+                                                                    <span>右前侧面</span>
+                                                                </div>
+                                                                <div class="uploadFile">
+                                                                    <div class="putImg  busPlace_04" data-img="busPlace_04" data-type="802" data-remark="802_4"><span class='noUpload'></span></div>
+                                                                    <span>内部正面</span>
+                                                                </div>
+                                                                <div class="uploadFile">
+                                                                    <div class="putImg  busPlace_05" data-img="busPlace_05" data-type="802" data-remark="802_5"><span class='noUpload'></span></div>
+                                                                    <span>内部左侧</span>
+                                                                </div>
+                                                                <div class="uploadFile">
+                                                                    <div class="putImg  busPlace_06" data-img="busPlace_06" data-type="802" data-remark="802_6"><span class='noUpload'></span></div>
+                                                                    <span>内部右侧</span>
+                                                                </div>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group form-group-sm">
+                                                        <div class="input-tip">
+                                                            <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">车商确认单：</label>
+                                                            <ul class="col-md-19 col-sm-19 col-lg-19 col-xs-19 list-inline files-ul" id="fileType_803" data-type="803">
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group form-group-sm dataUpload">
+                                                        <div class="input-tip">
+                                                            <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">合作协议：</label>
+                                                            <ul class="col-md-19 col-sm-19 col-lg-19 col-xs-19 list-inline files-ul" id="fileType_804" data-type="804">
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </form>
+                                    <!--账户信息-->
+                                    <div id="accountBox" class="">
+                                        <div class="panel panel-default partyList">
+                                            <!--账户信息-->
+                                            <div class="panel-heading">
+                                                <div class="row">
+                                                    <h3 class="panel-title">账户信息</h3></div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="ibox-content">
+                                                    <table id="table_account" data-ajax="dataLoad_1">
+                                                        <thead>
+                                                            <tr>
+                                                                <th data-field="accountName">户名</th>
+                                                                <th data-field="openBankName">开户银行</th>
+                                                                <th data-field="subBankName">支行名称</th>
+                                                                <th data-field="cardNumber">卡号</th>
+                                                                <th data-field="accountType" data-formatter="accountType">账号类型</th>
+                                                                <th data-field="status" data-formatter="carDealerStatus">启用状态</th>
+                                                                <th data-field="approveStatus" data-formatter="approveStatus">审批状态</th>
+                                                                <th data-field="remark">备注</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="feeManage" class="tab-pane">
+                        <fieldset class="seeFieldset">
+                            <div class="row">
+                                <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+                                    <div class="ibox float-e-margins">
+                                        <div class="form-horizontal">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <div class="col-md-8">
+                                                        <h3 class="panel-title">费用信息</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-body">
+													<form class="form-horizontal" id="feeFormSearch">
+														<div class="form-group form-group-sm">
+															<div class="input-tip">
+																<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">费用方案名称：</label>
+																<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+																	<input class="form-control" type="text" name="feeName">
+																</div>
+															</div>
+															<div class="input-tip">
+																<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">状态：</label>
+																<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+																	<select class="form-control" name="status">
+																		<option value="">--请选择--</option>
+																		<option value="0">停用</option>
+																		<option value="1">启用</option>
+																	</select>
+																</div>
+															</div>
+															<div class="input-tip">
+																<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-md-offset-5 btn btn-primary btn-sm" id="feeSearch">查询费用信息</div>
+															</div>
+														</div>
+													</form>
+                                                    <table id="feeTable" data-ajax="dataLoad_fee" data-toggle="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th data-field="feeName">费用方案名称</th>
+                                                                <th data-field="handingFee">费率</th>
+                                                                <th data-field="nper" data-formatter="loanTerm">期限</th>
+                                                                <th data-field="createTime">新增日期</th>
+                                                                <th data-field="effectTime">生效开始日期</th>
+                                                                <th data-field="endTime">生效结束日期</th>
+                                                                <th data-field="userName">经办人</th>
+                                                                <th data-field="approveStatus" data-formatter="approveStatus">审批状态</th>
+                                                                <th data-field="status" data-formatter="carDealerStatus">停用状态</th>
+                                                                <th data-switchable="false" data-formatter="handle_fee" data-events="tableEvent_fee">操作</th>
+                                                            </tr>
+                                                        </thead>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ibox float-e-margins" id="feeBox" style="display: none">
+                                        <div class="form-horizontal">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading clearfix">
+                                                    <div class="row">
+                                                        <h3 class="panel-title">查看/修改费用信息</h3>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <form class="form-horizontal" id="feeForm">
+                                                        <fieldset id="feeFieldset">
+                                                            <h4 class="section-title">车商基本费用</h4>
+                                                            <input type="hidden" name="id" id="feeId" />
+                                                            <input type="hidden" name="carDealerId" id="carDealerId" />
+                                                            <div class="form-group form-group-sm">
+                                                                <div class="input-tip">
+                                                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3"><span class="text-danger">*</span>费用方案名称：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <input type="text" name="feeName" class="form-control required" placeholder="请输入费用方案名称">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3"><span class="text-danger">*</span>期限：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <select class="form-control required" name="nper">
+                                                                            <option value="">--请选择--</option>
+                                                                            <option value="1">12期</option>
+                                                                            <option value="2">18期</option>
+                                                                            <option value="3">24期</option>
+                                                                            <option value="4">36期</option>
+                                                                            <option value="5">48期</option>
+                                                                            <option value="6">60期</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3"><span class="text-danger">*</span>手续费率(%)：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <input type="text" name="handingFee" placeholder="请输入手续费率" class="form-control required">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--
+                                                            <div class="form-group form-group-sm">
+                                                                <div class="input-tip">
+                                                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3"><span class="text-danger">*</span>最低收益(元)：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <input type="text" name="minEarnings" placeholder="请输入最低收益" class="form-control money required">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3"><span class="text-danger">*</span>返利方式：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <select class="form-control required" name="rebateType" id="rebateType">
+                                                                            <option value="">--请选择--</option>
+                                                                            <option value="1">固定比率</option>
+                                                                            <option value="2">超过部分返利</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3" id="flfs"><span class="text-danger">*</span>返利(%):</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <input type="text" name="rebate" placeholder="请输入返利" class="form-control money required">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group form-group-sm">
+                                                                <div class="input-tip">
+                                                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3"><span class="text-danger">*</span>返销售团队：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <div class="input-group">
+                                                                            <input type="text" name="rebateTeam" class="form-control money required" placeholder="请输入返销售团队">
+                                                                            <span class="input-group-addon">
+                                                                                <input type="checkbox" name="c1" value="">%
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            -->
+                                                            <h4 class="section-title">服务费</h4>
+                                                            <div class="form-group form-group-sm">
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">按揭手续费：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                                        <!--<input type="text" name="guarantyRiskAmount" placeholder="请输入按揭手续费" id="guarantyRiskAmount" class="form-control money">-->
+                                                                        <div class="input-group">
+                                                                            <input type="text" name="guarantyRiskAmount" id="guarantyRiskAmount" class="form-control money" placeholder="请输入按揭手续费">
+                                                                            <span class="input-group-addon">
+                                                                                <input type="checkbox" name="c3" value="">%
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">按揭服务费：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                                        <!--<input type="text" name="serveFee" id="serveFee" placeholder="请输入按揭服务费" class="form-control money" aria-required="true">-->
+                                                                        <div class="input-group">
+                                                                            <input type="text" name="serveFee" id="serveFee" class="form-control money" aria-required="true" placeholder="请输入按揭服务费">
+                                                                            <span class="input-group-addon">
+                                                                                <input type="checkbox" name="c4" value="">%
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">银行利差：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                                        <!--<input type="text" name="bankInterestMargin" placeholder="请输入银行利差" id="bankInterestMargin" class="form-control money" aria-required="true">-->
+                                                                        <div class="input-group">
+                                                                            <input type="text" name="bankInterestMargin" placeholder="请输入银行利差" id="bankInterestMargin" class="form-control money" aria-required="true">
+                                                                            <span class="input-group-addon">
+                                                                                <input type="checkbox" name="c5" value="">%
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group form-group-sm">
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">上牌费：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                                        <!--<input type="text" name="registrationCharge" placeholder="请输入上牌费" id="registrationCharge" class="form-control money">-->
+                                                                        <div class="input-group">
+                                                                            <input type="text" name="registrationCharge" placeholder="请输入上牌费" id="registrationCharge" class="form-control money">
+                                                                            <span class="input-group-addon">
+                                                                                <input type="checkbox" name="c6" value="">%
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">上门调查费：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                                        <!--<input type="text" name="onSiteSurveyFee" placeholder="请输入上门调查费" id="onSiteSurveyFee" class="form-control money" aria-required="true">-->
+                                                                        <div class="input-group">
+                                                                            <input type="text" name="onSiteSurveyFee" placeholder="请输入上门调查费" id="onSiteSurveyFee" class="form-control money" aria-required="true">
+                                                                            <span class="input-group-addon">
+                                                                                <input type="checkbox" name="c7" value="">%
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">评估费：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                                        <input type="text" name="valuationFee" placeholder="请输入评估费" id="valuationFee" class="form-control money" aria-required="true">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <h4 class="section-title">GPS费用情况</h4>
+                                                            <div class="form-group form-group-sm">
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>GPS（台）：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <select class="form-control" name="gpsNumber" id="gpsNumber" required="required">
+                                                                            <option value="">--请选择--</option>
+                                                                            <option value="0">无</option>
+                                                                            <option value="1">1</option>
+                                                                            <option value="2">2</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">GPS类型：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <select class="form-control" name="gpsType" id="gpsType">
+                                                                            <option value="0">--请选择--</option>
+                                                                            <option value="1">有线</option>
+                                                                            <option value="2">无线</option>
+                                                                            <option value="3">有线+无线</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">GPS厂家：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                                        <input type="text" name="gpsFactory" placeholder="请输入GPS厂家" id="gpsFactory" class="form-control" aria-required="true">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group form-group-sm">
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">GPS安装费：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <input type="text" name="gpsInstallationFee" placeholder="请输入GPS安装费" id="gpsInstallationFee" class="form-control" aria-required="true">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">责信险：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <input type="text" name="liabilityAmount" placeholder="请输入责信险" id="liabilityAmount" class="form-control" aria-required="true">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <h4 class="section-title">暂收费用</h4>
+                                                            <div class="form-group form-group-sm">
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>第一年保费：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <select class="form-control" name="costType" id="premiumType" required="required">
+                                                                            <option value="">--请选择--</option>
+                                                                            <option value="1">公司</option>
+                                                                            <option value="2">车行</option>
+                                                                            <option value="3">客户</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">金额：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <input type="text" name="costTypeFee" placeholder="请输入金额" id="insuranceAmount" class="form-control" aria-required="true">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group form-group-sm">
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>是否续保：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <select name="isPb" class="form-control" id="isRenewal" required="required">
+                                                                            <option value="1" selected>是</option>
+                                                                            <option value="2">否</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- <div class="input-tip">
+        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>续保押金：</label>
+
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+        <input type="text" name="renewalDeposit" id="renewalDeposit"
+        class="form-control" required="" aria-required="true">
+        </div>
+        </div> -->
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>履约保证金：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <!--<input type="text" name="pbDeposit" placeholder="请输入履约保证金" id="pbDeposit" class="form-control" required="required" aria-required="true">-->
+                                                                        <div class="input-group">
+                                                                            <input type="text" name="pbDeposit" placeholder="请输入履约保证金" id="pbDeposit" class="form-control" required="required" aria-required="true">
+                                                                            <span class="input-group-addon">
+                                                                                <input type="checkbox" name="c2" value="">%
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">上牌抵押押金：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <input type="text" name="accountDeposit" placeholder="请输入上牌抵押押金" id="accountDeposit" class="form-control" aria-required="true">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group form-group-sm">
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">工本费：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <select class="form-control" name="chargeForTrouble" id="costType">
+                                                                            <option value="">--请选择--</option>
+                                                                            <option value="1">公司</option>
+                                                                            <option value="2">车行</option>
+                                                                            <option value="3">客户</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">金额：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <input type="text" name="chargeForTroubleFee" placeholder="请输入金额" id="costAmount" class="form-control" aria-required="true">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group form-group-sm">
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>预计车辆购置税：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <select class="form-control" name="vehiclePurchaseTax" id="predictedPurchasetax" required="required">
+                                                                            <option value="">--请选择--</option>
+                                                                            <option value="1">公司</option>
+                                                                            <option value="2">车行</option>
+                                                                            <option value="3">客户</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">金额：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                                                        <input type="text" name="vehiclePurchaseTaxFee" placeholder="请输入金额" id="vehiclePurchaseTaxFee" class="form-control" aria-required="true">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <h4 class="section-title">代收费用</h4>
+                                                            <div class="form-group form-group-sm">
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">车行服务费：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                                        <!--<input type="text" name="dealerServerCharge" placeholder="请输入车行服务费" id="dealerServerCharge" class="form-control money">-->
+                                                                        <div class="input-group">
+                                                                            <input type="text" name="dealerServerCharge" placeholder="请输入车行服务费" id="dealerServerCharge" class="form-control money">
+                                                                            <span class="input-group-addon">
+                                                                                <input type="checkbox" name="c8" value="">%
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="input-tip">
+                                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">外包调查费：</label>
+                                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                                        <!--<input type="text" name="outsourcingServiceCharge" placeholder="请输入外包调查费" id="outsourcingServiceCharge" class="form-control money" aria-required="true">-->
+                                                                        <div class="input-group">
+                                                                            <input type="text" name="outsourcingServiceCharge" placeholder="请输入外包调查费" id="outsourcingServiceCharge" class="form-control money" aria-required="true">
+                                                                            <span class="input-group-addon">
+                                                                                <input type="checkbox" name="c9" value="">%
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--<div class="form-group form-group-sm">
+       <div class="input-tip">
+       <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">代收费用1：</label>
+
+       <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+       <select class="form-control" name="agencyFee1Type"
+       id="agencyFee1Type">
+       <option value="">请选择</option>
+       <option value="1">无</option>
+       <option value="2">保险手续费</option>
+       <option value="3">补收印花税</option>
+       <option value="4">抵押押金（非现金）</option>
+       <option value="5">短期保费</option>
+       <option value="6">公证费（非现金）</option>
+       <option value="7">其他费用</option>
+       <option value="8">银行中介费（现金）</option>
+       <option value="9">银行手续费</option>
+       <option value="10">调查费</option>
+       </select>
+       </div>
+       </div>
+       <div class="input-tip">
+       <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">金额：</label>
+       <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+       <input type="text" name="agencyFee1" id="agencyFee1" readonly
+       value="0"
+       class="form-control" aria-required="true">
+       </div>
+       </div>
+       <div class="input-tip" id="agencyFee1TypeRadio">
+       <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">加入预收：</label>
+       <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+       <label class="checkbox-inline">
+       <input type="radio" name="agencyFee1IsAdd" value="1"> 是
+       </label>
+       <label class="checkbox-inline">
+       <input type="radio" name="agencyFee1IsAdd" value="2"> 否
+       </label>
+       </div>
+       </div>
+
+       </div>
+       <div class="form-group form-group-sm">
+       <div class="input-tip">
+       <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">代收费用2：</label>
+
+       <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+       <select class="form-control" name="agencyFee2Type"
+       id="agencyFee2Type">
+       <option value="">--请选择--</option>
+       <option value="1">无</option>
+       <option value="2">保险手续费</option>
+       <option value="3">补收印花税</option>
+       <option value="4">抵押押金（非现金）</option>
+       <option value="5">短期保费</option>
+       <option value="6">公证费（非现金）</option>
+       <option value="7">其他费用</option>
+       <option value="8">银行中介费（现金）</option>
+       <option value="9">银行手续费</option>
+       <option value="10">调查费</option>
+       </select>
+       </div>
+       </div>
+       <div class="input-tip">
+       <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">金额：</label>
+
+       <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+       <input type="text" name="agencyFee2" id="agencyFee2" readonly
+       value="0"
+       class="form-control" required="" aria-required="true">
+       </div>
+       </div>
+       <div class="input-tip" id="agencyFee2TypeRadio">
+       <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">加入预收：</label>
+       <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+       <label class="checkbox-inline">
+       <input type="radio" name="agencyFee2IsAdd" value="1"> 是
+       </label>
+       <label class="checkbox-inline">
+       <input type="radio" name="agencyFee2IsAdd" value="2"> 否
+       </label>
+       </div>
+       </div>
+       </div>
+       <div class="form-group form-group-sm">
+       <div class="input-tip">
+       <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">其他费用：</label>
+
+       <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+       <select class="form-control" name="otherFeeType" id="otherFeeType">
+       <option value="">--请选择--</option>
+       <option value="1">无</option>
+       <option value="2">保险手续费</option>
+       <option value="3">补收印花税</option>
+       <option value="4">抵押押金（非现金）</option>
+       <option value="5">短期保费</option>
+       <option value="6">公证费（非现金）</option>
+       <option value="7">其他费用</option>
+       <option value="8">银行中介费（现金）</option>
+       <option value="9">银行手续费</option>
+       <option value="10">调查费</option>
+       </select>
+       </div>
+       </div>
+       <div class="input-tip">
+       <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">金额：</label>
+
+       <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+       <input type="text" name="otherFee" id="otherFee" value="0" readonly
+       class="form-control" aria-required="true">
+       </div>
+       </div>
+       <div class="input-tip" id="otherFeeTypeRadio">
+       <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">加入预收：</label>
+       <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+       <label class="checkbox-inline">
+       <input type="radio" name="otherFeeIsAdd" value="1"> 是
+       </label>
+       <label class="checkbox-inline">
+       <input type="radio" name="otherFeeIsAdd" value="2"> 否
+       </label>
+       </div>
+       </div>
+       </div>-->
+                                                            <!-- <div class="form-group form-group-sm">
+                                                                <div class="input-tip">
+                                                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">车商确认单：</label>
+                                                                    <div class="col-md-2 col-sm-2 col-lg-2 col-xs-2">
+                                                                        <button type="button" class="btn btn-primary btn-sm upImage" data-type="803"><span>选择图片</span>
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-primary btn-sm upload hide" data-type="803"><span>开始上传</span>
+                                                                        </button>
+                                                                        <input type="file" name="files[]" accept="image/*" class="hide upImageInput" data-type="803" multiple>
+                                                                    </div>
+                                                                    <ul class="col-md-19 col-sm-19 col-lg-19 col-xs-19 list-inline files-ul" id="fileType_803" data-type="803">
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group form-group-sm dataUpload">
+                                                                <div class="input-tip">
+                                                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">合作协议：</label>
+                                                                    <div class="col-md-2 col-sm-2 col-lg-2 col-xs-2">
+                                                                        <button type="button" class="btn btn-primary btn-sm upImage" data-type="804"><span>选择图片</span>
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-primary btn-sm upload hide" data-type="804"><span>开始上传</span>
+                                                                        </button>
+                                                                        <input type="file" name="files[]" accept="image/*" class="hide upImageInput" data-type="804" multiple>
+                                                                    </div>
+                                                                    <ul class="col-md-19 col-sm-19 col-lg-19 col-xs-19 list-inline files-ul" id="fileType_804" data-type="804">
+                                                                    </ul>
+                                                                </div>
+                                                            </div> -->
+                                                            <div class="form-group form-group-sm">
+                                                                <div class="input-tip">
+                                                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">备注：</label>
+                                                                    <div class="col-xs-21 col-sm-21 col-md-21 col-lg-21">
+                                                                        <textarea class="form-control" name="remark"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <p></p>
+                                                            <div class="form-group form-group-sm">
+                                                                <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-right">
+                                                                    <button type="button" class="btn btn-primary" id="save-fee">保存</button>
+                                                                    <button type="button" modal="reset" class="btn btn-white" id="resetFeeForm">取消</button>
+                                                                </div>
+                                                            </div>
+                                                        </fieldset>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div id="setMiniRate" class="tab-pane">
+                        <div data-url="setMiniRate.html"></div>
+                    </div>
+                    <div id="teamManage" class="tab-pane">
+                        <form>
+                            <fieldset class="seeFieldset">
+                                <div class="row">
+                                    <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+                                        <div class="ibox float-e-margins">
+                                            <div class="form-horizontal">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading clearfix">
+                                                        <div class="row">
+                                                            <h3 class="panel-title">团队信息</h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <table id="userTable" data-ajax="dataLoad_user">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th data-field="managerName">客户经理名称</th>
+                                                                    <th data-field="manageType">管理类型</th>
+                                                                    <th data-field="memberBusinessTypeVo">管理角色</th>
+                                                                    <th data-field="companyName">所在机构</th>
+                                                                    <th data-field="departmentName">所在部门</th>
+                                                                    <th data-field="groupName">业务小组</th>
+                                                                </tr>
+                                                            </thead>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div id="opinion" class="tab-pane">
+                        <div data-url="../../common/commonOpinion/opinion.html"></div>
+                    </div>
+                    <div id="score" class="tab-pane">
+                        <p></p>
+                        <div class="row">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div id="score_tip"></div>
+                                    <div class="ibox float-e-margins scoreArea">
+                                        <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" >
+                                            <div class="part" id="itemScore1">
+                                                <div class="s_header">基本得分</div>
+                                                <div  class="s_body"><span class="level" data-name="grade"></span>&nbsp;&nbsp;<span class="point" data-name="score"></span></div>
+                                                <div class="s_footer">基本得分由基本信息、征信状况、经营状况的权重来评定。</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7" >
+                                            <div class="part" id="itemScore2">
+                                                <div class="s_header">合作得分</div>
+                                                <div  class="s_body"><span class="level" data-name="grade"></span>&nbsp;&nbsp;<span class="point" data-name="score"></span></div>
+                                                <div class="s_footer">合作得分由业务合作、风险情况的权重来评定。</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+                                            <div class="part zh_score" id="itemScore3">
+                                                <div class="s_header" title="1、基本信息：完善车商的基本信息可提高得分；2、征信状况：根据法人征信、法人代表征信结果计算；3、经营状况：根据车商经营规模综合计算；4、业务合作：根据合作客户的费用情况、营销费用情况、收益情况综合评定;5、风险情况：根据合作客户的上牌效率、抵押效率、逾期情况综合评定；">综合得分</div>
+                                                <div  class="s_body"><span class="level" data-name="grade"></span>&nbsp;&nbsp;<span class="point" data-name="score"></span></div>
+                                            </div>
+                                        </div>
+                                        <!--<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+                                        <!--<div class="score_tip a">A</div>-->
+                                        <!--<div class="score_tip b">B</div>-->
+                                        <!--<div class="score_tip c">C</div>-->
+                                        <!--</div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <h3 class="text-center title">车商评分是根据以下五个维度综合评估而来</h3>
+                                    <!--<p class="text-muted"></p>-->
+                                    <div id="chart1"  class="center-block"></div>
+                                    <hr/>
+                                    <h3 class="text-center title">近六个月车商评分趋势</h3>
+                                    <div id="chart2"  class="center-block"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+                <div class="ibox float-e-margins">
+                    <form id="opinionForm" class="form-horizontal ibox-content">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">流程意见</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group form-group-sm">
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span class="text-danger">*</span>意见结论：</label>
+                                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                            <label class="checkbox-inline">
+                                                <input type="radio" name="conclusion" value="1" checked required="required" /> 同意
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input type="radio" name="conclusion" value="0" /> 不同意
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <div class="input-tip">
+                                        <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span class="text-danger">*</span>意见说明：</label>
+                                        <div class="col-xs-13 col-sm-13 col-md-13 col-lg-13">
+                                            <textarea class="form-control" rows="3" name="opinion"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-right">
+                                <button type="button" class="btn btn-primary" id="btn-opinion-save"><span>提交</span>
+                                </button>
+                                <button type="button" class="btn btn-primary" id="btn-loanReview-back" style="display: none;">
+                                    <span>退回上一步</span></button>
+                                <button type="button" class="btn btn-primary" id="btn-laugh-back" style="display: none;">
+                                    <span>退回客户经理</span></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--任务提交人员选择-->
+    <div class="modal fade" id="signModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">任务提交</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <p>请选择流转人员&nbsp;&nbsp;&nbsp;后续流程环节:<span id="nextNode"></span></p>
+                        <table id="table_sign" data-ajax="table_sign">
+                            <thead>
+                                <tr>
+                                    <th data-switchable="false" data-field="userId" data-formatter="handle_sign" data-events="tableEvent_sign">选择</th>
+                                    <th data-field="organization">机构名称</th>
+                                    <th data-field="department">部门</th>
+                                    <th data-field="userName">姓名</th>
+                                    <th data-field="taskCount">当前代办量</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <input type="hidden" id="nextNodeUserId" />
+                <input type="hidden" id="nextNodeUserName" />
+                <div class="modal-footer">
+                    <input type="hidden" id="signUserName" name="" />
+                    <button type="button" class="btn btn-primary" id="select-sign-btn">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/echarts.js"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/js/LocalResizeIMG.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/ztree/js/jquery.ztree.core-3.5.min.js"></script>
+<script src="../../../common/plugs/viewer/js/viewer.js"></script>
+<!--<script src="../../../common/js/flow.js"></script>-->
+<!--<script src="../../../js/carDealerManage/carDealer/flow.js"></script>-->
+<!--<script src="../../../js/common/commonOpinion/opinion.js"></script>-->
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../common/js/flow.js"><\/script>',
+        '<script src="../../../js/carDealerManage/carDealer/flow.js"><\/script>',
+        '<script src="../../../js/common/commonOpinion/opinion.js"><\/script>'
+].join(""));
+</script>

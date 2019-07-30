@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="renderer" content="webkit"> 
+	<meta name="keywords" content=""/>
+	<meta name="description" content="" />
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../css/report/main3.css">
+	<title>中安金控全国签单量</title> 
+</head>
+	<body>
+		<div class="mapBox">
+			<div class="mapLeft">
+				<div class="map1">
+					<iframe id="iframe_1" src="" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="100%"></iframe>
+				</div>
+				<div class="map1">
+					<iframe id="iframe_2" src="" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="100%"></iframe>
+				</div>
+				<div class="map1">
+					<iframe id="iframe_3" src="" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="100%"></iframe> 
+				</div>
+			</div>
+			<div class="mapRight">
+				<iframe id="iframe_4" src="" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="100%"></iframe>
+			</div>
+		</div>
+
+		<div class="modal" id="adjustBox">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title">左右比例调整</h4>
+		      </div>
+		      <div class="modal-body">
+		        左边百分比:<input type="text" name="leftper" value='30'/>
+		        <button type="button" class="btn btn-primary" id="preview">预览</button>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+		        <button type="button" class="btn btn-primary" id="adjustOk">确定</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		 
+	</body>
+</html>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=eb649edd14c8348e9f34a8ca6157c2b6"></script>  
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script> 
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/js/iframeCommon.js?rev=1452145039607"></script>
+<script src="../../../common/js/URL.js?rev=1452145039607"></script> 
+<script src="../../../common/plugs/echarts/js/geoCoord.js"></script>
+<script src="../../../common/plugs/echarts/echarts.min.js"></script>
+<script src="../../../common/plugs/echarts/echarts-theme.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+	//根据服务器动态配置iframe地址
+	var url=window.location.origin;
+	$('#iframe_1').attr('src',url+'/loan/Modal/main/main/business.html');
+	$('#iframe_2').attr('src',url+'/loan/Modal/main/main/distribution.html');
+	$('#iframe_3').attr('src',url+'/loan/Modal/main/main/unMortgage.html');
+	$('#iframe_4').attr('src',url+'/loan/Modal/main/main/signMap.html');
+	//设置字体大小和uid统一
+	var fontSize = 13, uId, flag, dataState = 0/*0为假数据，1为真数据*/, textColor='#FFF';
+	try {
+		uId = comn.user ? comn.user.uid: args['uId'];
+	} catch(e) {
+		/* handle error */
+	} 
+
+	function resize_(){
+		$('#iframe_1').attr('src',url+'/loan/Modal/main/main/business.html');
+		$('#iframe_2').attr('src',url+'/loan/Modal/main/main/distribution.html');
+		$('#iframe_3').attr('src',url+'/loan/Modal/main/main/unMortgage.html');
+		$('#iframe_4').attr('src',url+'/loan/Modal/main/main/signMap.html');
+	}
+	/*$(window).resize(function(){
+    resize_();
+  });*/
+  $('#adjustBox').modal('show');
+  $('.mapRight').css('border-left','1px solid #fff');
+  $('#preview').click(function(){
+  	var left=parseFloat($("input[name='leftper']").val());
+  	if(left>100 || left<=0){
+  		tip({content: '输入1-100的数值'});
+  		return false;
+  	}
+  	$('.mapLeft').css('width',left+'%');
+  	$('.mapRight').css('width',100-left+'%');
+  });
+ 	$('#adjustOk').click(function(){
+ 		var left=parseFloat($("input[name='leftper']").val());
+  	if(!left || left>100 || left<=0){
+  		tip({content: '输入1-100的数值'});
+  		return false;
+  	}
+  	$('.mapLeft').css('width',left+'%');
+  	$('.mapRight').css('width',100-left+'%');
+ 		$('.mapRight').css('border-left','');
+ 		$('#adjustBox').modal('hide');
+ 		resize_();
+ 	});
+</script>

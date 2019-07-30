@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <title>新增数据字典</title>
+    <style type="text/css">
+        .modal-backdrop {
+            z-index: 100 !important;
+        }
+
+        .modal {
+            z-index: 120 !important;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">数据字典维护</h3>
+                </div>
+                <div class="modal-body">
+                    <form id="codeLibraryForm" class="form-horizontal">
+                        <input id="id" name="id" type="hidden" value=""/>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-2 col-xs-2 col-sm-2 control-label">类型代码：</label>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <input type="text" name="codeType" placeholder="请输入类型代码" class="form-control required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-2 col-xs-2 col-sm-2 control-label">类型描述：</label>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <input type="text" name="describe" placeholder="请输入类型描述" class="form-control required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-2 col-xs-2 col-sm-2 control-label">字典编码：</label>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <input type="text" name="codeId" placeholder="请输入字典编码" class="form-control required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-2 col-xs-2 col-sm-2 control-label">编码名称：</label>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <input type="text" name="codeName" placeholder="请输入编码名称" class="form-control required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-2 col-xs-2 col-sm-2 control-label">序号：</label>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <input type="number" name="sortNo" placeholder="请输入序号" value="0" class="form-control required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-2 col-xs-2 col-sm-2 control-label">启用状态：</label>
+                                <div class="col-md-4 col-xs-4 col-sm-4">
+                                    <select name="isInuse" class="form-control">
+                                        <option value="true">启用</option>
+                                        <option value="false">停用</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                    <div class="form-group form-group-sm clearfix">
+                        <div class="col-md-6 col-xs-6 col-sm-6 text-right">
+                            <button id="saveCodeLibrary" class="btn btn-info">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/iframeCommon.js?rev=1447835709081"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/js/LocalResizeIMG.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/codeLibraryManage/codeLibrary/addCodeLibrary.js"></script>

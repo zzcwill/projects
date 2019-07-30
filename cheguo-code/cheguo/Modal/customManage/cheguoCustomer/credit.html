@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Expires" CONTENT="0">
+		<meta http-equiv="Cache-Control" CONTENT="no-cache">
+		<meta http-equiv="Pragma" CONTENT="no-cache">
+		<link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../../../common/css/style.min.css" />
+		<link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a" />
+		<link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+		<link rel="stylesheet" href="../../../css/loanManage/creditManage/creditInfo.css" />
+		<title>发起征信</title>
+	</head>
+</html>
+	<body class="gray-bg">
+		<div class="wrapper wrapper-content animated fadeInRight">
+			<div class="row">
+				<div class="col-sm-24">
+					<div class="ibox float-e-margins">
+						<form id="creditForm" class="form-horizontal ibox-content">
+						<div class="page-header">
+								<h3 class="text-center">发起征信</h3>
+							</div>
+							<input type="hidden" name="id" id="id">
+							<div class="panel panel-default">
+								<!--基本信息-->
+								<div class="panel-heading">
+									<h3 class="panel-title">基本信息</h3>
+								</div>
+								<div class="panel-body">
+									<div class="form-group form-group-sm">
+										<input type="text" name="serialNumber" hidden>
+										<input type="hidden" name="cardFlag" id="cardFlag">
+										<div class="input-tip">
+											<label class="col-md-3 col-xs-3 col-sm-3 control-label">客户来源：</label>
+											<div class="col-md-5 cl-sm-5 col-xs-5">
+												<select name="source" id="" class="form-control" disabled>
+													<option value="">--请选择--</option>
+													<option value="1">个人申请</option>
+													<option value="2">车商线下推送</option>
+													<option value="3">车商线上推送</option>
+													<option value="4">车国直营店</option>
+													<option value="5">车国加盟店</option>
+													<option value="6">车国认证店</option>
+												</select>
+												<input type="hidden" name="source" value="">
+												<!--<input type="text" name="creditSource" placeholder="请输入客户来源" class="form-control" readonly="true">-->
+											</div>
+										</div>
+										<div class="input-tip">
+											<label class="col-md-3 col-xs-3 col-sm-3 control-label">贷款类型：</label>
+											<div class="col-md-5 cl-sm-5 col-xs-5">
+												<select name="businessType" class="form-control">
+													<option value="">--请选择--</option>
+													<option value="1">新车</option>
+													<option value="2">二手车</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<!--<div class="form-group form-group-sm">-->
+										<!--<div class="input-tip">-->
+											<!--<label class="col-md-3 col-xs-3 col-sm-3 control-label">客户来源：</label>-->
+											<!--<div class="col-md-5 cl-sm-5 col-xs-5">-->
+												<!--<select name="source" id="" class="form-control" disabled>-->
+													<!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
+													<!--<option value="1">个人申请</option>-->
+													<!--<option value="2">车商线下推送</option>-->
+													<!--<option value="3">车商线上推送</option>-->
+												<!--</select>-->
+												<!--&lt;!&ndash;<input type="text" name="creditSource" placeholder="请输入客户来源" class="form-control" readonly="true">&ndash;&gt;-->
+											<!--</div>-->
+										<!--</div>-->
+									<!--</div>-->
+									<div class="form-group form-group-sm">
+										<div class="input-tip">
+											<label class="col-md-3 col-xs-3 col-sm-3 control-label">客户名称：</label>
+											<div class="col-md-5 cl-sm-5 col-xs-5">
+												<div class="input-group input-group-sm">
+													<input type="text" placeholder="请输入客户名称" name="customerName" class="form-control cursom required"><span class="input-group-btn">
+													  <button type="button" class="btn btn-primary" id="customerBtn" data-toggle="modal" data-target="#customerChoice">...</button></span>
+												</div>
+											</div>
+										</div>
+										<div class="input-tip">
+											<label class="col-md-3 col-xs-3 col-sm-3 control-label">证件类型：</label>
+											<div class="col-md-5 cl-sm-5 col-xs-5">
+												<select name="cardType" reqiireds="cardType" class="form-control" id="cardType">
+													<option value="1" selected="selected">身份证</option>
+													<option value="2">军官证</option>
+													<option value="3">侨胞证</option>
+													<option value="4">外籍人士</option>
+												</select>
+											</div>
+										</div>
+										<div class="input-tip">
+											<label class="col-md-3 col-xs-3 col-sm-3 control-label">证件号码：</label>
+											<div class="col-md-5 cl-sm-5 col-xs-5">
+												<input type="text" reqiireds="cardType" name="cardNo" id="cardNo" placeholder="请输入证件号码" class="form-control cursom required idCard" >
+											</div>
+										</div>
+
+									</div>
+									<div class="form-group form-group-sm">
+										<div class="input-tip">
+											<label class="col-md-3 col-xs-3 col-sm-3 control-label">婚姻状态：</label>
+											<div class="col-md-5 cl-sm-5 col-xs-5">
+												<select id="maritalStatus" name="maritalStatus" class="form-control" required="" aria-required="true">
+													<option value="">--请选择--</option>
+													<option value="1">已婚</option>
+													<option value="2">未婚</option>
+													<option value="3">离异</option>
+													<option value="4">丧偶</option>
+												</select>
+											</div>
+										</div>
+										<div class="input-tip">
+											<label class="col-md-3 col-xs-3 col-sm-3 control-label">调查银行：</label>
+											<div class="col-md-5 cl-sm-5 col-xs-5" id="isInquryBank">
+												<input type="hidden" name="inquryBank" id="inquryBank" placeholder="请输入合作银行" class="form-control" >
+												<select name="inquryBankId" id="bankDeraler" class="form-control required">
+													<option value="">--请选择--</option>
+												</select>
+											</div>
+										</div>
+										<div class="input-tip">
+											<label class="col-md-3 col-xs-3 col-sm-3 control-label">客户经理：</label>
+											<div class="col-md-5 cl-sm-5 col-xs-5">
+												<input type="text" name="realname" placeholder="请输入客户经理" class="form-control" readonly="true">
+											</div>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<div class="input-tip">
+											<label class="col-md-3 col-xs-3 col-sm-3 control-label">业务小组：</label>
+											<div class="col-md-5 cl-sm-5 col-xs-5">
+												<input type="text" name="bzGroupName" placeholder="请输入业务小组" class="form-control" readonly="true">
+											</div>
+										</div>
+										<div class="input-tip">
+											<label class="col-md-3 col-xs-3 col-sm-3 control-label">征信主体类型：</label>
+											<div class="col-md-5 cl-sm-5 col-xs-5">
+												<select name="creditType" id="creditType" class="form-control required">
+													<option value="">--请选择--</option>
+													<option value="1" selected>主贷人</option>
+													<option value="2">配偶</option>
+													<option value="3">担保人</option>
+												</select>
+											</div>
+										</div>
+										<div class="input-tip hide" id="relationship">
+											<label class="col-md-3 col-xs-3 col-sm-3 control-label">主贷人关联：</label>
+											<div class="col-md-5 cl-sm-5 col-xs-5">
+												<div class="input-group input-group-sm">
+													<input type="hidden" class="mainCreditId" name="mainCreditId" value="" disabled>
+													<input type="text" placeholder="请输入主贷人关联" name="mainCreditName" class="form-control mainCreditId required" readonly disabled><span class="input-group-btn">
+													  <button type="button" class="btn btn-primary" id="mainCreditIdBtn" data-toggle="modal" data-target="#mainCreditId">...</button></span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-group form-group-sm">
+										<div class="input-tip">
+											<label class="col-md-3 col-xs-3 col-sm-3 control-label">预估贷款金额(元)：</label>
+											<div class="col-md-5 cl-sm-5 col-xs-5">
+												<input type="text" name="estimateLoanAmount" placeholder="请输入预估贷款金额" class="form-control required number">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="partyBox">
+								<div class="panel panel-default partyList">
+									<!--借款人-->
+									<div class="panel-heading">
+										<h3 class="panel-title">借款人</h3>
+									</div>
+									<div class="panel-body panel-default creditFourEl" style="padding-bottom:0;">
+										<input type="hidden" name="relavants[0].id">
+										<input type="hidden" name="relavants[0].bcardNo">
+										<input type="hidden" name="relavants[0].reserveMobile">
+										<div class="form-group form-group-sm">
+											<div class="input-tip">
+												<label class="col-md-3 col-xs-3 col-sm-3 control-label">姓名：</label>
+												<div class="col-md-5 cl-sm-5 col-xs-5">
+													<input type="text" data-for="customerName" id="name" name="relavants[0].fullName" placeholder="请输入姓名" class="form-control required" readonly>
+												</div>
+											</div>
+											<div class="input-tip">
+												<label class="col-md-3 col-xs-3 col-sm-3 control-label">证件类型：</label>
+												<div class="col-md-5 cl-sm-5 col-xs-5">
+													<!--<input type="text" data-for="cardTypeName" name="" class="form-control" readonly="true" placeholder="请输入证件类型">-->
+													<input type="hidden" name="relavants[0].cardType" data-for="cardType" name="relavants[0].cardType" class="form-control">
+													<select data-for="cardType" name="cardType2" class="form-control" disabled>
+														<option value="1">身份证</option>
+														<option value="2">军官证</option>
+														<option value="3">侨胞证</option>
+														<option value="4">外籍人士</option>
+													</select>
+												</div>
+											</div>
+											<div class="input-tip">
+												<label class="col-md-3 col-xs-3 col-sm-3 control-label">证件号码：</label>
+												<div class="col-md-5 cl-sm-5 col-xs-5">
+													<input type="text" data-for="cardNo" name="relavants[0].cardId" placeholder="请输入证件号码" class="form-control" required="" aria-required="true" readonly="true">
+												</div>
+											</div>
+										</div>
+										<div class="form-group form-group-sm">
+											<div class="input-tip">
+												<label class="col-md-3 col-xs-3 col-sm-3 control-label">手机号码：</label>
+												<div class="col-md-5 cl-sm-5 col-xs-5">
+													<input type="text" data-for="mobile" name="relavants[0].mobile" placeholder="非客户本人手机号大数据征信不通过！" maxlength="11" class="form-control required mobile">
+												</div>
+											</div>
+											<div class="input-tip hide">
+												<label class="col-md-3 col-xs-3 col-sm-3 control-label">借款人关系：</label>
+												<div class="col-md-5 cl-sm-5 col-xs-5">
+													<input type="hidden" name="relavants[0].borrowerRelationship" value="1" class="form-control">
+												</div>
+											</div>
+											<div class="input-tip hide">
+												<label class="col-md-3 col-xs-3 col-sm-3 control-label">担保关系：</label>
+												<div class="col-md-5 cl-sm-5 col-xs-5">
+													<input type="hidden" name="relavants[0].guaranteeRelationship" value="1" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="form-group form-group-sm dataUpload" va="001" style="padding-top: 15px;">
+											<div class="col-md-3 fileBox">
+												<!--<button type="button" class="btn btn-primary imgItem"><span>征信文件上传</span>-->
+												<!--</button>-->
+											</div>
+											<ul class="col-md-19 list-inline">
+												<div class="uploadFile">
+													<div class="putImg imgItem card01" data-img="card01" data-remark="0"><span class='addImg'></span></div>
+													<span>身份证人像面照片</span>
+												</div>
+												<div class="uploadFile">
+													<div class="putImg imgItem card02" data-img="card02" data-remark="1"><span class='addImg'></span></div>
+													<span>身份证国徽面照片</span>
+												</div>
+												<div class="uploadFile">
+													<div class="putImg imgItem card03" data-img="card03" data-remark="2"><span class='addImg'></span></div>
+													<span>征信授权书</span>
+												</div>
+												<div class="uploadFile">
+													<div class="putImg imgItem card04" data-img="card04" data-remark="3"><span class='addImg'></span></div>
+													<span>征信授权书签字照</span>
+												</div>
+											</ul>
+											<input type="file" accept="image/*" class="hide">
+											<!--<ul class="col-md-19 list-inline"> </ul>-->
+											<div class="col-md-2 text-right hide">
+												<button type="button" class="btn btn-primary deleted"><span>删除担保人</span>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div id="wifeBox">
+								
+							</div>
+							<div id="partyBox">
+								
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="col-md-24 text-right">
+									<button type="button" id="addParty" class="btn btn-primary"><span>添加担保人</span>
+									</button>
+									<button type="button" class="btn btn-primary" id="save" val="0"><span>提交</span>
+									</button>
+									<button class="btn btn-primary" id="preservation" type="button" val='1'><span>保存</span>
+									</button>
+									<button class="btn btn-primary hide" id="revoke" type="button"><span>撤销</span>
+									</button>
+									<button type="button" id="cancel" class="btn btn-white" ><span>取消</span>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--弹出框组-->
+		<div id="customerChoice" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" type="button" aria-hidden="true" data-dismiss="modal">×</button>
+						<h4 class="modal-title">客户选择</h4>
+					</div>
+					<div class="modal-body">
+						<h4 class="modal-title">查询条件</h4>
+						<form class="form-horizontal" id="userInfo">
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<label class="control-label col-md-4 col-xs-4 col-sm-4">客户名称：</label>
+									<div class="col-md-8 col-xs-8 xol-sm-8">
+										<input type="text" class="form-control" placeholder="请输入客户名称" name="customerName">
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="control-label col-md-4 col-xs-4 col-sm-4">证件号码：</label>
+									<div class="col-md-8 col-xs-8 xol-sm-8">
+										<input type="text" class="form-control" placeholder="请输入证件号码" name="cardNo">
+									</div>
+								</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<label class="control-label col-md-4 col-xs-4 col-sm-4">手机号码：</label>
+									<div class="col-md-8 col-xs-8 xol-sm-8">
+										<input type="text" class="form-control" placeholder="请输入手机号码" maxlength="11" name="mobileNo">
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="control-label col-md-4 col-xs-4 col-sm-4">客户状态：</label>
+									<div class="col-md-8 col-xs-8 xol-sm-8">
+										<select name="customerStatus" class="form-control">
+											<option value="" selected>--请选择--</option>
+											<option value="1">未生效</option>
+											<option value="2">生效</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="form-group">
+									<div class="col-md-24 text-right">
+										<button id="btn-search" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+										</button>
+										<button modal="reset" class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+										</button>
+									</div>
+								</div>
+							</div>
+						</form>
+						<table id="table" data-ajax="dataLoad_1">
+							<thead>
+								<tr>
+									<th data-field="customerName">客户名称</th>
+									<th data-field="customerNo">客户编号</th>
+									<th data-field="cardNo">证件号码</th>
+									<th data-field="cardType" data-formatter="cardType">证件类型 </th>
+									<th data-field="workPhone">单位电话</th>
+									<th data-field="mobile">手机号码</th>
+									<th data-field="status" data-formatter="statuss">客户状态</th>
+									<th data-switchable="false" data-formatter="handle_1" data-events="tableEvent_1">操作</th>
+								</tr>
+							</thead>
+						</table>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 弹出框组 - 主贷人关联 -->
+		<div id="mainCreditId" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" type="button" aria-hidden="true" data-dismiss="modal">×</button>
+						<h4 class="modal-title">主贷人关联选择</h4>
+					</div>
+					<div class="modal-body">
+						<h4 class="modal-title">查询条件</h4>
+						<form class="form-horizontal" id="mainCredit">
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<label class="control-label col-md-4 col-xs-4 col-sm-4">客户名称：</label>
+									<div class="col-md-8 col-xs-8 xol-sm-8">
+										<input type="text" class="form-control" placeholder="请输入客户名称" name="customerName">
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="control-label col-md-4 col-xs-4 col-sm-4">证件号码：</label>
+									<div class="col-md-8 col-xs-8 xol-sm-8">
+										<input type="text" class="form-control" placeholder="请输入证件号码" name="cardNo">
+									</div>
+								</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="form-group">
+									<div class="col-md-24 text-right">
+										<button id="btn-search2" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+										</button>
+										<button modal="reset" class="btn btn-default" type="button"><span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+										</button>
+									</div>
+								</div>
+							</div>
+						</form>
+						<table id="table2" data-ajax="dataLoad_4">
+							<thead>
+							<tr>
+								<th data-field="customerName">客户名称</th>
+								<th data-field="cardNo">证件号码</th>
+								<th data-field="cardType" data-formatter="cardType">证件类型</th>
+								<th data-field="customerManager">登记人</th>
+								<th data-field="inquryBank">调查银行</th>
+								<th data-field="creditStatus">征信状态</th>
+								<th data-field="creditResult">征信结果</th>
+								<th data-field="submitTime">提交时间</th>
+								<th data-field="checkDate">调查日期</th>
+								<th data-switchable="false" data-formatter="handle_4" data-events="tableEvent_4">操作</th>
+							</tr>
+							</thead>
+						</table>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="risk" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" type="button" aria-hidden="true" data-dismiss="modal">×</button>
+						<h4 class="modal-title">风险提醒</h4>
+					</div>
+					<div class="modal-body" style="padding-bottom: 50px;">
+						<table id="table_2" data-ajax="dataLoad_2">
+							<thead>
+								<tr>
+									<th data-switchable="false" data-formatter="handle_2" data-events="tableEvent_2">操作</th>
+									<th data-field="organization">发生机构</th>
+									<th data-field="customerManager">客户经理</th>
+									<th data-field="type">类型 </th>
+									<th data-field="name">姓名</th>
+									<th data-field="number">编号</th>
+									<th data-field="date">发生日期</th>
+									<th data-field="status">状态</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<div class="col-md-24 text-right">
+							<button type="button" class="btn btn-primary" data-dismiss="modal"><span>确定</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="task" class="modal fade bs-example-modal-lg" tabindex="-1">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" type="button" aria-hidden="true" data-dismiss="modal">×</button>
+						<h4 class="modal-title">任务提交</h4>
+					</div>
+					<div class="modal-body" style="padding-bottom: 50px;">
+						<div class="col-md-24 text-left">
+							<label>请选择流转人员&nbsp;&nbsp;&nbsp;&nbsp;</label>
+							<label>后续流程环节：<span id="nextFlowNodeName"></span></label>
+						</div>
+						
+						<table id="table_3" data-ajax="dataLoad_3">
+							<thead>
+								<tr>
+									<th data-radio="true">选择</th>
+									<th data-field="organization">机构名称</th>
+									<th data-field="department">部门</th>
+									<th data-field="userName">姓名 </th>
+									<th data-field="taskCount">当前待办量</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<div class="col-md-24 text-right">
+						    <button class="btn btn-primary loanStart3" type="button"><span>确定</span> </button>
+							<button data-dismiss="modal" class="btn btn-default">取消</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="delGuarantee" class="modal fade bs-example-modal-lg" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" type="button" aria-hidden="true" data-dismiss="modal">×</button>
+						<h4 class="modal-title">删除担保人</h4>
+					</div>
+					<div class="modal-body"> 
+						<h4>确定删除担保人?</h4> 
+					</div>
+					<div class="modal-footer">
+						<div class="col-md-24 text-right">
+							<button class="btn btn-primary delBtn" type="button"><span>确定</span> </button>
+							<button data-dismiss="modal" class="btn btn-default">取消</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="tipMessage" class="modal fade bs-example-modal-lg" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" type="button" aria-hidden="true" data-dismiss="modal">×</button>
+						<h4 class="modal-title">提示</h4>
+					</div>
+					<div class="modal-body">
+						<h4 class="tipCardMessage"></h4>
+					</div>
+					<div class="modal-footer">
+						<div class="col-md-24 text-right">
+							<button class="btn btn-primary" id="addBtn" type="button"><span>确定</span> </button>
+							<button data-dismiss="modal" class="btn btn-default">取消</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 征信提交前先校验四要素 -->
+		<div id="fourCreditElement" class="modal fade bs-example-modal-lg" tabindex="-1">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" type="button" aria-hidden="true" data-dismiss="modal">×</button>
+						<h4 class="modal-title">补充资料</h4>
+					</div>
+					<div class="modal-body" style="padding-bottom: 20px; max-height: 550px; overflow-y: auto">
+						<form id="fourCreditForm" class="form-horizontal">
+						</form>
+					</div>
+					<div class="modal-footer">
+						<div class="col-md-24 text-right">
+							<button type="button" class="btn btn-primary" id="btn_reSubmit"><span>确定提交</span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 四要素提示信息 -->
+		<div id="tipMessage_credit" class="modal fade bs-example-modal-lg" tabindex="-1">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button class="close" type="button" aria-hidden="true" data-dismiss="modal">×</button>
+						<h4 class="modal-title">提示信息</h4>
+					</div>
+					<div class="modal-body">
+						<p class="tipMessage_credit"></p>
+					</div>
+					<div class="modal-footer">
+						<div class="col-md-24 text-right">
+							<button data-dismiss="modal" class="btn btn-default" id="return_btn">返回</button>
+							<button class="btn btn-primary" id="returnModify_btn" type="button"><span>修改</span> </button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+	<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+	<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+	<script src="../../../common/js/mock.js"></script>
+	<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+	<script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=1512011716000"></script>
+	<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+	<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+	<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+	<script src="../../../common/js/LocalResizeIMG.js"></script>
+	<script src="../../../common/js/jquery.values.js"></script>
+	<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+	<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" charset="utf-8">
+	$("head").append([
+		'<script src="../../../common/js/URL.js"><\/script>',
+		'<script src="../../../common/js/iframeCommon.js"><\/script>',
+		'<script src="../../../js/customManage/cheguoCustomer/credit.js"><\/script>'
+	].join(""));
+</script>

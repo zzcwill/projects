@@ -1,0 +1,755 @@
+<link rel="stylesheet" href="../../../css/main.css" />
+<div class="row">
+	<div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+		<div class="">
+			<form id="approvalBudgetInfoForm" class="form-horizontal">
+				<fieldset disabled>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">基本信息</h3>
+						</div>
+						<div class="panel-body">
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">
+										<span class="text-danger">*</span>项目编号：</label>
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="projectNo" placeholder=""
+											  class="form-control" required="" aria-required="true">
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">业务品种：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="businessTypeName"
+							 class="form-control" readonly aria-required="true">
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">金融产品：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="productName"
+							 class="form-control" >
+									</div>
+								</div>
+
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>贷款金额：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="loanAmount" placeholder=""
+											   class="form-control" required="" aria-required="true">
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>贷款期限：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<select name="loanTerm" class="form-control">
+											<option value="1">12期</option>
+											<option value="2">18期</option>
+											<option value="3">24期</option>
+											<option value="4">36期</option>
+											<option value="5">48期</option>
+											<option value="6">60期</option>
+										</select>
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>手续费率(%)：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="handingFee" placeholder=""
+											   class="form-control" required="" aria-required="true">
+									</div>
+								</div>
+
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>是否公牌：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<select name="isPublicLicense" class="form-control">
+											<option value="1">是</option>
+											<option value="2">否</option>
+										</select>
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>公司名称：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="licenseCompany" placeholder=""
+												   class="form-control"
+			   required="" aria-required="true"/>
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">汽车状况类型：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<select name="carType" class="form-control">
+											<option value="1">新车</option>
+											<option value="2">二手车</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">品牌：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="carBrandName"
+							 aria-required="true" class="form-control">
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">车系：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="carMakeName"
+							 aria-required="true" class="form-control">
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">车型：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="carModelName"
+							 aria-required="true" class="form-control">
+									</div>
+								</div>
+							</div>
+							<div class="form-group form-group-sm" id="isSecondCar" style="display: none">
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>复评价格：</label>
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="evaluationPrice" id="evaluationPrice" readonly
+													class="form-control"  aria-required="true"/>
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>最高评估书价格：</label>
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="sellPrice" id="sellPrice" readonly
+											  class="form-control"  aria-required="true"/>
+									</div>
+								</div>
+								<!--<div class="input-tip">
+			<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">是否垫款：</label>
+			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+			<select name="isAdvance" class="form-control">
+			<option value="1">是</option>
+			<option value="2">否</option>
+			</select>
+			</div>
+			</div>-->
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>是否进口车：</label>
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<select name="isImported" class="form-control">
+											<option value="1">是</option>
+											<option value="2">否</option>
+										</select>
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>开票价：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="billingPrice" placeholder=""
+												 class="form-control" required="" aria-required="true"/>
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">首付款：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="downPaymentAmount" placeholder=""
+													  class="form-control" required="" aria-required="true"/>
+									</div>
+								</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">贷款比例（%）：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="loanRatio" placeholder=""
+											  class="form-control" required="" aria-required="true"/>
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>打款方式：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<select name="paymentMethod" class="form-control">
+											<option value="1">全额打款</option>
+											<option value="2">差额打款</option>
+										</select>
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">合作银行：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="coBankName" placeholder=""
+											   class="form-control" required="" aria-required="true"/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">费用信息</h3>
+					</div>
+					<div class="panel-body">
+						<fieldset disabled>
+							<h4 class="section-title">服务费</h4>
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 control-label">按揭手续费：</label>
+									<div class="col-xs-5 col-sm-5 col-md-5">
+										<input type="text" name="guarantyRiskAmount" id="guarantyRiskAmount" class="form-control money">
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 control-label">按揭服务费：</label>
+									<div class="col-xs-5 col-sm-5 col-md-5">
+										<input type="text" name="serviceFee" id="serviceFee" class="form-control money" aria-required="true">
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 control-label">银行利差：</label>
+									<div class="col-xs-5 col-sm-5 col-md-5">
+										<input type="text" name="bankIrsFee" id="bankIrsFee" class="form-control money" aria-required="true">
+									</div>
+								</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 control-label">上牌费：</label>
+									<div class="col-xs-5 col-sm-5 col-md-5">
+										<input type="text" name="licenseFee" id="licenseFee" class="form-control money">
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 control-label">上门调查费：</label>
+									<div class="col-xs-5 col-sm-5 col-md-5">
+										<input type="text" name="doorSurveyFee" id="doorSurveyFee" class="form-control money" aria-required="true">
+									</div>
+								</div>
+
+							</div>
+						   <h4 class="section-title">GPS费用情况</h4>
+						   <div class="form-group form-group-sm">
+						   	<div class="input-tip">
+						   		<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>GPS（台）：</label>
+
+						   		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+						   			<select class="form-control" name="gpsNumber" id="gpsNumber"
+						   			required="required">
+						   			<option value="">--请选择--</option>
+						   			<option value="0">无</option>
+						   			<option value="1" selected>1</option>
+						   			<option value="2">2</option>
+						   		</select>
+						   	</div>
+						   </div>
+						   <div class="input-tip">
+						   	<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">GPS类型：</label>
+						   	<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+						   		<select class="form-control" name="gpsType" id="gpsType">
+						   			<option value="0">--请选择--</option>
+						   			<option value="1">有线</option>
+						   			<option value="2">无线</option>
+						   		</select>
+						   	</div>
+						   </div>
+						   <div class="input-tip">
+						   	<label class="col-xs-3 col-sm-3 col-md-3 control-label">GPS厂家：</label>
+						   	<div class="col-xs-5 col-sm-5 col-md-5">
+						   		<input type="text" name="gpsProducer" id="gpsProducer" class="form-control" aria-required="true">
+						   	</div>
+						   </div>
+						 </div>
+
+						 <div class="form-group form-group-sm">
+						 	<div class="input-tip">
+						 		<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">GPS安装费：</label>
+
+						 		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+						 			<input type="text" name="gpsInstallationFee" id="gpsInstallationFee"
+						 			class="form-control" aria-required="true">
+						 		</div>
+						 	</div>
+						 	<div class="input-tip">
+						 		<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">责信险：</label>
+
+						 		<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+						 			<input type="text" name="liabilityAmount" id="liabilityAmount"
+						 			class="form-control" aria-required="true">
+						 		</div>
+						 	</div>
+						 </div>
+							<h4 class="section-title">暂收费用</h4>
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>第一年保费：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<select class="form-control" name="premiumType" id="premiumType"
+														  required="required">
+											<option value="">--请选择--</option>
+											<option value="1">公司</option>
+											<option value="2">车行</option>
+											<option value="3">客户</option>
+										</select>
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">金额：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="insuranceAmount" id="insuranceAmount"
+													class="form-control" required="" aria-required="true">
+									</div>
+								</div>
+								<div class="input-tip" id="insuranceBox">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">保险公司：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" class="form-control" name="insuranceCompany"
+												  id="insuranceName"/>
+									</div>
+								</div>
+
+
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>是否续保：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<select name="isRenewal" class="form-control" id="isRenewal"
+														required="required">
+											<option value="1" selected>是</option>
+											<option value="2">否</option>
+										</select>
+									</div>
+								</div>
+								<!-- <div class="input-tip">
+			<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>续保押金：</label>
+
+			<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+			<input type="text" name="renewalDeposit" id="renewalDeposit"
+			class="form-control" required="" aria-required="true">
+			</div>
+			</div> -->
+			<div class="input-tip">
+				<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>履约保证金：</label>
+
+				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+					<input type="text" name="pbDeposit" id="pbDeposit" readonly
+										 value="0"
+		   class="form-control" required="required" aria-required="true">
+				</div>
+			</div>
+			<div class="input-tip">
+				<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">上牌抵押押金：</label>
+
+				<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+					<input type="text" name="accountDeposit" id="accountDeposit"
+											  class="form-control" required="" aria-required="true">
+				</div>
+			</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">工本费：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<select class="form-control" name="costType" id="costType">
+											<option value="">--请选择--</option>
+											<option value="1">公司</option>
+											<option value="2">车行</option>
+											<option value="3">客户</option>
+										</select>
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">金额：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="costAmount" id="costAmount"
+											   class="form-control" aria-required="true">
+									</div>
+								</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>预计车辆购置税：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<select class="form-control" name="predictedPurchasetax"
+									   id="predictedPurchasetax" required="required">
+											<option value="">--请选择--</option>
+											<option value="1">公司</option>
+											<option value="2">车行</option>
+											<option value="3">客户</option>
+										</select>
+									</div>
+								</div>
+								<div class="input-tip">
+									<label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">金额：</label>
+
+									<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+										<input type="text" name="purchaseTax" id="purchaseTax"
+												class="form-control" aria-required="true">
+									</div>
+								</div>
+
+
+							</div>
+							<!-- <div class="form-group form-group-sm">
+		   <div class="input-tip">
+		   <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">担保风险金：</label>
+
+		   <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+		   <input type="text" name="guarantyRiskAmount" id="guarantyRiskAmount"
+		   class="form-control" required="" aria-required="true">
+		   </div>
+		   </div>
+		   <div class="input-tip">
+		   <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">服务费：</label>
+
+		   <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+		   <input type="text" name="serviceFee" id="serviceFee"
+		   class="form-control" aria-required="true">
+		   </div>
+		   </div>
+		   </div> -->
+		  
+		   
+		   <h4 class="section-title">代收费用</h4>
+		   <div class="form-group form-group-sm">
+			   <div class="input-tip">
+				   <label class="col-xs-3 col-sm-3 col-md-3 control-label">车行服务费：</label>
+				   <div class="col-xs-5 col-sm-5 col-md-5">
+					   <input type="text" name="agencyFee" id="agencyFee" class="form-control money">
+				   </div>
+			   </div>
+			   <div class="input-tip">
+				   <label class="col-xs-3 col-sm-3 col-md-3 control-label">外包调查费：</label>
+				   <div class="col-xs-5 col-sm-5 col-md-5">
+					   <input type="text" name="outsourceSurveyFee" id="outsourceSurveyFee" class="form-control money" aria-required="true">
+				   </div>
+			   </div>
+
+		   </div>
+		   <!--<div class="form-group form-group-sm">
+		 <div class="input-tip">
+		 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">代收费用1：</label>
+
+		 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+		 <select class="form-control" name="agencyFee1Type"
+		 id="agencyFee1Type">
+		 <option value="">请选择</option>
+		 <option value="1">无</option>
+		 <option value="2">保险手续费</option>
+		 <option value="3">补收印花税</option>
+		 <option value="4">抵押押金（非现金）</option>
+		 <option value="5">短期保费</option>
+		 <option value="6">公证费（非现金）</option>
+		 <option value="7">其他费用</option>
+		 <option value="8">银行中介费（现金）</option>
+		 <option value="9">银行手续费</option>
+		 <option value="10">调查费</option>
+		 </select>
+		 </div>
+		 </div>
+		 <div class="input-tip">
+		 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">金额：</label>
+		 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+		 <input type="text" name="agencyFee1" id="agencyFee1" readonly
+		 value="0"
+		 class="form-control" aria-required="true">
+		 </div>
+		 </div>
+		 <div class="input-tip" id="agencyFee1TypeRadio">
+		 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">加入预收：</label>
+		 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+		 <label class="checkbox-inline">
+		 <input type="radio" name="agencyFee1IsAdd" value="1"> 是
+		 </label>
+		 <label class="checkbox-inline">
+		 <input type="radio" name="agencyFee1IsAdd" value="2"> 否
+		 </label>
+		 </div>
+		 </div>
+
+		 </div>
+		 <div class="form-group form-group-sm">
+		 <div class="input-tip">
+		 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">代收费用2：</label>
+
+		 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+		 <select class="form-control" name="agencyFee2Type"
+		 id="agencyFee2Type">
+		 <option value="">--请选择--</option>
+		 <option value="1">无</option>
+		 <option value="2">保险手续费</option>
+		 <option value="3">补收印花税</option>
+		 <option value="4">抵押押金（非现金）</option>
+		 <option value="5">短期保费</option>
+		 <option value="6">公证费（非现金）</option>
+		 <option value="7">其他费用</option>
+		 <option value="8">银行中介费（现金）</option>
+		 <option value="9">银行手续费</option>
+		 <option value="10">调查费</option>
+		 </select>
+		 </div>
+		 </div>
+		 <div class="input-tip">
+		 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">金额：</label>
+
+		 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+		 <input type="text" name="agencyFee2" id="agencyFee2" readonly
+		 value="0"
+		 class="form-control" required="" aria-required="true">
+		 </div>
+		 </div>
+		 <div class="input-tip" id="agencyFee2TypeRadio">
+		 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">加入预收：</label>
+		 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+		 <label class="checkbox-inline">
+		 <input type="radio" name="agencyFee2IsAdd" value="1"> 是
+		 </label>
+		 <label class="checkbox-inline">
+		 <input type="radio" name="agencyFee2IsAdd" value="2"> 否
+		 </label>
+		 </div>
+		 </div>
+		 </div>
+		 <div class="form-group form-group-sm">
+		 <div class="input-tip">
+		 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">其他费用：</label>
+
+		 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+		 <select class="form-control" name="otherFeeType" id="otherFeeType">
+		 <option value="">--请选择--</option>
+		 <option value="1">无</option>
+		 <option value="2">保险手续费</option>
+		 <option value="3">补收印花税</option>
+		 <option value="4">抵押押金（非现金）</option>
+		 <option value="5">短期保费</option>
+		 <option value="6">公证费（非现金）</option>
+		 <option value="7">其他费用</option>
+		 <option value="8">银行中介费（现金）</option>
+		 <option value="9">银行手续费</option>
+		 <option value="10">调查费</option>
+		 </select>
+		 </div>
+		 </div>
+		 <div class="input-tip">
+		 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">金额：</label>
+
+		 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+		 <input type="text" name="otherFee" id="otherFee" value="0" readonly
+		 class="form-control" aria-required="true">
+		 </div>
+		 </div>
+		 <div class="input-tip" id="otherFeeTypeRadio">
+		 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">加入预收：</label>
+		 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+		 <label class="checkbox-inline">
+		 <input type="radio" name="otherFeeIsAdd" value="1"> 是
+		 </label>
+		 <label class="checkbox-inline">
+		 <input type="radio" name="otherFeeIsAdd" value="2"> 否
+		 </label>
+		 </div>
+		 </div>
+		 </div>-->
+		 <div class="form-group form-group-sm">
+			 <div class="input-tip">
+				 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">费用合计：</label>
+				 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+					 <input type="text" name="totalFee" readonly id="totalFee"
+												  class="form-control number"  aria-required="true">
+				 </div>
+			 </div>
+		 </div>
+		 <div id="yhzx-c1">
+			 <div class="form-group form-group-sm">
+				 <div class="input-tip">
+					 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>提车方式：</label>
+
+					 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+						 <select class="form-control" name="deliveryMethod"
+									required="required">
+							 <option value="">--请选择--</option>
+							 <option value="1">现金</option>
+							 <option value="2">非现金</option>
+						 </select>
+					 </div>
+				 </div>
+				 <div class="input-tip">
+					 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">付款等级：</label>
+
+					 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+						 <select class="form-control" name="paymentLevel">
+							 <option value="">--请选择--</option>
+							 <option value="1">一般</option>
+							 <option value="2">紧急</option>
+						 </select>
+					 </div>
+				 </div>
+				 <div class="input-tip">
+					 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>结算方式：</label>
+
+					 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+						 <select class="form-control" name="settleMethod"
+									required="required">
+							 <option value="">--请选择--</option>
+							 <option value="1">车行结算</option>
+							 <option value="2">个人结算</option>
+							 <option value="3">无需结算</option>
+						 </select>
+					 </div>
+				 </div>
+			 </div>
+			 <div class="form-group form-group-sm">
+				 <div class="input-tip">
+					 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>试算月还款额：</label>
+
+					 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+						 <input type="hidden" name="handingFee"/><!--手续费率-->
+						 <input type="text" name="testedRepaymentAmount" readonly
+						  id="testedRepaymentAmount"
+		class="form-control" aria-required="true">
+					 </div>
+				 </div>
+				 <div class="input-tip">
+					 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>已收金额：</label>
+
+					 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+						 <input type="text" name="collectedAmount" id="collectedAmount"
+												 class="form-control" required="required"
+								  aria-required="true">
+					 </div>
+				 </div>
+				 <div class="input-tip">
+					 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>预收金额：</label>
+
+					 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+						 <input type="text" name="preCollectedAmount" readonly
+						  id="preCollectedAmount" placeholder="首付+费用合计-已收金额"
+								class="form-control" aria-required="true"
+							 required="required">
+					 </div>
+				 </div>
+			 </div>
+		 </div>
+		 <div class="form-group form-group-sm">
+			 <div class="input-tip">
+				 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label" id="yhzx-c">应付金额：</label>
+				 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+					 <input type="text" name="receivableAmount" readonly id="receivableAmount" style="display: none;"
+																				class="form-control number">
+					 <input type="text" name="payableAmount" readonly id="payableAmount"
+													   class="form-control" aria-required="true">
+				 </div>
+
+			 </div>
+			 <div class="input-tip">
+				 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">担保主体：</label>
+
+				 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+					 <input type="text" name="guaranteeCorporationName" readonly
+						 class="form-control" aria-required="true">
+				 </div>
+			 </div>
+			 <div class="input-tip">
+				 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">客户经理：</label>
+
+				 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+					 <input type="text" name="userName" readonly
+						 class="form-control" aria-required="true">
+				 </div>
+			 </div>
+		 </div>
+		 <div class="form-group form-group-sm">
+			 <div class="input-tip">
+				 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">主调查员：</label>
+
+				 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+					 <input type="text" name="mainSignerName" readonly
+						 class="form-control" aria-required="true">
+				 </div>
+			 </div>
+			 <div class="input-tip" id="viceSignerNameC">
+				 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">次调查员：</label>
+
+				 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+					 <input type="text" name="viceSignerName" readonly
+						 class="form-control" aria-required="true">
+				 </div>
+			 </div>
+			 <div class="input-tip">
+				 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">签单日期：</label>
+
+				 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+					 <input type="text" name="signDate" readonly
+						 class="form-control" aria-required="true">
+				 </div>
+			 </div>
+		 </div>
+		 <div class="form-group form-group-sm">
+			 <div class="input-tip">
+				 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span class="text-danger">*</span>合作车行：</label>
+
+				 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+					 <input type="text" class="form-control" name="dealerName"
+											  id="dealerName">
+				 </div>
+			 </div>
+		 </div>
+		 <div class="form-group form-group-sm">
+			 <div class="input-tip">
+				 <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">备注：</label>
+
+				 <div class="col-xs-21 col-sm-21 col-md-21 col-lg-21">
+					 <textarea class="form-control" rows="3" name="remark"></textarea>
+				 </div>
+			 </div>
+		 </div>
+
+						</fieldset>
+
+						<div class="form-group form-group-sm">
+							<div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-center">
+								<button type="button" class="btn btn-primary" id="btn-print-budget">
+									打印预算单
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script src="../../../js/common/commonBudget/budget.js"></script>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="./common/amui.min.css">
+    <script src="./common/zepto.min.js?t=@@hash"></script>
+    <script src="./common/mock-min.js?t=@@hash"></script>
+    <script src="./common/amui.js?t=@@hash"></script>
+    <script src="./common/global.js?t=@@hash"></script>
+    <title>初审结果</title>
+    <style>
+        body {
+            background-color: #fff;
+        }
+        .wapper {
+            padding-top: 140px;
+        }
+        .wapper >div {
+            text-align: center;
+        }
+        img {
+            width: 65px;
+            height: 83px;
+        }
+        .second {
+            margin-top: 20px;
+        }
+        .message {
+            margin: 30px 0 50px 0;
+        }
+        .btn {
+            width:163px;
+            height:38px;
+            line-height: 38px;
+            background:#5179C9;
+            border-radius:19px;
+            color: #fff;
+            margin: 0 auto;
+        }
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="wapper">
+        <div><img id="resultImg" src="./images/weBank/wait.png" alt=""></div>
+        <div class="second">倒计时：<span class="seconds">10</span>s</div>
+        <div class="message">申请已提交，请耐心等待</div>
+        <div class="btn hide">确定</div>
+    </div>
+    <script src="./js/weBankExamineResult.js"></script>
+</body>
+</html>

@@ -1,0 +1,677 @@
+<div class="row">
+    <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+        <div class="">
+            <form id="approvalBaseInfoForm" class="form-horizontal ibox-content">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">借款人信息</h3>
+                    </div>
+                    <div class="panel-body">
+                        <fieldset disabled>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>客户名称：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="customerName" placeholder="请输入客户名称"
+                                               class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">客户编号：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="customerNo" readonly placeholder="请输入客户编号"
+                                               class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">建档日期：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="registerDate" readonly class="form-control date"
+                                               required="" aria-required="true" placeholder="请输入建档日期">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">证件类型：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select name="cardType" class="form-control" disabled>
+                                            <option value="">--请选择--</option>
+                                            <option value="1">身份证</option>
+                                            <option value="2">军官证</option>
+                                            <option value="3">侨胞证</option>
+                                            <option value="4">外籍人士</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">证件号码：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="cardNo" readonly class="form-control" required=""
+                                               aria-required="true" placeholder="请输入证件号码">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">性别：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select name="sex" class="form-control" disabled>
+                                            <option value="">--请选择--</option>
+                                            <option value="1">男</option>
+                                            <option value="0">女</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>出生日期：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="birthday" readonly class="form-control date"
+                                               required="" aria-required="true" placeholder="请输入出生日期">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">年龄：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="age" readonly class="form-control" required=""
+                                               aria-required="true" placeholder="请输入年龄"/>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">婚姻状况：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select name="maritalStatus" class="form-control" disabled
+                                                aria-required="true">
+                                            <option value="">--请选择--</option>
+                                            <option value="1">已婚</option>
+                                            <option value="2">未婚</option>
+                                            <option value="3">离异</option>
+                                            <option value="4">丧偶</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>手机号码：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="mobilePhone" placeholder="请输入手机号码" class="form-control"
+                                               required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>家庭电话：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="homePhone" placeholder="请输入家庭电话"
+                                               class="form-control phoneAndNull" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">籍贯：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="nativePlace" placeholder="请输入籍贯"
+                                               class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>最高学历：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select name="education" class="form-control">
+                                            <option value="">--请选择--</option>
+                                            <option value="1">初中及以下</option>
+                                            <option value="2">高中</option>
+                                            <option value="3">大专</option>
+                                            <option value="4">本科</option>
+                                            <option value="5">硕士及以上</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>住房状况：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select name="housingStatus" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">自有商品住房（1套）</option>
+                                            <option value="7">自有商品住房（2套及以上）</option>
+                                            <option value="2">自有厂房或者商铺</option>
+                                            <option value="3">自建房</option>
+                                            <option value="4">父母住房</option>
+                                            <option value="5">租借房</option>
+                                            <option value="6">其他</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip" id="mortgageRepayment" style="display: none;">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"></label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="mortgageRepayment" class="form-control"
+                                               required="required"
+                                               aria-required="true" placeholder=""/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>职业：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="profession" placeholder="请输入职业"
+                                               class="form-control" required="" aria-required="true"/>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>所属行业：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select name="industry" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">邮电通讯行业</option>
+                                            <option value="2">房地产行业</option>
+                                            <option value="3">交通运输行业</option>
+                                            <option value="4">法律/司法行业</option>
+                                            <option value="5">文化/娱乐/体育行业</option>
+                                            <option value="6">医疗行业</option>
+                                            <option value="7">计算机/网络行业</option>
+                                            <option value="8">商业贸易行业</option>
+                                            <option value="9">财政行业</option>
+                                            <option value="10">税务行业</option>
+                                            <option value="11">咨询行业</option>
+                                            <option value="12">社会服务行业</option>
+                                            <option value="13">旅游/饭店行业</option>
+                                            <option value="14">部队系统</option>
+                                            <option value="15">证券行业</option>
+                                            <option value="16">银行业</option>
+                                            <option value="17">保险业</option>
+                                            <option value="18">其他金融行业</option>
+                                            <option value="19">采矿业</option>
+                                            <option value="20">建筑业</option>
+                                            <option value="21">工业</option>
+                                            <option value="22">制造业</option>
+                                            <option value="23">水电气供应</option>
+                                            <option value="24">机关团体</option>
+                                            <option value="25">农林牧渔</option>
+                                            <option value="27">汽修</option>
+                                            <option value="26">其它</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>个人月收入：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select name="monthlyIncome" class="form-control">
+                                            <option value="">--请选择--</option>
+                                            <option value="1">1-4999</option>
+                                            <option value="2">5000-9999</option>
+                                            <option value="3">10000-14999</option>
+                                            <option value="4">15000-19999</option>
+                                            <option value="5">2万以上</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>工作单位：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="companyName" placeholder="请输入工作单位"
+                                               class="form-control" required="" aria-required="true"/>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>单位电话：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="companyPhone" placeholder="请输入单位电话"
+                                               class="form-control phoneAndNull" required="" aria-required="true"/>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>公积金：</label>
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select name="reservedFunds" class="form-control">
+                                            <option value="">--请选择--</option>
+                                            <option value="1">无</option>
+                                            <option value="2">1-500</option>
+                                            <option value="3">501-1000</option>
+                                            <option value="4">1001-1500</option>
+                                            <option value="5">1501-2000</option>
+                                            <option value="6">2001-2500</option>
+                                            <option value="7">2501-3000</option>
+                                            <option value="8">3000以上</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>单位地址（省）：</label>
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="companyAddressPname" placeholder="请输入单位地址（省）"
+                                               class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">市/区：</label>
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="companyAddressCname" placeholder="请输入市/区"
+                                               class="form-control" readonly>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">市/区/县：</label>
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="companyAddressRname" placeholder="请输入市/区/县"
+                                               class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label"><span
+                                            class="text-danger">*</span>详细地址：</label>
+
+                                    <div class="col-xs-13 col-sm-13 col-md-13 col-lg-13">
+                                        <input type="text" name="companyAddressDetail" placeholder="请输入详细地址"
+                                               class="form-control" required="" aria-required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>家庭地址（省）：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input readonly type="text" name="homeAddressPname" placeholder="请输入家庭地址（省）"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">市/区：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input readonly type="text" name="homeAddressCname" placeholder="请输入市/区"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">市/区/县：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input readonly type="text" name="homeAddressRname" placeholder="请输入市/区/县"
+                                               class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">详细地址：</label>
+
+                                <div class="col-xs-13 col-sm-13 col-md-13 col-lg-13">
+                                    <input type="text" name="homeAddressDetail" readonly
+                                           class="form-control" required="" aria-required="true" placeholder="请输入详细地址"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                        class="text-danger">*</span>上门地址（省）：</label>
+
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    <input readonly type="text" name="visitAddressPname" class="form-control"
+                                           placeholder="请输入上门地址（省）">
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">市/区：</label>
+
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    <input readonly type="text" name="visitAddressCname" class="form-control"
+                                           placeholder="请输入市/区">
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">市/区/县：</label>
+
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    <input readonly type="text" name="visitAddressRname" class="form-control"
+                                           placeholder="请输入市/区/县">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">上门地址：</label>
+
+                                <div class="col-xs-13 col-sm-13 col-md-13 col-lg-13">
+                                    <input type="text" name="visitAddressDetail" readonly
+                                           class="form-control" required="" aria-required="true" placeholder="请输入上门地址"/>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3  text-right">
+                                    <button type="button" class="btn btn-primary" id="getPos">查看位置</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <fieldset disabled>
+                            <div class="input-tip">
+                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                        class="text-danger">*</span>是否代购：</label>
+
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    <select class="form-control" name="isAgency" disabled>
+                                        <option value="">--请选择--</option>
+                                        <option value="1">是</option>
+                                        <option value="2">否</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">实际用车人：</label>
+
+                                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    <input type="text" name="realCarOwner" readonly
+                                           class="form-control" required="" aria-required="true"
+                                           placeholder="请输入实际用车人"/>
+                                </div>
+                            </div>
+
+							<div class="input-tip">
+								<label class="col-md-3 col-xs-3 col-sm-3 control-label">
+									<span class="text-danger">*</span>驾照情况：
+								</label>
+								<div class="col-md-5 cl-sm-5 col-xs-5">
+									<select name="driverLicence" class="form-control required">
+                                        <option value="" selected="">--请选择--</option>
+                                        <option value="2">主贷人有驾照</option>
+                                        <option value="3">配偶有驾照</option>
+                                        <option value="4">父母/子女有驾照</option>
+                                        <option value="5">非直系担保人有驾照</option>
+                                        <option value="6">主贷人通过科目一及以下考试</option>
+                                        <option value="7">主贷人通过科目二考试</option>
+                                        <option value="8">主贷人通过科目三及以上考试</option>
+                                        <option value="1">主贷人或担保人无驾照</option>
+									</select>
+								</div>
+							</div>
+                            </fieldset>
+                        </div>
+                        <h4 class="section-title">证照识别信息</h4>
+                        <div class="form-group form-group-sm">
+                            <fieldset disabled>
+                                <div class="">
+                                    <div class="input-tip">
+                                        <div class="col-md-4 col-xs-4 col-sm-4 text-center">
+                                            <div id="filePath"></div>
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <div class="col-md-4 col-xs-4 col-sm-4 text-center">
+                                            <div id="faceUrl"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-16 cl-sm-16 col-xs-16">
+                                    <div class="input-tip">
+                                        <label class="col-md-4 col-xs-4 col-sm-4 control-label">相似度(%)：</label>
+                                        <div class="col-md-8 cl-sm-8 col-xs-8">
+                                            <input type="text" name="similarityDegreeVo" placeholder="请输入相似度" class="form-control"  />
+                                        </div>
+                                    </div>
+                                    <div class="input-tip">
+                                        <label class="col-md-4 col-xs-4 col-sm-4 control-label">识别时间：</label>
+                                        <div class="col-md-8 cl-sm-8 col-xs-8">
+                                            <input type="text" name="faceCompareTime" placeholder="请输入相似度" class="form-control"  />
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="input-tip" style="margin-top: 10px">
+                                        <label class="col-md-4 col-xs-4 col-sm-4 control-label">识别结果：</label>
+                                        <div class="col-md-20 cl-sm-20 col-xs-20">
+                                            <textarea name="result" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <fieldset disabled>
+                    <div class="panel panel-default" id="spousePanel" style="display:none">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">配偶信息</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">配偶姓名：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="spouseName" placeholder="请输入配偶姓名"
+                                               class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">配偶证件类型：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select name="spouseCardType" class="form-control">
+                                            <option value="">--请选择--</option>
+                                            <option value="1">身份证</option>
+                                            <option value="2">军官证</option>
+                                            <option value="3">侨胞证</option>
+                                            <option value="4">外籍人士</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">配偶证件号码：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="spouseCardNo" placeholder="请输入配偶证件号码"
+                                               class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>配偶手机号码：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="spouseMobilePhone" placeholder="请输入配偶手机号码"
+                                               class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>配偶户籍地址：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="spousePermantAddress" placeholder="请输入配偶户籍地址"
+                                               class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>配偶公积金：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select name="spouseReservedFunds" class="form-control">
+                                            <option value="">--请选择--</option>
+                                            <option value="1">无</option>
+                                            <option value="2">1-500</option>
+                                            <option value="3">501-1000</option>
+                                            <option value="4">1001-1500</option>
+                                            <option value="5">1501-2000</option>
+                                            <option value="6">2001-2500</option>
+                                            <option value="7">2501-3000</option>
+                                            <option value="8">3000以上</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>配偶工作单位：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                        <input type="text" name="spouseCompanyName" placeholder="请输入配偶工作单位"
+                                               class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>配偶单位电话：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="spouseCompanyPhone" placeholder="请输入配偶单位电话"
+                                               class="form-control phoneAndNull"
+                                               required="" aria-required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>配偶单位地址（省/直辖市）：</label>
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" class="form-control" id="province_3_name"
+                                               name="spouseCompanyAddressPname" placeholder="请输入配偶单位地址（省/直辖市）">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">市/区：</label>
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" class="form-control" id="city_3_name"
+                                               name="spouseCompanyAddressCname" placeholder="请输入市/区">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label">市/区/县：</label>
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" class="form-control" id="area_3_name"
+                                               name="spouseCompanyAddressRname" placeholder="请输入市/区/县">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>详细地址：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <input type="text" name="spouseCompanyAddress" placeholder="请输入详细地址"
+                                               class="form-control" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3  control-label"><span
+                                            class="text-danger">*</span>配偶月收入：</label>
+
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select name="spouseMonthlyIncome" class="form-control">
+                                            <option value="">--请选择--</option>
+                                            <option value="1">1-4999</option>
+                                            <option value="2">5000-9999</option>
+                                            <option value="3">10000-14999</option>
+                                            <option value="4">15000-19999</option>
+                                            <option value="5">2万以上</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">紧急联系人</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table id="table_contacter" data-ajax="table_contacter">
+                            <thead>
+                            <tr>
+                                <th data-field="emergencyContact">紧急联系人</th>
+                                <th data-field="mobilePhone">紧急联系电话</th>
+                                <th data-field="relationship" data-formatter="relationship">关系</th>
+                                <th data-field="contactAddress">地址</th>
+                                <th data-field="isCarUser" data-formatter="isNo">是否实际用车</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mapModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">地图</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        预计上门地址：
+                        <img src="./../../../images/red_icon.png" alt=""
+                             style="width: 20px; height:20px; vertical-align: bottom;">
+                    </div>
+                    <div class="col-md-6">
+                        实际签单照片位置：
+                        <img src="./../../../images/picture_icon.png" alt=""
+                             style="width: 20px; height:20px; vertical-align: bottom;">
+                    </div>
+                </div>
+                <p></p>
+                <div id="map" style="height:400px;width:100%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../js/common/commonBaseinfo/baseinfo.js"></script>

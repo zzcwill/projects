@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css"/>
+    <title>资产包查询</title>
+  </head>
+</html>
+<body class="gray-bg">
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+        <div class="ibox float-e-margins">
+          <div class="ibox-content">
+          	<div class="page-header">
+              <h3 class="text-center">资产包查询</h3>
+            </div>
+            <form id="searchForm" class="form-horizontal">
+              <div class="form-group form-group-sm">
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">资产包编号：
+                  </label>
+                  <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <input type="text" name="assetPackageNo" placeholder="请输入资产包编号" class="form-control">
+                  </div>
+                </div>
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">资产包状态：
+                  </label>
+                  <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <select name="status" class="form-control">
+                      <option value="" selected>--请选择--</option>
+                      <!--<option value="1">待发包</option>-->
+                      <option value="2" selected>融资中</option>
+                      <option value="3">已失效</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-center">
+                  <button type="button" class="btn btn-primary" id="btn-search" modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                  </button>
+                  <button type="button" class="btn btn-white" modal="reset"><span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="ibox float-e-margins">
+          <div class="ibox-content">
+            <table id="table" data-toggle="table" data-ajax="dataLoad_1">
+              <thead>
+                <tr>
+                  <th data-field="assetPackageNo">资产包编号</th>
+                  <th data-field="coCompanyName">合作单位</th>
+                  <th data-field="assetPackageAmount">资产包金额</th>
+                  <th data-field="assetBalanceAmount" data-formatter="switchColor">资产余额</th>
+                  <th data-field="startTime">开始日期</th>
+                  <th data-field="endTime">结束日期</th>
+                  <th data-field="assetAccumulatedAmount" data-formatter="assetComount">累计使用资产</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24" style="padding-bottom: 20px; background-color: #fff">
+            <div class="form-group form-group-sm">
+              <fieldset disabled>
+                <form id="getForm" class="form-horizontal">
+                  <div class="input-tip">
+                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">资产包金额合计:</label>
+                    <div class="col-md-5 col-xs-5 col-sm-5">
+                      <input type="text" name="assetPackageAmountTotal" class="form-control"/>
+                    </div>
+                  </div>
+                  <div class="input-tip">
+                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">资产余额合计</label>
+                    <div class="col-md-5 col-xs-5 col-sm-5">
+                      <input type="text" name="assetBalanceAmountTotal" class="form-control"/>
+                    </div>
+                  </div>
+                  <div class="input-tip">
+                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">累计使用资产合计</label>
+                    <div class="col-md-5 col-xs-5 col-sm-5">
+                      <input type="text" name="assetAccumulatedAmountTotal" class="form-control"/>
+                    </div>
+                  </div>
+                </form>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+        <div class="ibox float-e-margins hide" id="tablebox">
+
+          <div class="ibox-content">
+            <form id="listSearchForm" class="form-horizontal">
+              <div class="form-group form-group-sm">
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">客户名称：
+                  </label>
+                  <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <input type="text" name="customerName" placeholder="请输入客户名称" class="form-control">
+                  </div>
+                </div>
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">证件号码：
+                  </label>
+                  <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <input type="text" class="form-control" name="cardNo" placeholder="请输入证件号码">
+                  </div>
+                </div>
+                <div class="input-tip">
+                <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">状态：
+                </label>
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                  <select name="assetsPackageStatus" class="form-control" id="assetsPackageStatus">
+                    <option value="">全部</option>
+                    <option value="1" selected>生效中</option>
+                    <option value="2">已过期</option>
+                  </select>
+                </div>
+              </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-center">
+                  <button type="button" class="btn btn-primary" id="btnSearch" modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                  </button>
+                  <button type="button" class="btn btn-white" modal="reset"><span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div role="tabpanel">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist" style="position:relative">
+                    <li role="presentation" class="active">
+                        <a href="#home" aria-controls="home" role="tab" data-toggle="tab">生效</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#tab" aria-controls="tab" role="tab" data-toggle="tab">过期</a>
+                    </li>
+                  <button type="button" class="btn btn-primary" id="exportBtn" style="position: absolute; right: 0; top: -6px;"><span>&nbsp;导出&nbsp;</span>
+                  </button>
+                </ul>
+                <!-- Tab panes -->
+                <p></p>
+                <div class="tab-content list">
+
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                      <table id="table2" data-ajax="dataLoad_2">
+                        <thead>
+                          <tr>
+                            <!-- <th data-field="assetNo">资产编号</th> -->
+                            <th data-field="customerName">客户名称</th>
+                            <th data-field="cardType" data-formatter="cardType">证件类型</th>
+                            <th data-field="cardNo">证件号码</th>
+                            <th data-field="orgName" data-formatter="orgName">经办机构</th>
+                            <th data-field="assetValue">资产金额</th>
+                            <th data-field="loanTerm" data-formatter="loanTerm">贷款期限</th>
+                            <th data-field="dealerPaymentDate">公司付款日期</th>
+                            <th data-field="outPaymentDate">银行放款日期</th>
+                            <th data-field="assetsPackageStatus" data-formatter="assetsPackageStatus">状态</th>
+                            <th data-field="payState">支付状态</th>
+                            <th data-switchable="false" data-formatter="handle" data-events="tableEvent">操作</th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="tab">
+                      <table id="table3" data-ajax="dataLoad_3">
+                        <thead>
+                          <tr>
+                            <!-- <th data-field="assetNo">资产编号</th> -->
+                            <th data-field="customerName">客户名称</th>
+                            <th data-field="cardType" data-formatter="cardType">证件类型</th>
+                            <th data-field="cardNo">证件号码</th>
+                            <th data-field="orgName" data-formatter="orgName">经办机构</th>
+                            <th data-field="assetValue">资产金额</th>
+                            <th data-field="loanTerm" data-formatter="loanTerm">贷款期限</th>
+                            <th data-field="dealerPaymentDate">公司付款日期</th>
+                            <th data-field="outPaymentDate">银行放款日期</th>
+                            <th data-field="assetsPackageStatus" data-formatter="assetsPackageStatus">状态</th>
+                            <th data-field="payState">支付状态</th>
+                            <th data-switchable="false" data-formatter="handle" data-events="tableEvent">操作</th>
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=1512011716000"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $("head").append([
+    '<script src="../../../common/js/URL.js"><\/script>',
+    '<script src="../../../common/js/iframeCommon.js"><\/script>',
+    '<script src="../../../js/assetManage/assetPackageQuery/index.js"><\/script>'
+].join(""));
+</script>

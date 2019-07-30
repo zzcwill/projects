@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="./common/amui.min.css">
+    <script src="./common/zepto.min.js?t=@@hash"></script>
+    <script src="./common/global.js?t=@@hash"></script>
+    <title>合同签约</title>
+    <style type="text/css">
+        a{ color: #2772ff; border: none;}
+        #page{ padding-bottom: 60px;}
+        #page .am-list{ background: #fff; padding: 0; margin: 10px 0;}
+        #page .am-list-item {
+            background: none;
+            padding:0;
+            margin: 0 15px;
+            border-bottom: 1px solid #ebebeb;
+            font-size: 14px;
+        }
+        #page .am-list-item:last-child{ border-bottom: none}
+        .am-list:not([am-version]) .am-list-item .am-list-title{ line-height: 44px;}
+        .am-list:not([am-version]) .am-list-item .am-list-extra{ color: #666}
+        .contractCont{ padding: 5px 15px; font-size:14px;}
+        .agreeContract label{ display: inline-block; margin-bottom: 10px; color: #999; font-size: 12px;}
+        .agreeContract input { margin-right: 5px; vertical-align: middle;}
+        #contractList li{ padding: 3px 0}
+        #submit{ position: fixed; bottom: 0; left: 0; height: 58px; width: 100%; background-color: #fff}
+        .submitCont{padding: 10px 20px;}
+        .getIdentifyingCode{ height: 44px; line-height: 44px;background-color: #f2f2f2; position: relative}
+        .getIdentifyingCode input{ border:none; background: none; border-radius: inherit;}
+        .getIdentifyingCode input.fillIdentifyingCode{ padding: 0 10px; background-color: #f2f2f2}
+        .getIdentifyingCode .btn_getIdentifyingCode{ position: absolute; right:0; top: 0; z-index: 1; line-height: 44px; width: 120px; text-align: center; background: #ff5a37; color: #fff; font-size: 14px;}
+        .getIdentifyingCode .activeTime{ background-color: #ccc;}
+        .btn_submit, .btn_toSubmit{ border-radius: 4px; height: 38px; line-height: 38px; text-align: center; background-color: #ccc; color: #fff; font-size: 16px;}
+        .activeBtn{  background-color: #ff5a37; color: #fff;}
+        .contractCheckBox{ background: url(images/selectBtn.png) no-repeat 0 -12px; background-size: 12px 24px; width: 12px; height: 12px; margin-right: 5px; display: inline-block; vertical-align: middle}
+        .activeCheckbox{ background-position: 0 0;}
+        .hide{ display: none}
+        .layer_identifyCode{ position: fixed; left: 0; top: 0; width: 100%; height: 100%;}
+        .layer_black{ background-color: #666; opacity: 0.6; position: absolute; left: 0; top: 0;width: 100%; height: 100%;}
+        .indentifyTitle{ border-bottom: 1px solid #ebebeb; line-height: 44px; color: #333; font-size: 18px; text-align: center; position: relative}
+        .closeIndentify{ position: absolute; right: 0; top: 0; width: 44px; height: 44px; background: url(images/close.png) no-repeat center center; background-size: 12px 12px;}
+        .layer_identifyCont{ background-color: #fff; border-radius: 8px; width: 90%; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%)}
+        .layer_identifyConter{ padding: 18px 15px;}
+        .btn_toSubmit{ margin-top: 13px; background-color: #ff5a37; color: #fff; line-height: 44px; height: 44px;}
+        .layer_tip{ z-index: 10; background-color: #000; opacity: 0.8; border-radius: 8px; color: #fff; position: absolute; left: 50%; top: 50%; max-width: 80%; padding: 12px 15px; transform: translate(-50%, -50%)}
+        .errorTip{ color: #ff0000; font-size: 12px; padding-top: 5px;}
+        .tel{background: url(images/phone.png) no-repeat 0 0; background-size: 20px 20px; width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-left: 5px;}
+        .layer_black_loading{ position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: 90; background: rgba(0, 0, 0, 0.6)}
+    </style>
+    <div id="page" class="">
+        <div am-mode="flat chip 43px" class="am-list">
+            <div class="am-list-body">
+                <div class="am-list-item">
+                    <div class="am-list-title">姓名</div>
+                    <div data-name="customerName" class="am-list-extra"></div>
+                </div>
+                <div class="am-list-item">
+                    <div class="am-list-title">身份证</div>
+                    <div data-name="cardNo" class="am-list-extra"></div>
+                </div>
+                <div class="am-list-item">
+                    <div class="am-list-title">手机号</div>
+                    <div data-name="mobilePhone" class="am-list-extra"></div>
+                </div>
+                <div class="am-list-item">
+                    <div class="am-list-title">贷款编号</div>
+                    <div data-name="projectNo" class="am-list-extra"></div>
+                </div>
+                <div class="am-list-item">
+                    <div class="am-list-title">汽车信息</div>
+                    <div data-name="carModelName" class="am-list-extra" style="white-space: pre-wrap; line-height: 24px; padding-left: 10px"></div>
+                </div>
+                <div class="am-list-item">
+                    <div class="am-list-title">汽车价格</div>
+                    <div class="am-list-extra"><span data-name="billingPrice"></span>元</div>
+                </div>
+                <div class="am-list-item">
+                    <div class="am-list-title">贷款期数</div>
+                    <div data-name="loanTerm" data-formatter="loanTerm" class="am-list-extra"></div>
+                </div>
+                <div class="am-list-item">
+                    <div class="am-list-title">客户经理</div>
+                    <div class="am-list-extra"><span data-name="userName"></span><a href="tel:" id="tel" class="tel"></a></div>
+                </div>
+                <div class="am-list-item">
+                    <div class="am-list-title">签约银行</div>
+                    <div data-name="coBankName" class="am-list-extra"></div>
+                </div>
+            </div>
+        </div>
+        <div am-mode="flat chip 43px" class="contractCont">
+            <div class="agreeContract">
+                <label id="contractCheckBox"><span class="contractCheckBox"></span>本人已阅读并同意签署以下相关合同</label>
+                <span id="contractList"></span>
+            </div>
+        </div>
+    </div>
+    <div id="submit">
+        <div class="submitCont">
+            <div class="btn_submit" id="btn_submit">确定</div>
+        </div>
+    </div>
+    <div class="layer_identifyCode hide" id="getIdentifyingCode">
+        <div class="layer_black"></div>
+        <div class="layer_identifyCont">
+            <div class="indentifyTitle">输入验证码<span class="closeIndentify"></span> </div>
+            <div class="layer_identifyConter">
+                <div class="getIdentifyingCode">
+                    <input type="text" class="fillIdentifyingCode" name="checkCode" id="checkCode" placeholder="请输入验证码" maxlength="6"><div class="btn_getIdentifyingCode" id="getTime">获取验证码</div>
+                </div>
+                <p class="errorTip"></p>
+                <div class="btn_toSubmit">提交</div>
+            </div>
+        </div>
+    </div>
+    <div class="layer_tip hide" id="layer_tip"></div>
+    <div class="layer_black_loading hide"></div>
+</head>
+</html>
+<script src="./common/jquery.values.js"></script>
+<script src="./js/contractAward.js"></script>

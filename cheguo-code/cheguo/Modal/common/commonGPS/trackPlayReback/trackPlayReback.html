@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轨迹回放</title>
+    <link rel="stylesheet" href="../../../../common/css/map.css">
+    <!--<link rel="stylesheet" href="../../../../common/plugs/datepicker/css/foundation.min.css">-->
+    <link rel="stylesheet" href="../../../../common/plugs/datepicker/css/foundation-datepicker.min.css">
+    <link rel="stylesheet" href="./trackPlayReback.css">
+    <link rel="stylesheet" href="../../../../common/plugs/layer/skin/layer.css">
+
+</head>
+<body class="gray-bg">
+<div class="contain">
+    <section class="track-list" id="list"></section>
+    <section class="track-detail">
+        <header class="track-detail-header">
+            <div class="track-info" id="info"></div>
+        </header>
+        <div class="controller">
+            <div class="date-choose">
+                <input type="text" class="date readonly" name="startTime" placeholder="请选择时间" readonly>
+                <input type="text" class="date readonly" name="endTime" placeholder="请选择时间" readonly>
+                <button type="button" class="btn" id="getPoint">确定</button>
+            </div>
+            <div class="play-control">
+                <div class="play"></div>
+                <div class="play-line">
+                    <div class="play-line-circle" id="play_circle"></div>
+                </div>
+                <div class="play-time">
+                    <span class="play-time-finished" id="played">00:00:00</span>
+                    <span>/</span>
+                    <span class="play-time-all" id="allTime">00:00:00</span>
+                </div>
+            </div>
+            <div class="play-speed">
+                <ul id="speed" class="clearFix">
+                    <li data-speed="1" class="active">1x</li>
+                    <li data-speed="2">2x</li>
+                    <li data-speed="4">4x</li>
+                    <li data-speed="8">8x</li>
+                </ul>
+            </div>
+        </div>
+        <aside class="address">
+            <ul class="address-list" id="address_list">
+
+            </ul>
+        </aside>
+        <div class="show-button" id="showButton"></div>
+        <div class="track-detail-map" id="map"></div>
+    </section>
+</div>
+</body>
+<script src="../../../../common/js/jquery-2.1.1.min.js"></script>
+<script src="../../../../common/plugs/layer/layer.js"></script>
+<script src="../../../../common/plugs/datepicker/js/foundation-datepicker.js"></script>
+<script src="../../../../common/plugs/datepicker/js/locales/foundation-datepicker.zh-CN.js"></script>
+<script src="http://api.map.baidu.com/api?v=2.0&amp;ak=1bG5NEsIqXGmgmmjIK87H00k&amp;s=1"></script>
+<script src="../../../../common/plugs/layer/layer.js"></script>
+<script src="../../../../common/js/mock.js"></script>
+<script src="../../../../common/component/chunk.js"></script>
+<script src="../../../../js/common/commonGPS/trackPlayReback/trackPlayReback.js"></script>
+</html>

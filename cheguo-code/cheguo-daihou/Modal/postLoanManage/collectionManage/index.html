@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../common/css/style.min.css" />
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a" />
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css" />
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.css" />
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-select-1.12.1/dist/css/bootstrap-select.min.css" />
+    <title>催收管理</title>
+    <style>
+        td{ position: relative}
+        .fixed-table-container .fixed-table-body-columns .open .dropUp_menu{ top: inherit; bottom:30px;}
+        .open .btn .dropUp{ transform: rotate(180deg)}
+        .ibox .open .currentDropMenu{ left:0; right:auto}
+        .colored{
+            color:#fff;
+            width: 29px;
+            height: 19px;
+            line-height: 19px;
+            padding-left: 5px;
+            border-radius: 0px 10px 10px 0;
+            position: absolute;
+            left: 0px;
+            top: 1px;
+        }
+        .colored .dropdown-menu a{color:#333;}
+        .N0{background-color: #85ceee !important;  }
+        .N1{background-color: #8dd028 !important;  }
+        .N2{background-color: #ecd21b !important;  }
+        .N3{background-color: #f78610 !important;  }
+        .N4{background-color: #e63627 !important;  }
+        .NA{background-color: #FF6600 !important;  }
+        .NB{background-color: #CC0000 !important;  }
+        .tip_overdue span span{ padding:0 15px 0 0px;}
+        .tip_overdue p{ display:inline-block; padding:0 3px 0 0px;}
+        .tip_overdue .fistNodeP{ padding-right:10px;}
+        .tip_overdue span>.n1{ color:#8dd028}
+        .tip_overdue span>.n2{ color:#ecd21b}
+        .tip_overdue span>.n3{ color:#f78610}
+        .tip_overdue span>.n4{ color:#e63627}
+        .tip_overdue span>.na{ color:#FF6600}
+        .tip_overdue span>.nb{ color:#CC0000}
+        .tip_overdue span>.loanColor{ color:#85ceee}
+        .fixed-table-container tbody td:first-child{ position: relative}
+        .fixed-table-body-columns .colored{ z-index: 101}
+        .collapsed .glyphicon-chevron-up {
+            transform: rotate(180deg)
+        }
+
+        /* 贷款机构样式start */
+        .treeBankListBox{
+            position: relative;
+        }
+        .treeBankListBox .treeBankList{
+            position:absolute;
+            top:30px;
+            left:0;
+            right:0;
+            z-index:1000;
+            background-color:#fff;
+        }
+        .treeBankListBox .treeBankList .bankSelect{
+            height:150px;
+            border:1px solid rgb(229, 230, 231);
+            border-top:none;
+        }
+        .treeBankListBox .treeBankList .bankSelect .bankTip{
+            line-height:30px;
+            text-indent:20px;
+        }
+        .treeBankListBox .treeBankList .bankSelect2{
+            height:36px;
+        }    
+        .treeBankListBox .treeBankList .bankSelect2 .bankTip2{
+            text-indent:0;
+            text-align:center;
+        }
+        .treeBankListBox .treeBankList .bankSelect2 .bankTip2 button{
+            margin-top:4px;
+            padding:3px 6px;
+        }     
+
+        .treeBankListBox .treeBankList .bankSelect ul{
+            padding-left:0;
+            height:120px;
+            background-color:#fff;
+            border:1px solid rgb(229, 230, 231);
+            border-left:none;
+            border-right:none;
+            overflow-y:auto;
+        }
+        .treeBankListBox .treeBankList ul li{
+            list-style:none;
+            color: inherit;
+            height:27px;
+            line-height: 27px;
+            text-align: left;
+            font-weight: 400;                                                        
+        }
+        .treeBankListBox .treeBankList ul li:hover{
+            color:#999;
+            background-color:#f5f5f5;
+        }
+        .treeBankListBox .treeBankList ul li .text{
+            float: left;
+            margin-left:20px;
+        }
+        .treeBankListBox .treeBankList ul li .glyphicon{
+            float:right;
+            margin:5px 20px 0 0;
+        }
+        /* 贷款机构样式end */        
+    </style>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-md-24 col-xs-24 col-sm-24">
+
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#alldo" data-toggle="tab">全量业务</a></li>
+                            <li id="todoMenu"><a href="#todo" data-toggle="tab">当前逾期贷款</a></li>
+                            <li id="doneMenu"><a href="#done" data-toggle="tab">历史逾期贷款</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <p></p>
+                            <div id="alldo" class="tab-pane active">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-content" style="border-style: none; padding-top: 0px">
+                                        <form class="form-horizontal collapse in" id="recentOverdueForm3" style="margin-top: 10px;">
+                                            <div class="form-group form-group-sm">
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">客户姓名：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <input type="text" name="customerName" placeholder="请输入客户姓名"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">贷款产品：</label>
+                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                        <select name="loanType" class="form-control">
+                                                            <option value="">--请选择--</option>
+                                                            <option value="5">车主贷</option>
+                                                            <option value="6">车价贷</option>
+                                                            <option value="7">易融贷</option>
+                                                            <option value="8">车信贷</option>
+                                                            <option value="9">微车贷</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">贷款机构：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <div class="btn-group bootstrap-select show-tick form-control treeBankListBox">
+                                                            <input type="text" name="coBankId" placeholder="请选择贷款机构" class="form-control hide"
+                                                            id="coBankId">
+                                                            <button type="button" class="btn dropdown-toggle bs-placeholder btn-white btn-sm"
+                                                                id="treeBankClick"><span class="filter-option pull-left" id="coBankIdBox">没有选中任何项</span>&nbsp;<span
+                                                                    class="bs-caret"><span class="caret"></span></span></button>
+                                                            <div class="treeBankList hide" id="treeBankListModal">
+                                                                <div class="bankSelect">
+                                                                    <div class="bankTip">合作机构列表</div>
+                                                                    <ul id="treeBank1">
+                                                                        <li>
+                                                                            <span class="text">中安金控</span>
+                                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <span class="text">中安金控</span>
+                                                                            <span class="glyphicon"></span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="bankSelect hide">
+                                                                    <div class="bankTip">合作机构二级分支列表</div>
+                                                                    <ul id="treeBank2">                                                                                                                                                                    
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="bankSelect hide">
+                                                                    <div class="bankTip">合作机构三级分支列表</div>
+                                                                    <ul id="treeBank3">
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="bankSelect bankSelect2">
+                                                                    <div class="bankTip bankTip2" id="sureBank">
+                                                                        <button type="button" class="btn btn-primary">确认</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+                                            <div class="form-group form-group-sm">
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">贷款编号：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <input type="text" name="projectNo" placeholder="请输入贷款编号" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">证件号码：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <input type="text" name="cardNo" placeholder="请输入身份证号" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">手机号码：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <input type="text" name="mobilePhone" placeholder="请输入手机号"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="collapse" id="searchHide3">
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">所属分公司：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <select class="selectpicker form-control" name="launchOrgId"
+                                                                multiple data-live-search="true" data-style="btn-white btn-sm">
+                                                                <option value="">--请选择--</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">当前期数：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <select class="form-control" name="currentPlanNo">
+                                                                <option value="" selected>--请选择--</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>                                                    
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">连续逾期数大于：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="text" name="continuousOverdueTimes"
+                                                                placeholder="请输入大于0的数字" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">比较金额大于：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="text" name="overdueTotalAmountGT" placeholder="请输入比较金额大于"
+                                                                class="form-control" value="0">
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">车牌号：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="text" name="plateNo" placeholder="请输入车牌号"
+                                                                class="form-control" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">催收状态：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <select class="form-control" name="collectStatus">
+                                                                <option value="">--请选择--</option>
+                                                                <option value="0" selected>全部</option>
+                                                                <option value="1">已催收</option>
+                                                                <option value="2">待催收</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">逾期期数（级别）：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <select class="form-control" name="overdueTimes">
+                                                                <option value="" selected>全部</option>
+                                                                <option value="N0">N0</option>
+                                                                <option value="N1">N1</option>
+                                                                <option value="N2">N2</option>
+                                                                <option value="N3">N3</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">贷款状态：</label>
+                                                        <div class="col-xs-5 col-sm-5 col-md-5">
+                                                            <select name="businessType" class="form-control">
+                                                                <option value="">--请选择--</option>
+                                                                <option value="0">待放款</option>
+                                                                <option value="1">已放款</option>
+                                                                <option value="2">已作废</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>                                                    
+                                                </div>                                              
+                                            </div>
+                                            <div class="col-md-24 text-center">
+                                                <a href="javascript:;" class="flexBtn collapsed" style="background: none; margin-bottom: 5px; display: block"
+                                                    data-toggle="collapse" data-target="#searchHide3" aria-expanded="false"
+                                                    aria-controls="collapseExample">
+                                                    <span class="glyphicon glyphicon-chevron-up"></span>
+                                                </a>
+                                            </div>
+                                            <div class="form-group form-group-sm">
+                                                <div class="col-md-24 col-xs-24 col-sm-24 text-center">
+                                                    <button type="button" class="btn btn-primary" id="btn-search3"
+                                                        modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-white" id="reset3" modal="reset"><span
+                                                            class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary pull-right" id="exportBtn3"><span>导出数据</span></button>
+                                                    <button type="button" class="btn btn-primary pull-right" id="allotBtn3"
+                                                        style="margin-right:5px"><span>分配外勤</span></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="tip_overdue">
+                                    <span>
+                                        <label class="n1">N1:</label><span>客户总数：<p data-name="n1CustomerNun" class="fistNodeP"></p>拖欠总额：<p
+                                                data-name="n1TotalAmount"></p>元</span>
+                                    </span>
+                                    <span>
+                                        <label class="n2">N2:</label><span>客户总数：<p data-name="n2CustomerNun" class="fistNodeP"></p>拖欠总额：<p
+                                                data-name="n2TotalAmount"></p>元</span>
+                                    </span>
+                                    <span>
+                                        <label class="n3">N3:</label><span>客户总数：<p data-name="n3CustomerNun" class="fistNodeP"></p>拖欠总额：<p
+                                                data-name="n3TotalAmount"></p>元</span>
+                                    </span>
+                                    <span>
+                                        <label class="na">NA:</label><span>客户总数：<p data-name="naAboveCustomerNun" class="fistNodeP"></p>拖欠总额：<p
+                                                data-name="naAboveTotalAmount"></p>元</span>
+                                    </span>
+                                    <span>
+                                        <label class="nb">NB:</label><span>客户总数：<p data-name="nbAboveCustomerNun" class="fistNodeP"></p>拖欠总额：<p
+                                                data-name="nbAboveTotalAmount"></p>元</span>
+                                    </span>
+                                    <span>
+                                        <label class="loanColor">贷款总额：</label><span><p id="totalLoanAmount">0.00</p>元</span>
+                                    </span>                                                                                                      
+                                </div>
+                                <table id="table3" data-toggle="table" data-ajax="table_3" data-cookie="true" data-cookie-id-table="fullAmountSave" data-show-columns="true">
+                                    <thead>
+                                        <tr>
+                                            <th data-formatter="checkBox3">分配</th>
+                                            <th data-field="projectId" data-switchable="false" data-formatter="handle_3"
+                                                data-events="tableEvent_3">操作</th>
+                                            <th data-formatter="loanData1">项目信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-formatter="loanData2">客户信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-field="plateNo">车牌号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-formatter="loanData3">贷款信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-field="businessType" data-formatter="loanDataLoanStaus">贷款状态</th>
+                                            <th data-formatter="loanData4">每期还款明细&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-formatter="loanData8">当前期数</th>
+                                            <th data-field="yesterdayRepaymentAmount">昨日最优</th>
+                                            <th data-field="overdueTotalAmount">比较金额&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-field="billDateDay">分期日</th>
+                                            <th data-field="currentBankRepaymentTime">最迟还款日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-field="modifyTime">银行更新时间</th>
+                                            <th data-field="riskType" data-formatter="loanDataRiskType">风险类型</th>
+                                            <th data-field="overdueTimes">逾期期数(级别)</th>
+                                            <th data-field="coBankName">贷款机构&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-formatter="loanData5">逾期情况&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-formatter="loanData6">垫款信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-field="launchOrgName" data-formatter="substringTO">所属分公司&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <!-- <th data-formatter="loanData7" data-events="tableEvent_loanData7">催收记录</th> -->
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div id="todo" class="tab-pane">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-content" style="border-style: none; padding-top: 0px">
+                                        <form class="form-horizontal collapse in" id="recentOverdueForm1" style="margin-top: 10px;">
+                                            <div class="form-group form-group-sm">
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">客户姓名：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <input type="text" name="customerName" placeholder="请输入客户姓名"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">贷款产品：</label>
+                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                        <select name="loanType" class="form-control">
+                                                            <option value="">--请选择--</option>
+                                                            <option value="5">车主贷</option>
+                                                            <option value="6">车价贷</option>
+                                                            <option value="7">易融贷</option>
+                                                            <option value="8">车信贷</option>
+                                                            <option value="9">微车贷</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">贷款机构：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <div class="btn-group bootstrap-select show-tick form-control treeBankListBox">
+                                                            <input type="text" name="coBankId" placeholder="请选择贷款机构" class="form-control hide"
+                                                            id="coBankId2">
+                                                            <button type="button" class="btn dropdown-toggle bs-placeholder btn-white btn-sm"
+                                                                id="treeBankClick2"><span class="filter-option pull-left" id="coBankIdBox2">没有选中任何项</span>&nbsp;<span
+                                                                    class="bs-caret"><span class="caret"></span></span></button>
+                                                            <div class="treeBankList hide" id="treeBankListModal2">
+                                                                <div class="bankSelect">
+                                                                    <div class="bankTip">合作机构列表</div>
+                                                                    <ul id="treeBank1-2">
+                                                                        <li>
+                                                                            <span class="text">中安金控</span>
+                                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <span class="text">中安金控</span>
+                                                                            <span class="glyphicon"></span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="bankSelect hide">
+                                                                    <div class="bankTip">合作机构二级分支列表</div>
+                                                                    <ul id="treeBank2-2">                                                                                                                                                                    
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="bankSelect hide">
+                                                                    <div class="bankTip">合作机构三级分支列表</div>
+                                                                    <ul id="treeBank3-2">
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="bankSelect bankSelect2">
+                                                                    <div class="bankTip bankTip2" id="sureBank2">
+                                                                        <button type="button" class="btn btn-primary">确认</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group-sm">
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">贷款编号：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <input type="text" name="projectNo" placeholder="请输入贷款编号" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">证件号码：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <input type="text" name="cardNo" placeholder="请输入身份证号" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">手机号码：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <input type="text" name="mobilePhone" placeholder="请输入手机号"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="collapse" id="searchHide">
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">所属分公司：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <select class="selectpicker form-control" name="launchOrgId"
+                                                                multiple data-live-search="true" data-style="btn-white btn-sm">
+                                                                <option value="">--请选择--</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">当前期数：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <select class="form-control" name="currentPlanNo">
+                                                                <option value="" selected>--请选择--</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">连续逾期数大于：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="text" name="continuousOverdueTimes"
+                                                                placeholder="请输入大于0的数字" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">比较金额大于：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="text" name="overdueTotalAmountGT" placeholder="请输入比较金额大于"
+                                                                class="form-control" value="0">
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">车牌号：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="text" name="plateNo" placeholder="请输入车牌号"
+                                                                class="form-control" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">催收状态：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <select class="form-control" name="collectStatus">
+                                                                <option value="">--请选择--</option>
+                                                                <option value="0" selected>全部</option>
+                                                                <option value="1">已催收</option>
+                                                                <option value="2">待催收</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">逾期期数（级别）：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <select class="form-control" name="overdueTimes">
+                                                                <option value="" selected>全部</option>
+                                                                <option value="N0">N0</option>
+                                                                <option value="N1">N1</option>
+                                                                <option value="N2">N2</option>
+                                                                <option value="N3">N3</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-24 text-center">
+                                                <a href="javascript:;" class="flexBtn collapsed" style="background: none; margin-bottom: 5px; display: block"
+                                                    data-toggle="collapse" data-target="#searchHide" aria-expanded="false"
+                                                    aria-controls="collapseExample">
+                                                    <span class="glyphicon glyphicon-chevron-up"></span>
+                                                </a>
+                                            </div>
+                                            <div class="form-group form-group-sm">
+                                                <div class="col-md-24 col-xs-24 col-sm-24 text-center">
+                                                    <button type="button" class="btn btn-primary" id="btn-search1"
+                                                        modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-white" id="reset1" modal="reset"><span
+                                                            class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary pull-right" id="exportBtn"><span>导出数据</span></button>
+                                                    <button type="button" class="btn btn-primary pull-right" id="allotBtn"
+                                                        style="margin-right:5px"><span>分配外勤</span></button>
+                                                    <button type="button" class="btn btn-primary pull-right" id="sendMessage"
+                                                        style="margin-right:5px"><span>发送短信</span></button>                                                        
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="tip_overdue">
+                                    <span>
+                                        <label class="n1">N1:</label><span>客户总数：<p data-name="n1CustomerNun" class="fistNodeP"></p>拖欠总额：<p
+                                                data-name="n1TotalAmount"></p>元</span>
+                                    </span>
+                                    <span>
+                                        <label class="n2">N2:</label><span>客户总数：<p data-name="n2CustomerNun" class="fistNodeP"></p>拖欠总额：<p
+                                                data-name="n2TotalAmount"></p>元</span>
+                                    </span>
+                                    <span>
+                                        <label class="n3">N3:</label><span>客户总数：<p data-name="n3CustomerNun" class="fistNodeP"></p>拖欠总额：<p
+                                                data-name="n3TotalAmount"></p>元</span>
+                                    </span>
+                                    <span>
+                                        <label class="na">NA:</label><span>客户总数：<p data-name="naAboveCustomerNun" class="fistNodeP"></p>拖欠总额：<p
+                                                data-name="naAboveTotalAmount"></p>元</span>
+                                    </span>
+                                    <span>
+                                        <label class="nb">NB:</label><span>客户总数：<p data-name="nbAboveCustomerNun" class="fistNodeP"></p>拖欠总额：<p
+                                                data-name="nbAboveTotalAmount"></p>元</span>
+                                    </span>
+                                    <span>
+                                        <label class="loanColor">贷款总额：</label><span><p id="currentOverdueLoanAmount">0.00</p>元</span>
+                                    </span>  
+                                    <span class="loanColor">
+                                        <label class="loanColor">贷款余额：</label><span><p id="currentOverdueLoanBalance">0.00</p>元</span>
+                                    </span>                                     
+                                </div>
+                                <table id="table1" data-toggle="table" data-ajax="table_1" data-cookie="true" data-cookie-id-table="currentOverdueSave" data-show-columns="true">
+                                    <thead>
+                                        <tr>
+                                            <th data-formatter="checkBox">分配</th>
+                                            <th data-field="projectId" data-switchable="false" data-formatter="handle_1"
+                                                data-events="tableEvent_1">操作</th>
+                                            <th data-formatter="loanData1">项目信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-formatter="loanData2">客户信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-field="plateNo">车牌号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-formatter="loanData3">贷款信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-formatter="loanData4">每期还款明细&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th> 
+                                            <th data-formatter="loanData8">当前期数</th>                                           
+                                            <th data-field="yesterdayRepaymentAmount">昨日最优</th>
+                                            <th data-field="overdueTotalAmount">比较金额&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-field="billDateDay">分期日</th>
+                                            <th data-field="currentBankRepaymentTime">最迟还款日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-field="modifyTime">银行更新时间</th>
+                                            <th data-field="riskType" data-formatter="loanDataRiskType">风险类型</th>
+                                            <th data-field="overdueTimes">逾期期数（级别）</th>
+                                            <th data-field="coBankName">贷款机构&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-formatter="loanData5">逾期情况&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-formatter="loanData6">垫款信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-field="launchOrgName" data-formatter="substringTO">所属分公司&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <!-- <th data-formatter="loanData7" data-events="tableEvent_loanData7">催收记录</th> -->
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div id="done" class="tab-pane">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-content" style="border-style: none;">
+                                        <form class="form-horizontal collapse in" id="recentOverdueForm2" style="margin-top: 10px;">
+                                            <div class="form-group form-group-sm">
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">客户姓名：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <input type="text" name="customerName" placeholder="请输入客户姓名"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">贷款产品：</label>
+                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                        <select name="loanType" class="form-control">
+                                                            <option value="">--请选择--</option>
+                                                            <option value="5">车主贷</option>
+                                                            <option value="6">车价贷</option>
+                                                            <option value="7">易融贷</option>
+                                                            <option value="8">车信贷</option>
+                                                            <option value="9">微车贷</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">贷款机构：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <div class="btn-group bootstrap-select show-tick form-control treeBankListBox">
+                                                            <input type="text" name="coBankId" placeholder="请选择贷款机构" class="form-control hide"
+                                                            id="coBankId3">
+                                                            <button type="button" class="btn dropdown-toggle bs-placeholder btn-white btn-sm"
+                                                                id="treeBankClick3"><span class="filter-option pull-left" id="coBankIdBox3">没有选中任何项</span>&nbsp;<span
+                                                                    class="bs-caret"><span class="caret"></span></span></button>
+                                                            <div class="treeBankList hide" id="treeBankListModal3">
+                                                                <div class="bankSelect">
+                                                                    <div class="bankTip">合作机构列表</div>
+                                                                    <ul id="treeBank1-3">
+                                                                        <li>
+                                                                            <span class="text">中安金控</span>
+                                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                                        </li>
+                                                                        <li>
+                                                                            <span class="text">中安金控</span>
+                                                                            <span class="glyphicon"></span>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="bankSelect hide">
+                                                                    <div class="bankTip">合作机构二级分支列表</div>
+                                                                    <ul id="treeBank2-3">                                                                                                                                                                    
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="bankSelect hide">
+                                                                    <div class="bankTip">合作机构三级分支列表</div>
+                                                                    <ul id="treeBank3-3">
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="bankSelect bankSelect2">
+                                                                    <div class="bankTip bankTip2" id="sureBank3">
+                                                                        <button type="button" class="btn btn-primary">确认</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group-sm">
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">贷款编号：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <input type="text" name="projectNo" placeholder="请输入贷款编号" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">证件号码：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <input type="text" name="cardNo" placeholder="请输入身份证号" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">手机号码：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <input type="text" name="mobilePhone" placeholder="请输入手机号"
+                                                            class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="collapse" id="searchHide2">
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">所属分公司：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <select class="selectpicker form-control" name="launchOrgId"
+                                                                multiple data-live-search="true" data-style="btn-white btn-sm">
+                                                                <option value="">--请选择--</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">当前期数：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <select class="form-control" name="currentPlanNo">
+                                                                <option value="" selected>--请选择--</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">连续逾期数大于：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="text" name="continuousOverdueTimes"
+                                                                placeholder="请输入大于0的数字" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">比较金额大于：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="text" name="overdueTotalAmountGT" placeholder="请输入比较金额大于"
+                                                                class="form-control" value="0">
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">车牌号：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="text" name="plateNo" placeholder="请输入车牌号"
+                                                                class="form-control" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">催收状态：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <select class="form-control" name="collectStatus">
+                                                                <option value="">--请选择--</option>
+                                                                <option value="0" selected>全部</option>
+                                                                <option value="1">已催收</option>
+                                                                <option value="2">待催收</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">逾期期数（级别）：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <select class="form-control" name="overdueTimes">
+                                                                <option value="" selected>全部</option>
+                                                                <option value="N0">N0</option>
+                                                                <option value="N1">N1</option>
+                                                                <option value="N2">N2</option>
+                                                                <option value="N3">N3</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-24 text-center">
+                                                <a href="javascript:;" class="flexBtn collapsed" style="background: none; margin-bottom: 5px; display: block"
+                                                    data-toggle="collapse" data-target="#searchHide2" aria-expanded="false"
+                                                    aria-controls="collapseExample">
+                                                    <span class="glyphicon glyphicon-chevron-up"></span>
+                                                </a>
+                                            </div>
+                                            <div class="form-group form-group-sm">
+                                                <div class="col-md-24 col-xs-24 col-sm-24 text-center">
+                                                    <button type="button" class="btn btn-primary" id="btn-search2"
+                                                        modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-white" id="reset2" modal="reset"><span
+                                                            class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary pull-right" id="exportBtn2"><span>导出数据</span></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <table id="table2" data-toggle="table" data-ajax="table_2" data-cookie="true" data-cookie-id-table="historyOverdueSave" data-show-columns="true">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="projectId" data-switchable="false" data-formatter="handle_2"
+                                                data-events="tableEvent_2">操作</th>
+                                            <th data-formatter="loanData1">项目信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-formatter="loanData2">客户信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-field="plateNo">车牌号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-formatter="loanData3">贷款信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-formatter="loanData4">每期还款明细&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>                                            
+                                            <th data-formatter="loanData8">当前期数</th>
+                                            <th data-field="yesterdayRepaymentAmount">昨日最优</th>
+                                            <th data-field="overdueTotalAmount">比较金额&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-field="billDateDay">分期日</th>
+                                            <th data-field="currentBankRepaymentTime">最迟还款日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-field="modifyTime">银行更新时间</th>
+                                            <th data-field="riskType" data-formatter="loanDataRiskType">风险类型</th>
+                                            <th data-field="overdueTimes">逾期期数(级别)</th>
+                                            <th data-field="coBankName">贷款机构&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-formatter="loanData5">逾期情况&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-formatter="loanData6">垫款信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th data-field="launchOrgName" data-formatter="substringTO">所属分公司&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <!-- <th data-formatter="loanData7" data-events="tableEvent_loanData7">催收记录</th> -->
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--分配外勤-->
+    <div class="modal fade" id="allotData">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">分配外勤选择</h4>
+                </div>
+                <div class="modal-body modal-lg">
+                    <div class="row">
+                        <table id="table_allotData" data-ajax="table_allotData">
+                            <thead>
+                                <tr>
+                                    <th data-formatter="handle_allot" data-events="tableEvent_allot">选择</th>
+                                    <th data-field="launchOrgname">机构名称</th>
+                                    <th data-field="departmentName">部门</th>
+                                    <th data-field="realname">姓名</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="signUserName" name="" />
+                    <button type="button" class="btn btn-primary" id="select-allot-btn">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--确认操作模态框-->
+    <div class="modal fade" id="sureModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" id="closeBtn" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">提示信息</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="tipText" class="tipText"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="sureBtn">确定</button>
+                    <button type="button" class="btn btn-default" id="cancelBtn" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="lookRecords">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">催收记录</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-24 col-sm-24 col-md-24">
+                            <table id="table_records" data-ajax="table_records" data-toggle="table">
+                                <thead>
+                                    <tr>
+                                        <th data-field="collectionDate">催收日期</th>
+                                        <th data-field="collectionType" data-formatter="collectionType">催收方式</th>
+                                        <th data-field="collectionObjRealname">催收对象</th>
+                                        <th data-field="collectionResult" data-formatter="collectionResult">意愿还款</th>
+                                        <th data-field="willPaymentDate">意愿还款日期</th>
+                                        <th data-field="willPaymentAmount">意愿还款金额</th>
+                                        <th data-field="fileCout">催收附件</th>
+                                        <th data-field="collectionUserRealname">催收人</th>
+                                        <th data-field="remark">情况描述</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="addRegister">新增</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/extensions/cookie/bootstrap-table-cookie.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.js"></script>
+<script src="../../../common/plugs/bootstrap-select-1.12.1/dist/js/bootstrap-select.min.js"></script>
+<script src="../../../common/plugs/bootstrap-select-1.12.1/dist/js/i18n/defaults-zh_CN.min.js"></script>
+
+</html>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/postLoanManage/collectionManage/index.js"><\/script>'
+    ].join(""));
+</script>

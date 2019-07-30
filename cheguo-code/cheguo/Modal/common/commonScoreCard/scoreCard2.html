@@ -1,0 +1,59 @@
+<!--总部审批中心评分卡-->
+<link rel="stylesheet" href="../../../css/main.css"/>
+
+<div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">客户预评分</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                    <h3 class="text-center">预计评分</h3>
+                    <div id="myChart1" style="width: 100%;height:400px;"> </div>
+                </div>
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                    <h3 class="text-center">实际评分</h3>
+                    <div id="myChart2" style="width: 100%;height:400px;"> </div>
+                </div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 text-center">
+                    <button type="button" class="btn btn-primary" id="refreshScoreCard">
+                        刷新
+                    </button>
+                </div>
+                <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+                    <h2><span class="text-danger">重要提醒</span>：尊敬的审批员，请仔细按系统提示材料进行一一核实。</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">客户评分卡</h3>
+            </div>
+            <div class="panel-body">
+                <table id="scoreTable" data-toggle="table" data-cookie="true" data-ajax="scoreTable" data-pagination="false">
+                    <thead>
+                    <tr>
+                        <th data-field="itemName">得分项目</th>
+                        <th data-field="isCheck" data-formatter="isCheck">是否需核实</th>
+                        <th data-field="checkName">核实材料内容</th>
+                        <!--<th data-field="checkResult" data-formatter="checkResult" data-events="checkResultEvent">核实结果</th>-->
+                        <th data-field="itemScore">当前分值</th>
+                        <th data-field="realScore" data-formatter="realScore" data-events="realScoreEvent">实际得分</th>
+                    </tr>
+                    </thead>
+                </table>
+                <div class="form-group form-group-sm" style="margin-top: 30px;">
+                    <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-center">
+                        <button type="button" class="btn btn-primary" id="saveScore">
+                            保存
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<script src="../../../common/plugs/echarts/echarts.min.js"></script>
+<script src="../../../js/common/commonScoreCard/scoreCard2.js"></script>
+

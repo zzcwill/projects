@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>库存台账管理</title>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-select-1.10.0/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+</head>
+<body class="gray-bg">
+    <div id="stockAccount">
+        <div class="wrapper wrapper-content">
+            <div class="row">
+                <div class="col-md-24 col-xs-24 col-sm-24">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            <form class="form-horizontal" id="searchForm">
+                                <div class="form-group form-group-sm">
+                                    <v-select label="所属机构" name="orgId" id="orgId" v-on:change="getGroup"></v-select>
+                                    <v-select label="所属区域" name="areaId" id="areaId" v-on:change="getUser"></v-select>
+                                    <v-select label="安装员" name="customerManagerId" id="userId"></v-select>
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <v-select label="供应商" name="supplierId" id="specificSupp" v-on:change="getSpecificPro"></v-select>
+                                    <v-select label="产品类型" name="productType" id="speProduct" v-on:change="getSpecificPro" :options="[{name:'有线',value:'1'},{name:'无线',value:'2'}]"></v-select>
+                                    <v-select label="规格型号" name="productSpec" id="specificPro" ></v-select>
+                                    <!--<input type="hidden" name="productType">-->
+                                </div>
+                                <div class="form-group form-group-sm" v-if="detail == 'detail'">
+                                    <v-input label="安装时间" name="startTime" class="date" placeholder="--请选择开始时间--"></v-input>
+                                    <v-input label="至" name="endTime" class="date" placeholder="--请选择结束时间--"></v-input>
+                                    <v-input label="IMEI" name="imei" placeholder="请输入IMEI号"></v-input>
+                                    <!--<v-input label="客户名称:" name="customerName" placeholder="请输入客户名称"></v-input>-->
+                                </div>
+                                <div class="form-group form-group-sm" v-if="detail == 'detail'">
+                                    <v-select label="终端状态" name="stockStatus" :options="terminalStatue"></v-select>
+                                    <!--<v-input label="身份证号:" name="cardNo" placeholder="请输入身份证号"></v-input>-->
+                                </div>
+                                <div class="form-group form-group-sm">
+                                    <div class="col-md-24 col-xs-24 col-sm-24 text-center">
+                                        <button type="button" class="btn btn-primary" id="btn-search" modal="enter"
+                                                v-on:click="btnSearch"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                                        </button>
+                                        <button type="button" class="btn btn-white" modal="reset"  v-on:click="resetForm"><span
+                                                class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            <ul class="nav nav-tabs" v-on:click="isDetail">
+                                <li class="active"><a href="#stock" data-toggle="tab">汇总</a></li>
+                                <li><a href="#detail" data-toggle="tab">明细</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="stock" class="tab-pane active">
+                                    <v-table id="stockTable" :options="stockTable" ajax="stockAccount" cellStyle="ss"></v-table>
+                                </div>
+                                <div id="detail" class="tab-pane">
+                                    <v-table id="detailTable" :options="detailTable" ajax="stockDetail"></v-table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/js/vue.min.js"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/bootstrap-select-1.10.0/dist/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../common/js/vueComponent.js"><\/script>',
+        '<script src="../../../js/stockManage/stockAccount/stockAccount.js"><\/script>'
+    ].join(""));
+</script>
+</html>

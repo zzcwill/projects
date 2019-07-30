@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css"/>
+    <title>结清登记</title>
+  </head>
+</html>
+<body class="gray-bg">
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-xs-24 col-sm-24 col-md-24">
+        <div class="ibox float-e-margins">
+          <div class="ibox-content">
+            <form id="searchForm" class="form-horizontal">
+              <div class="form-group form-group-sm">
+	                <div class="input-tip">
+	                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">贷款编号：
+	                  </label>
+	                  <div class="col-xs-5 col-sm-5 col-md-5">
+	                    <input type="text" name="projectNo" placeholder="请输入项目编号" class="form-control">
+	                  </div>
+	                </div>
+	                <div class="input-tip">
+	                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">客户名称：
+	                  </label>
+	                  <div class="col-xs-5 col-sm-5 col-md-5">
+	                    <input type="text" name="customerName" placeholder="请输入客户名称" class="form-control">
+	                  </div>
+	                </div>
+	                <div class="input-tip">
+	                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">证件号码：
+	                  </label>
+	                  <div class="col-xs-5 col-sm-5 col-md-5">
+	                    <input type="text" name="cardNo" placeholder="请输入证件号码" class="form-control">
+	                  </div>
+	                </div>
+	                
+                </div>
+              <div class="form-group form-group-sm">
+
+                  <div class="input-tip">
+                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">手机号码：
+                    </label>
+                    <div class="col-xs-5 col-sm-5 col-md-5">
+                      <input type="text" name="mobilePhone" placeholder="请输入手机号码" class="form-control">
+                    </div>
+                  </div>
+
+                  <div class="input-tip">
+	                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">车牌号码：</label>
+	                  <div class="col-xs-5 col-sm-5 col-md-5">
+	                      <input type="text" name="licencePlateNo" placeholder="请输入车牌号码" class="form-control">
+	                  </div>
+                  </div>
+	                
+	              <div class="input-tip">
+	                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">结清状态：
+	                  </label>
+	                  <div class="col-xs-5 col-sm-5 col-md-5">
+	                    <select name="settlementStatus" class="form-control" required="required">
+                            <option value="">--请选择--</option>
+                            <option value="1">未结清</option>
+                            <option value="3">已结清</option>
+                            <!--<option value="2">结清流程中</option>-->
+                        </select>
+	                  </div>
+                  </div>
+              </div>
+              <div class="form-group form-group-sm">
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">贷款开始日期：
+                  </label>
+                  <div class="col-xs-5 col-sm-5 col-md-5">
+                    <input type="text" name="interestStartDate" placeholder="请输入贷款开始日期" class="form-control date">
+                  </div>
+                </div>
+
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">贷款开始区间：</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5">
+                    <input type="text" name="startTime1" placeholder="请输开始" class="form-control date">
+                  </div>
+                </div>
+
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">至：
+                  </label>
+                  <div class="col-xs-5 col-sm-5 col-md-5">
+                    <input type="text" name="startTime2" placeholder="请输入结束" class="form-control date">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group form-group-sm">
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">贷款结束日期：
+                  </label>
+                  <div class="col-xs-5 col-sm-5 col-md-5">
+                    <input type="text" name="interestEndDate" placeholder="请输入贷款结束日期" class="form-control date">
+                  </div>
+                </div>
+
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">贷款结束区间：</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5">
+                    <input type="text" name="endTime1" placeholder="请输开始" class="form-control date">
+                  </div>
+                </div>
+
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 control-label">至：
+                  </label>
+                  <div class="col-xs-5 col-sm-5 col-md-5">
+                    <input type="text" name="endTime2" placeholder="请输入结束" class="form-control date">
+                  </div>
+                </div>
+              </div>
+
+              <!-- 查询和清除查询条件按钮 -->
+              <div class="form-group form-group-sm">
+                <div class="col-xs-24 col-sm-24 col-md-24 text-center">
+                  <button type="button" class="btn btn-primary" id="btn-search2" modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                  </button>
+                  <button type="button" class="btn btn-white" modal="reset"><span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                  <div class="col-xs-24 col-sm-24 col-md-24 text-center">
+                    <button type="button" class="btn btn-primary pull-right" id="exportBtn"><span>导出数据</span></button>
+                  </div>
+                  <div class="tab-content">
+                    <p></p>
+                    <div id="sign" class="tab-pane active">
+                      <table id="table" data-toggle="table" data-ajax="SettlementRegistration" data-cookie="true" data-cookie-id-table="SettlementRegistrationSave" data-show-columns="true">
+                        <thead>
+                          <tr>
+                            <th data-field="projectNo">贷款编号</th>
+                            <th data-field="customerName">客户名称</th>
+                            <th data-field="cardNo">证件号码</th>
+                            <th data-field="mobilePhone">手机号码 </th>
+                            <th data-field="loanAmount">贷款金额</th>
+                            <th data-field="pbDeposit">履约保证金</th>
+                            <th data-field="loanTerm">期限</th>
+                            <th data-field="launchDate">贷款开始日期</th>
+                            <th data-field="interestEndDate">贷款结束日期</th>
+                            <th data-field="carInfo">车辆信息</th>
+                            <th data-field="plateNo">车辆牌号</th>
+                            <th data-field="coBankName">贷款机构</th>
+                            <th data-field="settlementStatusName">结清状态</th>
+                            <th data-field="settlementDate">结清日期</th>
+                            <th data-field="edit" data-formatter="SettlemenStatus" data-events="editTableEvent">操作</th>
+                            <input type="hidden" data-field="projectId" name="projectId">
+                            <!-- data-formatter这个属性是初始化的时候执行这个属性值的方法 -->
+                            <!-- data-events是返回一个事件处理对象 -->
+                          </tr>
+                        </thead>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=eb649edd14c8348e9f34a8ca6157c2b6"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.min.js?rev=424557ef2a8b89693026b3b43d4b1e1c"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/extensions/cookie/bootstrap-table-cookie.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/SettlementRegistration/main/index.js"><\/script>'
+    ].join(""));
+</script>

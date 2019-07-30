@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css"/>
+    <title>流程节点配置</title>
+  </head>
+  <body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+      <div class="row">
+        <div class="col-sm-24">
+          <div class="ibox float-e-margins">
+            <div class="ibox-content">
+              <fieldset>
+                  <form id="searchForm" class="form-horizontal">
+                    <input type="hidden" name="id" />
+                    <div class="form-group form-group-sm">
+                      <div class="input-tip">
+                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">流程名称：
+                        </label>
+                        <div class="col-md-5 col-xs-5 col-sm-5">
+                          <select name="businessTypeCode" class="form-control required" id="flowList">
+                            <option value="" selected>--请选择--</option>
+                          </select>
+                          <input type="hidden" name="businessTypeName" id="flowName" />
+                        </div>
+                      </div>
+                      <div class="input-tip">
+                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">节点名称：
+                        </label>
+                        <div class="col-md-5 col-xs-5 col-sm-5">
+                          <select name="nodeCode" class="form-control required" id="nodeList">
+                            <option value="" selected>--请选择--</option>
+                          </select>
+                          <input type="hidden" name="nodeTypeName" id="nodeTypeName" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                      <div class="input-tip">
+                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">生效开始时间：
+                        </label>
+                        <div class="col-md-5 col-xs-5 col-sm-5">
+                          <input type="text" name="effictiveBegin" class="form-control date required" id="createTimeStart">
+                        </div>
+                      </div>
+                      <div class="input-tip">
+                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">生效结束时间：
+                        </label>
+                        <div class="col-md-5 col-xs-5 col-sm-5">
+                          <input type="text" name="effictiveEnd" class="form-control date required" id="createTimeEnd">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group form-group-sm" style="margin-top: 50px;">
+                      <div class="input-tip">
+                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">分公司：
+                        </label>
+                        <div class="col-md-5 col-xs-5 col-sm-5">
+                          <select name="companyId" class="form-control required" id="company">
+                            <option value="" selected>--请选择--</option>
+                          </select>
+                          <input type="hidden" name="companyName" id="companyName" />
+                        </div>
+                      </div>
+                      <div class="input-tip">
+                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">业务组：
+                        </label>
+                        <div class="col-md-5 col-xs-5 col-sm-5">
+                          <select name="businessGroupId" class="form-control" id="group" />
+                            <option value="" selected>--所有业务组--</option>
+                          </select>
+                          <input type="hidden" name="businessGroupName">
+                        </div>
+                      </div>
+                      <div class="input-tip">
+                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">汽车类型：
+                        </label>
+                        <div class="col-md-5 col-xs-5 col-sm-5">
+                          <select name="carTypeKey" class="form-control required" id="cars">
+                            <option value="" selected>--请选择--</option>
+                            <option value="1">新车</option>
+                            <option value="2">二手车</option>
+                          </select>
+                          <input type="hidden" name="carTypeName" id="carName" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                      <div class="input-tip">
+                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">贷款额区间(元):
+                        </label>
+                        <div class="col-md-5 col-xs-5 col-sm-5">
+                          <input type="text" name="loanQuotaLow" class="form-control" id="minMoneyTrue">
+                        </div>
+                      </div>
+                      <div class="input-tip">
+                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">至
+                        </label>
+                        <div class="col-md-5 col-xs-5 col-sm-5">
+                          <input type="text" name="loanQuotaHigh" class="form-control" id="maxMoneyTrue">
+                        </div>
+                      </div>
+                      <div class="input-tip">
+                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">审核人员：
+                        </label>
+                        <div class="col-md-5 col-xs-5 col-sm-5">
+                          <select name="operatorId" class="form-control required" id="operatorId">
+                            <option value="" selected>--请选择--</option>
+                          </select>
+                          <input type="hidden" name="operatorName" id="operatorName" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                      <div class="col-md-24 col-xs-24 col-sm-24 text-right">
+                        <button type="button" class="btn btn-primary" id="add" modal="enter"><span>添加</span>
+                        </button>
+                      </div>
+                    </div>
+                </form>
+              </fieldset>
+            </div>
+          </div>
+            <div class="ibox-content hidden" id="tableShell">
+              <table id="table1" data-toggle="table" class="table" data-unique-id="id">
+                <thead>
+                  <tr class="col-md-12">
+                    <th data-field="id" class="hidden">ID</th>
+                    <th data-field="businessTypeName">流程名称</th>
+                    <th data-field="nodeTypeName">节点名称</th>
+                    <th data-field="companyName">分公司</th>
+                    <th data-field="businessGroupName">业务组</th>
+                    <th data-field="carTypeName">汽车类型</th>
+                    <th data-field="" data-formatter="loanSection">贷款额(万元)</th>
+                    <th data-field="operatorName">审核人员</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+        </div>
+      </div>
+    </div>
+    <!--确认操作模态框-->
+    <div class="modal fade" id="sureModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">提示信息</h4>
+          </div>
+          <div class="modal-body">
+            <p id="tipText"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="sureBtn">确定</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+   </body>
+  <script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+  <script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+  <script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+  <script src="../../../common/js/mock.js"></script>
+  <script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+  <script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=1448952564056"></script>
+  <script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+  <script src="../../../common/js/jquery.values.js"></script>
+  <script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+  <script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+  <script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+  <script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+</html>
+<script type="text/javascript" charset="utf-8">
+  $("head").append([
+    '<script src="../../../common/js/URL.js"><\/script>',
+    '<script src="../../../common/js/iframeCommon.js"><\/script>',
+    '<script src="../../../js/task/flowControl/nodeControlChange.js"><\/script>'
+  ].join(""));
+</script>

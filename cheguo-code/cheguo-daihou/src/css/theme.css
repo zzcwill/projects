@@ -1,0 +1,364 @@
+/*基础样式*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 100
+}
+
+h1 {
+  font-size: 30px
+}
+
+h2 {
+  font-size: 24px
+}
+
+h3 {
+  font-size: 16px
+}
+
+h4 {
+  font-size: 14px
+}
+
+h5 {
+  font-size: 12px
+}
+
+h6 {
+  font-size: 10px
+}
+
+h3,
+h4,
+h5 {
+  margin-top: 5px;
+  font-weight: 600
+}
+
+a:focus {
+  outline: 0
+}
+.gray-bg {
+  background-color: #f3f3f4
+}
+
+.white-bg {
+  background-color: #fff
+}
+
+.navy-bg {
+  background-color: #1ab394;
+  color: #fff
+}
+
+.blue-bg {
+  background-color: #1c84c6;
+  color: #fff
+}
+
+.lazur-bg {
+  background-color: #23c6c8;
+  color: #fff
+}
+
+.yellow-bg {
+  background-color: #f8ac59;
+  color: #fff
+}
+
+.red-bg {
+  background-color: #ed5565;
+  color: #fff
+}
+
+.black-bg {
+  background-color: #262626
+}
+.wrapper {
+  padding: 0 20px;
+}
+.minHeight{
+  min-height: 600px;
+}
+.wrapper-content {
+  padding: 10px 15px;
+}
+.ibox {
+  clear: both;
+  margin-bottom: 10px;
+  margin-top: 0;
+  padding: 0
+}
+.ibox:after,
+.ibox:before {
+  display: table
+}
+.ibox-content {
+  background-color: #fff;
+  color: inherit;
+  padding: 15px 15px 5px 15px;
+  border-color: #e7eaec;
+  -webkit-border-image: none;
+  -o-border-image: none;
+  border-image: none;
+  border-style: solid solid none;
+  border-width: 1px 0;
+}
+.ibox-content {
+  clear: both
+}
+.ibox-content h1,
+.ibox-content h2,
+.ibox-content h3,
+.ibox-content h4,
+.ibox-content h5,
+.ibox-title h1,
+.ibox-title h2,
+.ibox-title h3,
+.ibox-title h4,
+.ibox-title h5 {
+  margin-top: 5px
+}
+
+
+
+
+
+
+/*中安车贷*/
+.el-button--primary {
+  color: #fff;
+  background-color: #1ab394;
+  border-color: #1ab394
+}
+
+.el-button--primary:focus, .el-button--primary:hover {
+  background: #18a689;
+  border-color: #18a689;
+  color: #fff
+}
+
+.el-button--primary.is-active, .el-button--primary:active {
+  background: #18a689;
+  border-color: #18a689;
+  color: #fff
+}
+.el-button--primary.is-disabled, .el-button--primary.is-disabled:active, .el-button--primary.is-disabled:focus, .el-button--primary.is-disabled:hover {
+  color: #fff;
+  background-color: #1dc5a3;
+  border-color: #1dc5a3
+}
+
+.el-button--primary.is-plain {
+  color: #1ab394;
+  background: #ecf5ff;
+  border-color: #b3d8ff
+}
+
+.el-button--primary.is-plain:focus, .el-button--primary.is-plain:hover {
+  background: #1ab394;
+  border-color: #1ab394;
+  color: #fff
+}
+
+.el-button--primary.is-plain:active {
+  background: #18a689;
+  border-color: #18a689;
+  color: #fff;
+  outline: 0
+}
+
+.el-button--primary.is-plain.is-disabled, .el-button--primary.is-plain.is-disabled:active, .el-button--primary.is-plain.is-disabled:focus, .el-button--primary.is-plain.is-disabled:hover {
+  color: #1dc5a3;
+  background-color: #ecf5ff;
+  border-color: #d9ecff
+}
+
+/*晟安车贷*/
+.styleCR .el-button--primary {
+  color: #fff;
+  background-color: #ef7416;
+  border-color: #ef7416
+}
+
+.styleCR.el-button--primary:focus,.styleCR .el-button--primary:hover {
+  background: #ef7416d6;
+  border-color: #ef7416d6;
+  color: #fff
+}
+
+.styleCR .el-button--primary.is-active, .styleCR .el-button--primary:active {
+  background: #ef7416d6;
+  border-color: #ef7416d6;
+  color: #fff
+}
+.styleCR .el-button--primary.is-disabled, .styleCR .el-button--primary.is-disabled:active, .styleCR .el-button--primary.is-disabled:focus, .styleCRW .el-button--primary.is-disabled:hover {
+  color: #fff;
+  background-color: #ef7416;
+  border-color: #ef7416
+}
+
+.styleCR .el-button--primary.is-plain {
+  color: #ef7416;
+  background: #ecf5ff;
+  border-color: #b3d8ff
+}
+
+.styleCR .el-button--primary.is-plain:focus, .styleCR .el-button--primary.is-plain:hover {
+  background: #ef7416;
+  border-color: #ef7416;
+  color: #fff
+}
+
+.styleCR .el-button--primary.is-plain:active {
+  background: #ef7416;
+  border-color: #ef7416;
+  color: #fff;
+  outline: 0
+}
+
+.styleCR .el-button--primary.is-plain.is-disabled, .styleCR .el-button--primary.is-plain.is-disabled:active, .styleCRW .el-button--primary.is-plain.is-disabled:focus, .styleCRW .el-button--primary.is-plain.is-disabled:hover {
+  color: #ef7416;
+  background-color: #ecf5ff;
+  border-color: #d9ecff
+}
+
+/*车融*/
+.styleCRW .el-button--primary {
+  color: #fff;
+  background-color: #ea6753;
+  border-color: #ea6753
+}
+
+.styleCRW .el-button--primary:focus, .styleCRW .el-button--primary:hover {
+  background: #ea6753d9;
+  border-color: #ea6753d9;
+  color: #fff
+}
+
+.styleCRW .el-button--primary.is-active, .styleCRW .el-button--primary:active {
+  background: #ea6753d9;
+  border-color: #ea6753d9;
+  color: #fff
+}
+.styleCRW .el-button--primary.is-disabled, .styleCRW .el-button--primary.is-disabled:active, .styleCRW .el-button--primary.is-disabled:focus, .styleCRW .el-button--primary.is-disabled:hover {
+  color: #fff;
+  background-color: #ea6753;
+  border-color: #ea6753
+}
+
+.styleCRW .el-button--primary.is-plain {
+  color: #ea6753;
+  background: #ecf5ff;
+  border-color: #b3d8ff
+}
+
+.styleCRW .el-button--primary.is-plain:focus, .styleCRW .el-button--primary.is-plain:hover {
+  background: #ea6753;
+  border-color: #ea6753;
+  color: #fff
+}
+
+.styleCRW .el-button--primary.is-plain:active {
+  background: #ea6753;
+  border-color: #ea6753;
+  color: #fff;
+  outline: 0
+}
+
+.styleCRW .el-button--primary.is-plain.is-disabled, .styleCRW .el-button--primary.is-plain.is-disabled:active, .styleCRW .el-button--primary.is-plain.is-disabled:focus, .styleCRW .el-button--primary.is-plain.is-disabled:hover {
+  color: #ea6753;
+  background-color: #ecf5ff;
+  border-color: #d9ecff
+}
+
+/*page分页样式修改*/
+.el-pagination button:hover {
+  color: #333;
+  background-color: #f4f4f4;
+}
+.el-pagination .btn-prev{
+  margin-left: 0;
+  border: 1px solid #ddd;
+  border-radius: 6px 0 0 6px;
+  padding-left: 12px;
+}
+.el-pagination .btn-prev:hover{
+
+}
+.el-pagination .btn-next{
+  margin-left: 0;
+  border: 1px solid #ddd;
+  border-radius: 0 6px 6px 0;
+  padding-right: 12px;
+}
+.el-pager li{
+  color: #2d2f33ba;
+  border: 1px solid #ddd;
+  border-right: none;
+}
+.el-pager li:nth-child(1){
+  border-left: none;
+}
+.el-pager li:hover {
+  color: #2d2f33ba;
+  background-color: #f4f4f4;
+}
+
+.el-pager li.active {
+  color: #2d2f33ba;
+  background-color: #f4f4f4;
+  cursor: default
+}
+.el-select {
+  display: block;
+}
+.el-table thead {
+  color: #555
+}
+.messageTip{
+  margin-top: 300px;
+  width: 380px;
+}
+.el-dropdown{
+  display: block;
+}
+.el-form-item__label{
+  font-size: 12px;
+  font-weight: 700;
+}
+.el-date-editor.el-input{
+  width: 100%;
+}
+
+.panel {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.panel.panel-default{
+  border: 1px solid #ddd;
+}
+.panel-heading {
+  padding: 7px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.panel-default>.panel-heading {
+  color: #333;
+  background-color: #f5f5f5;
+  border-color: #ddd;
+}
+.panel-body {
+  padding: 15px;
+}
+.panel-title {
+  font-size: 14px;
+  font-weight: bold;
+}

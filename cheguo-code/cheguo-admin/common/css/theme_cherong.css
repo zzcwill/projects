@@ -1,0 +1,43 @@
+/*!
+ @Name: theme
+ @Author: zlp
+ */
+
+/* main */
+.nav>li>a{ color: #d9d9d9}
+.nav-header a:hover{ background: none; font-size:0}
+#page-wrapper .navbar, .bg-ff{ background: #ea6753}
+.navbar-static-side, .navbar-default .nav>li.active a:hover{background: #393939;}
+.navbar-default .nav>li>a:focus, .navbar-default .nav>li a:hover{
+    background: #2d2d2d;
+}
+.navbar{ margin-bottom: 0}
+.nav>li.active { background: #2d2d2d; border-left: 4px solid #ea6753}
+.content-tabs {
+    border-bottom: solid 1px #d9d9d9;
+}
+nav.page-tabs{ background: #fff;  color: #808080;}
+.page-tabs a{ height: 40px;}
+.page-tabs a.active i:hover, .page-tabs a.active, .page-tabs a.active:hover { position: relative; z-index: 1000; background: #eee; font-weight: bold; color: #4c4c4c; margin-top: -3px; height: 43px; border-radius: 3px 3px 0 0; }
+nav.page-tabs{ overflow: inherit}
+.toast,.toast-success {
+    background-color: #ea6753
+}
+.btn-info.active,
+.btn-info:active,
+.btn-info:focus,
+.btn-info:hover,
+.btn-info,
+#logOut .btn-info:active,
+.open .dropdown-toggle.btn-info,
+.btn-success:active:hover,
+.btn-success.active:hover,
+.open>.dropdown-toggle.btn-success:hover,
+.btn-success:active:focus,
+.btn-success.active:focus,
+.open>.dropdown-toggle.btn-success:focus{
+    background: #ea6753;
+    border-color: #ea6753;
+    color: #fff;
+}
+

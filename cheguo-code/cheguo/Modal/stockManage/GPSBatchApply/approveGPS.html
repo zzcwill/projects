@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../common/css/style.min.css" />
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a" />
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/extensions/editable/css/bootstrap-editable.css"/>
+    <title>GPS批量申请</title>
+</head>
+
+</html>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="page-header">
+                        <h3 class="text-center" id="flowTitle">GPS批量申请</h3>
+                    </div>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#GPS" data-toggle="tab">GPS信息</a></li>
+                        <li><a href="#opinion" data-toggle="tab">过程意见</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <p></p>
+                        <div id="GPS" class="tab-pane active">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">GPS信息</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form id="searchForm" class="form-horizontal">
+                                        <fieldset disabled>
+                                            <div class="form-group form-group-sm">
+                                                <input type="hidden" name="id" value="" id="id">
+                                                <input type="hidden" name="applyNo" value="">
+                                                <div class="input-tip">
+                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">所属机构：</label>
+                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                        <input type="text" name="applyOrgName"  placeholder="请输入所属机构" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">所属区域：</label>
+                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                        <input type="text" name="groupName"  placeholder="请输入所属区域" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">供应商：</label>
+                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                        <input type="text" name="supplierName"  placeholder="请输入供应商" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group-sm">
+                                                <div class="input-tip">
+                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">申请人：</label>
+                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                        <input type="text" name="applyUserName"  placeholder="请输入申请人" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">申请数量：</label>
+                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                        <input type="text" name="applyAmount" id="applyAmount"  placeholder="请输入申请数量" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">申请日期：</label>
+                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                        <input type="text" name="applyDate"  placeholder="请输入申请日期" class="form-control data" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group-sm">
+                                                <div class="input-tip">
+                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">产品类型：</label>
+                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                        <input type="hidden" name="productType" value="">
+                                                        <select name="productType" class="form-control" disabled>
+                                                            <option>--请选择--</option>
+                                                            <option value="1">有线</option>
+                                                            <option value="2">无线</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-xs-3 col-sm-3 col-md-3 control-label">申请区域库存：</label>
+                                                    <div class="col-xs-5 col-sm-5 col-md-5">
+                                                        <input type="text" name="stockCount" id="stockCount"  placeholder="请输入申请区域库存" class="form-control" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group-sm">
+                                                <div class="input-tip">
+                                                    <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">申请备注：</label>
+                                                    <div class="col-xs-21 col-sm-21 col-md-21">
+                                                        <textarea class="form-control" rows="3" name="remark"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <!--<div class="form-group form-group-sm">-->
+                                            <!--<div class="input-tip">-->
+                                                <!--<label class="col-xs-3 col-sm-3 col-md-3 control-label">审批备注：</label>-->
+                                                <!--<div class="col-xs-21 col-sm-21 col-md-21">-->
+                                                    <!--<textarea class="form-control" rows="3" name="approveRemark" id="approveRemark"></textarea>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="opinion" class="tab-pane">
+                            <div data-url="../../common/commonOpinion/opinion.html"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="row">-->
+        <!--<div class="col-sm-24">-->
+            <!--<div class="ibox float-e-margins">-->
+                <!--<form id="opinionForm" class="form-horizontal ibox-content">-->
+                    <!--<fieldset>-->
+                        <!--<div class="panel panel-default">-->
+                            <!--<div class="panel-heading">-->
+                                <!--<h3 class="panel-title">流程意见</h3>-->
+                            <!--</div>-->
+                            <!--<div class="panel-body">-->
+                                <!--<div class="form-group form-group-sm" id="f_type2">-->
+                                    <!--<div class="input-tip">-->
+                                        <!--<label class="col-md-3 col-xs-3 col-sm-3 control-label"><span class="text-danger">*</span>意见结论：</label>-->
+                                        <!--<div class="col-md-5 cl-sm-5 col-xs-5">-->
+                                            <!--<label class="checkbox-inline">-->
+                                                <!--<input type="radio" name="conclusion" value="1" checked required="required" /> 同意-->
+                                            <!--</label>-->
+                                            <!--<label class="checkbox-inline">-->
+                                                <!--<input type="radio" name="conclusion" value="0" /> 不同意-->
+                                            <!--</label>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="form-group form-group-sm">-->
+                                <!--<div class="input-tip">-->
+                                    <!--<label class="col-xs-3 col-sm-3 col-md-3 control-label">意见说明：</label>-->
+                                    <!--<div class="col-xs-13 col-sm-13 col-md-13">-->
+                                        <!--<textarea class="form-control" rows="3" name="opinion" id="opinionText"></textarea>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-xs-8 col-sm-8 col-md-8 text-right" style="padding-top: 33px;">-->
+                                        <!--<button type="button" class="btn btn-primary" id="saveBtn" style="margin-right: 10px;"><span>保存</span>-->
+                                        <!--</button>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</fieldset>-->
+                <!--</form>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="form-group form-group-sm row" id="btn_all">
+        <div class="col-md-24 col-xs-24 col-sm-24 text-right">
+            <button type="button" class="btn btn-primary" id="btn-opinion-save"><span>提交</span></button>
+            <!--<button type="button" class="btn btn-primary" id="btn-loanReview-back" style="display: none;"><span>退回上一步</span></button>-->
+            <button type="button" class="btn btn-primary" id="btn-closeLoan"><span>不通过</span></button>
+            <!--<button type="button" class="btn btn-primary" id="btn-save"><span>保存</span></button>-->
+            <button type="button" class="btn btn-white" id="cancle" modal="cancle"><span>取消</span></button>
+        </div>
+    </div>
+</div>
+<!--任务提交-->
+<div class="modal fade" id="signModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">任务提交</h4>
+            </div>
+            <div class="modal-body">
+                <p>请选择流转人员&nbsp;&nbsp;&nbsp;后续流程环节:<span id="nextNode"></span></p>
+                <div class="row">
+                    <table id="table_sign" data-ajax="table_sign">
+                        <thead>
+                        <tr>
+                            <th data-switchable="false" data-field="userId" data-formatter="handle_sign" data-events="tableEvent_sign">选择
+                            </th>
+                            <th data-field="organization">机构名称</th>
+                            <th data-field="department">部门</th>
+                            <th data-field="userName">姓名</th>
+                            <th data-field="taskCount">当前代办量</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <input type="hidden" id="nextNodeUserId" />
+            <input type="hidden" id="nextNodeUserName" />
+            <div class="modal-footer">
+                <input type="hidden" id="signUserName" name="" />
+                <button type="button" class="btn btn-primary" id="select-sign-btn">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=1512011716000"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../common/js/flow.js"><\/script>',
+        '<script src="../../../js/stockManage/GPSBatchApply/approveGPS.js"><\/script>'
+    ].join(""));
+</script>

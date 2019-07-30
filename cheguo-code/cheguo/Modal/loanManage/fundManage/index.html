@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>资金对接管理</title>
+	<link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+	<link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+	<link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css">
+	<link rel="stylesheet" href="../../../common/plugs/bootstrap-select-1.10.0/dist/css/bootstrap-select.min.css">
+	<link rel="stylesheet" href="../../../common/css/style.min.css"/>
+</head>
+<body class="gray-bg">
+<div id="fundManage">
+	<div class="wrapper wrapper-content">
+		<div class="row">
+			<div class="col-md-24 col-xs-24 col-sm-24">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal" id="searchForm">
+							<div class="form-group form-group-sm">
+								<v-input label="客户姓名" name="customerName" placeholder="请输入客户姓名"></v-input>
+								<v-select label="所属机构" name="launchOrgId" id="orgId"></v-select>
+								<v-select label="合作银行" name="coBankId" id="coBankId"></v-select>
+							</div>
+							<div class="form-group form-group-sm">
+								<v-input label="贷款编号" name="projectNo" placeholder="请输入贷款编号"></v-input>
+								<v-select label="资金通道" name="financeChannel" id="financeChannel" ></v-select>
+								<v-select label="申请状态" name="applyStatus" id="applyStatus" ></v-select>
+							</div>
+							<div class="form-group form-group-sm">
+								<v-input label="申请日期" name="applyTimeStart" class="date" placeholder="请输入开始时间"></v-input>
+								<v-input label="至" name="applyTimeEnd" class="date" placeholder="请输入结束时间"></v-input>
+								<v-select label="影像状态" name="imageTransmitStatus" id="imageTransmitStatus" ></v-select>
+							</div>
+							<div class="form-group form-group-sm">
+								<v-input label="银行放款日期" name="bankPaymentDateStart" class="date" placeholder="请输入开始时间"></v-input>
+								<v-input label="至" name="bankPaymentDateEnd" class="date" placeholder="请输入结束时间"></v-input>
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="col-md-24 col-xs-24 col-sm-24 text-center">
+									<button type="button" class="btn btn-primary" id="btn-search" modal="enter"
+									        v-on:click="btnSearch"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+									</button>
+									<button type="button" class="btn btn-white" modal="reset"  v-on:click="resetForm"><span
+											class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+									</button>
+									<button type="button" class="btn btn-primary pull-right" id="btnBatchPay" modal="enter"
+									        v-on:click="btnBatchPay"><span>&nbsp;批量还款&nbsp;</span>
+									</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<div class="tab-content">
+							<!--<v-table id="table" :options="table" ajax="dataload" checkbox="checkbox" ></v-table>-->
+							<table id="table" data-toggle="table" data-ajax="dataLoad">
+								<thead>
+								<tr>
+									<th data-checkbox="true" data-formatter="applyStatus" data-Formatter="isCheckbox"></th>
+									<th data-field="financeChannelName">资金渠道</th>
+									<th data-field="launchOrgName">分公司</th>
+									<th data-field="coBankName">合作银行</th>
+									<th data-field="dealerName">车商名称</th>
+									<th data-field="projectNo">贷款编号</th>
+									<th data-field="customerName">客户名称</th>
+									<th data-field="cardNo">证件号码</th>
+									<th data-field="applyAmount">申请金额</th>
+									<th data-field="applyTime">申请日期</th>
+									<th data-field="applyTerm">申请期限(天)</th>
+									<th data-field="paymentTime">放款日期</th>
+									<th data-field="paymentAmount">放款金额</th>
+									<th data-field="repaymentTime">还款日期</th>
+									<th data-field="repaymentAmount">还款金额</th>
+									<th data-field="repaymentCapital">本金</th>
+									<th data-field="repaymentInterest">利息</th>
+									<th data-field="repaymentServiceFee">服务费</th>
+									<th data-field="applyStatusName">申请状态</th>
+									<th data-field="applyResultMessage">申请结果</th>
+									<th data-field="imageTransmitStatusName">影像状态</th>
+									<th data-field="confirmStatusName">确认状态</th>
+									<th data-field="bankPaymentDate">银行放款日期</th>
+									<th data-field="gjAgreementDownloadCount">协议下载次数</th>
+									<th data-formatter="handle_1" data-events="tableEvent">操作</th>
+								</tr>
+								</thead>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--确认操作模态框-->
+<div class="modal fade" id="sureModal">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">提示信息</h4>
+			</div>
+			<div class="modal-body">
+				<p class="tipText"></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="sureOption">确定</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/js/vue.min.js"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../common/js/vueComponent.js"><\/script>',
+        '<script src="../../../js/loanManage/fundManage/index.js"><\/script>'
+    ].join(""));
+</script>
+</html>

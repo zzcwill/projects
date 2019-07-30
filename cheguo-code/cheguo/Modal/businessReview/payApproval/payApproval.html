@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="../../../css/main.css"/>
+    <title>付款审批</title>
+</head>
+
+<body class="gray-bg">
+<div id="payApproval">
+    <div class="flow-isShowImg clearfix">
+        <span class="isShowImg hide" id="isDiscount">贴息</span>
+        <span class="isShowImg hide" id="isFreeDoor">免家访</span>
+        <span class="isShowImg hide" id="isMaritalStatus">单身</span>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                <div class="page-header">
+                    <h3 class="text-center" id="flowTitle"></h3>
+                </div>
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#examine" data-toggle="tab">审批信息</a></li>
+                    <li><a href="#info" data-toggle="tab">基本信息</a></li>
+                    <li><a href="#detail" data-toggle="tab">影像管理</a></li>
+                    <li><a href="#budget" data-toggle="tab">预算单</a></li>
+                    <li><a href="#guarantee" data-toggle="tab">反担保信息</a></li>
+                    <li><a href="#opinion" data-toggle="tab">过程意见</a></li>
+                </ul>
+                <div class="tab-content">
+                    <p></p>
+
+                    <div id="examine" class="tab-pane active">
+                        <div class="row">
+                            <div class="col-md-24 col-xs-24 col-sm-24">
+                                <div class="ibox float-e-margins">
+                                    <form id="approvalInfoForm" class="form-horizontal">
+                                        <fieldset disabled>
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h3 class="panel-title">项目基本信息</h3>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="form-group form-group-sm">
+                                                        <v-input label="业务品种" name="businessTypeName"></v-input>
+                                                        <v-input label="项目编号" name="projectNo"></v-input>
+                                                        <v-input label="贷款产品" name="loanTypeName"></v-input>
+                                                        <input type="hidden" name="loanType">
+                                                    </div>
+                                                    <div class="form-group form-group-sm">
+                                                        <v-input label="客户编号" name="customerNo"></v-input>
+                                                        <v-input label="客户姓名" name="customerName"></v-input>
+                                                        <v-input label="证件号码" name="cardNo"></v-input>
+                                                    </div>
+                                                    <div class="form-group form-group-sm">
+                                                        <v-input label="贷款金额" name="loanAmount"></v-input>
+                                                        <v-input label="申请金额" name="requiredAmount"></v-input>
+                                                        <!--<v-input label="贷款期限:" name="loanTerm"></v-input>-->
+                                                        <v-select label="贷款期限" name="loanTerm" :options="loanTerm"></v-select>
+                                                    </div>
+                                                    <div class="form-group form-group-sm">
+                                                        <v-input label="业务小组" name="userGroupName"></v-input>
+                                                        <v-input label="客户经理" name="userName"></v-input>
+                                                        <v-input label="合作银行" name="coBankName"></v-input>
+
+                                                    </div>
+                                                    <div class="form-group form-group-sm">
+                                                        <v-radio label="是否电子签约" name="isEcontract" :options="[{value:'1',text:'是'},{value:'0',text:'否'}]"></v-radio>
+                                                        <div class="input-tip">
+                                                          <label class="col-xs-3 col-sm-3 col-md-3 control-label">合同状态：</label>
+                                                          <div class="col-xs-5 col-sm-5 col-md-5">
+                                                            <input type="hidden" name="econtractStatus" value="">
+                                                            <select name="econtractStatus" id="econtractStatus" class="form-control">
+                                                            </select>
+                                                          </div>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                    <form class="form-horizontal" id="accountInfo">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">账户信息</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="form-group form-group-sm">
+                                                    <div class="page-header">打款账户</div>
+                                                    <v-input label="收款人全称" name="guaranteeCorporationAccountName"
+                                                             class="group" readonly="readonly">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-primary btn-sm" v-on:click="receipt">选择</button>
+                                                        </span>
+                                                    </v-input>
+                                                    <v-input label="收款账号" name="guaranteeCorporationAccountNo"
+                                                             readonly="readonly"></v-input>
+                                                    <v-input label="收款人开户行" name="guaranteeCorporationBank" readonly="readonly"></v-input>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <div class="page-header">客户账户</div>
+                                                    <v-input label="客户账户全称" name="dealerAccountName" readonly="readonly">
+                                                    </v-input>
+                                                    <v-input label="客户收款账号" name="dealerAccountNo" readonly="readonly"></v-input>
+                                                    <v-input label="客户开户行" name="dealerBank" readonly="readonly"></v-input>
+                                                    <input type="hidden" name="employDealerId">
+                                                    <input type="hidden" name="employDealerName">
+                                                    <input type="hidden" name="bankBranchId">
+                                                    <input type="hidden" name="dealerAccountType">
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <div class="page-header">资金账户</div>
+                                                    <v-input label="资金池账户全称" name="capitalPoolAccountName"
+                                                             class="group" readonly="readonly">
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-primary btn-sm" v-on:click="capitalPool">选择</button>
+                                                        </span>
+                                                    </v-input>
+                                                    <v-input label="资金池账号" name="capitalPoolAccountNo"
+                                                             readonly="readonly"></v-input>
+                                                    <v-input label="资金池开户行" name="capitalPoolBank"
+                                                             readonly="readonly"></v-input>
+                                                </div>
+                                                <div class="form-group form-group-sm" v-if="type==2">
+                                                    <v-input label="付款金额" name="guaranteeCorporationPaymentAmount" readonly="readonly"></v-input>
+                                                </div>
+                                                <div class="form-group form-group-sm text-right">
+                                                    <button type="button" class="btn btn-primary btn-sm" v-on:click="paymentSave">保存</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <!--选择收款人-->
+                                    <modal-fade id="payModal" title="请选择收款人">
+                                        <div slot="body">
+                                            <v-table id="table_pay" ajax="table_pay" :options="table"></v-table>
+                                        </div>
+                                        <div slot="foot">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">确定
+                                            </button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                                            </button>
+                                        </div>
+                                    </modal-fade>
+                                    <!--资金池账户-->
+                                    <modal-fade id="capitalPool" title="请选择收款人">
+                                        <div slot="body">
+                                            <v-table id="table_pay2" ajax="table_pay2" :options="table2"></v-table>
+                                        </div>
+                                        <div slot="foot">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">确定
+                                            </button>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                                            </button>
+                                        </div>
+                                    </modal-fade>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="info" class="tab-pane">
+                        <div data-url="../../common/commonBaseinfo/baseInfo.html"></div>
+                    </div>
+                    <!--<div id="creditInfo" class="tab-pane">-->
+                        <!--<div data-url="../../common/commonCreditInfo/credit.html" id='loadCredit'></div>-->
+                        <!--<h3>历史征信记录</h3>-->
+
+                        <!--<div data-url="../../common/commonCreditInfo/creditInfo.html" id='loadCreditInfo'></div>-->
+                    <!--</div>-->
+                    <!--<div id="secondCarInfo" class="tab-pane">-->
+                        <!--<div data-url="../../secondHandCar/common/registered.html"></div>-->
+                    <!--</div>-->
+                    <div id="detail" class="tab-pane">
+                        <div data-url="../../common/documentDetail/index.html"></div>
+                    </div>
+                    <div id="budget" class="tab-pane">
+                        <div data-url="../../common/commonBudget/businessBudget.html"></div>
+                    </div>
+                    <div id="guarantee" class="tab-pane">
+                        <div data-url="../../common/commonGuarantee/guarantee.html"></div>
+                    </div>
+                    <div id="opinion" class="tab-pane">
+                        <div data-url="../../common/commonOpinion/opinion.html"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--流程意见-->
+        <flow-opinion id="opinionForm" @btnsave="saveBtn">
+            <div slot="conclusion">
+                <v-radio label="意见结论" name="conclusion" class="required"
+                         :options="[{value:1,text:'同意',checked:'checked'},{value:0,text:'不同意'}]"
+                         @radiovalue="isreback"></v-radio>
+            </div>
+            <div slot="foot">
+                <button type="button" class="btn btn-primary" v-show="reback==true" v-on:click="backPre">
+                    <span>退回上一步</span>
+                </button>
+                <button type="button" class="btn btn-primary" v-show="reback==false" v-on:click="refer"><span>提交</span>
+                </button>
+            </div>
+        </flow-opinion>
+        <!--下个流程流转人员-->
+        <modal-fade id="signModal" class="modal-lg" title="任务提交">
+            <div slot="body">
+                <p>请选择流转人员&nbsp;&nbsp;&nbsp;后续流程环节:<span id="nextNode"></span></p>
+                <!--<v-table id="table_sign" :options="table" ajax="table_sign"></v-table>-->
+                <table id="table_sign" data-ajax="table_sign">
+                    <thead>
+                    <tr>
+                        <th data-switchable="false" data-field="userId" data-formatter="handle_sign"
+                            data-events="tableEvent_sign">选择
+                        </th>
+                        <th data-field="organization">机构名称</th>
+                        <th data-field="department">部门</th>
+                        <th data-field="userName">姓名</th>
+                        <th data-field="taskCount">当前代办量</th>
+                    </tr>
+                    </thead>
+                </table>
+                <input type="hidden" id="nextNodeUserId"/>
+                <input type="hidden" id="nextNodeUserName"/>
+            </div>
+            <div slot="foot">
+                <input type="hidden" id="signUserName" name=""/>
+                <button type="button" class="btn btn-primary" id="select-sign-btn">确定</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </modal-fade>
+    </div>
+</div>
+</body>
+
+</html>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/js/LocalResizeIMG.js"></script>
+<script src="https://api.map.baidu.com/api?v=2.0&amp;ak=1bG5NEsIqXGmgmmjIK87H00k&amp;s=1"></script>
+<script src="../../../common/js/vue.min.js"></script>
+<script src="../../../common/js/vueComponent.js?rev=3b00d60"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../common/js/flow.js"><\/script>',
+        '<script src="../../../js/task/myTask/common/base.js"><\/script>',
+        '<script src="../../../js/secondHandCar/common/index.js"><\/script>',
+        '<script src="../../../js/businessReview/payApproval/payApproval.js"><\/script>'
+    ].join(""));
+</script>

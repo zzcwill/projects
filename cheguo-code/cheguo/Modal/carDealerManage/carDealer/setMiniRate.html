@@ -1,0 +1,183 @@
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="col-md-8">
+                <h3 class="panel-title">设置最低手续费率</h3>
+            </div>
+            <div class="col-md-16">
+                <ul class='btnList'>
+                    <li id="addNewMiniRate-btn" class="hide"><a href="javascript:;">新增最低利率</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table id="miniRateTable" data-ajax="dataLoad_rate" data-toggle="table">
+                <thead>
+                <tr>
+                    <th data-field="dealerGroupName">适用营销品牌</th>
+                    <th data-field="nper" data-formatter="loanTerm">适用期限</th>
+                    <th data-field="lowestFee">最低利率(%)</th>
+                    <th data-field="carType" data-formatter="loanCarType">汽车类型</th>
+                    <th data-formatter="handle_miniRate1" data-events="tableEvent_miniRate">操作</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="updataMiniRate" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+                <h4 class="modal-title">修改</h4>
+            </div>
+            <div class="modal-body">
+                <form id="updataMiniRateForm" class="form-horizontal">
+                    <input name="id" type="hidden" value="">
+                    <div class="form-group form-group-sm">
+                        <div class="input-tip">
+                            <label class="control-label col-md-5">营销品牌集团：
+                            </label>
+                            <div class="col-md-19">
+                                <input type="hidden" name="dealerGroupName">
+                                <select name="dealerGroupId" class="form-control dealerGroupId">
+                                    <option value="">--请选择--</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <div class="input-tip">
+                            <label class="control-label col-md-5">期限：
+                            </label>
+                            <div class="col-md-19">
+                                <select name="nper" class="form-control">
+                                    <option value="">--请选择--</option>
+                                    <option value="1">12期</option>
+                                    <option value="2">18期</option>
+                                    <option value="3">24期</option>
+                                    <option value="4">36期</option>
+                                    <option value="5">48期</option>
+                                    <option value="6">60期</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <div class="input-tip">
+                            <label class="control-label col-md-5">最低手续费率(%)：
+                            </label>
+                            <div class="col-md-19">
+                                <input type="text" name="lowestFee" placeholder="请输入最低手续费率(%)" class="form-control handingFee">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <div class="input-tip">
+                            <label class="control-label col-md-5">汽车类型：
+                            </label>
+                            <div class="col-md-19">
+                                <select name="carType" class="form-control required">
+                                    <option value="">--请选择--</option>
+                                    <option value="1">新车</option>
+                                    <option value="2">二手车</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="saveUpdat" class="btn btn-info">保存</button>
+                <button data-dismiss="modal" class="btn btn-default">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="addMiniRate" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    <div class="tipClick" style="position: fixed; left: 0; top: 0; width: 100%; height: 100%"></div>
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" aria-hidden="true" type="button" class="close refreshTable">&times;</button>
+                <h4 class="modal-title">新增最低利率</h4>
+            </div>
+            <div class="modal-body">
+                <form id="addMiniRateForm" class="form-horizontal">
+                    <div class="form-group form-group-sm">
+                        <div class="input-tip">
+                            <label class="control-label col-md-3">营销品牌集团：
+                            </label>
+                            <div class="col-md-5">
+                                <input type="hidden" name="dealerGroupName">
+                                <select name="dealerGroupId" class="form-control dealerGroupId">
+                                    <option value="">--请选择--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-tip">
+                            <label class="control-label col-md-2">期限：
+                            </label>
+                            <div class="col-md-5">
+                                <select name="nper" class="form-control required">
+                                    <option value="">--请选择--</option>
+                                    <option value="1">12期</option>
+                                    <option value="2">18期</option>
+                                    <option value="3">24期</option>
+                                    <option value="4">36期</option>
+                                    <option value="5">48期</option>
+                                    <option value="6">60期</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-tip">
+                            <label class="control-label col-md-4">最低手续费率(%)：
+                            </label>
+                            <div class="col-md-5">
+                                <input type="text" name="lowestFee" placeholder="请输入最低手续费率(%)" class="form-control required handingFee">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <div class="input-tip">
+                            <label class="control-label col-md-3">汽车类型：
+                            </label>
+                            <div class="col-md-5">
+                                <select name="carType" class="form-control required">
+                                    <option value="" selected>--请选择--</option>
+                                    <option value="1">新车</option>
+                                    <option value="2">二手车</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="form-group form-group-sm">
+                    <div class="col-md-24 text-right">
+                        <div class="input-tip">
+                            <button id="btn_addNew" class="btn btn-primary btn-sm">新增</button>
+                        </div>
+                    </div>
+                </div>
+                <table id="addMiniRateTable" data-toggle="table">
+                    <thead>
+                        <tr>
+                            <th data-field="dealerGroupName">适用营销品牌</th>
+                            <!--<th data-field="id">id</th>-->
+                            <th data-field="nper" data-formatter="loanTerm">适用期限</th>
+                            <th data-field="lowestFee">最低利率(%)</th>
+                            <th data-field="carType" data-formatter="loanCarType">汽车类型</th>
+                            <th data-formatter="handle_miniRate" data-events="tableEvent_miniRate">操作</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default refreshTable">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../js/carDealerManage/carDealer/setMiniRate.js"></script>

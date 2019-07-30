@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="renderer" content="webkit"> 
+	<meta name="keywords" content=""/>
+	<meta name="description" content="" />
+	<title></title>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-switch/css/bootstrap-switch.css"/>
+	<style type="text/css">
+    .switch-title{
+        text-align: center;
+        background: #6ccac9;
+        color: #fff;
+        padding: 5px 5px;
+        border-radius: 3px;
+        margin-bottom : 5px;
+    }
+    .ibox-content{
+        overflow: hidden;
+        padding-bottom: 15px;
+    }
+    .table>thead>tr>th,.table>tbody>tr>td{
+        text-align: center;
+    }
+    .showdata{
+        border: none;
+        background: none;
+        text-align: center;
+        outline: none;
+    }
+    </style>
+</head>
+<body class="gray-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-24">
+				<h1 class="text-center">中安金控数据看板后台</h1>
+			</div>
+		</div>
+        <div class="row">
+            <div class="col-md-24">
+                <form id="dataForm">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content" style="border-bottom: 1px dashed #f3f3f4;">
+                        <div class="col-md-4">展示页面：</div>
+                        <div class="col-md-4">
+                            <div class="switch-title" style="background: #878CCE;">中安布局视图</div>
+                            <div class="text-center">
+                                <input type="checkbox" checked name='layput' checked data-size="mini" data-on-color="success" data-off-color="danger" data-on-text="打开" data-off-text="关闭" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="switch-title">区域业务概况视图</div>
+                            <div class="text-center">
+                                <input type="checkbox" checked name='parts' checked data-size="mini" data-on-color="success" data-off-color="danger" data-on-text="打开" data-off-text="关闭" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="switch-title" style="background: #ff6c60;">核心能力视图</div>
+                            <div class="text-center">
+                                <input type="checkbox" checked name='core' checked data-size="mini" data-on-color="success" data-off-color="danger" data-on-text="打开" data-off-text="关闭" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="switch-title" style="background: #f8d347;">业务总体视图</div>
+                            <div class="text-center">
+                                <input type="checkbox" checked name='business' checked data-size="mini" data-on-color="success" data-off-color="danger" data-on-text="打开" data-off-text="关闭" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="switch-title" style="background: #57c8f2;">风控总体视图</div>
+                            <div class="text-center">
+                                <input type="checkbox" checked name='risk' checked data-size="mini" data-on-color="success" data-off-color="danger" data-on-text="打开" data-off-text="关闭" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                    		<input name="id" hidden value=""/>
+                        <div class="col-md-4">合作银行筛选：</div>
+                        <div class="col-md-4">
+                            <select name="coopBank">
+                                <option value="工商银行">工商银行</option>
+                                <option value="建设银行">建设银行</option>
+                                <option value="所有银行" selected>所有银行</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                </form>
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <h2 class="text-center">通用设置</h2>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th width="40%">数据项</th>
+                                    <th width="30%">原始数据</th>
+                                    <th>展示数据</th>
+                                </tr>
+                            </thead>
+                            <tbody id="settting_data_0">
+                            		<tr>
+                                    <td>人数</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>贷款笔数</td>
+                                    <td><input class="showdata" name="" type="text" value='2000' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value='3000'/></td>
+                                </tr>
+                                <tr>
+                                    <td>贷款额</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>保险代理销售额</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>逾期N1笔数</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>逾期N2笔数</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>逾期N3笔数</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>逾期N1金额</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>逾期N2金额</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>逾期N3金额</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>超期45天内未抵押笔数</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>超期60天内未抵押笔数</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>超期90天内未抵押笔数</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>超期90天以上未抵押笔数</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>超期60天内未抵押金额</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>GPS安装量</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <h2 class="text-center">中安布局视图</h2>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th width="40%">数据项</th>
+                                    <th width="30%">原始数据</th>
+                                    <th>展示数据</th>
+                                </tr>
+                            </thead>
+                            <tbody id="settting_data_1">
+                                <tr>
+                                    <td>合作车商</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>累计服务客户数</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>累计放款笔数</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>累计放款金额</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>不良率	</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <h2 class="text-center">核心能力视图</h2>
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th width="40%">数据项</th>
+                                    <th width="30%">原始数据</th>
+                                    <th>展示数据</th>
+                                </tr>
+                            </thead>
+                            <tbody id="settting_data_3">
+                                <tr>
+                                    <td>超期60天内未抵押笔数基准值</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>超期90天内未抵押笔数基准值</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>逾期N1金额占比基准值</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>逾期N2金额占比基准值</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>业务审核环节效率基准值</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>抵押环节效率基准值</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                                <tr>
+                                    <td>垫资周期基准值</td>
+                                    <td><input class="showdata" name="" type="text" value='' readonly/></td>
+                                    <td><input class="showdata" name="" type="text" value=''/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-24 text-center" style="margin-bottom: 20px;">
+                    <button type="butten" class="btn btn-primary text-center" id="confirm">确 定</button>
+                </div>
+            </div>
+        </div>
+	</div>
+</body>
+</html>
+
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=eb649edd14c8348e9f34a8ca6157c2b6"></script>   
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/js/iframeCommon.js?rev=1452145039607"></script>
+<script src="../../../common/js/URL.js?rev=1452145039607"></script> <!-- 
+<script src="../../../common/plugs/jquery-toastr/js/toastr.min.js"></script> 
+<script src="../../../common/js/tabs.js"></script>  -->
+<script src="../../../common/plugs/bootstrap-switch/js/bootstrap-switch.js"></script>
+<script src="../../../js/main/dataSet/index.js"></script>

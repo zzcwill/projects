@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../common/css/style.min.css" />
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a" />
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/viewer/css/viewer.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-select-1.10.0/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../../../css/main.css" />
+    <title>车架号日志查询</title>
+    <style>
+        .time{
+            font-size: 16px;
+            font-weight: 700;
+            color: red;
+        }
+        .overage{
+            font-size: 14px;
+            color: #f50000;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+</html>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-md-24 col-xs-24 col-sm-24">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="page-header">
+                        <h3 class="text-center">车架号日志查询</h3>
+                    </div>
+                    <form id="searchForm" class="form-horizontal">
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">机构名称：</label>
+                                <div class="col-md-5 cl-sm-5 col-xs-5">
+                                    <select name="orgId" class="form-control" id="orgList">
+                                        <option value="">--请选择--</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">城市名称：</label>
+                                <div class="col-md-5 cl-sm-5 col-xs-5">
+                                    <input type="text" name="cityName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">车架号：</label>
+                                <div class="col-md-5 cl-sm-5 col-xs-5">
+                                    <input type="text" name="vin" class="form-control">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">用户名：</label>
+                                <div class="col-md-5 cl-sm-5 col-xs-5">
+                                    <!--<select name="guaranteeCorporationAccountName" class="form-control" id="companyAccount">-->
+                                    <!--<option value="" selected>&#45;&#45;请选择&#45;&#45;</option>-->
+                                    <!--</select>-->
+                                    <input type="text" name="userName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">查询状态：
+                                </label>
+                                <div class="col-md-5 cl-sm-5 col-xs-5">
+                                    <select name="status" class="form-control" id="loanType">
+                                        <option value="">--请选择--</option>
+                                        <option value="0">查询不到内容</option>
+                                        <option value="1">查询成功</option>
+                                        <option value="2">查询成功解析异常</option>
+                                        <option value="3">查询成功解析正确</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">查询来源：
+                                </label>
+                                <div class="col-md-5 cl-sm-5 col-xs-5">
+                                    <select name="source" class="form-control" id="source">
+                                        <option value="">--请选择--</option>
+                                        <option value="1">车虫</option>
+                                        <option value="2">未知</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">操作开始日期:</label>
+                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                    <input type="text" class="form-control date today" name="starttime">
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">操作结束日期:</label>
+                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                    <input type="text" class="form-control date today" name="endtime">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-24 col-xs-24 col-sm-24 text-center">
+                                <button type="button" class="btn btn-primary" id="btn-search" modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                                </button>
+                                <button type="button" class="btn btn-white" modal="reset"><span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <table id="table" data-toggle="table" data-ajax="payment">
+                        <thead>
+                        <tr>
+                            <th data-field="cityName">城市名称</th>
+                            <th data-field="orgName" >所属机构名称</th>
+                            <th data-field="vin">车架号</th>
+                            <th data-field="userName">客户名称</th>
+                            <th data-field="status" data-formatter="queryStatus">查询状态</th>
+                            <th data-field="result" >查询结果</th>
+                            <th data-field="source"data-formatter="querySource">来源</th>
+                            <th data-field="modifyTime">操作时间</th>
+
+                            <!--<th data-switchable="false" data-formatter="handle" data-events="tableEvent">操作</th>-->
+                        </tr>
+                        </thead>
+                    </table>
+                    <div id="toolbar"></div>
+                </div>
+            </div>
+            <div class="modal fade bs-example-modal-lg" id="payMode">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="payTitle"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <form class="form-horizontal" id="payModeForm">
+                                    <input type="text" name="token" hidden>
+                                    <input type="text" name="projectId" hidden>
+                                    <fieldset disabled="disabled">
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                                <label class="col-md-4 col-xs-4 col-sm-4 control-label">付款账户名:</label>
+                                                <div class="col-md-8 col-xs-8 col-sm-8">
+                                                    <input type="text" name="guaranteeCorporationAccountName" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="input-tip">
+                                                <label class="col-md-4 col-xs-4 col-sm-4 control-label">收款账户名:</label>
+                                                <div class="col-md-8 col-xs-8 col-sm-8">
+                                                    <input type="text" name="dealerAccountName" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                                <label class="col-md-4 col-xs-4 col-sm-4 control-label">付款银行:</label>
+                                                <div class="col-md-8 col-xs-8 col-sm-8">
+                                                    <input type="text" name="guaranteeCorporationBank" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="input-tip">
+                                                <label class="col-md-4 col-xs-4 col-sm-4 control-label">收款银行:</label>
+                                                <div class="col-md-8 col-xs-8 col-sm-8">
+                                                    <input type="text" name="dealerBank" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                                <label class="col-md-4 col-xs-4 col-sm-4 control-label">付款帐号:</label>
+                                                <div class="col-md-8 col-xs-8 col-sm-8">
+                                                    <input type="text" name="guaranteeCorporationAccountNo" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="input-tip">
+                                                <label class="col-md-4 col-xs-4 col-sm-4 control-label">收款帐号:</label>
+                                                <div class="col-md-8 col-xs-8 col-sm-8">
+                                                    <input type="text" name="dealerAccountNo" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="form-group form-group-sm">
+                                        <div class="input-tip">
+                                            <label class="col-md-4 col-xs-4 col-sm-4 control-label">付款金额:</label>
+                                            <div class="col-md-8 col-xs-8 col-sm-8">
+                                                <input type="text" name="dealerPaymentAmount" class="form-control mon" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="col-md-4 col-xs-4 col-sm-4 control-label">用途:</label>
+                                            <div class="col-md-8 col-xs-8 col-sm-8">
+                                                <input type="text" name="purpose" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm">
+                                        <label class="col-md-4 col-xs-4 col-sm-4 control-label">是否加急</label>
+                                        <div class="col-md-8 col-xs-8 col-sm-8">
+                                            <label class="radio-inline"><input type="radio" name="priorityFlag" value="1">是</label>
+                                            <label class="radio-inline"><input type="radio" name="priorityFlag" value="0" checked="checked">否</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm">
+                                        <div class="overage text-left col-md-12 col-xs-12 col-sm-12">
+
+                                        </div>
+                                        <div class="time text-right col-md-12 col-xs-12 col-sm-12">
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="payment">确认</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--非工作时间拆单付款确认-->
+                <div class="modal fade" id="takeApart">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                            </div>
+                            <div class="modal-body">
+                                <div>非工作时间，是否允许系统按（50000/笔）执行自动拆单付款操作</div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+                                <button type="button" class="btn btn-primary" id="disAgree">否</button>
+                                <button type="button" class="btn btn-primary" id="agree">是</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="artificial">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">人工处理提示</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="message"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="confirm">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/echarts.js"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=1512011716000"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/LocalResizeIMG.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/viewer/js/viewer.js"></script>
+<script src="../../../common/plugs/bootstrap-select-1.10.0/dist/js/bootstrap-select.min.js"></script>
+<script src="../../../common/js/flow.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/loanManage/vinLogQuery/index.js"><\/script>'
+    ].join(""));
+</script>

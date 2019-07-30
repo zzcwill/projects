@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../common/css/style.min.css" />
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a" />
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css" />
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css" />
+    <title>催收登记</title>
+</head>
+<style>
+    .newAddPersonBox{
+        position: relative;
+    }
+    .newAddPersonBox #newAddPerson {
+        position: absolute;
+        right:-62px;
+        top:0;
+        z-index: 1000;
+    }
+</style>
+
+</html>
+
+<body class="gray-bg">
+    <input type="hidden" name="planNo">
+    <input type="hidden" name="overdueTotalAmount">
+    <input type="hidden" name="advanceBalanceAmount">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-md-24 col-xs-24 col-sm-24">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <div align="center" style="height: 60px;top: 20px;" id="insuranceTitleDiv">
+                            <h1>催收登记</h1>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">基本信息</h3>
+                            </div>
+                            <div class="panel-body panel-default" id="baseInfo">
+                                <div class="form-horizontal">
+                                    <div class="form-group form-group-sm">
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">客户姓名:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="customerName" class="form-control-static"></p>
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">身份证号:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="cardNo" class="form-control-static"></p>
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">手机号:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="mobilePhone" class="form-control-static"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm">
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">车牌号码:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="plateNo" class="form-control-static"></p>
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">贷款机构:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="coBankName" class="form-control-static"></p>
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">所属分公司:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="launchOrgName" class="form-control-static"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm">
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">近期最优还款额:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="lastRepaymentAmount" class="form-control-static"></p>
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">近期银行还款日:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="currentBankRepaymentTime" class="form-control-static"></p>
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">月供:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="currentPlanRepayAmount" class="form-control-static"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm">
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">净垫款额:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <p data-name="advanceBalanceAmount" class="form-control-static"></p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default hide">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">催收记录</h3>
+                            </div>
+                            <div class="panel-body panel-default">
+                                <table id="table2" data-toggle="table" data-ajax="table_2">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="collectionDate">催收日期</th>
+                                            <th data-field="collectionObjRealname">催收对象</th>
+                                            <th data-field="cellphone">联系电话</th>
+                                            <th data-field="collectionType" data-formatter="collectionType">催收方式</th>
+                                            <th data-field="collectionResult" data-formatter="collectionResult">催收结果</th>
+                                            <th data-field="willPaymentDate">意愿还款日期</th>
+                                            <th data-field="willPaymentAmount" data-formatter="yuan">意愿还款金额</th>
+                                            <th data-field="collectionAddressDetail">上门地址</th>
+                                            <th data-formatter="handle_num" data-events="tableEvent_num">催收附件</th>
+                                            <th data-field="collectionUserRealname">催收人</th>
+                                            <!-- <th data-field="remark" data-switchable="false" data-formatter="handle_2"
+                                                data-events="tableEvent_2">操作</th> -->
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">催收信息</h3>
+                            </div>
+                            <div class="panel-body panel-default">
+                                <form class="form-horizontal" id="collectionForm_2">
+                                    <div class="form-group form-group-sm">
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">催收对象:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5 newAddPersonBox">
+                                                <select class="form-control required" name="collectionObjId" id="collectionObjId">
+                                                </select>
+                                                <input type="hidden" name="collectionObjRealname">
+                                                <button type="button" class="btn btn-primary" id="newAddPerson" modal="enter">新增</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">催收日期:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <input name="collectionDate" class="form-control date required" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm newAddPersonInfo" style="display: none;">
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">姓名:
+                                            </label>
+                                            <div class=" col-md-2 col-xs-2 col-sm-2">
+                                                <input name="collectionObjRealname2" id="collectionObjRealname2" class="form-control required" />
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="control-label  col-md-2 col-xs-2 col-sm-2">联系电话:
+                                            </label>
+                                            <div class="col-md-2 col-xs-2 col-sm-2">
+                                                <input name="cellphone" class="form-control mobile required" />
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-2 col-xs-2 col-sm-2">与贷款人关系:
+                                            </label>
+                                            <div class="col-md-2 col-xs-2 col-sm-2">
+                                                <select name="relationship" class="form-control required">
+                                                    <option value="1">本人</option>
+                                                    <option value="2">夫妻</option>
+                                                    <option value="3">父亲</option>
+                                                    <option value="4">母亲</option>
+                                                    <option value="5">兄弟</option>
+                                                    <option value="6">姐妹</option>
+                                                    <option value="7">儿子</option>
+                                                    <option value="8">亲戚</option>
+                                                    <option value="9">朋友</option>
+                                                    <option value="10">合伙人</option>
+                                                    <option value="11">同事</option>
+                                                    <option value="12">女儿</option>
+                                                    <option value="13">姐夫</option>
+                                                    <option value="14">嫂子</option>
+                                                    <option value="15">儿媳</option>
+                                                    <option value="16">担保人</option>
+                                                    <option value="17">借款人</option>
+                                                    <option value="18">合同还款人</option>
+                                                </select>
+                                            </div>
+                                            <button type="button" class="btn btn-primary" id="reduceAddPerson" modal="enter">删除</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm">
+                                        <div class="input-tip hide">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">催收方式:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <select name="collectionType" id="collectionType" class="form-control required">
+                                                    <option value="1" selected>电话催收</option>
+                                                    <option value="2">上门催收</option>
+                                                    <option value="3">律师函催收</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="input-tip collectionType2" style="display: none">
+                                            <label class="control-label  col-md-3 col-xs-3 col-sm-3">
+                                                委外:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="isOutsource" value="1">是
+                                                </label>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="isOutsource" value="2" checked>否
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="input-tip collectionType3" style="display: none;">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">律师函版本:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <input name="lawyerLetterVersion" class="form-control required" />
+                                            </div>
+                                        </div>
+                                        <div class="input-tip collectionType3" style="display: none;">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">律师函编号:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <input name="lawyerLetterNo" class="form-control required" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm collectionType3" style="display: none;">
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">快递单号:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <input name="expressOrderNo" class="form-control required" />
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">邮寄日期:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <input name="expressDate" class="form-control date required" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm collectionType3" style="display: none;">
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">签收详情:
+                                            </label>
+                                            <div class="col-md-21 col-xs-21 col-sm-21">
+                                                <input type="text" class="form-control required" name="receiveDetail" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm collectionType23" style="display: none">
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">催收地址(省):
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <select name="collectionAddressPid" id="collectionAddressPid" class="form-control required">
+                                                    <option value="">--请选择--</option>
+                                                </select>
+                                                <input type="hidden" id="collectionAddressPname" name="collectionAddressPname">
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">市/区:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <select name="collectionAddressCid" id="collectionAddressCid" class="form-control required">
+                                                    <option value="">--请选择--</option>
+                                                </select>
+                                                <input type="hidden" id="collectionAddressCname" name="collectionAddressCname">
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">市/区/县:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <select name="collectionAddressRid" id="collectionAddressRid" class="form-control required">
+                                                    <option value="">--请选择--</option>
+                                                </select>
+                                                <input type="hidden" id="collectionAddressRname" name="collectionAddressRname">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm collectionType23" style="display: none;">
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">详细地址:
+                                            </label>
+                                            <div class="col-md-21 col-xs-21 col-sm-21">
+                                                <input type="text" class="form-control required" name="collectionAddressDetail" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm">
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">催收结果:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <select class="form-control required" name="collectionResult" id="collectionResult">
+                                                    <option value="2" checked>不愿还款</option>
+                                                    <option value="1">愿意还款</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">催收人:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <select class="form-control required" name="collectionUserId" id="collectionUserId">
+                                                    <option value="">--请选择--</option>
+                                                </select>
+                                                <input type="hidden" name="collectionUserRealname">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm collectionResult1" style="display: none">
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">意愿还款日期:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <input type="text" class="form-control date required" name="willPaymentDate" />
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">意愿还款金额:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <input type="text" class="form-control money required" name="willPaymentAmount" />
+                                            </div>
+                                        </div>
+                                        <div class="input-tip">
+                                            <label class="control-label col-md-3 col-xs-3 col-sm-3">
+                                                全额还款:
+                                            </label>
+                                            <div class="col-md-5 col-xs-5 col-sm-5">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="isFullPayment" class="required" value="1">是
+                                                </label>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="isFullPayment" class="required" value="2">否
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm">
+                                        <div class="input-tip">
+                                            <label class="col-md-3 col-xs-3 col-sm-3 control-label">情况描述：</label>
+                                            <div class="col-md-21">
+                                                <textarea class="form-control required" rows="3" name="remark" id="remark"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm dataUpload hide" id="collectionRecordImg">
+                                        <div class="input-tip">
+                                            <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">催收材料(附件)：</label>
+                                            <div class="col-md-2 col-sm-2 col-lg-2 col-xs-2">
+                                                <button type="button" class="btn btn-primary btn-sm upImage"><span>选择图片</span>
+                                                </button>
+                                                <button type="button" class="btn btn-primary btn-sm upload hide"><span>开始上传</span>
+                                                </button>
+                                                <input type="file" name="files[]" accept="image/*" class="hide upImageInput"
+                                                    multiple />
+                                            </div>
+                                            <ul class="col-md-19 col-sm-19 col-lg-19 col-xs-19 list-inline files-ul" id="fileType">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-sm" style="margin-top: 15px;">
+                                        <input type="hidden" value="" id="keyId" />
+                                        <div class="col-md-24 col-xs-24 col-sm-24 text-right">
+                                            <button type="button" class="btn btn-primary" id="btn-save" modal="enter"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;保存&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            </button>
+                                        </div>
+                                        <!--<div class="col-md-12 col-xs-12 col-sm-12 text-center">-->
+                                        <!--<button type="button" class="btn btn-primary" modal="enter"><span>&nbsp;保存并处理下一个&nbsp;</span>-->
+                                        <!--</button>-->
+                                        <!--</div>-->
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">逾期记录</h3>
+                            </div>
+                            <div class="panel-body panel-default">
+                                <table id="table1" data-toggle="table" data-ajax="table_1">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="planNo" data-formatter="qi">期数</th>
+                                            <th data-field="currentBankRepaymentTime">当前还款日</th>
+                                            <th data-field="monthRepaymentAmount" data-formatter="yuan">计划应还</th>
+                                            <th data-field="overdueTotalAmount" data-formatter="yuan">比较金额</th>
+                                            <th data-field="advanceBalanceAmount" data-formatter="yuan">净垫款额</th>
+                                            <!--<th data-field="lastRepaymentAmount" data-formatter="yuan">近期最优还款额</th>-->
+                                            <th data-formatter="current_yuan">本期已还</th>
+                                            <th data-field="inKeepBalanceAmount" data-formatter="yuan">在保余额</th>
+                                            <th data-field="collectionNum">催收次数</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">联系人信息</h3>
+                            </div>
+                            <div class="panel-body panel-default">
+                                <table id="table3" data-toggle="table" data-ajax="table_3">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="peopleName">联系人姓名</th>
+                                            <th data-field="phone">联系人电话</th>
+                                            <th data-field="relationShip" data-formatter="relationship_contacts">与贷款人关系</th>
+                                            <th data-field="address">详细地址</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="isUpdateImg">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">提示</h4>
+                </div>
+                <div class="modal-body">
+                    <p>未上传催收相关附件，是否继续操作？</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="BtnSure">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div id="detailModal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+                    <h4 class="modal-title">催收详情</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="detail"></div>
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/js/LocalResizeIMG.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/postLoanManage/collectionManage/collectionRecord.js"><\/script>'
+    ].join(""));
+</script>

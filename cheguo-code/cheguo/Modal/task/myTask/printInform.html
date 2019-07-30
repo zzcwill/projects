@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <title>购车分期业务准入通知</title>
+    <style type="text/css">
+        #approvalBudgetInfoForm{ height: 100%;}
+        h1.text-center{ font-weight: 700; margin-top: 0; height: 5%;}
+        .table-responsive{ height: 95%;}
+        .table-bordered{ height: 90%;}
+        .chapter{ position: absolute; right: 80px; bottom: 200px; text-align: right}
+        .chapter p{ text-space: 2px;}
+        .coChapter{ position: relative}
+        .coChapter img{ position: absolute; left: 30px; top: -85px;}
+    </style>
+</head>
+</html>
+<body>
+<div class="wrapper wrapper-content animated fadeInRight" id="approvalBudgetInfoForm">
+    <h1 class="text-center">购车分期业务准入通知</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <colgroup>
+                <col width="20%">
+                <col width="80%">
+            </colgroup>
+            <tr height="35">
+                <td style="font-weight: 700">经销商名称</td>
+                <td data-name="dealerName"></td>
+            </tr>
+            <tr height="35">
+                <td style="font-weight: 700">客户姓名</td>
+                <td data-name="customerName"></td>
+            </tr>
+            <tr height="35">
+                <td style="font-weight: 700">身份证号</td>
+                <td data-name="cardNo"></td>
+            </tr>
+            <tr height="35">
+                <td style="font-weight: 700">贷款额(元)</td>
+                <td data-name="loanAmount"></td>
+            </tr>
+            <tr height="35">
+                <td style="font-weight: 700">审批结果</td>
+                <td>通过</td>
+            </tr>
+            <tr aria-colspan="15" style="position: relative;">
+                <td colspan="2" style="vertical-align: text-top; letter-spacing:3px">
+                    <br />
+                    　　本司收到购车发票、合格证、购置税及保险发票原件后24小时内进行放款。<br />
+                    <br />
+                    　　特此通知！
+                    <div class="chapter">
+                        <p class="coName" data-name="companyName"></p>
+                        <p class="coChapter"><img src="" class="coImg" height="155"></p>
+                        <p class="yMD" data-name="date"></p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/task/myTask/common/printInform.js"><\/script>'
+    ].join(""));
+</script>

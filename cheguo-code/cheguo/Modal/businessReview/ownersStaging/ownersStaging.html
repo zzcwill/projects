@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../../common/css/style.min.css" />
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a" />
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="../../../css/main.css" />
+    <title>查看详情</title>
+</head>
+<body class="gray-bg">
+    <div id="ownersStaging">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="page-header text-center">
+                        <h3 class="text-center">查看详情</h3>
+                    </div>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#info" data-toggle="tab">基本信息</a></li>
+                        <li><a href="#budget" data-toggle="tab">预算单</a></li>
+                        <li><a href="#creditInfo" data-toggle="tab">征信记录</a></li>
+                        <li><a href="#secondCar" data-toggle="tab">二手车信息</a></li>
+                        <li><a href="#detail" data-toggle="tab">影像管理</a></li>
+                        <li><a href="#opinion" data-toggle="tab">过程意见</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <p></p>
+                        <div id="info" class="tab-pane active">
+                                <form class="form-horizontal" id="approvalBaseInfoForm">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">借款人信息</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <fieldset disabled="disabled">
+                                                <div class="form-group form-group-sm">
+                                                    <v-input label="客户名称" name="customerName" class="required"></v-input>
+                                                    <v-input label="英文名" name="enCustomerName" class="required"></v-input>
+                                                    <v-input label="建档日期" name="registerDate"></v-input>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <v-input label="客户编号" name="customerNo"></v-input>
+                                                    <v-select label="证件类型" name="cardType" :options="[{value:'1',name:'身份证'},{value:'2',name:'军官证'},{value:'3',name:'侨胞证'},{value:'',name:''}]"></v-select>
+                                                    <v-input label="证件号码" name="cardNo"></v-input>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <v-input label="出生日期" name="birthday" class="required"></v-input>
+                                                    <v-input label="年龄" name="age"></v-input>
+                                                    <v-select label="性别" name="sex" :options="[{value:'1',name:'男'},{value:'0',name:'女'}]"></v-select>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <v-radio label="证件是否长期有效" name="cardNoValid" :options="[{value:'1',text:'是'},{value:'0',text:'否'}]"></v-radio>
+                                                    <v-input label="证件有效期" name="cardNoValidTime"></v-input>
+                                                    <v-input label="发证机关" name="licenceIssuingAuthority" class="required"></v-input>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <v-input label="籍贯:" name="nativePlace"></v-input>
+                                                    <v-select label="性别" name="maritalStatus" :options="[{value:'1',name:'已婚'},{value:'2',name:'未婚'},{value:'3',name:'离异'},{value:'4',name:'丧偶'}]"></v-select>
+                                                    <v-input label="手机号码"  name="mobilePhone" class="required"></v-input>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <v-input label="家庭电话" name="homePhone" class="required phoneAndNull"></v-input>
+                                                    <v-select label="住房状况" name="housingStatus" calss="required" :options="housingStatus"></v-select>
+                                                    <div id="mortgageRepayment">
+                                                        <v-input label="租金"  name="mortgageRepayment" class="required"></v-input>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <v-select label="最高学历" name="education" class="required" :options="education"></v-select>
+                                                    <v-input label="职业" name="profession" class="required"></v-input>
+                                                    <v-input label="职务" name="postName" class="required"></v-input>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <v-select label="所属行业" name="industry" class="required" :options="industry"></v-select>
+                                                    <v-input label="单位经济性质" name="workNature" calss="required"></v-input>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <v-select label="个人月收入" name="monthlyIncome" class="required" :options="monthlyIncome"></v-select>
+                                                    <v-input label="年收入" name="yearlyIncome" class="required"></v-input>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <v-select label="公积金情况" name="reservedFundsYear" :options="reservedFundsYear"></v-select>
+                                                    <v-select label="公积金" name="reservedFunds" :options="reservedFunds" class="required"></v-select>
+                                                    <v-select label="社保情况" name="socialYear" :options="socialYear"></v-select>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <v-input label="工作单位" name="companyName" class="required"></v-input>
+                                                    <v-input label="单位电话" name="companyPhone" class="required phoneAndNull"></v-input>
+                                                    <v-input label="入职时间" name="employTime" calss="required"></v-input>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <v-input label="单位地址(省)" name="companyAddressPname" class="required"></v-input>
+                                                    <v-input label="市/区" name="companyAddressCname"></v-input>
+                                                    <v-input label="市/区/县" name="homeAddressRname"></v-input>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="control-label col-md-3"><span class="text-danger">*&nbsp;</span>详细地址:</label>
+                                                        <div class="col-md-10">
+                                                            <input type="text" class="form-control required" name="companyAddressDetail">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <v-input label="家庭地址(省)" name="homeAddressPname" class="required"></v-input>
+                                                    <v-input label="市/区" name="homeAddressCname"></v-input>
+                                                    <v-input label="市/区/县" name="homeAddressRname"></v-input>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <v-input label="现居地入住时间" name="curAddressTime" class="required"></v-input>
+                                                    <div class="input-tip">
+                                                        <label class="control-label col-md-3">详细地址:</label>
+                                                        <div class="col-md-10">
+                                                            <input type="text" class="form-control" name="homeAddressDetail">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <v-input label="上门地址(省)" name="visitAddressPname" class="required"></v-input>
+                                                    <v-input label="市/区" name="visitAddressCname"></v-input>
+                                                    <v-input label="市/区/县" name="visitAddressRname"></v-input>
+                                                </div>
+                                            </fieldset>
+                                            <div class="form-group form-group-sm">
+                                                <div class="input-tip">
+                                                    <label class="control-label col-md-3">上门地址:</label>
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="form-control required" disabled="disabled" name="visitAddressDetail">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <button type="button" class="btn btn-primary btn-sm" id="getPos" v-on:click="viewAddress">查看位置</button>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group-sm">
+                                                <v-select label="驾照情况" name="driverLicence" class="required" disabled="disabled" :options="driverLicence"></v-select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h3 class="panel-title">紧急联系人</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <v-table id="table_contacter" :options="table" ajax="table_contacter"></v-table>
+                                        </div>
+                                    </div>
+                                    <h4 class="section-title">证照识别信息</h4>
+                                    <div class="form-group form-group-sm">
+                                        <fieldset disabled>
+                                            <div class="">
+                                                <div class="input-tip">
+                                                    <div class="col-md-4 col-xs-4 col-sm-4 text-center">
+                                                        <div id="filePath"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <div class="col-md-4 col-xs-4 col-sm-4 text-center">
+                                                        <div id="faceUrl"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-16 cl-sm-16 col-xs-16">
+                                                <div class="input-tip">
+                                                    <label class="col-md-4 col-xs-4 col-sm-4 control-label">相似度(%)：</label>
+                                                    <div class="col-md-8 cl-sm-8 col-xs-8">
+                                                        <input type="text" name="similarityDegreeVo" placeholder="请输入相似度" class="form-control"  />
+                                                    </div>
+                                                </div>
+                                                <div class="input-tip">
+                                                    <label class="col-md-4 col-xs-4 col-sm-4 control-label">识别时间：</label>
+                                                    <div class="col-md-8 cl-sm-8 col-xs-8">
+                                                        <input type="text" name="faceCompareTime" placeholder="请输入相似度" class="form-control"  />
+                                                    </div>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                <div class="input-tip" style="margin-top: 10px">
+                                                    <label class="col-md-4 col-xs-4 col-sm-4 control-label">识别结果：</label>
+                                                    <div class="col-md-20 cl-sm-20 col-xs-20">
+                                                        <textarea name="result" class="form-control"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </form>
+                        </div>
+                        <div id="budget" class="tab-pane">
+                            <div data-url="../../common/commonBudget/businessBudget.html"></div>
+                        </div>
+                        <div id="creditInfo" class="tab-pane">
+                            <div data-url="../../common/commonCreditInfo/credit.html" id='loadCredit'></div>
+                            <h3>历史征信记录</h3>
+                            <div data-url="../../common/commonCreditInfo/creditInfo.html" id='loadCreditInfo'></div>
+                        </div>
+                        <div id="secondCar" class="tab-pane">
+                            <div data-url="../../common/commonAssessment/2ndCarAssessment.html"></div>
+                            <!--<div data-url="../../secondHandCar/common/registered.html"></div>-->
+                        </div>
+                        <div id="detail" class="tab-pane">
+                            <div data-url="../../common/documentDetail/index.html"></div>
+                        </div>
+                        <div id="opinion" class="tab-pane">
+                            <div data-url="../../common/commonOpinion/opinion.html"></div>
+                        </div>
+                    </div>
+                </div>
+                <modal-fade title="地图" id="mapModal" class="modal-lg">
+                    <div slot="body">
+                        <div class="col-md-6">
+                            预计上门地址：
+                            <img src="./../../../images/red_icon.png" alt=""
+                                 style="width: 20px; height:20px; vertical-align: bottom;">
+                        </div>
+                        <div class="col-md-6">
+                            实际签单照片位置：
+                            <img src="./../../../images/picture_icon.png" alt=""
+                                 style="width: 20px; height:20px; vertical-align: bottom;">
+                        </div>
+                        <p></p>
+                        <div id="map" style="height:400px;width:100%"></div>
+                    </div>
+                </modal-fade>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="https://api.map.baidu.com/api?v=2.0&amp;ak=1bG5NEsIqXGmgmmjIK87H00k&amp;s=1"></script>
+<script src="../../../common/js/vue.min.js"></script>
+<script src="../../../common/js/vueComponent.js?rev=3b00d61"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/task/myTask/common/base.js"><\/script>',
+        '<script src="../../../js/businessReview/ownersStaging/ownersStaging.js"><\/script>'
+    ].join(""));
+</script>

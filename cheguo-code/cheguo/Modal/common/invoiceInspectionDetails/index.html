@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Expires" CONTENT="0">
+	<meta http-equiv="Cache-Control" CONTENT="no-cache">
+	<meta http-equiv="Pragma" CONTENT="no-cache">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../../../common/css/style.min.css"/>
+	<title>发票查验明细</title>
+	<style type="text/css">
+		#invoiceInspectionInfoForm td{ line-height: 25px; padding: 0; margin: 0; border-color: #aaa}
+		#invoiceInspectionInfoForm{ font-size: 14px;line-height: 25px; width: 1027px; margin: 0 auto; color: #000; font-size: 14px; font-family: "MicroSoft YaHei", "SimHei";}
+		.invoiceInfo span { color: #574b9d; display: block; line-height: 20px; padding-left: 3px; text-align: left!important;}
+		.invoiceSimpleInfo span{ color: #574b9d}
+		.inlineTd span{ display: inline-block; float: left}
+		.invoiceInfo .text-center span{ text-align: center; display: inline-block}
+		.text-right{ padding-right: 3px}
+		.inlineTd span.blackFont{ color: #000}
+		.invoiceTitle{ color: #015293; font: normal 18px "MicroSoft YaHei", "SimHei"; padding: 13px 0;}
+		.invoiceInfo{ background-color: #FAFAFA; width: 100%; overflow-x: auto; color: #000}
+		.tipMessage{ color: #da534f}
+		.invoiceInfo label{ font-weight: normal; line-height: 20px; margin-bottom: 0; display: block}
+		td label:last-child, td span:last-child{ margin-bottom: 0px;}
+	</style>
+</head>
+</html>
+<body>
+<div class="wrapper wrapper-content animated fadeInRight" id="invoiceInspectionInfoForm">
+	<h3 class="text-left" style="margin-top: 0">发票查验明细</h3>
+	<div class="row invoiceTitle text-center">
+		<span data-name="invoiceTypeCode"></span>
+	</div>
+	<div class="row invoiceSimpleInfo">
+		<div class="col-md-8 col-xs-8 col-sm-8">
+			发票代码： <span data-name="invoiceCode"></span>
+		</div>
+		<div class="col-md-8 col-xs-8 col-sm-8" style="text-align: left;">
+			发票号码： <span data-name="invoiceNo"></span>
+		</div>
+		<div class="col-md-8 col-xs-8 col-sm-8" style="text-align: left;">
+			开票日期： <span data-name="billingDateStr"></span>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-bordered invoiceInfo text-center">
+			<colgroup>
+				<col width="10%">
+				<col width="18%">
+				<col width="7%">
+				<col width="13%">
+				<col width="8%">
+				<col width="15%">
+				<col width="5%">
+				<col width="8%">
+				<col width="9%">
+				<col width="7%">
+			</colgroup>
+			<tr>
+				<td>
+					<label>机 打 代 码</label>
+					<label>机 打 号 码</label>
+					<label>机 器 编 号</label>
+				</td>
+				<td colspan="3">
+					<span data-name="invoiceCode"></span>
+					<span data-name="invoiceNo"></span>
+					<span data-name="machineCode"></span>
+				</td>
+				<td class=""><label>税</label><label>控</label><label>码</label></td>
+				<td colspan="5" data-name=""></td>
+			</tr>
+			<tr>
+				<td>
+					<label>购买方名称及</label>
+					<label>身份证号码/</label>
+					<label>组织机构代码</label>
+				</td>
+				<td colspan="4">
+					<span data-name="purchaserName"></span>
+					<span data-name="taxPayerId"></span>
+				</td>
+				<td>纳税人识别号</td>
+				<td colspan="4">
+					<span data-name="taxPayerNo"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>车 辆 类 型</td>
+				<td colspan="2"><span data-name="vehicleType"></span></td>
+				<td>厂牌型号</td>
+				<td colspan="3"><span data-name="brandType"></span></td>
+				<td>产地</td>
+				<td colspan="2"><span data-name="productArea"></span></td>
+			</tr>
+			<tr>
+				<td>合 格 证 号</td>
+				<td colspan="2"><span data-name="certifNumber"></span></td>
+				<td colspan="2">进口证明书号</td>
+				<td colspan="2"><span data-name="importCertif"></span></td>
+				<td>商检单号</td>
+				<td colspan="2"><span data-name="inspectionOrder"></span></td>
+			</tr>
+			<tr>
+				<td>发动机号码</td>
+				<td colspan="4"><span data-name="engineNo"></span></td>
+				<td>车辆识别代号/车架号码</td>
+				<td colspan="4"><span data-name="vin"></span></td>
+			</tr>
+			<tr>
+				<td>价 税 合 计</td>
+				<td colspan="9" class="inlineTd">
+					<span data-name="amountCaptial"></span>
+					<div class="text-right inline" style="float: right;">
+						<span class="blackFont">小写</span><span>￥</span><span data-name="invoiceAmountStr"></span>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>销货单位名称</td>
+				<td colspan="4"><span data-name="billCompanyName"></span></td>
+				<td>电话</td>
+				<td colspan="4"><span data-name="salesTaxpayerTel"></span></td>
+			</tr>
+			<tr>
+				<td>纳税人识别号</td>
+				<td colspan="4"><span data-name="salesTaxpayerNumber"></span></td>
+				<td>账号</td>
+				<td colspan="4"><span data-name="salesTaxpayerAccount"></span></td>
+			</tr>
+			<tr>
+				<td><label>地 址</label></td>
+				<td colspan="3"><span data-name="salesTaxpayerAddress"></span></td>
+				<td>开户银行</td>
+				<td colspan="5"><span data-name="salesTaxpayerBank"></span></td>
+			</tr>
+			<tr>
+				<td><label>增值税税率</label><label>或 征 收 率</label></td>
+				<td class="text-center"><span data-name="taxRate"></span><span>%</span></td>
+				<td><label>增值税</label><label>税额</label></td>
+				<td class="text-center"><span>￥</span><span data-name="taxAmountStr"></span></td>
+				<td><label>主管税务</label><label>机关及代码</label></td>
+				<td colspan="5">
+					<span data-name="taxOfficeName"></span>
+					<span data-name="taxOfficeCode"></span>
+				</td>
+			</tr>
+			<tr>
+				<td><label>不 含 税 价</label></td>
+				<td colspan="2" class="inlineTd"><span class="blackFont">小写</span><span>￥</span><span data-name="nonTaxAmountStr"></span></td>
+				<td>完税凭证号码</td>
+				<td colspan="2"><span data-name="taxReceiptCode"></span></td>
+				<td>吨位</td>
+				<td class="text-center"><span data-name="tonnage"></span></td>
+				<td>限乘人数</td>
+				<td class="text-center"><span data-name="limitNum"></span></td>
+			</tr>
+		</table>
+		<p></p>
+		<div class="tipMessage">
+			<b>特别提示：</b>
+			<p>
+				»　本平台仅提供所查询发票票面信息的查验结果。<br>
+				»　若发现发票查验结果与实际交易不符，任何单位或个人有权拒收并向当地税务机关举报。
+			</p>
+		</div>
+	</div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/common/invoiceInspectionDetails/index.js"><\/script>'
+    ].join(""));
+</script>

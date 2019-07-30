@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="renderer" content="webkit"> 
+	<meta name="keywords" content=""/>
+	<meta name="description" content="" />
+  <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+  <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+	<title>中安核心能力视图</title> 
+	<style>
+		*{margin:0px;padding:0px;}
+		table.table>tbody>tr>td{padding: 4px;} 
+		html,body{
+			background-color:#1B1B1B;
+			width:100%;
+			height:100%;
+			overflow:auto;
+		}
+		.mapBox{
+			width:100%;
+			height:100%;
+			overflow: hidden;
+		}
+		.mapLeft{
+			width:50%;
+			float:left;
+			height:100%;
+			background-color:#1B1B1B;
+			display:-webkit-box;
+			-webkit-box-orient:vertical;
+		}
+		.mapCenter{
+			position: relative;
+			width:25%;
+			float:left;
+			height:100%;
+			background-color:#1B1B1B;
+			color: #FFF;
+		}
+		.mapRight{
+			position: relative;
+			width:25%;
+			float:right;
+			height:100%;
+			background-color:#1B1B1B;
+			color: #FFF;
+		}
+		.map1{height:33.33338%; color: #FFF;}
+		.table>thead>tr>th{text-align: center;color:#000;}
+		.topdiv{
+			width:50%;
+			height:100%;
+			float:left;
+			overflow: hidden;
+		}
+		.topdiv table{
+			padding:10px;
+			width:100%;
+			display: inline-block;
+			table-layout:fixed;
+		}
+		.choose{
+			width:100%;
+			display: inline-block;
+			position: relative;
+			z-index: 10;
+		}
+		.table-bordered{
+			border:none;
+		}
+	</style>
+</head>
+	<body>
+		<!-- <h5 style="position:absolute;left:50%; top:20px;-webkit-transform:translateX(-50%);font-size: 24px; z-index:100;">
+			<a href="/loan/Modal/main/main/parts.html" class="glyphicon glyphicon-chevron-left minus"></a>
+			<span style="margin: 0 10px;color:#fff;" id="curDate0">中安核心能力视图</span>
+			<a href="/loan/Modal/main/business/business.html" class="glyphicon glyphicon-chevron-right plus"></a>
+		</h5> -->
+		<div class="mapBox">
+			<div class="mapLeft">
+				<div class="map1" style="height: 66.666666%;">  <!--左一--> 
+					<iframe id="l1" src="/loan/Modal/main/core/radar.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="100%"></iframe>
+				</div>
+				<div class="map1">
+					<div class="topdiv"> <!--左二--> 
+						<h2 class="text-center">贷款额TOP10</h2>
+						<div class="choose text-center">
+							<!-- <label><input type="radio" name="loan" checked value="province"/>省级</label> -->
+							<!-- <label><input type="radio" name="loan" value="city"/>市级</label> -->
+						</div>
+						<table class="table table-bordered">
+							<thead>
+								<th width="100px">排名</th>
+								<th width="29%">地区</th>
+								<th width="29%">贷款额（万元）</th>
+								<th width="24%">贷款笔数</th>
+							</thead>
+							<tbody id='loantop10'></tbody>
+						</table>
+					</div>
+					<div class="topdiv"> <!--左三--> 
+						<h2 class="text-center">超期未抵押60天笔数TOP10</h2>
+						<div class="choose text-center">
+							<!-- <label><input type="radio" name="mortgage" checked value="province"/>省级</label> -->
+							<!-- <label><input type="radio" name="mortgage" value="city"/>市级</label> -->
+						</div>
+						<table class="table table-bordered">
+							<thead>
+								<th width="100px">排名</th>
+								<th width="29%">地区</th>
+								<th width="24%">金额占比</th>
+								<th width="29%">金额（万元）</th>
+							</thead>
+							<tbody id='mortgagetop10'></tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="mapCenter">
+				<div class="map1"> <!--中一--> 
+					<iframe id="c1" src="/loan/Modal/main/core/lineBar1.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="100%"></iframe>
+				</div>
+				<div class="map1"> <!--中二--> 
+					<iframe id="c2" src="/loan/Modal/main/core/line9.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="100%"></iframe>
+				</div>
+				<div class="map1"> <!--中三--> 
+					<iframe id="c3" src="/loan/Modal/main/core/bar.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="100%"></iframe>
+				</div>
+			</div>
+			<div class="mapRight">
+				<div class="map1"> <!--右一--> 
+					<iframe id="r1" src="/loan/Modal/main/core/lineBar2.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="100%"></iframe>
+				</div>
+				<div class="map1"> <!--右二--> 
+					<iframe id="r2" src="/loan/Modal/main/core/line9_2.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="100%"></iframe>
+				</div>
+				<div class="map1"> <!--右三--> 
+					<iframe id="r3" src="/loan/Modal/main/core/dashboard.html" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" width="100%" height="100%"></iframe>
+				</div> 
+			</div>
+		</div>
+		 
+	</body>
+</html>
+<script type="text/javascript" charset="utf-8">
+	var signMap = {}, textColor='#FFF', dataState = 0, fontSize = 15;
+	/*var paramsData = {
+		iframeList:['l1','c1','c2','c3','r1','r2','r3'],
+		reload: function(){
+			var that=this;
+			for(var i=0;i<that.iframeList.length;i++){
+				var view=$('#'+that.iframeList[i]);
+				view.attr('src',view.attr('src'));
+			}
+		}};*/
+</script>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=eb649edd14c8348e9f34a8ca6157c2b6"></script>  
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script> 
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/js/iframeCommon.js?rev=1452145039607"></script>
+<script src="../../../common/js/URL.js?rev=1452145039607"></script> 
+<script src="../../../common/plugs/echarts/echarts.min.js"></script>
+<script src="../../../common/plugs/echarts/echarts-theme.js"></script>
+<script src="../../../js/main/core/core.js"></script>
+
+

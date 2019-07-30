@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Expires" CONTENT="0">
+  <meta http-equiv="Cache-Control" CONTENT="no-cache">
+  <meta http-equiv="Pragma" CONTENT="no-cache">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+  <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+  <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+  <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css">
+  <title>我的任务</title>
+</head>
+</html>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-xs-24 col-sm-24 col-md-24">
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <form class="form-horizontal" id="taskForm">
+            <div class="form-group form-group-sm">
+              <div class="input-tip">
+                <label class="col-xs-3 col-sm-3 col-md-3 control-label">客户名称：</label>
+                <div class="col-xs-5 col-sm-5 col-md-5">
+                  <input type="text" name="cname" placeholder="请输入客户名称" class="form-control">
+                </div>
+              </div>
+              <div class="input-tip">
+                <label class="col-xs-3 col-sm-3 col-md-3 control-label">发起机构：</label>
+                <div class="col-xs-5 col-sm-5 col-md-5">
+                  <select name="oid" class="form-control" id="org">
+                    <option value="">--请选择--</option>
+                  </select>
+                </div>
+              </div>
+              <div class="input-tip">
+                <label class="col-xs-3 col-sm-3 col-md-3 control-label">流程名称：</label>
+                <div class="col-xs-5 col-sm-5 col-md-5">
+                  <select name="ftCode" id="ftCode" class="form-control">
+                    <option value="" selected>--请选择--</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <div class="input-tip">
+                <label class="col-xs-3 col-sm-3 col-md-3 control-label">节点名称：</label>
+                <div class="col-xs-5 col-sm-5 col-md-5">
+                  <select name='flowNode' id='flowNode' class="form-control">
+                    <option value="" selected>--请选择--</option>
+                  </select>
+                </div>
+              </div>
+              <div class="input-tip">
+                <label class="col-xs-3 col-sm-3 col-md-3 control-label">贷款编号：</label>
+                <div class="col-xs-5 col-sm-5 col-md-5">
+                  <input type="text" name="bNum" placeholder="请输入贷款编号" class="form-control">
+                </div>
+              </div>
+              <div class="input-tip sortRuleStr sortRule">
+                <label class="col-md-3 col-xs-3 col-sm-3 control-label">排序字段：</label>
+                <div class="col-md-3 col-xs-3 col-sm-3">
+                  <select class="form-control sortField" name='sortField' id="sortField">
+                    <option value="">--请选择--</option>
+                  </select>
+                </div>
+                <div class="col-md-2 col-xs-2 col-sm-2">
+                  <input type="hidden" name="isPcPreLoan" value="true">
+                  <select class="form-control sortType" name='sortType'>
+                    <option value="asc">升序</option>
+                    <option value="desc">降序</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <div class="col-xs-24 col-sm-24 col-md-24 text-center">
+                <button type="button" class="btn btn-primary" id="btn-search" modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                </button>
+                <button type="button" class="btn btn-white" modal="reset" id="resetBtn"><span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="ibox float-e-margins">
+        <div class="ibox-content">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#todo" data-toggle="tab">待办事项</a></li>
+            <li><a href="#done" data-toggle="tab">已办事项</a></li>
+          </ul>
+          <div class="tab-content">
+            <p></p>
+            <div id="todo" class="tab-pane active">
+              <table id="table1" data-toggle="table" data-ajax="table_1" data-cookie="true" data-cookie-id-table="saveId" data-show-columns="true">
+                <thead>
+                <tr>
+                  <th data-checkbox="true"></th>
+                  <th data-field="businessTypeName">流程名称</th>
+                  <th data-field="businessNum">业务编号</th>
+                  <th data-field="customerName">客户名称</th>
+                  <th data-field="launchOrganizationName">发起机构</th>
+                  <th data-field="level" data-formatter="level" data-visible="false">打款等级</th>
+                  <th data-field="dealer">经销商</th>
+                  <th data-field="actualPaid" data-formatter="yuan" data-visible="false">实际打款</th>
+                  <th data-field="businessBreed">业务品种</th>
+                  <th data-field="lastNodeOperator">提交人</th>
+                  <th data-field="currentNodeName">步骤名称</th>
+                  <th data-field="lastSubmitTime">上一步提交时间</th>
+                  <th data-formatter="isNo" data-field="isAdvance">贴息业务</th>
+                  <th data-formatter="isNo" data-field="isSecondHandCar">二手车业务</th>
+                  <th data-formatter="twoCardBusiness" data-field="isTwoCard">两证业务</th>
+                  <th data-field="currentNodeKey" data-switchable="false" data-formatter="handle_1" data-events="tableEvent_1" data-width="80px">操作</th>
+                </tr>
+                </thead>
+              </table>
+              <div class="form-group form-group-sm" style="margin-top: 5px">
+                <div class="col-xs-24 col-sm-24 col-md-24 text-right">
+                  <button type="button" class="btn btn-primary hide" id="batchApproval"><span>&nbsp;批量审批&nbsp;</span>
+                  </button>
+                  <button type="button" class="btn btn-primary hide" id="batchSubmit"><span>&nbsp;批量提交&nbsp;</span>
+                  </button>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div id="done" class="tab-pane">
+              <table id="table2" data-toggle="table" data-ajax="table_2" data-cookie="true" data-cookie-id-table="saveId_1" data-show-columns="true">
+                <thead>
+                <tr>
+                  <th data-field="customerName">客户名称</th>
+                  <th data-field="businessNum">业务编号</th>
+                  <th data-field="businessTypeName">流程名称</th>
+                  <th data-field="currentNodeName" data-formatter="handle_3">当前环节</th>
+                  <th data-field="currentNodeOperator" data-formatter="handle_4">当前处理人</th>
+                  <th data-field="operatorNodeName">经过环节</th>
+                  <th data-field="launchOrganizationName">发起机构</th>
+                  <th data-field="customerManagerName">发起人</th>
+                  <th data-field="guaranteeAmount" data-formatter="yuan">申请金额</th>
+                  <th data-field="payableAmount" data-formatter="yuan">应付金额</th>
+                  <th data-field="actualPaid" data-formatter="yuan">实际打款</th>
+                  <th data-formatter="isNo" data-field="isAdvance" data-visible="false">贴息业务</th>
+                  <th data-formatter="isNo" data-field="isSecondHandCar" data-visible="false">二手车业务</th>
+                  <th data-field="businessTypeCode" data-switchable="false" data-formatter="handle_2" data-events="tableEvent_2" data-width="80px">操作</th>
+                </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+          <div id="toolbar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--资金划拨弹出框-->
+<div id="batchApprovalTip" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+        <h4 class="modal-title">提示信息</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-horizontal">
+          <div class="form-group form-group-sm">
+            <div class="input-tip">
+              <label class="control-label col-md-6">经办机构：
+              </label>
+              <div class="col-md-12">
+                <input type="text" name="" placeholder="请输入经办机构" class="form-control" readonly value="" id="orgNames">
+              </div>
+            </div>
+          </div>
+          <!--<div class="form-group form-group-sm">-->
+          <!--<div class="input-tip">-->
+          <!--<label class="control-label col-md-6">付款金额合计：-->
+          <!--</label>-->
+          <!--<div class="col-md-12">-->
+          <!--<input type="text" name="amountSum" placeholder="请输入付款金额合计" class="form-control" id="amountSum">-->
+          <!--</div>-->
+          <!--</div>-->
+          <!--</div>-->
+          <div class="form-group form-group-sm">
+            <div class="input-tip">
+              <label class="control-label col-md-6">付款日期：
+              </label>
+              <div class="col-md-12">
+                <input type="text" name="currentDate" id="currentDate" placeholder="请输入付款日期" class="form-control date">
+              </div>
+            </div>
+          </div>
+            <form id="batchApprovalForm">
+              <div class="form-group form-group-sm">
+                <div class="input-tip">
+                  <label class="control-label col-md-6">提交下一步：
+                  </label>
+                  <div class="col-md-12">
+                    <input name="nextNodeUserName" value="" type="hidden" id="nextNodeUserName">
+                    <select name="nextNodeUserId" class="form-control required" id="nextNodeUserId">
+                      <option value="">--请选择--</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="batchApproval_save" class="btn btn-info">确定</button>
+        <button data-dismiss="modal" class="btn btn-default">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--付款审批弹出框-->
+<div id="paymentTip" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+        <h4 class="modal-title">提示信息</h4>
+      </div>
+      <div class="modal-body">
+        <div id="paymentForm" class="form-horizontal">
+          <div class="form-group form-group-sm">
+            <div class="input-tip">
+              <label class="col-xs-6 col-sm-6 col-md-6 control-label">资金部账户全称：</label>
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="input-group">
+                  <input type="text" class="form-control" readonly required="required" name="capitalPoolAccountName">
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary btn-sm" id="accountSelect3" type="button"  data-toggle="modal">选择</button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group form-group-sm">
+            <div class="input-tip">
+              <label class="col-xs-6 col-sm-6 col-md-6 control-label">资金部收款账号：</label>
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <input type="text" name="capitalPoolAccountNo" class="form-control" required="required" aria-required="true" readonly>
+              </div>
+            </div>
+          </div>
+          <div class="form-group form-group-sm">
+            <div class="input-tip">
+              <label class="col-xs-6 col-sm-6 col-md-6 control-label">资金部开户支行：</label>
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <input type="text" name="capitalPoolBank" class="form-control" required="required" readonly>
+              </div>
+            </div>
+          </div>
+          <div class="form-group form-group-sm">
+            <div class="input-tip">
+              <label class="col-xs-6 col-sm-6 col-md-6 control-label">资金通道：</label>
+              <div class="col-xs-12 col-sm-12 col-md-12">
+                <select name="financeChannel" class="form-control" id="orgId">
+                  <option value="">--请选择--</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <select id="forPayHide" class="hide"></select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="payment_save" class="btn btn-info">确定</button>
+        <button data-dismiss="modal" class="btn btn-default">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--资金池选择收款人-->
+<div class="modal fade" id="payModal3">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">请选择收款人</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <table id="table_pay3" data-ajax="table_pay3" data-toggle="table">
+            <thead>
+            <tr>
+              <th data-switchable="false" data-field="id" data-formatter="handle_pay3" data-events="tableEvent_pay3">选择</th>
+              <th data-field="accountName">收款人全称</th>
+              <th data-field="subBankName">收款人开户支行</th>
+              <th data-field="cardNumber">收款人账号</th>
+            </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="select-pay-btn3" data-dismiss="modal">确定</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="doneTaskHandle">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" data-name="title"></h4>
+      </div>
+      <div class="modal-body">
+        <p>是否撤回流程？</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="">是</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">否</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=1512011716000"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/extensions/cookie/bootstrap-table-cookie.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $("head").append([
+    '<script src="../../../common/js/URL.js"><\/script>',
+    '<script src="../../../common/js/iframeCommon.js"><\/script>',
+    '<script src="../../../js/task/myTask/index.js"><\/script>'
+  ].join(""));
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="./common/amui.min.css">
+    <title>身份证照上传说明</title>
+    <style type="text/css">
+        *{ margin: 0; padding: 0}
+        .am_h2{ padding:15px 15px 5px; font-size: 14px; font-weight: 700}
+        .article{padding: 0 15px 10px; font-size: 14px;}
+        ol li{ list-style: decimal; margin-left: 20px;}
+        .imgTip{ display: flex}
+        .imgArea{ width: 60%}
+        .isRight{ width: 40%; text-align: center; position: relative}
+        .isRight img{ width: 50px;}
+        .isRight i{ display: block; padding-top: 5px; font-style: normal}
+        .positionBox{ position: absolute;  left:0; top: 50%; margin-top: -42px; width: 100%}
+    </style>
+</head>
+<div id="page">
+    <h2 class="am_h2">身份证照片内容及格式要求：</h2>
+    <div class="article">
+        <ol>
+            <li>证件要求原件拍摄，照片不得涂改，需确保完整，水印、文字、图片、证件号码清晰可辨;</li>
+            <li>证件图片区域需尽量充满整个图片区域，最好不低于80%的面积;</li>
+            <li>请使用横屏对焦清晰后进行拍摄;</li>
+        </ol>
+    </div>
+    <h2 class="am_h2" style="padding-bottom: 10px">拍照样式如下：</h2>
+    <div class="article">
+        <div class="imgTip">
+            <span class="imgArea"><img src="images/image_01.png" width="100%"></span>
+            <span class="isRight"><div class="positionBox"><img src="images/icon_body_correct_n.png"><i>正确的拍照样式</i></div></span>
+        </div>
+        <div class="imgTip">
+            <span class="imgArea"><img src="images/image_02.png" width="100%"></span>
+            <span class="isRight"><div class="positionBox"><img src="images/icon_body_wrong_n.png"><i>照片拍摄太小</i></div></span>
+        </div>
+        <div class="imgTip">
+            <span class="imgArea"><img src="images/image_03.png" width="100%"></span>
+            <span class="isRight"><div class="positionBox"><img src="images/icon_body_wrong_n.png"><i>照片拍摄模糊</i></div></span>
+        </div>
+    </div>
+    <h2 class="am_h2">库中无此号：<i style="font-weight: normal; font-style: normal">表示系统中没有存储此公民身份号码，请到被核查人户籍所在地公安部门进一步核实。</i><br />库中无此号导致数据无法核验，可能原因包括但不限于:</h2>
+    <div class="article">
+        <ul>
+            <li>（1）现役或刚退役的军人;</li>
+            <li>（2）刚上大学或刚毕业的大学生;</li>
+            <li>（3）正在迁移户口或者近期迁移户口;</li>
+            <li>（4）工作调动导致户口有迁移;</li>
+            <li>（5）发生更名导致户口有变动;</li>
+            <li>（6）地方向中心上传时数据缺失;</li>
+        </ul>
+    </div>
+</div>
+</html>

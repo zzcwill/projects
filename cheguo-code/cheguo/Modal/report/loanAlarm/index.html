@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-select-1.10.0/dist/css/bootstrap-select.min.css"/>
+    <title>高贷客户预警报表</title>
+    <style type="text/css">
+        .collapsed .glyphicon-chevron-up {
+            transform: rotate(180deg)
+        }
+    </style>
+</head>
+</html>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-xs-24 col-sm-24 col-md-24">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="page-header">
+                        <h3 class="text-center">高贷客户预警报表</h3>
+                    </div>
+                    <form id="searchForm" class="form-horizontal">
+                        <div class="form-group form-group-sm">
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">机构：
+                                </label>
+                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                    <select class="selectpicker form-control required" name="orgId" id="orgId" data-live-search="true" data-style="btn-white btn-sm">
+                                        <option value="">--请选择--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">业务组：
+                                </label>
+
+                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                    <select name="userGroupId" class="form-control" id="loanBusinessGroupId">
+                                        <option value="" selected>--请选择--</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-tip">
+                                <label class="col-md-3 col-xs-3 col-sm-3 control-label">客户名称：
+                                </label>
+
+                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                    <input type="text" name="customerName" placeholder="请输入客户名称"
+                                           class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="collapse" id="collapseExample">
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">付款状态：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="dealerPaymentStatus" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">已付款</option>
+                                            <option value="2">未付款</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">付款日期：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="dealerPaymentDateBegin" placeholder="请输入付款日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">至：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="dealerPaymentDateEnd" placeholder="请输入付款结束日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">放款状态：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="bankPaymentStatus" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">已放款</option>
+                                            <option value="2">未放款</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">放款日期：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="bankPaymentDateBegin" placeholder="请输入放款日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">至：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="bankPaymentDateEnd" placeholder="请输入放款结束日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">上牌情况：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="pledgeStatus" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">已上牌</option>
+                                            <option value="2">未上牌</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">上牌日期：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="pledgeDateBegin" placeholder="请输入上牌日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">至：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="pledgeDateEnd" placeholder="请输入上牌结束日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">抵押情况：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="registerStatus" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">已抵押</option>
+                                            <option value="2">未抵押</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">抵押日期：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="registerDateBegin" placeholder="请输入抵押日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">至：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="registerDateEnd" placeholder="请输入抵押结束日期"
+                                               class="form-control date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">客户经理：</label>
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="launchUserName" placeholder="请输入客户经理" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">业务品种：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="businessTypeId" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">信用卡贷款（普通模式）</option>
+                                            <option value="2">信用卡贷款（银行直销）</option>
+                                            <option value="3">个人消费贷款</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">汽车类型：
+                                    </label>
+
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select name="carType" class="form-control">
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">新车</option>
+                                            <option value="2">二手车</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">车商名称：</label>
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <input type="text" name="dealerName" placeholder="请输入车商名称" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">营销品牌集团：</label>
+                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                        <select name="dealerGroupId" id="dealerGroupId" class="form-control">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">预警等级：
+                                    </label>
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select class="form-control" name='warningLevel'>
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="正常">正常</option>
+                                            <option value="红色预警">红色预警</option>
+                                            <option value="黄色预警">黄色预警</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group form-group-sm">
+                                <div class="input-tip">
+                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">贷款状态：
+                                    </label>
+                                    <div class="col-md-5 col-xs-5 col-sm-5">
+                                        <select class="form-control" name='loanInfoStatus'>
+                                            <option value="" selected>--请选择--</option>
+                                            <option value="1">贷款拒绝</option>
+                                            <option value="2">审批通过</option>
+                                            <option value="3">贷款审核</option>
+                                            <option value="4">贷款发起</option>
+                                            <option value="5">贷款作废</option>
+                                            <option value="6">贷款结清</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-24 text-center">
+                            <a href="javascript:;" class="flexBtn collapsed"
+                               style="background: none; padding: 7px 0 10px; margin-bottom: 10px; display: block"
+                               data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                               aria-controls="collapseExample">
+                                <span class="glyphicon glyphicon-chevron-up"></span>
+                            </a>
+                        </div>
+                        <div class="form-group form-group-sm">
+                            <div class="col-xs-24 col-sm-24 col-md-24 text-center">
+                                <button type="button" class="btn btn-primary" id="btn-search"><span
+                                        class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                                </button>
+                                <button type="button" class="btn btn-white" modal="reset" id="resetValue"><span
+                                        class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <div class="text-right">
+                        <button type="button" class="btn btn-primary btn-sm" id="exportBtn">导出报表数据</button>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="tab-pane active">
+                        <table id="table" data-toggle="table" data-ajax="dataLoad_1">
+                            <thead>
+                            <tr>
+                                <th data-field="projectNo">贷款编号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th data-field="loanInfoStatusVo">贷款状态</th>
+                                <th data-field="customerName">客户姓名</th>
+                                <th data-field="cardNo">身份证号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th data-field="carTypeVo">汽车类型</th>
+                                <th data-field="loanAmount" data-formatter="yuan">贷款金额&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th data-field="loanTermVo">期数&nbsp;&nbsp;&nbsp;</th>
+                                <th data-field="billingPrice" data-formatter="yuan">开票价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th data-field="loanRateVo">贷款比例(%)</th>
+                                <th data-field="carName">汽车品牌+车系+车型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th data-field="carFrameNo">车架号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <!--<th data-field="budgetVin">外部接口车架号&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>-->
+                                <th data-field="newPrice">外部接口返回车辆价格</th>
+                                <th data-field="warningCarName">外部接口返回车辆信息&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th data-field="warningLevel">预警等级</th>
+                                <th data-field="orgName">业务机构&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th data-field="userGroupName">业务组&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th data-field="launchUserName">客户经理</th>
+                                <th data-field="loanRiskManagerRealname">风险经理</th>
+                                <th data-field="dealerName">车商&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th data-field="coBankName">合作银行&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                <th data-formatter="handle" data-events="tableEvent">操作</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=eb649edd14c8348e9f34a8ca6157c2b6"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.min.js?rev=424557ef2a8b89693026b3b43d4b1e1c"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/plugs/bootstrap-select-1.10.0/dist/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/report/loanAlarm/index.js"><\/script>'
+    ].join(""));
+</script>

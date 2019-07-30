@@ -1,0 +1,14 @@
+.addWords{
+  display: none;
+  position: absolute;
+  width: 300px;
+  right: -7px;
+}
+.addWords > label{
+  width: 100px;
+  margin-top:-7px;
+}
+.addWords > div{
+  width: 200px;
+  margin-top:-13px;
+}

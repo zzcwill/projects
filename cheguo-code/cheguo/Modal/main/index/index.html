@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../css/main.css">
+    <link rel="stylesheet" href="../../../common/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../css/report/report.css">
+    <title>首页</title>
+    <style type="text/css">
+      .collapsed .glyphicon-triangle-top {
+        transform: rotate(180deg)
+      }
+    </style>
+  </head>
+</html>
+<body class="gray-bg">
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row flowNodes_article hide">
+      <div class="flowNodes_title">常用待办事项<span class="shortcutSets">快捷设置 ></span></div>
+      <div class="flowNodes_cont hide" id="flowNodeBox">
+        <div id="flowNodes"></div>
+        <div class="collapse" id="collapseExample">
+        </div>
+        <div class="text-center hide upDownBtn">
+          <a href="javascript:;" class="flexBtn collapsed"
+             style="background: none;display: block"
+             data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+             aria-controls="collapseExample">
+            <span class="glyphicon glyphicon-triangle-top"></span>
+          </a>
+        </div>
+      </div>
+      <div class="hide showMore">
+        >>
+      </div>
+    </div>
+    <div class="row">
+      <div class="flowNodes_title index-title">统计信息</div>
+      <div class="col-xs-24 col-sm-24 col-md-24">
+        <!-- 个人级 -->
+        <div class="ibox float-e-margins" id="personal">
+          <div class="ibox-content notIbox-contentBg" style="background:#f3f3f4;border-color:transparent;">
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="panel panel-default" id="chartBox1">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">业务量分析 <div class="pull-right"><a class="iconfont icon-jinru" id="show1" href="javascript:;"></a></div></h3>
+                  </div>
+                  <div class="panel-body"> 
+                    <button type="button" class="btn btn-primary btn-sm hide" id="btnR0"><span>刷新</span>
+                    </button>
+                    <h5 class="text-center"><a class="fa fa-chevron-circle-left minus"></a><span style="margin: 0 15px;" id="curDate0">2015-12</span><a class="fa fa-chevron-circle-right plus"></a></h5>
+                    <div id="chart1" style="height: 400px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="panel panel-default" id="chartBox2">
+                  <div class="panel-heading"> 
+                    <h3 class="panel-title">未抵押情况<div class="pull-right"><a class="iconfont icon-jinru" id="show2" href="javascript:;"></a></div></h3>
+                  </div>
+                  <div class="panel-body"> 
+                    <div id="chart2" style="height: 430px;"></div>
+                    <!-- <div class="text-center">
+                      <div role="group" class="btn-group btn-group-xs">
+                        <div class="btn btn-primary">数量</div>
+                        <div class="btn btn-default">贷款额</div>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="panel panel-default" id="chartBox3">
+                  <div class="panel-heading"> 
+                    <h3 class="panel-title">贷款审批跟踪<div class="pull-right"><a class="iconfont icon-jinru" id="show3" href="javascript:;"></a></div></h3>
+                  </div>
+                  <div class="panel-body"> 
+                    <div id="chart3" style="height: 430px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="panel panel-default" id="chartBox4">
+                  <div class="panel-heading"> 
+                    <h3 class="panel-title">车商客户分布情况<div class="pull-right"><a class="iconfont icon-jinru" id="show4" href="javascript:;"></a></div></h3>
+                  </div>
+                  <div class="panel-body">
+                    <button type="button" class="btn btn-primary btn-sm hide" id="btnR7"><span>刷新</span>
+                    </button>
+                    <h5 class="text-center"><a class="fa fa-chevron-circle-left minus"></a><span style="margin: 0 15px;" id="curDate7">2015-12</span><a class="fa fa-chevron-circle-right plus"></a></h5>
+                    <div id="chart4" style="height: 400px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 分公司级 -->
+        <div class="ibox float-e-margins" id="branchCompany">
+          <div class="ibox-content notIbox-contentBg">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading"> 
+                    <h3 class="panel-title">签单分析 <div class="pull-right"><a class="iconfont icon-jinru" id="showB1" href="javascript:;"></a></div></h3>
+                  </div>
+                  <div class="panel-body"> 
+                    <button type="button" class="btn btn-primary btn-sm hide" id="btnR1"><span>刷新</span>
+                    </button>
+                    <h5 class="text-center"><a class="fa fa-chevron-circle-left minus"></a><span style="margin: 0 15px;" id="curDate1">2015-12</span><a class="fa fa-chevron-circle-right plus"></a></h5>
+                    <div id="chartB1" style="height: 400px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading"> 
+                    <h3 class="panel-title">未抵押情况<div class="pull-right"><a class="iconfont icon-jinru" id="showB2" href="javascript:;"></a></div></h3>
+                  </div>
+                  <div class="panel-body"> 
+                    <div id="chartB2" style="height: 430px;"></div>
+                    <!-- <div class="text-center">
+                      <div role="group" class="btn-group btn-group-xs">
+                        <div class="btn btn-primary">数量</div>
+                        <div class="btn btn-default">贷款额</div>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading"> 
+                    <h3 class="panel-title">银行放款分析（本月）<div class="pull-right"><a class="iconfont icon-jinru" id="showB3" href="javascript:;"></a></div></h3>
+                  </div>
+                  <div class="panel-body">
+                    <button type="button" class="btn btn-primary btn-sm hide" id="btnR2"><span>刷新</span>
+                    </button>
+                    <h5 class="text-center"><a class="fa fa-chevron-circle-left minus"></a><span style="margin: 0 15px;" id="curDate2">2015-12</span><a class="fa fa-chevron-circle-right plus"></a></h5>
+                    <div id="chartB3" style="height: 400px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading"> 
+                    <h3 class="panel-title">资金回转率分析<div class="pull-right"><a class="iconfont icon-jinru" id="showB4" href="javascript:;"></a></div></h3>
+                  </div>
+                  <div class="panel-body">
+                    <button type="button" class="btn btn-primary btn-sm hide" id="btnR3"><span>刷新</span>
+                    </button>
+                    <h5 class="text-center"><a class="fa fa-chevron-circle-left minus"></a><span style="margin: 0 15px;" id="curDate3">2016</span><a class="fa fa-chevron-circle-right plus"></a></h5>
+                    <div id="chartB4" style="height: 400px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 集团级 -->
+        <div class="ibox float-e-margins" id="groupCompany">
+          <div class="ibox-content notIbox-contentBg">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading"> 
+                    <h3 class="panel-title">签单分析 <div class="pull-right"><a class="iconfont icon-jinru" id="showG1" href="javascript:;"></a></div></h3>
+                  </div>
+                  <div class="panel-body"> 
+                    <button type="button" class="btn btn-primary btn-sm hide" id="btnR4"><span>刷新</span>
+                    </button>
+                    <h5 class="text-center"><a class="fa fa-chevron-circle-left minus"></a><span style="margin: 0 15px;" id="curDate4">2015-12</span><a class="fa fa-chevron-circle-right plus"></a></h5>
+                    <div id="chartG1" style="height: 400px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading"> 
+                    <h3 class="panel-title">未抵押情况<div class="pull-right"><a class="iconfont icon-jinru" id="showG2" href="javascript:;"></a></div></h3>
+                  </div>
+                  <div class="panel-body"> 
+                    <div id="chartG2" style="height: 430px;"></div>
+                    <!-- <div class="text-center">
+                      <div role="group" class="btn-group btn-group-xs">
+                        <div class="btn btn-primary">数量</div>
+                        <div class="btn btn-default">贷款额</div>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading"> 
+                    <h3 class="panel-title">银行放款分析（本月）<div class="pull-right"><a class="iconfont icon-jinru" id="showG3" href="javascript:;"></a></div></h3>
+                  </div>
+                  <div class="panel-body">
+                    <button type="button" class="btn btn-primary btn-sm hide" id="btnR5"><span>刷新</span>
+                    </button>
+                    <h5 class="text-center"><a class="fa fa-chevron-circle-left minus"></a><span style="margin: 0 15px;" id="curDate5">2015-12</span><a class="fa fa-chevron-circle-right plus"></a></h5>
+                    <div id="chartG3" style="height: 400px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading"> 
+                    <h3 class="panel-title">资金回转率分析<div class="pull-right"><a class="iconfont icon-jinru" id="showG4" href="javascript:;"></a></div></h3>
+                  </div>
+                  <div class="panel-body">
+                    <button type="button" class="btn btn-primary btn-sm hide" id="btnR6"><span>刷新</span>
+                    </button>
+                    <h5 class="text-center"><a class="fa fa-chevron-circle-left minus"></a><span style="margin: 0 15px;" id="curDate6">2016</span><a class="fa fa-chevron-circle-right plus"></a></h5>
+                    <div id="chartG4" style="height: 400px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="shortcutSets" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+          <h4 class="modal-title">快捷设置</h4>
+        </div>
+        <form class="modal-body" id="shortcutSets_cont">
+        </form>
+        <div class="modal-footer text-relative">
+          <div class="isSelected">
+            <span class="selectAll">全选</span>
+            <span class="unSelect">取消</span>
+          </div>
+          <button class="btn btn-primary" id="shortcutBtn">确认</button>
+          <button data-dismiss="modal" class="btn btn-default">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=eb649edd14c8348e9f34a8ca6157c2b6"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.min.js?rev=424557ef2a8b89693026b3b43d4b1e1c"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/moment.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/echarts/echarts.min.js"></script>
+<script src="../../../common/plugs/echarts/echarts-theme.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/main/index/index.js"><\/script>'
+    ].join(""));
+</script>

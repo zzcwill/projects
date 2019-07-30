@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css"/>
+    <title>上牌信息录入</title>
+  </head>
+</html>
+<body class="gray-bg">
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-xs-24 col-sm-24 col-md-24">
+        <div class="ibox">
+          <div class="ibox-content">
+            <fieldset id="show">
+              <div class="page-header">
+                <h3 class="text-center">上牌信息录入</h3>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading"> 
+                  <h3 class="panel-title">汽车信息</h3>
+                </div>
+                <div class="panel-body"> 
+                  <form id="formInfo" class="form-horizontal">
+                    <input name="projectId" type="text" class="hide">
+                    <input name="applyId" type="text" class="hide">
+                    <input name="plateId" type="text" class="hide">
+                    <input name="id" type="text" class="hide">
+                    <input name="licensePlateInfoId" type="text" class="hide">
+                    <fieldset disabled>
+                      <div class="form-group form-group-sm">
+                        <div class="input-tip">
+                          <label class="col-xs-3 col-sm-3 col-md-3 control-label">车主姓名：
+                          </label>
+                          <div class="col-xs-5 col-sm-5 col-md-5">
+                            <input type="text" name="customerName" placeholder="请输入车主姓名" class="form-control">
+                          </div>
+                        </div>
+                        <div class="input-tip">
+                          <label class="col-xs-3 col-sm-3 col-md-3 control-label">项目编号：
+                          </label>
+                          <div class="col-xs-5 col-sm-5 col-md-5">
+                            <input type="text" name="projectNo" placeholder="请输入项目编号" class="form-control">
+                          </div>
+                        </div>
+                        <div class="input-tip">
+                          <label class="col-xs-3 col-sm-3 col-md-3 control-label">购置税状态：
+                          </label>
+                          <div class="col-xs-5 col-sm-5 col-md-5">
+							<select name="purchaseTaxType" class="form-control">
+                              <option value="" selected>--请选择--</option>
+                              <option value="1" >公司</option>
+                              <option value="2">车行</option>
+                              <option value="3">客户</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group form-group-sm">
+                        <div class="input-tip">
+                          <label class="col-xs-3 col-sm-3 col-md-3 control-label">证件类型：
+                          </label>
+                          <div class="col-xs-5 col-sm-5 col-md-5">
+                            <select name="cardType" class="form-control">
+                              <option value="" selected>--请选择--</option>
+                              <option value="1">身份证</option>
+                              <option value="2">军官证</option>
+                              <option value="3">侨胞证</option>
+                              <option value="4">外籍人士</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="input-tip">
+                          <label class="col-xs-3 col-sm-3 col-md-3 control-label">证件号码：
+                          </label>
+                          <div class="col-xs-5 col-sm-5 col-md-5">
+                            <input type="text" name="cardNo" placeholder="请输入证件号码" class="form-control">
+                          </div>
+                        </div>
+                        <div class="input-tip">
+                          <label class="col-xs-3 col-sm-3 col-md-3 control-label">性别：
+                          </label>
+                          <div class="col-xs-5 col-sm-5 col-md-5">
+                            <select name="sex" class="form-control">
+                              <option value="" selected>--请选择--</option>
+                              <option value="1">男</option>
+                              <option value="0">女</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group form-group-sm">
+                        <div class="input-tip">
+                          <label class="col-xs-3 col-sm-3 col-md-3 control-label">品牌：
+                          </label>
+                          <div class="col-xs-5 col-sm-5 col-md-5">
+                            <input type="hidden" name="carBrand">
+                            <input name="carBrandName" class="form-control required" id="getBrand" placeholder="--请选择--" readonly="readonly">
+                            <!--<select name="carBrand" class="form-control" id="getBrand">-->
+                            <!--</select>-->
+                          </div>
+                        </div>
+                        <div class="input-tip">
+                          <label class="col-xs-3 col-sm-3 col-md-3 control-label">车系：
+                          </label>
+                          <div class="col-xs-5 col-sm-5 col-md-5">
+                            <input type="hidden" name="carMake">
+                            <input name="carMakeName" class="form-control carSelect" id="getCarList" placeholder="--请选择--">
+                            <!--<input type="hidden" name="carMakeName">-->
+                            <!--<select name="carMake" class="form-control" id="getCarList">-->
+                              <!--<option value="" selected>&#45;&#45;请选择&#45;&#45;</option>-->
+                            <!--</select>-->
+                          </div>
+                        </div>
+                        <div class="input-tip">
+                          <label class="col-xs-3 col-sm-3 col-md-3 control-label">车型：
+                          </label>
+                          <div class="col-xs-5 col-sm-5 col-md-5">
+                            <input type="hidden" name="carModel" value="">
+                            <input name="carModelName" class="form-control carSelect" id="getCarModel" placeholder="--请选择--">
+                            <!--<input type="hidden" name="carModelName">-->
+                            <!--<select name="carModel" class="form-control" id="getCarModel">-->
+                              <!--<option value="" selected>&#45;&#45;请选择&#45;&#45;</option>-->
+                            <!--</select>-->
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <div class="form-group form-group-sm">
+                      <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>车架号码：
+                        </label>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                          <input type="text" name="carFrameNo" placeholder="请输入车架号码" class="form-control required">
+                        </div>
+                      </div>
+                      <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>发动机号码：
+                        </label>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                          <input type="text" name="carEngineNo" placeholder="请输入发动机号码" class="form-control required">
+                        </div>
+                      </div>
+                        <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label">发动机型号：
+                            </label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                                <input type="text" name="carEngineModelName" placeholder="请输入发动机型号" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                      <div class="form-group form-group-sm">
+                          <div class="input-tip">
+                              <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger isValid hide">*&nbsp;</span>厂牌型号：
+                              </label>
+                              <div class="col-xs-5 col-sm-5 col-md-5">
+                                  <input type="text" name="brandModelName" placeholder="请输入厂牌型号" class="form-control">
+                              </div>
+                          </div>
+                          <div class="input-tip">
+                              <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>限乘人数：
+                              </label>
+                              <div class="col-xs-5 col-sm-5 col-md-5">
+                                  <input type="text" name="maxCapacity" placeholder="请输入限乘人数" class="form-control digits required" maxlength="3">
+                              </div>
+                          </div>
+                        <div class="input-tip">
+                          <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger isValid hide">*&nbsp;</span>车辆类型：
+                          </label>
+                          <div class="col-xs-5 col-sm-5 col-md-5">
+                            <input type="text" name="carTypeDesc" placeholder="请输入车辆类型" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                    <div class="form-group form-group-sm">
+                      <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>发票日期：
+                        </label>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                          <input type="text" name="billDate" placeholder="请输入发票日期" class="form-control date required">
+                        </div>
+                      </div>
+                      <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>发票号码：
+                        </label>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                          <input type="text" name="billNo" placeholder="请输入发票号码" class="form-control required">
+                        </div>
+                      </div>
+                        <div class="input-tip">
+                            <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger isValid hide">*&nbsp;</span>开票单位：
+                            </label>
+                            <div class="col-xs-5 col-sm-5 col-md-5">
+                                <input type="text" name="billCompanyName" placeholder="请输入开票单位" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading"> 
+                  <h3 class="panel-title">上牌信息</h3>
+                </div>
+                <div class="panel-body"> 
+                  <template id="tpl_1" class="hide">
+                    <div class="form-group form-group-sm">
+                      <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>上牌状态：
+                        </label>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                          <select name="registerType" class="form-control required">
+                            <option value="" selected>--请选择--</option>
+                            <option value="1">公司</option>
+                            <option value="2">客户</option>
+                            <option value="3">车行</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>上牌日期：
+                        </label>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                          <input type="text" name="registerDate" placeholder="请输入上牌日期" class="form-control date required">
+                        </div>
+                      </div>
+                      <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>车牌号：
+                        </label>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                          <input type="text" name="plateNo" id="plateNo" placeholder="请输入车牌号" class="form-control required">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                      <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>上牌县市：
+                        </label>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                          <input type="text" name="plateArea" placeholder="请输入上牌县市" class="form-control required" readonly>
+                        </div>
+                      </div>
+                      <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>上牌对象：
+                        </label>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                          <select name="registerTarget" class="form-control required" id="registerTarget">
+                            <option value="" selected>--请选择--</option>
+                            <option value="1">公司</option>
+                            <option value="2">个人</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label"> 上牌经办人</label>
+                        <div id="userChoice" class="col-xs-5 col-sm-5 col-md-5">
+                          <!--<div class="input-group input-group-sm">-->
+                            <input type="text" name="operatorRealname" placeholder="请输入上牌经办人" class="form-control"><span class="input-group-btn"></span>
+                              <!--<button type="button" data-toggle="modal" data-target="#customerChoice" class="btn btn-primary">...</button></span>-->
+                          </div>
+                        <!--</div>-->
+                      </div>
+                    </div>
+                    <div class="form-group form-group-sm" id="registerTargetSelect">
+                      <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label">企业名称：
+                        </label>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                          <input type="text" name="companyName" placeholder="请输入企业名称" class="form-control">
+                        </div>
+                      </div>
+                      <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label">机构代码证：
+                        </label>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                          <input type="text" name="companyCode" placeholder="请输入机构代码证" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                      <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label">收到权证日期：
+                        </label>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                          <input type="text" name="warrantDate" placeholder="收到权证日期" class="form-control date">
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+                  <template id="tpl_2" class="hide">
+                    <div class="form-group form-group-sm">
+                      <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label"><span class="text-danger">*&nbsp;</span>未上牌原因：
+                        </label>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                          <select name="failReason" class="form-control required">
+                            <option value="" selected>--请选择--</option>
+                            <option value="1">要示本人到场</option>
+                            <option value="2">资料不齐全</option>
+                            <option value="3">拍牌</option>
+                            <option value="4">其他</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
+                  <form id="licenseInfo" class="form-horizontal">
+                    <div class="form-group form-group-sm">
+                      <div class="input-tip">
+                        <label class="col-xs-3 col-sm-3 col-md-3 control-label">是否已上牌：
+                        </label>
+                        <div class="col-xs-5 col-sm-5 col-md-5">
+                          <select name="isRegistered" class="form-control">
+                            <option value="1">是</option>
+                            <option value="2">否</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="switch"></div>
+                    <div class="form-group form-group-sm">
+                      <label class="col-xs-3 col-sm-3 col-md-3 control-label">备注</label>
+                      <div class="col-xs-21 col-sm-21 col-md-21">
+                        <textarea rows="5" name="note" placeholder="请输入备注!" class="form-control"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group form-group-sm">
+                      <div class="col-xs-24 col-sm-24 col-md-24 text-right">
+                        <button type="button" class="btn btn-primary" id="btnSave"><span>保存</span>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">未上牌原因记录</h3>
+                </div>
+                <div class="panel-body">
+                  <table id="table_2" data-ajax="dataLoad_2">
+                    <thead>
+                    <tr>
+                      <th data-field="operatorName">录入人员</th>
+                      <th data-field="operatorDate">录入时间</th>
+                      <th data-field="failReason" data-formatter="failReason">未上牌原因</th>
+                      <th data-field="remark">备注</th>
+                    </tr>
+                    </thead>
+                  </table>
+                </div>
+              </div>
+            </fieldset>
+            <div id="customerChoice" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+                    <h4 class="modal-title">上牌经办人</h4>
+                  </div>
+                  <div class="modal-body">
+                    <table data-ajax="dataLoad_1">
+                      <thead>
+                        <tr>
+                          <th data-radio="true"></th>
+                          <th data-field="realname">用户名</th>
+                          <th data-field="bzGroupName">业务组</th>
+                          <th data-field="departmentName">部门</th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                  <div class="modal-footer">
+                    <button id="btnSure" class="btn btn-info">确定</button>
+                    <button data-dismiss="modal" class="btn btn-default">关闭</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=eb649edd14c8348e9f34a8ca6157c2b6"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.min.js?rev=424557ef2a8b89693026b3b43d4b1e1c"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=1512011716000"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $("head").append([
+    '<script src="../../../common/js/URL.js"><\/script>',
+    '<script src="../../../common/js/iframeCommon.js"><\/script>',
+    '<script src="../../../js/creditManagement/licenseRegist/licenseInfo.js"><\/script>'
+  ].join(""));
+</script>

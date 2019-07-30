@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="./common/amui.min.css">
+    <script src="./common/zepto.min.js?t=@@hash"></script>
+    <script src="./common/mock-min.js?t=@@hash"></script>
+    <script src="./common/amui.js?t=@@hash"></script>
+    <script src="./common/global.js?t=@@hash"></script>
+    <title>风险详情</title>
+    <div id="page">
+      <div id="info" am-mode="flat chip 43px" class="am-list">
+        <div class="am-list-body">
+          <div class="am-list-item">
+            <div class="am-list-title">客户姓名</div>
+            <div data-name="fullName" class="am-list-extra"> </div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">风险状态</div>
+            <div data-name="riskStatus" class="am-list-extra"> </div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">更新时间</div>
+            <div data-name="riskTime" class="am-list-extra"></div>
+          </div>
+          <div id="detail" class="fn-hide">
+            <div class="am-list-item">
+              <div style="padding: 10px 15px; background-color: #FFF;" class="info">
+                <div class="am-ft-darkgray am-ft-left am-ft-md">风险摘要:</div>
+                <div data-name="riskDetail" class="am-ft-sm"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </head>
+</html>
+<script src="./js/scanInfo.js"></script>

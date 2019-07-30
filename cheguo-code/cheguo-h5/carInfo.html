@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="./common/amui.min.css">
+    <script src="./common/zepto.min.js?t=@@hash"></script>
+    <script src="./common/global.js?t=@@hash"></script>
+    <title>车行基本信息</title>
+    <div id="page">
+      <div am-mode="flat chip 43px" class="am-list">
+        <div class="am-list-body">
+          <div class="am-list-item">
+            <div class="am-list-title">车行名称</div>
+            <div data-name="dealerName" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">联系人姓名</div>
+            <div data-name="contactName" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">联系人手机</div>
+            <div data-name="contactPhone" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">车行营业地址</div>
+            <div data-name="addRess" class="am-list-extra" style="white-space: pre-wrap;"></div>
+          </div>
+        </div>
+      </div>
+      <div am-mode="flat chip 43px" class="am-list">
+        <div class="am-list-body">
+          <div class="am-list-item">
+            <div class="am-list-title">注册号</div>
+            <div data-name="registrationNum" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">法人代表</div>
+            <div data-name="legalRepresentative" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">注册资本（万）</div>
+            <div data-name="registeredCapital" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">营业期限</div>
+            <div data-name="time" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">成立时间</div>
+            <div data-name="foundTime" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">核准日期</div>
+            <div data-name="approvalTime" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">登记状态</div>
+            <div data-name="registrationStatus" class="am-list-extra"></div>
+          </div>
+          <div class="am-list-item">
+            <div class="am-list-title">经营范围</div>
+            <div data-name="scopeBusiness" class="am-list-extra"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </head>
+</html>
+<script src="./common/jquery.values.js"></script>
+<script src="./js/carInfo.js"></script>

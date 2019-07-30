@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <title>我的提问</title>
+	<style>
+		.p1{padding: 15px}
+	</style>
+</head>
+</html>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+	<h2 class="text-center"></h2>
+	<p></p>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-content">
+					<div id="detail">
+			            <p></p>	
+						<h3 style="padding-bottom: 20px;border-bottom: 1px dashed #d9d9d9;"><span data-name="title"></span></h3>
+						<div class="">
+							<p>反馈内容</p>
+							<p class="bg-success p1" data-name="note"></p>
+							<p class="text-right text-muted" data-name="createTime"></p>
+						</div>
+						<div>
+							<ul class="list-inline files-ul" id="files-ul"></ul>
+						</div>
+						<div id="replyList">
+
+						</div>
+						<p></p>
+						<form id="answer" class="form-horizontal">
+							<div class="form-group form-group-sm">
+								<div class="input-tip">
+									<div class="col-md-12">
+										<textarea class="form-control required" rows="20" name="content" id="note" maxlength="1000"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="form-group form-group-sm">
+								<div class="col-lg-10 col-sm-10 col-md-10 text-right">
+									当前已输入<span id="alreadyNum">0</span>个字符,您还可以输入<span id="leftNum">1000</span>个字符.
+								</div>
+								<div class="col-sm-2 col-md-2 col-lg-2 text-right">
+									<button type="button" class="btn btn-primary" id="answer-question"><span>回复</span></button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/js/URL.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.min.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/iframeCommon.js?rev=1447835709081"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/js/LocalResizeIMG.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/ztree/js/jquery.ztree.core-3.5.min.js"></script>
+<script src="../../../js/messageBoardManage/myDetail.js"></script>

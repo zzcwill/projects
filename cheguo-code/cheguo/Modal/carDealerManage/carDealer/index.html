@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-select-1.10.0/dist/css/bootstrap-select.min.css"/>
+    <title>车商管理</title>
+      <style type="text/css">
+          #tipUpdate{
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              width: 100px;
+              margin: -10px 0 0 -50px;
+              background: rgba(0 ,0, 0, .7);
+              color: #fff;
+              height: 50px;
+              line-height: 50px;
+              border-radius: 5px;
+              text-align: center;
+          }
+      </style>
+  </head>
+</html>
+<body class="gray-bg">
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+        <div class="ibox float-e-margins">
+          <div class="ibox-content">
+            <form id="searchForm" class="form-horizontal">
+              <div class="form-group form-group-sm">
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">车行名称：</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <input type="text" name="dealerName" placeholder="请输入车行名称" class="form-control">
+                  </div>
+                </div>
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">客户经理：</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <input type="text" name="managerName" placeholder="请输入经理名字" class="form-control">
+                  </div>
+                </div>
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">所属分公司：</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <select name="companyId" class="form-control"  id="companyId">
+                        <option value="" selected>--请选择--</option>
+                    </select>
+                  </div>
+                </div>
+
+              </div>
+              <div class="form-group form-group-sm">
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">业务组：</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <select name="groupId" class="form-control" required="" aria-required="true" id="groupId">
+                      <option value="" selected>--请选择--</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="input-tip">
+                  <label class="col-xs-3 col-sm-3 col-md-3 col-lg-3 control-label">审批状态：</label>
+                  <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <select name="approveStatus" class="form-control">
+                      <option value="" selected>--请选择--</option>
+                      <option value="0">未审批</option>
+                      <option value="1">审批中</option>
+                      <option value="2">审批通过</option>
+                      <option value="4">失效</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24 text-center clearfix">
+                  <button type="button" class="btn btn-primary" id="btn-search" modal="enter"><span class="glyphicon glyphicon-search"></span><span>&nbsp;查询&nbsp;</span>
+                  </button>&nbsp;&nbsp;
+                  <button type="button" class="btn btn-white" modal="reset"><span class="glyphicon glyphicon-remove"></span><span>&nbsp;清除查询条件&nbsp;</span>
+                  </button>
+                    <button type="button" class="btn btn-primary pull-right hide" id="addCarDealer" modal="enter"><span class="glyphicon btn-primary"></span><span>&nbsp;新增车行&nbsp;</span>
+                    </button>
+                  <button type="button" class="btn btn-primary pull-right" id="importCarDealer" modal="enter" style="margin-right: 5px"><span class="glyphicon btn-primary"></span><span>&nbsp;导入文件&nbsp;</span>
+                  </button>
+                    <button type="button" class="btn btn-primary pull-right" id="exportCarDealer" modal="enter" style="margin-right: 5px"><span class="glyphicon btn-primary"></span><span>&nbsp;下载导入模板&nbsp;</span>
+                    </button>
+                  <button type="button" class="btn btn-primary pull-right hide" id="addLowFeeManage" modal="enter" style="margin-right: 5px"><span class="glyphicon btn-primary"></span><span>&nbsp;最低费率管理&nbsp;</span>
+                  </button>
+                    <input id="upFileInput" type="file" name="file" multiple class="hide">
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+        <div class="ibox float-e-margins">
+          <div class="ibox-content">
+          <table id="table" data-toggle="table"  data-height="660"  data-ajax="dataLoad_1">
+              <thead>
+                <tr>
+                  <th data-field="dealerNo">车行ID</th>
+                  <th data-field="dealerName">车行名称</th>
+                  <th data-field="companyName">所属机构</th>
+                  <th data-field="managerName">客户经理</th>
+                  <th data-field="approveStatus" data-formatter="approveStatus">审批状态</th>
+                  <th data-field="status" data-formatter="carDealerStatus">停用状态</th>
+                  <th data-field="isManager" data-switchable="false" data-formatter="handle" data-events="tableEvent">操作</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!--确认操作模态框-->
+  <div class="modal fade" id="sureModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">提示信息</h4>
+        </div>
+        <div class="modal-body">
+          <p id="tipText"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="sureBtn">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="tipUpdate" style="display: none">
+      <div class="tip">正在导入中...</div>
+  </div>
+<!-- -->
+  <!--添加账户-->
+  <div id="addLowFeeModal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button data-dismiss="modal" aria-hidden="true" type="button" class="close">&times;</button>
+          <h4 class="modal-title">批量新增最低费率</h4>
+        </div>
+        <form id="addLowFeeForm" class="form-horizontal">
+          <div class="modal-body">
+            <div class="form-group form-group-sm">
+              <div class="input-tip">
+                <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">营销品牌集团：</label>
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                  <input name="dealerGroupName" type="hidden" value="" id="dealerGroupName">
+                  <select name="dealerGroupId" class="form-control" id="dealerGroupId">
+                  </select>
+                </div>
+              </div>
+              <div class="input-tip">
+                <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3"><span class="text-danger"> * </span>期限：</label>
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                  <select name="loanTerm" class="form-control required" id="loanTerm">
+                  </select>
+                </div>
+              </div>
+              <div class="input-tip">
+                <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3"><span class="text-danger"> * </span>汽车类型：</label>
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                  <select name="carType" class="form-control required">
+                    <option value="">--请选择--</option>
+                    <option value="1">新车</option>
+                    <option value="2">二手车</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <div class="input-tip">
+                <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3"><span class="text-danger"> * </span>所属机构：</label>
+                <div class="col-xs-13 col-sm-13 col-md-13 col-lg-13">
+                  <select class="selectpicker form-control required" name="orgIds" id="orgId" data-style="btn-white btn-sm" multiple>
+                    <option value="">--请选择--</option>
+                  </select>
+                </div>
+              </div>
+              <div class="input-tip">
+                <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3"><span class="text-danger"> * </span>最低费率%：</label>
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                  <input type="text" name="lowestFee" placeholder="请输入最低费率%" class="form-control required fourDecimal handingFee">
+                </div>
+              </div>
+            </div>
+            <div class="form-group form-group-sm">
+              <label class="control-label col-xs-3 col-sm-3 col-md-3 col-lg-3">已选择的机构:</label>
+              <div class="col-xs-21 col-sm-21 col-md-21 col-lg-21">
+                <p id="orgIds" style="margin: 2px; line-height: 24px;"></p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button id="saveLowFee" type="button" class="btn btn-info">新增</button>
+            <button data-dismiss="modal" type="button" class="btn btn-default">关闭</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=1512011716002"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/plugs/jquery-ajaxfileupload/jquery.ajaxfileupload.js"></script>
+<script src="../../../common/plugs/bootstrap-select-1.10.0/dist/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $("head").append([
+    '<script src="../../../common/js/URL.js"><\/script>',
+    '<script src="../../../common/js/iframeCommon.js"><\/script>',
+    '<script src="../../../js/carDealerManage/carDealer/index.js"><\/script>'
+  ].join(""));
+</script>

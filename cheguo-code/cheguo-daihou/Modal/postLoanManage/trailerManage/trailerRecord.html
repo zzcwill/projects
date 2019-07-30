@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Expires" CONTENT="0">
+    <meta http-equiv="Cache-Control" CONTENT="no-cache">
+    <meta http-equiv="Pragma" CONTENT="no-cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.css"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css"/>
+    <title>拖车登记</title>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-md-24 col-xs-24 col-sm-24">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="page-header" id="insuranceTitleDiv"><h3 class="text-center">拖车登记</h3></div>
+                    <ul class="nav nav-tabs hide" id="isTab">
+                        <li class="active"><a href="#dragList" data-toggle="tab">审批内容</a></li>
+                        <li><a href="#opinion" data-toggle="tab">过程信息</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <p></p>
+                        <div id="dragList" class="tab-pane active">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">基本信息</h3>
+                                </div>
+                                <div class="panel-body panel-default">
+                                    <div class="form-horizontal" id="topInfo">
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                                <label class="control-label col-md-3 col-xs-3 col-sm-3">客户姓名:
+                                                </label>
+                                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                                    <p data-name="customerName" class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                            <div class="input-tip">
+                                                <label class="control-label col-md-3 col-xs-3 col-sm-3">身份证号:
+                                                </label>
+                                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                                    <p data-name="cardNo" class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                            <div class="input-tip">
+                                                <label class="control-label col-md-3 col-xs-3 col-sm-3">手机号:
+                                                </label>
+                                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                                    <p data-name="mobile" class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                                <label class="control-label col-md-3 col-xs-3 col-sm-3">贷款编号:
+                                                </label>
+                                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                                    <p data-name="projectNo" class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                            <div class="input-tip">
+                                                <label class="control-label col-md-3 col-xs-3 col-sm-3">车牌号:
+                                                </label>
+                                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                                    <p data-name="plateNo" class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                            <div class="input-tip">
+                                                <label class="control-label col-md-3 col-xs-3 col-sm-3">车架号:
+                                                </label>
+                                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                                    <p data-name="carFrameNo" class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                                <label class="control-label col-md-3 col-xs-3 col-sm-3">上牌地:
+                                                </label>
+                                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                                    <p data-name="plateArea" class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                            <div class="input-tip">
+                                                <label class="control-label col-md-3 col-xs-3 col-sm-3">车辆型号:
+                                                </label>
+                                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                                    <p data-name="carModelName" class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                            <div class="input-tip">
+                                                <label class="control-label col-md-3 col-xs-3 col-sm-3">贷款银行:
+                                                </label>
+                                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                                    <p data-name="bankName" class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-sm">
+                                            <div class="input-tip">
+                                                <label class="control-label col-md-3 col-xs-3 col-sm-3">所属机构:
+                                                </label>
+                                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                                    <p data-name="orgName" class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                            <div class="input-tip">
+                                                <label class="control-label col-md-3 col-xs-3 col-sm-3">拖车状态:
+                                                </label>
+                                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                                    <p data-name="status" data-formatter="trailerStatus" class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                            <div class="input-tip">
+                                                <label class="control-label col-md-3 col-xs-3 col-sm-3">申请(通过)时间:
+                                                </label>
+                                                <div class="col-md-5 col-xs-5 col-sm-5">
+                                                    <p data-name="createTime" class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">拖车登记</h3>
+                                </div>
+                                <div class="panel-body panel-default">
+                                    <form class="form-horizontal" id="submitForm">
+                                        <fieldset id="formSet">
+                                            <input type="hidden" name="id" id="dealerId" />
+                                            <div class="form-group form-group-sm">
+                                                <div class="input-tip">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">拖车方式：</label>
+                                                    <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                        <select class="form-control" name="status" id="trailerStatus">
+                                                            <option value="2" selected>拖回</option>
+                                                            <option value="3">撤销</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="form1" class="formDiv">
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">拖车人：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="hidden" name="dragUser" placeholder="" id="dragUserName">
+                                                            <select class="form-control required" name="dragUserId" id="dragUser">
+                                                                <option value="" selected>--请选择--</option>
+                                                                <option value="-1">委外</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">拖车时间：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="text" name="dragTime" placeholder="" class="form-control date required" id="dragTime">
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">拖车费用(元)：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="text" name="dragFee" placeholder="请输入拖车费用" class="form-control money" aria-required="true">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">占管人：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="text" name="pipeUser" placeholder="请输入占管人名称" class="form-control required">
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">占管方式：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <select class="form-control required" name="pipeWay" id="dragUser">
+                                                                <option value="" selected>--请选择--</option>
+                                                                <option value="1">公司占管</option>
+                                                                <option value="2">委外占管</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">占管人联系方式：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="text" name="pipeUserPhone" onkeyup='this.value = this.value.replace(/\D/gi,"")' placeholder="请输入占管人联系方式" class="form-control required" maxlength="11">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">入库时间：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="text" name="inTime" placeholder="" class="form-control date required" id="inTime">
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">入库公里数(公里)：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <input type="text" name="inKmNum" placeholder="请输入入库公里数" class="form-control money" aria-required="true">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <div class="col-md-3 col-xs-3 col-sm-3 control-label fileBox">
+                                                        <button type="button" class="btn btn-primary imgItem"><span>上传拖车照片</span>
+                                                        </button>
+                                                        <input type="file" accept="image/*" class="hide upImageInput">
+                                                    </div>
+                                                    <ul class="col-md-21 list-inline files-ul" index="0" id="fileType" style="padding-top: 13px;">
+                                                    </ul>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">情况描述：</label>
+                                                    <div class="col-md-21 col-xs-21 col-sm-21">
+                                                        <textarea class="form-control" rows="5" name="dragRegisterNote" id="remark1" maxlength="250"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="form2" class="formDiv" style="display: none;">
+                                                <div class="form-group form-group-sm">
+                                                    <div class="input-tip">
+                                                        <label class="col-md-3 col-xs-3 col-sm-3 control-label">选择撤销理由：</label>
+                                                        <div class="col-md-5 cl-sm-5 col-xs-5">
+                                                            <select class="form-control required" name="undoReason" id="undoReason">
+                                                                <option value="" selected>--请选择--</option>
+                                                                <option value="1">全额结清垫款本息及银行贷款</option>
+                                                                <option value="2">结清全部垫款，落实后续还款计划及担保措施</option>
+                                                                <option value="3">结清部分垫款，落实后续还款计划及担保措施</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group form-group-sm">
+                                                    <label class="col-md-3 col-xs-3 col-sm-3 control-label">
+                                                        <input type="checkbox" name="others" value="1" class="checkbox-inline" id="otherReasonCheck"> 其他理由：</label>
+                                                    <div class="col-md-21 col-xs-21 col-sm-21">
+                                                        <textarea class="form-control" rows="5" name="otherReason" id="remark2" disabled maxlength="250"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group form-group-sm" style="margin-top: 20px;">
+                                                <div class="col-md-24 col-xs-24 col-sm-24 text-right">
+                                                    <button type="button" class="btn btn-primary" id="searchBtn" modal="enter"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;确定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="opinion" class="tab-pane">
+                            <div class="panel-default">
+                                <div data-url="../../common/commonOpinion/opinion.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=6631a779321bc03f4a5281d3ff526254"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/js/bootstrap.min.js?rev=4becdc9104623e891fbb9d38bba01be4"></script>
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/js/mock.js"></script>
+<script src="../../../common/js/flow.js"></script>
+<script src="../../../common/plugs/jquery-validation/dist/jquery.validate.min.js?rev=3b00d60f87e893caf2649eff0d48813a"></script>
+<script src="../../../common/plugs/jquery-validation/dist/additional-methods.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/plugs/jquery-validation/dist/localization/messages_zh.js?rev=6979ac84406e8c982e578736d368b3f8"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../../../common/plugs/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../common/js/LocalResizeIMG.js"></script>
+<script src="../../../common/plugs/bootstrap-3.3.5/extra/mzDialog.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $("head").append([
+        '<script src="../../../common/js/URL.js"><\/script>',
+        '<script src="../../../common/js/iframeCommon.js"><\/script>',
+        '<script src="../../../js/postLoanManage/trailerManage/trailerRecord.js"><\/script>'
+    ].join(""));
+</script>

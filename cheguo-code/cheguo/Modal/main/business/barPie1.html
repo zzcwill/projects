@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<meta name="renderer" content="webkit"> 
+	<meta name="keywords" content=""/>
+	<meta name="description" content="" />
+	<title></title>
+    <link rel="stylesheet" href="../../../common/plugs/layer/skin/layer.css?rev=433a1dd8df8c4851be764e907f6d758a"/>
+    <link rel="stylesheet" href="../../../common/plugs/bootstrap-3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../../common/css/style.min.css"/>
+    <link rel="stylesheet" href="../../../css/report/main3.css">
+</head>
+<body>
+	<div class="mapBox">
+		<div class="titleArea">
+			<h1 class="title">新车信用卡分期</h1>
+			<div class="text-center info">
+				<select name="newCardTime">
+	        <option value="1" selected>本月</option>
+	        <option value="2">本季度</option>
+	        <option value="3">本年</option>
+	      </select>
+	      <!-- <label><input type="radio" name="newCard" checked value="province"/>省级分公司</label> -->
+				<!-- <label><input type="radio" name="newCard" value="city"/>市级分公司</label> -->
+				<span>总贷款额  <span id="amountSum" style="color:red;">10000.00</span>  万元</span>
+				<span>同比  <span class="glyphicon glyphicon-triangle-top" style="color:red;"></span>  <span id="sameRatio">25</span>%</span>
+				<span>环比  <span class="glyphicon glyphicon-triangle-bottom" style="color:green;"></span>  <span id="ringRatio">30</span>%</span>
+			</div>
+		</div>
+		<div class="viewArea">
+			<div id="newbar"></div> 
+			<div id="newpie"></div>
+		</div>
+	</div>
+</body>
+</html>
+
+<script src="../../../common/js/jquery-2.1.1.min.js?rev=eb649edd14c8348e9f34a8ca6157c2b6"></script>   
+<script src="../../../common/plugs/layer/layer.js?rev=8962f047eeb03c06cf8200de1bf8ab99"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="../../../common/plugs/bootstrap-datepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../../common/js/jquery.values.js"></script>
+<script src="../../../common/js/iframeCommon.js?rev=1452145039607"></script>
+<script src="../../../common/js/URL.js?rev=1452145039607"></script> 
+<script src="../../../common/plugs/echarts/echarts.min.js"></script>
+<script src="../../../common/plugs/echarts/echarts-theme.js"></script>
+<!-- <script src="../../../common/plugs/echarts/echarts-all.js"></script>
+<script src="../../../common/plugs/echarts/theme/shine.js"></script> -->
+<script src="../../../js/main/business/barPie1.js"></script>

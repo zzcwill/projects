@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<style>
+		.listTitle{
+			font-size: 16px;
+			/*text-align: center;*/
+		}
+	</style>
+</head>
+<body>
+	<div id="dataSection">
+		
+	</div>
+</body>
+	<script src="../../../common/js/jquery-2.1.1.min.js"></script>
+	<script src="../documentDetail/getImgInfo.js"></script>
+	<script>
+		$(document).ready(function () {
+			// console.log(data.loanDocumentList[0].dirId + "\n" + data.photoInfo);
+			var contain = switchType(data.loanDocumentList[0].dirId, data.photoInfo);
+			$("#dataSection").html(contain);
+		});
+	</script>
+</html>
