@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<link rel="shortcut icon" href="./img/common/favicon.ico" />
+	<meta name="keywords" content="杭州车盛科技有限公司" />
+	<meta name="description" content="杭州车盛科技有限公司" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta charset="UTF-8">
+	<meta http-equiv="Pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<meta http-equiv="Expires" content="0">
+	<title>云图报告</title>
+	<link rel="stylesheet" href="css/common/reset.css" />
+	<link rel="stylesheet" href="css/common/common.css" />
+	<link rel="stylesheet" href="css/commonReport.css" />
+
+	<script src="js/common/jquery-1.11.1.min.js"></script>
+	<script src="js/common/filter.js"></script>
+	<script src="js/common/way.js"></script>
+	<script src="js/index.js"></script>
+</head>
+
+<body>
+	<div class="cloudMirrorReport transparent">
+		<div class="header">
+			<div class="title clearfloat">
+				<div class="titleLeft">
+					<img src="./img/common/logo.png" alt='logo' />
+				</div>
+				<div class="titleRight">
+					云图风控报告
+				</div>
+			</div>
+		</div>
+		<div class="noReport" id="noReport">
+			查无结果
+		</div>
+		<div class="container dn" id="hasReport">
+			<div class="conclusion">
+				<div class="title">
+					<div class="ico"></div>
+					<span>征信预筛选报告</span>
+					<div class="time" id="time"></div>	
+				</div>
+				<div class="conclusionContent clearfloat">
+					<div class="results" id="results">
+						<img src="./img/index/2.png" alt="综合结论图" class="resultsImg" id="resultsImg">
+						<div class="tip" id="resultsTip">复议</div>
+					</div>
+					<ul class="personInfoList" id="personInfoList">
+					</ul>					
+				</div>
+			</div>
+			<div class="reportList" id="reportList">
+			</div>
+		</div>
+	</div>
+
+	<!-- 右边固定导航条start -->
+	<div class="menuFixed" id="menuFixed">
+		<ul class="nav">
+		</ul>
+	</div>
+	<div class="menuIcon dn" id="menuIcon"></div>
+	<!-- 右边固定导航条end -->
+
+	<!-- 个人报告模版start -->
+	<div class="dn" id="demo">
+		<div class="report">
+			<div class="title">
+				<!-- <div class="ico"></div> -->
+				<span>主贷人</span>
+			</div>
+			<div class="blacklist clearfloat">
+				<div class="blacklistPart">
+				</div>
+				<div class="blacklistPart blacklistPart2">
+
+				</div>
+				<div class="blacklistPart blacklistPart3">
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 个人报告模版end -->
+
+	<!-- 页面加载滚动条start -->
+	<div class="loadMask dn" id="loadMask"></div>
+	<div class="load dn" id="load"></div>
+	<!-- 页面加载滚动条end -->
+</body>
+
+</html>

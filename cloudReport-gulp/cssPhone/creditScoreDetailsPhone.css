@@ -1,0 +1,125 @@
+@charset "utf-8";
+html,body{
+	background-color: #fff;
+}
+
+/* 标题 */
+.titleReport{
+	padding: 30px;
+	padding-top: 20px;
+	background-color: #fff;
+}
+
+.titleReport .dot{
+	float: left;
+	margin-top: 4px;
+	width: 6px;
+	height: 24px;
+	background-color: #4b7eff;
+	border-radius: 2px;
+}
+
+.titleReport .titleTxt{
+	float: left;
+	margin-left: 24px;
+	color: #333;
+	font-size: 32px;
+	line-height: 32px;
+}
+/* 标题 */
+
+/* 风险分模块 */
+.creditBox{
+	margin-bottom: 40px;
+}
+.scoreBox{
+	margin-top: 40px;
+	padding: 0 100px;
+	width: 550px;
+}
+.scoreBox .rating{
+	float: left;
+	width: 244px;
+}
+.scoreBox .rating .scoreColor{
+	position: relative;
+	width: 244px;
+	height: 244px;
+	background: url('../img/creditScoreDetailsPhone/1.png') no-repeat center center;
+	background-size:100% 100%;
+}
+.scoreBox .rating .scoreColor1{
+	background-image: url('../img/creditScoreDetailsPhone/1.png');
+	color: #22D19A;	
+}
+.scoreBox .rating .scoreColor2{
+	background-image: url('../img/creditScoreDetailsPhone/2.png');
+	color: #FE9746;
+}
+.scoreBox .rating .scoreColor3{
+	background-image: url('../img/creditScoreDetailsPhone/3.png');
+	color: #F55A46;
+}
+.scoreBox .rating .scoreColor .grade{
+	position: absolute;
+	top: 60px;
+	left: 0;
+	right: 0;
+	text-align: center;
+	font-size: 66px;
+}
+.scoreBox .rating .scoreColor .gradeLevel{
+	position: absolute;
+	top: 130px;	
+	left: 0;
+	right: 0;
+	text-align: center;
+	font-size: 26px;
+}
+.scoreBox .rating .scoreTip{
+	margin-top: 20px;
+	text-align: center;
+	font-size: 26px;
+	color: #666;
+}
+.scoreBox .level{
+	float: right;
+	margin-top: 58px;
+	text-align: left;
+}
+.scoreBox .level .levelShow{
+	margin-bottom: 20px;
+}
+.scoreBox .level .icon1{
+	float: left;
+	margin-top: 3px;
+	width: 24px;
+	height: 24px;
+	background: url('../img/creditScoreDetailsPhone/icon1.png') no-repeat center center;
+	background-size:100% 100%;	
+}
+.scoreBox .level .icon2{
+	float: left;
+	margin-top: 3px;
+	width: 24px;
+	height: 24px;
+	background: url('../img/creditScoreDetailsPhone/icon2.png') no-repeat center center;
+	background-size:100% 100%;	
+}
+.scoreBox .level .icon3{
+	float: left;
+	margin-top: 3px;
+	width: 24px;
+	height: 24px;
+	background: url('../img/creditScoreDetailsPhone/icon3.png') no-repeat center center;
+	background-size:100% 100%;	
+}
+.scoreBox .level .levelTxt{
+	float: left;
+	margin-left: 20px;
+	font-size: 26px;
+	line-height: 30px;
+	color: #999;	
+}
+
+/* 风险分模块 */

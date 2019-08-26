@@ -1,0 +1,260 @@
+@charset "utf-8";
+html,body{
+	background-color: #f3f5f8;
+}
+
+/* 两份报告相关start */
+/* 标题 */
+.titleReport{
+	padding: 30px;
+	padding-top: 20px;
+	background-color: #fff;
+}
+
+.titleReport .dot{
+	float: left;
+	margin-top: 4px;
+	width: 6px;
+	height: 24px;
+	background-color: #4b7eff;
+	border-radius: 2px;
+}
+
+.titleReport .titleTxt{
+	float: left;
+	margin-left: 24px;
+	color: #333;
+	font-size: 32px;
+	line-height: 32px;
+}
+/* 标题 */
+
+/* 结论1 */
+.reportConclusion{
+	padding: 0 30px 30px 30px;
+	width: 690px;
+	height: 410px;
+	background-color: #fff;
+}
+.reportConclusion .bg{
+	position: relative;
+	width: 690px;
+	height: 410px;
+}
+.reportConclusion .bg .imgbg{
+	display: block;
+	width: 690px;
+	height: 410px;
+}
+.reportConclusion .bg .time{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	font-size: 24px;
+	color: #a8c4ff;
+}
+.reportConclusion .bg .result{
+	position: absolute;
+	top: 72px;
+	width: 380px;
+	left: 50%;
+	margin-left: -190px;
+	text-align: center;
+}
+.reportConclusion .bg .result .title{
+	margin-top: 58px;
+	font-size: 24px;
+	color: #C8DAFF;
+}
+.reportConclusion .bg .result .score{
+	margin-top: 28px;
+	font-size: 30px;
+	color: #fff;
+}
+.reportConclusion .bg .result .score span{
+	font-size: 98px;
+	line-height: 75px;
+}
+.reportConclusion .bg .result .txt{
+	position: relative;
+	margin: 0 auto;
+	margin-top: 56px;
+	display:inline-block;
+	padding: 0 30px;
+	min-width: 250px;
+	height: 48px;
+	border-radius: 24px;
+	background-color: #DDE9FF;
+	opacity: 0.6;
+}
+.reportConclusion .bg .result .txt p{
+	line-height: 48px;
+	font-size: 26px;
+	color: #1c5cfd;
+}
+.reportConclusion .bg .result .txt p .colorGreen{
+	color: #00a455;
+}
+.reportConclusion .bg .result .txt p .colorRed{
+	color: #ff0000;
+}
+/* 结论1 */
+
+/* 结论2 */
+.reportConclusion2{
+	padding: 0 30px 30px 30px;
+	width: 690px;
+	height: 320px;
+	background-color: #fff;
+}
+.reportConclusion2 .bg2{
+	position: relative;
+	width: 690px;
+	height: 320px;
+}
+.reportConclusion2 .bg2 .imgbg2{
+	display: block;
+	width: 690px;
+	height: 320px;
+}
+.reportConclusion2 .bg2 .time2{
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	font-size: 24px;
+	color: #a8c4ff;
+}
+
+.reportConclusion2 .bg2 .result2{
+	position: absolute;
+	top: 100px;
+	width: 590px;
+	left: 60px;
+	text-align: center;
+}
+.reportConclusion2 .bg2 .result2 .showEnd{
+	float: left;
+}
+.reportConclusion2 .bg2 .result2 .showEnd .showEndTitle{
+	color: #333;
+	font-size: 30px;
+	line-height: 32px;
+}
+.reportConclusion2 .bg2 .result2 .showEnd .showEndTip{
+	margin-top: 20px;
+	font-size: 40px;
+	line-height: 44px;
+	font-weight: bold;
+	text-align: left;
+}
+.reportConclusion2 .bg2 .result2 .showEnd .colorGreen{
+	color: #4B7EFF;
+}
+.reportConclusion2 .bg2 .result2 .showEnd .colorRed{
+	color: #F55A46;
+}
+.reportConclusion2 .bg2 .result2 .isPass{
+	float: right;
+}
+.reportConclusion2 .bg2 .result2 .isPassIcon{
+	margin-top: -20px;
+	display: block;
+	width: 285px;
+	height: 192px;
+}
+/* 结论2 */
+
+.reportPersons .baseInfo{
+	padding: 0 30px;
+	line-height: 80px;
+	font-size: 30px;
+	color: #4B7EFF;
+	line-height: 80px;
+}
+.reportPersons .listInfo .info{
+	position: relative;
+	padding: 0 30px;
+	height: 100px;
+	background-color: #fff;	
+	line-height: 100px;
+	font-size: 30px;
+}
+.reportPersons .listInfo .info .title{
+	float: left;
+	color: #999;
+}
+.reportPersons .listInfo .info .txt{
+	float: right;
+	color: #333;
+}
+
+.reportPersons .listInfo .info  .jump{
+	float: right;
+	cursor: pointer;
+}
+.reportPersons .listInfo .info  .jump .jumpTitle{
+	float: left;
+}
+.reportPersons .listInfo .info  .jump .jumpTitleNo{
+	color: #cdcdcd;
+}
+.reportPersons .listInfo .info  .jump .icon4{
+	float: right;
+	margin-top: 38px;
+	margin-left: 24px;	
+	width: 14px;
+	height: 24px;	
+	background: url('../img/reportOneTwoPhone/icon4.png') no-repeat center center;
+	background-size: 100% 100%;
+}
+.reportPersons .listInfo .info  .jump .icon5{
+	float: right;
+	margin-top: 38px;
+	margin-left: 24px;
+	width: 14px;
+	height: 24px;
+	background: url('../img/reportOneTwoPhone/icon5.png') no-repeat center center;
+	background-size: 100% 100%;
+}
+
+.reportPersons .listInfo .info .line{
+	position: absolute;
+	left: 30px;
+	right: 0;
+	bottom: 0;
+	height: 1px;
+	background-color:#f3f5f8;
+}
+
+.reportPersons .listInfo .riskInfo{
+	padding-bottom: 60px;
+	background-color: #fff;
+}
+.reportPersons .listInfo .riskInfo .riskList{
+	float: left;
+	margin-left: 30px;
+}
+.reportPersons .listInfo .riskInfo .riskList2{
+	float: left;
+	margin-left: 30px;
+}
+.reportPersons .listInfo .riskInfo .risk{
+	width: 320px;
+	height: 50px;
+	line-height: 50px;
+}
+.reportPersons .listInfo .riskInfo .risk .icon3{
+	float: left;
+	margin-top: 10px;
+	margin-right: 10px;	
+	width: 30px;
+	height: 30px;	
+	background: url('../img/reportOneTwoPhone/icon3.png') no-repeat center center;
+	background-size: 100% 100%;	
+}
+.reportPersons .listInfo .riskInfo .risk .riskTitle{
+	float: left;
+	font-size: 26px;
+	color: #999;
+}
+/* 两份报告相关end */

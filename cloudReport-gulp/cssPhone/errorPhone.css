@@ -1,0 +1,21 @@
+@charset "utf-8";
+.errorBox{
+	margin-top: 214px;
+}
+.errorBox .errorImg{
+	margin: 0 auto;
+	width:526px;
+	height:403px;
+}
+.errorBox .errorImg .noReportImg{
+	display: block;
+	width:526px;
+	height:403px;			
+}
+.errorBox .errorTxt{
+	margin-top: -80px;
+	text-align: center;
+	line-height: 30px;
+	font-size: 30px;
+	color: #999;
+}

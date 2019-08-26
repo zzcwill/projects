@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+/*显示隐藏*/
+
+.db {
+  display: block;
+}
+
+.dn {
+  display: none;
+}
+
+/* 透明状态 */
+
+.transparent {
+  opacity: 0;
+  filter: Alpha(opacity=0);
+}
+
+/*清除浮动*/
+
+.clearfloat:after {
+  content: "020";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clearfloat {
+  zoom: 1;
+}
+
+/* 页面加载滚动条start-phone端 */
+
+.loadMask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #000;
+  opacity: 0.08;
+  filter: Alpha(opacity=8);
+  z-index: 10020;
+}
+
+.load {
+  position: absolute;
+  width: 0.8rem;
+  height: 0.32rem;
+  left: 50%;
+  top: 50%;
+  margin-left: -0.4rem;
+  margin-top: -0.16rem;
+  background: url('../../img/common/loading.gif') no-repeat center center;
+  background-size: 100% 100%;
+  z-index: 10030;
+}
+
+/* 页面加载滚动条end-phone端 */
