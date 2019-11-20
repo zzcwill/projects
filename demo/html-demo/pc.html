@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<!-- <link rel="shortcut icon" href="/favicon.ico" /> -->
+	<meta name="keywords" content="网易理财,网上理财,票据理财,基金理财,定期给理财,财富管理,理财规划,个人理财,家庭理财,第三方理财,投资理财,资产配置,灵活理财" />
+	<meta name="description" content="网易理财是网易公司金融事业部旗下在线财富管理服务平台，致力于为互联网用户提供安全优质精选的基金、保险、股票、债券等在线金融产品。" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>网易理财，网易金融旗下有态度的财富管理服务平台</title>
+	<link rel="stylesheet" href="css/reset.css" />
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="loan/loan-pmt.js"></script>
+	<script src="loan/loan-pmt2.js"></script>
+	<script src="loan/loan-rate.js"></script>
+</head>
+
+<body>
+	<div>
+		贷款金额
+		<input value="1000" id="demo">
+	</div>
+	<div>
+		贷款期限
+		<input value="12" id="demo2">
+	</div>
+	<div>
+		年利率
+		<input value="10" id="demo3">
+	</div>
+	<div>
+		月还款金额
+		<input value="87.92" id="demo4">
+	</div>	
+	<div>
+		<br />
+		<br />
+		<br />
+	 <div id="demo7">
+		 月还款<span id="demo5"></span>
+
+		 月利率<span id="demo6"></span>
+	 </div>
+	</div>
+
+	<script>
+		$(function(){
+			$("#demo7").bind("click",function(){
+				var a = $('#demo').val()*1;
+				var b = $('#demo2').val()*1;
+				var c = $('#demo3').val()*1/1200;
+
+
+				var d = 0-$('#demo4').val()*1;
+				var data = (0-ExcelFormulas.PMT(c,b,a)).toFixed(2);
+
+				var data2 = (RATE(b,d,a,0)*100).toFixed(2);
+
+				$('#demo5').text(data);	
+				$('#demo6').text(data2);
+			});			
+		})
+	</script>
+</body>
+
+</html>
