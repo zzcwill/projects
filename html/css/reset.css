@@ -10,7 +10,6 @@ fieldset,img{border:none;}
 address,caption,cite,code,dfn,th,var,em{font-weight:normal;font-style:normal;}
 h1,h2,h3,h4,h5,h6{font-weight:normal;font-size:100%;}
 
-input{border:none;outline:none;box-shadow:none;-webkit-appearance:none;border:1px solid rgb(169, 169, 169);}
 textarea{-webkit-appearance: none;resize:none}
 textarea:focus{outline:none;}
 select:focus{outline:none;}
@@ -21,7 +20,7 @@ a:link{text-decoration:none}
 a:visited{text-decoration:none}
 a:hover{text-decoration:none}
 
-input{border:none;outline:none;box-shadow:none;-webkit-appearance:none;border:1px solid rgb(169, 169, 169);}
+input{border:none;outline:none;box-shadow:none;-webkit-appearance:none;border:1px solid rgb(169, 169, 169);-webkit-tap-highlight-color:rgba(0,0,0,0);}
 ::-webkit-input-placeholder { /* WebKit browsers */  
     color:#fff;  
 }  
