@@ -1,0 +1,121 @@
+@import "./utils.less";
+@import "./transition.less";
+// 项目公共的css，可根据需要引入
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+iframe {
+  display: none;
+}
+
+// @font-face {
+//   font-family: 'sisource';   /*字体名称*/
+//   src: url('./fonts/SOURCEHANSANSSC-NORMAL.ttf');       /*字体源文件*/
+// }
+
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+label {
+  font-weight: 700;
+}
+
+html {
+  height: 100%;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+select {
+  background-color: transparent;
+  border-color: transparent;
+  -webkit-appearance: none;
+  outline: none;
+}
+.scrollhidden {
+  overflow-y: hidden;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.range-quantity {
+  background: #ff5a37 !important;
+}
+.border-red {
+  border: 1px solid #ff5a37 !important;
+}
+#newBridge #nb_icon_wrap {
+  height: 67px !important;
+  width: 60px !important;
+}
+.fix-b {
+  position: fixed;
+  bottom: 0;
+}
+.op5 {
+  opacity: 0.5;
+}
+.z-Index-1 {
+  z-index: -1;
+}
+.initial {
+  overflow: initial;
+}
+.hidden {
+  overflow: hidden;
+}
+#cnzz_stat_icon_1273477254 {
+  display: none !important;
+}
+
+.dp-container .dp-header .dp-item.dp-right {
+  color: #4d97f3 !important;
+}
+.weui-cell_warn {
+  color: #ff5a37;
+}
+.weui-icon-warn:before {
+  content: "\EA0B";
+  color: #ff5a37;
+}
