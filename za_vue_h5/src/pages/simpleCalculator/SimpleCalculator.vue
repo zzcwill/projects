@@ -26,7 +26,7 @@
           <div class="calculatorInputTitle">贷款期限（月）</div>
           <div class="calculatorInputValue" @click="openPopup()">
             <div :class="['select',{ 'select2': chooseBB}]">{{ txtBB }}</div>
-            <!-- <div class="selectDot"></div> -->
+            <div class="selectDot"></div>
           </div>
         </div> 
         <div class="calculatorInput" v-show='showChoose[0]'>
@@ -238,47 +238,58 @@ export const getPMT = (rate, nper, pv, fv, type) => {
   return -pmt;
 }
 //RATE算法
-export const getRATE = (periods, payment, present, future, type, guess) => {
-    guess = (guess === undefined) ? 0.01 : guess;
-    future = (future === undefined) ? 0 : future;
-    type = (type === undefined) ? 0 : type;
-  
-    // Set maximum epsilon for end of iteration
-    var epsMax = 1e-10;
-  
-    // Set maximum number of iterations
-    var iterMax = 10;
-  
-    // Implement Newton's method
-    var y, y0, y1, x0, x1 = 0,
-      f = 0,
-      i = 0;
-    var rate = guess;
-    if (Math.abs(rate) < epsMax) {
-      y = present * (1 + periods * rate) + payment * (1 + rate * type) * periods + future;
-    } else {
-      f = Math.exp(periods * Math.log(1 + rate));
-      y = present * f + payment * (1 / rate + type) * (f - 1) + future;
-    }
-    y0 = present + payment * periods + future;
-    y1 = present * f + payment * (1 / rate + type) * (f - 1) + future;
-    i = x0 = 0;
-    x1 = rate;
-    while ((Math.abs(y0 - y1) > epsMax) && (i < iterMax)) {
-      rate = (y1 * x0 - y0 * x1) / (y1 - y0);
-      x0 = x1;
-      x1 = rate;
-        if (Math.abs(rate) < epsMax) {
-          y = present * (1 + periods * rate) + payment * (1 + rate * type) * periods + future;
-        } else {
-          f = Math.exp(periods * Math.log(1 + rate));
-          y = present * f + payment * (1 / rate + type) * (f - 1) + future;
-        }
-      y0 = y1;
-      y1 = y;
-      ++i;
-    }
-    return rate;
+export const getRATE = (nper, pmt, pv, fv, type, guess) => {
+    // Sets default values for missing parameters
+    fv = typeof fv !== 'undefined' ? fv : 0;
+    type = typeof type !== 'undefined' ? type : 0;
+    guess = typeof guess !== 'undefined' ? guess : 0.1;
+
+    // Sets the limits for possible guesses to any
+    // number between 0% and 100%
+    var lowLimit = 0;
+    var highLimit = 1;
+
+   // Defines a tolerance of up to +/- 0.00005% of pmt, to accept
+   // the solution as valid.
+   var tolerance = Math.abs(0.00000005 * pmt);
+
+   // Tries at most 40 times to find a solution within the tolerance.
+   for (var i = 0; i < 40; i++) {
+       // Resets the balance to the original pv.
+       var balance = pv;
+
+       // Calculates the balance at the end of the loan, based
+       // on loan conditions.
+       for (var j = 0; j < nper; j++ ) {
+           if (type == 0) {
+               // Interests applied before payment
+               balance = balance * (1 + guess) + pmt;
+           } else {
+               // Payments applied before insterests
+               balance = (balance + pmt) * (1 + guess);
+           }
+       }
+
+       // Returns the guess if balance is within tolerance.  If not, adjusts
+       // the limits and starts with a new guess.
+       if (Math.abs(balance + fv) < tolerance) {
+           return guess;
+       } else if (balance + fv > 0) {
+           // Sets a new highLimit knowing that
+           // the current guess was too big.
+           highLimit = guess;
+       } else  {
+           // Sets a new lowLimit knowing that
+           // the current guess was too small.
+           lowLimit = guess;
+       }
+
+       // Calculates the new guess.
+       guess = (highLimit + lowLimit) / 2;
+   }
+
+   // Returns null if no acceptable result was found after 40 tries.
+   return null;
 }
 //保留两位
 export const toFixedMoney = (num) => {
@@ -640,13 +651,21 @@ export default {
 
         let CC = this.CC*1;       
 
-        this.aa1 = toFixedMoney( getPMT(CC/100/12,BB,AA) );
-        this.bb1 = toFixedMoney( this.aa1/30 );
-        this.cc1 = toFixedMoney( this.aa1*BB );
-        this.dd1 = toFixedMoney( this.cc1-AA );
-        this.ee1 = toFixedMoney( this.dd1/AA*100 );
-        this.ff1 = toFixedMoney( this.ee1/BB*12 );
-        this.gg1 = toFixedPoints( this.ff1/100/12 );
+        this.aa1 = getPMT(CC/100/12,BB,AA);
+        this.bb1 = this.aa1/30;
+        this.cc1 = this.aa1*BB;
+        this.dd1 = this.cc1-AA;
+        this.ee1 = this.dd1/AA*100;
+        this.ff1 = this.ee1/BB*12;
+        this.gg1 = this.ff1/100/12;
+
+        this.aa1 = toFixedMoney(this.aa1);
+        this.bb1 = toFixedMoney(this.bb1);
+        this.cc1 = toFixedMoney(this.cc1);
+        this.dd1 = toFixedMoney(this.dd1);
+        this.ee1 = toFixedMoney(this.ee1);
+        this.ff1 = toFixedMoney(this.ff1);
+        this.gg1 = toFixedPoints(this.gg1);        
 
       }
       //输出参数2
@@ -662,13 +681,22 @@ export default {
 
         let DD = this.DD*1;   
 
-        this.hh2 = toFixedMoney( getRATE(BB,-DD,AA,0)*100 );
-        this.ii2 = toFixedMoney( this.hh2*12 );
-        this.cc2 = toFixedMoney( DD*BB );
-        this.dd2 = toFixedMoney( this.cc2-AA );
-        this.ee2 = toFixedMoney( this.dd2/AA*100 );
-        this.ff2 = toFixedMoney( this.ee2/BB*12 );
-        this.gg2 = toFixedPoints( this.ff2/100/12 );
+        this.hh2 = getRATE(BB,-DD,AA,0)*100;
+        console.info(this.hh2)
+        this.ii2 = this.hh2*12;
+        this.cc2 = DD*BB;
+        this.dd2 = this.cc2-AA;
+        this.ee2 = this.dd2/AA*100;
+        this.ff2 = this.ee2/BB*12;
+        this.gg2 = this.ff2/100/12;
+
+        this.hh2 = toFixedMoney(this.hh2);
+        this.ii2 = toFixedMoney(this.ii2);
+        this.cc2 = toFixedMoney(this.cc2);
+        this.dd2 = toFixedMoney(this.dd2);
+        this.ee2 = toFixedMoney(this.ee2);
+        this.ff2 = toFixedMoney(this.ff2);
+        this.gg2 = toFixedPoints(this.gg2);       
         
       }               
       //输出参数3
@@ -694,15 +722,23 @@ export default {
         let EE2 = this.EE2*1;
         let EE3 = this.EE3*1;      
         
-        EE = (EE2/1000 + EE3/100000).toFixed(5);
+        EE = (EE2/100 + EE3/1000).toFixed(5);
 
-        this.ff3 = toFixedMoney( EE*12*100 ); 
-        this.ee3 = toFixedMoney( this.ff3/12*BB ); 
-        this.cc3 = toFixedMoney( AA*(1+(this.ee3/100)));                      
-        this.aa3 = toFixedMoney( this.cc3/BB );
-        this.bb3 = toFixedMoney( this.aa3/30 );
-        this.dd3 = toFixedMoney( this.cc3-AA );
-        this.ii3 = toFixedMoney( getRATE(BB,-this.aa3,AA,0)*12*100 );
+        this.ff3 = EE*12*100; 
+        this.ee3 = this.ff3/12*BB; 
+        this.cc3 = AA*(1+(this.ee3/100));                      
+        this.aa3 = this.cc3/BB;
+        this.bb3 = this.aa3/30;
+        this.dd3 = this.cc3-AA;
+        this.ii3 = getRATE(BB,-this.aa3,AA,0)*12*100;
+
+        this.ff3 = toFixedMoney(this.ff3); 
+        this.ee3 = toFixedMoney(this.ee3); 
+        this.cc3 = toFixedMoney(this.cc3);                      
+        this.aa3 = toFixedMoney(this.aa3);
+        this.bb3 = toFixedMoney(this.bb3);
+        this.dd3 = toFixedMoney(this.dd3);
+        this.ii3 = toFixedMoney(this.ii3);        
       }
       //输出参数4
       if(this.chooseIndex === 3) {
@@ -736,14 +772,23 @@ export default {
         let FF = this.FF*1;
         let GG = this.GG*1;        
 
-        this.gg4 = toFixedPoints( GG/100/(FF*12) );    
-        this.ff4 = toFixedMoney( this.gg4*12*100 );
-        this.ee4 = toFixedMoney( this.ff4/12*BB );  
-        this.cc4 = toFixedMoney( AA*(1+this.ee4/100) ); 
-        this.aa4 = toFixedMoney( this.cc4/BB  );
-        this.ii4 = toFixedMoney( getRATE(BB,-this.aa4,AA,0)*12*100 );         
-        this.bb4 = toFixedMoney( this.aa4/30 );
-        this.dd4 = toFixedMoney( this.cc4-AA );                     
+        this.gg4 = GG/100/(FF*12);    
+        this.ff4 = this.gg4*12*100;
+        this.ee4 = this.ff4/12*BB;  
+        this.cc4 = AA*(1+this.ee4/100); 
+        this.aa4 = this.cc4/BB;
+        this.ii4 = getRATE(BB,-this.aa4,AA,0)*12*100;         
+        this.bb4 = this.aa4/30;
+        this.dd4 = this.cc4-AA;
+        
+        this.gg4 = toFixedPoints(this.gg4);    
+        this.ff4 = toFixedMoney(this.ff4);
+        this.ee4 = toFixedMoney(this.ee4);  
+        this.cc4 = toFixedMoney(this.cc4); 
+        this.aa4 = toFixedMoney(this.aa4);
+        this.ii4 = toFixedMoney(this.ii4);         
+        this.bb4 = toFixedMoney(this.bb4);
+        this.dd4 = toFixedMoney(this.dd4);        
       } 
     }
   }
@@ -839,7 +884,7 @@ export default {
           }
         }
         .calculatorInput{
-          overflow: hidden;
+          height: 60px;
           border-top: 1px solid #f0f0f0;
           .calculatorInputTitle{
             float: left;
@@ -849,6 +894,7 @@ export default {
             color: #333;
           }
           .calculatorInputValue{
+            position: relative;
             float: right;
             height: 60px;
             .input{
@@ -862,6 +908,8 @@ export default {
             }
             .select{
               margin: 19px 0;
+              margin-right: 15px;
+              width: 135px;
               height: 22px;
               line-height: 22px;
               font-size: 14px;
@@ -870,6 +918,17 @@ export default {
             }
             .select2{
               color: #333;
+            }
+            .selectDot{
+              position: absolute;
+              top: 50%;
+              margin-top: -2.5px;
+              right: 0;
+              width: 9px;
+              height: 5px;
+              background: url('../../assets/images/simpleCalculator/selectDot.png') no-repeat center center;
+              background-size: 100%;
+              z-index: 900;
             }
             .monthInterest{
               float: left;
@@ -929,6 +988,7 @@ export default {
             } 
             .input3{
               margin: 19px 0;
+              margin-right: 15px;
               height: 22px;
               width: 50px;
               line-height: 22px;
