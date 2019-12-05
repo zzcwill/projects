@@ -304,12 +304,11 @@ export const toFixedPoints = (num) => {
 //是否正浮点数
 export const judgeZhengNumber = (str) => {	
   var reg = /^[1-9]\d*(\.\d*|0\.\d*[1-9]\d*)?$/
-  // var reg2 = /^[1-9]\d*$/
 	return reg.test(str)
 }
 //0-100的数字
 export const judge100Number = (str) => {	
-	var reg = /^[0-9]{1,3}$/
+	var reg = /^[0-9]{1,2}$|^100$/
 	return reg.test(str)
 }
 //0-9.99的数字
