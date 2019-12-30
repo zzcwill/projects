@@ -1,5 +1,3 @@
-const port = 9090
-
 module.exports = {
   // 默认部署在服务器根目录，不是根目录调整样式
   publicPath: '/',
@@ -22,7 +20,7 @@ module.exports = {
       filename: 'index.html',
       // 当使用 title 选项时，
       // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
-      title: 'hongyan',
+      title: 'test',
       // 在这个页面中包含的块，默认情况下会包含
       // 提取出来的通用 chunk 和 vendor chunk。
       chunks: ['chunk-vendors', 'chunk-common', 'index']
@@ -32,23 +30,39 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV !== 'production',
   // 开发环境服务器设置
   devServer: {
-    port: port,
-    open: false,
+    // 让浏览器 overlay 同时显示警告和错误
     overlay: {
-      warnings: false,
+      warnings: true,
       errors: true
     },
+    // 端口号
+    port: 8002,
+    // 配置ip地址
+    // host: 'localhost',
+    // https:{type:Boolean}
+    https: false,
+    // 配置自动启动浏览器
+    open: true,
     // 配置跨域处理
-    // disableHostCheck: true,
-    // proxy: {
-    //   [process.env.VUE_APP_BASE_API]: {
-    //     target: 'http://open.gm9527.com',
-    //     changeOrigin: true,
-    //     ws: true,
-    //     pathRewrite: {
-    //       ['^' + process.env.VUE_APP_BASE_API]: ''
-    //     }
-    //   }
-    // }
-  }
+    disableHostCheck: true,
+    proxy: {
+      '/api': {
+        target: 'https://cnodejs.org/api/v1',
+        changeOrigin: true,
+        ws: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }, 
+      '/mock': {
+        target: 'http://192.168.27.11:8080/app/mock/26/',
+        changeOrigin: true,
+        ws: true,
+        pathRewrite: {
+          '^/mock': ''
+        }
+      },                 
+    },  
+  }   
+
 }

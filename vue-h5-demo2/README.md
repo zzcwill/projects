@@ -1,5 +1,5 @@
 # vue-h5
-> A vue-h5 demo project
+> A hongyan-h5 project
 
 ### 命名规范
 ##### 命名规则：不能用中文拼音，尽量简洁明了
@@ -28,24 +28,53 @@
 ##### css规范
 - css命名：一律中线分割(例如 banner-top )
 - css层级：尽量三级以内
-- vue组件最外层class：建议用组件名（如组件名CamelCase  用camel-case)
 
 ##### css,html,js缩进要求
 - 缩进都用2空格
 
 
 ### 框架约定
-- 样式 ：less 
-- UI ： 移动端使用  , PC 端使用 element-ui 
-- 网络 ： axios
-- 基础库: vue.js、vue-router、vuex
+- 样式：less 
+- UI： 移动端使用vant 
+- 网络： axios
+- 基础库：vue.js、vue-router
 - 编译/打包工具：webpack、babel、、node-less
-- 单元测试工具：unit、e2e
+- 插件：js-cookie,loadsh,moment
+- mock：mockjs
+- 开发工具：vscode
+#### ui组件vant官网: https://youzan.github.io/vant/?source=vuejsorg#/zh-CN/
 
+### 关于设计稿
+- 设计稿以750*1136尺寸开发
+- 开发用px 自动按750设计稿下的px大小转rem
+- flexible.js经过改造,所有分辨率按750下的设计稿尺寸，等比例缩放
+#### 只有宽度做等比例缩放，高度没做缩放
+
+### 全局变量
+- 由于store维护比较麻烦，定义了一个global全局变量
+- 用户相关信息都存在cacheData.user
+- 后期全局变量要加也加在/global/index.js文件的cacheData里，注意加注释说明
+####  页面需要全局变量时候
+####  import { cacheData } from '@/global' 调用即可获取  
+
+###  请求回调
+- 推荐用  async,await模式
+- 参考： /src/views/demo/demo1/index.vue的async,await用法
+
+### 项目路由模块
+- 系统相关  app
+- 模板相关  demo
+- 用户绑定  yhbd
+- 访客预约  fkyy
+- 商家后台  sjht
+- 食堂后台  stht
+- 物业后台  wyht
+#### 相关页面写在相应/router 和/api路径下相应的模块内
+#### 基础页面demo 直接复制/views/demo/demo1 进行修改
 
 ### 搭建环境所需依赖包
 - vue-cli3.0搭建，还需装的依赖包
-- dependencies：axios，babel-polyfill，qs，vue-meta-info,vux
+- dependencies：axios，babel-polyfill，qs，vue-meta-info,vant,js-cookie,loadsh,moment,mockjs
 - devDependencies: postcss-pxtorem
 
 
@@ -53,6 +82,6 @@
 - 安装相应依赖包
 - npm install
 - 开发环境运行
-- npm run serve 
+- npm run dev 
 - 生成项目打包文件
 - npm run build
