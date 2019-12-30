@@ -1,0 +1,41 @@
+{
+  "name": "webpck-demo",
+  "version": "1.0.0",
+  "description": "A webpack demo",
+  "scripts": {
+    "dev": "webpack-dev-server --env development --config build/webpack.common.conf.js",
+    "dev2": "webpack-dev-server --env development",
+    "build": "webpack --env production --progress --display-reasons --color --config build/webpack.common.conf.js",
+    "build2": "webpack --env production --progress --display-reasons --color"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zzcwill/webpack.git"
+  },
+  "author": "zzcwill",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.1.0",
+    "file-loader": "^4.1.0",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "lodash": "^4.17.15",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^2.1.0",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2",
+    "webpack-merge": "^4.2.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-runtime": "^6.26.0",
+    "jquery": "^3.4.1"
+  }
+}
