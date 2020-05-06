@@ -27,8 +27,6 @@
 -  babel-runtime
 
 ### 3 多页面提取公共代码
-#### devDependencies
--  lodash
 
 ### 4处理css
 #### devDependencies
