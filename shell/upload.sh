@@ -1,5 +1,5 @@
-#!/bin/sh
-#!/bin/bash 区别？
+#!/bin/bash
+#本地mac-ssh-连接服务器
 
 #$0: 脚本本身文件名称
 #$1: 命令行第一个参数，$2为第二个，以此类推
@@ -43,7 +43,6 @@
 
 DATE=`date +%Y%m%d`
 TIME=`date +%Y%m%d%H%M%S`
-echo $TIME
 
 #本地项目目录
 Tfolder="/Users/zhengzhichao/Desktop"
@@ -64,7 +63,6 @@ deploy_statc() {
                                 mkdir -p  $BACKUP/$STATIC_PRO$DATE
                                 BACKUP_PATH=$BACKUP/$STATIC_PRO$DATE
                               fi
-                                # 为啥无法进入目录  老是要输入命令
                                 mv /data/pro/$STATIC_PRO \$BACKUP_PATH
                               exit"
 
