@@ -1,4 +1,4 @@
-//内存泄漏
+//内存泄漏-node
 //获取内存泄漏信息-process.memoryUsage()
 //堆中总共申请的内存-heapTotal
 //堆中使用的内存-heapUsed
