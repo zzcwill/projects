@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var rfs = require('rotating-file-stream') 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -13,7 +14,19 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
+var fs = require('fs');//文件模块
+
+//创建一个写入流
+// var accessLogStream = fs.createWriteStream(__dirname+'/logs/a.log',{flags:'a'});
+var accessLogStream = rfs.createStream(__dirname+'/logs/a.log', {
+  interval: '1d', // rotate daily
+  path: path.join(__dirname, 'logs'),
+  format: '[zzc-log] :method :url :status'
+})
+//将日志写入文件
+app.use(logger('zzc-log'));
+app.use(logger('combined',{stream:accessLogStream}));
+// app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
