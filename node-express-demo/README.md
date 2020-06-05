@@ -5,7 +5,7 @@
 - 全局包安装
 - npm install nodemon -g
 - 安装相应依赖包
-- npm install
+- npm i
 - 开发环境运行
 - npm run dev
 

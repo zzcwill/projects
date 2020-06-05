@@ -6,6 +6,8 @@
 var http = require('http');
 var path = require('path');
 var chalk = require('chalk');
+var open = require('open');
+var os = require('os');
 
 var app = require('../app');
 // var debug = require('debug')('dev');
@@ -14,24 +16,11 @@ var config = require('config-lite')(path.join(__dirname,'../'));
 
 app.set('port', config.port);
 
-/**
- * Create HTTP server.
- */
-
 var server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
 server.listen(config.port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-
-/**
- * Event listener for HTTP server "error" event.
- */
 
 function onError(error) {
   if (error.syscall !== 'listen') {
@@ -53,15 +42,27 @@ function onError(error) {
   }
 }
 
-/**
- * Event listener for HTTP server "listening" event.
- */
-
 function onListening() {
   var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
+  var host = addr.address
+  var port = addr.port;
   // debug('Listening on ' + bind);
-  console.info(chalk.green('app run on ' + bind))
+  // if(process.env.NODE_ENV === 'dev') {
+  //   open('http://127.0.0.1:' + bind, {app: ['google chrome', '--incognito']})
+  // }
+  console.info(chalk.green('app run on here'));
+  console.info(chalk.green(`http://${getIPAdress()}:${port}`));
+}
+
+function getIPAdress() {
+  var interfaces = os.networkInterfaces();
+  for (var devName in interfaces) {
+      var iface = interfaces[devName];
+      for (var i = 0; i < iface.length; i++) {
+          var alias = iface[i];
+          if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+              return alias.address;
+          }
+      }
+  }
 }
