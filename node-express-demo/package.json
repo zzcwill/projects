@@ -1,19 +1,43 @@
 {
-  "name": "demo",
-  "version": "0.0.0",
-  "private": true,
+  "name": "express-demo",
+  "version": "1.0.0",
+  "description": "express-demo",
+  "main": "app.js",
   "scripts": {
-    "start": "DEBUG=worker:* PORT=7000 node ./bin/www",
-    "dev": "DEBUG=worker:* PORT=7000 nodemon ./bin/www"
+    "dev": "DEBUG=dev set NODE_ENV=dev PORT=7000 nodemon ./bin/www",
+    "test": "set NODE_ENV=test node ./bin/www",
+    "pro": "set NODE_ENV=pro node ./bin/www"
   },
+  "keywords": [
+    "pro"
+  ],
+  "author": "zzc",
+  "license": "ISC",
   "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "dayjs": "^1.8.27",
-    "debug": "~2.6.9",
-    "ejs": "~2.6.1",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
-    "rotating-file-stream": "^2.1.1"
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "chalk": "^4.0.0",
+    "config-lite": "^3.0.0",
+    "cookie-parser": "^1.4.5",
+    "cookie-session": "^1.4.0",
+    "dayjs": "^1.8.28",
+    "debug": "^4.1.1",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "node-schedule": "^1.3.2",
+    "node-xlsx": "^0.15.0",
+    "nodemailer": "^6.4.8",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "rotating-file-stream": "^2.1.1",
+    "serve-favicon": "^2.5.0",
+    "serve-static": "^1.14.1",
+    "socket.io": "^2.3.0",
+    "svg-captcha": "^1.4.0",
+    "uuid": "^8.1.0"
   }
 }
