@@ -1,20 +1,28 @@
-var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
+var bodyParser = require('body-parser');
+var serveStatic = require('serve-static');
+var config = require('config-lite')(__dirname);
 
 var logger = require('morgan');
 var rfs = require('rotating-file-stream');
 var dayjs = require('dayjs');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexRouter = require('./router/index');
+var usersRouter = require('./router/users');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+
+app.use(cookieSession({
+  name: 'session',
+  keys: config.cookieSession.keys
+}))
 
 //log
 var generator = () => {
@@ -28,18 +36,18 @@ var accessLogStream = rfs.createStream(generator, {
 })
 app.use(logger(':method :url :status :res[content-length] - :response-time ms',{stream:accessLogStream}));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(serveStatic(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 // error handler
 app.use(function(err, req, res, next) {

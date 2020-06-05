@@ -4,9 +4,9 @@
   "description": "express-demo",
   "main": "app.js",
   "scripts": {
-    "dev": "DEBUG=dev set NODE_ENV=dev PORT=7000 nodemon ./bin/www",
-    "test": "set NODE_ENV=test node ./bin/www",
-    "pro": "set NODE_ENV=pro node ./bin/www"
+    "dev": "cross-env NODE_ENV=dev DEBUG=dev nodemon ./bin/www",
+    "test": "cross-env NODE_ENV=test node ./bin/www",
+    "pro": "cross-env NODE_ENV=pro node ./bin/www"
   },
   "keywords": [
     "pro"
@@ -39,5 +39,8 @@
     "socket.io": "^2.3.0",
     "svg-captcha": "^1.4.0",
     "uuid": "^8.1.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.2"
   }
 }

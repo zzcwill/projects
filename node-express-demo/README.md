@@ -11,10 +11,10 @@
 
 ### 项目部署test
 -- 全局包安装
-- npm i --production
+- npm i
 - npm run test
 
 ### 项目部署pro
 -- 全局包安装
-- npm i --production
+- npm i
 - npm run pro

@@ -1,5 +1,8 @@
 module.exports = {
-	port: 6000,
+	port: 7000,
+	cookieSession: {
+		keys: ['zzc']
+	},
 	mysqlConfig: {
 
 	},

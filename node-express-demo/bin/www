@@ -3,10 +3,14 @@
 /**
  * Module dependencies.
  */
-var app = require('../app')
-var debug = require('debug')('worker:server')
-var http = require('http')
-var config = require('config-lite')(__dirname)
+var http = require('http');
+var path = require('path');
+var chalk = require('chalk');
+
+var app = require('../app');
+// var debug = require('debug')('dev');
+
+var config = require('config-lite')(path.join(__dirname,'../'));
 
 app.set('port', config.port);
 
@@ -58,5 +62,6 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  // debug('Listening on ' + bind);
+  console.info(chalk.green('app run on ' + bind))
 }
