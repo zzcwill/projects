@@ -11,8 +11,8 @@ var logger = require('morgan');
 var rfs = require('rotating-file-stream');
 var dayjs = require('dayjs');
 
-var indexRouter = require('./router/index');
-var usersRouter = require('./router/users');
+var pageRouter = require('./router/page');
+var apiRouter = require('./router/api');
 
 var app = express();
 
@@ -41,15 +41,10 @@ var accessLogStream = rfs.createStream(generator, {
   interval: '1d', // rotate daily
   path: path.join(__dirname, 'logs')
 })
-app.use(logger(':method :url :status :res[content-length] - :response-time ms',{stream:accessLogStream}));
+app.use(logger('combined',{stream:accessLogStream}));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-
-// catch 404 and forward to error handler
-// app.use(function(req, res, next) {
-//   next(createError(404));
-// });
+app.use('/', pageRouter);
+app.use('/api', apiRouter);
 
 // error handler
 app.use(function(err, req, res, next) {
