@@ -1,17 +1,55 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-	<head>
-		<!-- <link rel="shortcut icon" href="/images/favicon.ico"/> -->
-		<meta name="viewport" content="width=1240,user-scalable=yes">
-		<meta name="keywords" content="zzc"/>
-		<meta name="description" content="zzc"/>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/css/reset.css' />
-		<link rel='stylesheet' href='/css/common.css' />
-		<script src="/js/jquery-1.11.1.min.js"></script>
-	</head>
-	<body>
-    <h1><%= title %></h1>
-	</body>
+
+<head>
+	<!-- <link rel="shortcut icon" href="/images/favicon.ico"/> -->
+	<meta name="viewport" content="width=1240,user-scalable=yes">
+	<meta name="keywords" content="zzc" />
+	<meta name="description" content="zzc" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title><%= title %></title>
+	<link rel='stylesheet' href='/css/reset.css' />
+	<link rel='stylesheet' href='/css/common.css' />
+	<script src="/js/jquery-1.11.1.min.js"></script>
+</head>
+<style>
+	h1 {
+		margin: 20px auto;
+		text-align: center;
+	}
+
+	h2{
+		margin: 10px auto;
+		text-align: center;
+	}
+</style>
+
+<body>
+	<h1><%= title %></h1>
+
+	<h1>接口demo</h1>
+	<h2 id="get">get</h2>
+	<h2 id="post-json">post-application/json</h2>
+	<h2 id="post-from">post-application/x-www-form-urlencoded-表单提交</h2>
+	<h2 id="post-from">post-multipart/form-data-文件上传</h2>
+
+	<script>
+		$('#get').bind('click', function () {
+			$.ajax({
+				type: "get",
+				url: "/api/get",
+				data: {
+					way: 'get',
+				},
+				dataType: "json",
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})
+	</script>
+</body>
+
 </html>
