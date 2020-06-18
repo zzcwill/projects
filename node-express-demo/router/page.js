@@ -6,9 +6,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'index' });
 });
 
-router.get('/errors', function(req, res, next) {
-	var err = new Error('errors');
-	next(err);
-});
-
 module.exports = router;

@@ -29,9 +29,9 @@
 
 	<h1>接口demo</h1>
 	<h2 id="get">get</h2>
-	<h2 id="post-json">post-application/json</h2>
-	<h2 id="post-from">post-application/x-www-form-urlencoded-表单提交</h2>
-	<h2 id="post-from">post-multipart/form-data-文件上传</h2>
+	<h2 id="post-json">json提交</h2>
+	<h2 id="post-from">表单提交</h2>
+	<h2 id="post-multipart">文件上传</h2>
 
 	<script>
 		$('#get').bind('click', function () {
@@ -39,9 +39,9 @@
 				type: "get",
 				url: "/api/get",
 				data: {
-					way: 'get',
+					way: '/api/get',
 				},
-				dataType: "json",
+				// dataType: "json",
 				success: function (res) {
 					console.log(res);
 				},
@@ -49,6 +49,57 @@
 				}
 			});
 		})
+
+		$('#post-json').bind('click', function () {
+			$.ajax({
+				type: "post",
+				url: "/api/post/json",
+				contentType: 'application/json',
+				data: {
+					way: '/api/post/json',
+				},
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})
+		
+		$('#post-from').bind('click', function () {
+			// var formData = new FormData();
+    	// formData.append('file', this.files[0]);
+
+			$.ajax({
+				type: "post",
+				url: "/api/post/from",
+				contentType: 'application/x-www-form-urlencoded',
+				data: {
+					way: '/api/post/from',
+				},
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})	
+		
+		$('#post-multipart').bind('click', function () {
+			$.ajax({
+				type: "post",
+				url: "/api/post/multipart",
+				contentType: 'multipart/form-data',
+				data: {
+					way: '/api/post/multipart',
+				},
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})		
 	</script>
 </body>
 
