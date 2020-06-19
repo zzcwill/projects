@@ -5,14 +5,19 @@ var { resDataApi } = require('../extend/api');
 
 router.get('/get', function(req, res, next) {
   var data = {};
-  if(!req.params.way) {
-    data = resDataApi(20000,'','没有传way参数');
+
+  if(req.query.way === undefined) {
+    data = resDataApi(20000,{},'没有传way参数');
   }
 
-  if(req.params.way) {
-    data = resDataApi('',{
-      way: req.params.way
-    },'ok');
+  if(req.query.way !== undefined) {
+    data = resDataApi(
+      10000,
+      {
+        way: req.query.way
+      },
+      'ok'
+    );
   }
 
   res.json(data)
@@ -20,14 +25,18 @@ router.get('/get', function(req, res, next) {
 
 router.post('/post/json', function(req, res, next) {
   var data = {};
-  if(!req.params.way) {
-    data = resDataApi(20000,'','没有传way参数');
+  if(req.body.way  === undefined) {
+    data = resDataApi(20000,{},'没有传way参数');
   }
 
-  if(req.params.way) {
-    data = resDataApi('',{
-      way: req.params.way
-    },'ok');
+  if(req.body.way !== undefined) {
+    data = resDataApi(
+      10000,
+      {
+        way: req.body.way
+      },
+      'ok'
+    );
   }
 
   res.json(data)
@@ -35,14 +44,18 @@ router.post('/post/json', function(req, res, next) {
 
 router.post('/post/from', function(req, res, next) {
   var data = {};
-  if(!req.params.way) {
-    data = resDataApi(20000,'','没有传way参数');
+  if(req.body.way  === undefined) {
+    data = resDataApi(20000,{},'没有传way参数');
   }
 
-  if(req.params.way) {
-    data = resDataApi('',{
-      way: req.params.way
-    },'ok');
+  if(req.body.way !== undefined) {
+    data = resDataApi(
+      10000,
+      {
+        way: req.body.way
+      },
+      'ok'
+    );
   }
 
   res.json(data)
@@ -50,9 +63,23 @@ router.post('/post/from', function(req, res, next) {
 
 //文件上传
 router.post('/post/multipart', function(req, res, next) {
-  res.json({
-    'str': '文件上传'
-  })
+  var data = {};
+   console.info(req)
+  if(req.body.way  === undefined) {
+    data = resDataApi(20000,{},'没有传way参数');
+  }
+
+  if(req.body.way !== undefined) {
+    data = resDataApi(
+      10000,
+      {
+        way: req.body.way
+      },
+      'ok'
+    );
+  }
+
+  res.json(data)
 });
 
 module.exports = router;
