@@ -44,8 +44,8 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
-  var host = addr.address
   var port = addr.port;
+  
   // debug('Listening on ' + bind);
   // if(process.env.NODE_ENV === 'dev') {
   //   open('http://127.0.0.1:' + bind, {app: ['google chrome', '--incognito']})

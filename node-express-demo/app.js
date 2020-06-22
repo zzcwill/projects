@@ -9,7 +9,7 @@ var config = require('config-lite')(__dirname);
 
 var logger = require('morgan');
 var rfs = require('rotating-file-stream');
-var dayjs = require('dayjs');
+var { getNowDay } = require('./extend/time');
 
 var pageRouter = require('./router/page');
 var apiRouter = require('./router/api');
@@ -33,7 +33,7 @@ app.set('view engine', 'ejs');
 
 //set logs
 var generator = () => {
-  var time = dayjs().format('YYYY-MM-DD');
+  var time = getNowDay();
   return `${time}.log`;
 };
 var accessLogStream = rfs.createStream(generator, {
