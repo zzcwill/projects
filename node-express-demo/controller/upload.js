@@ -5,7 +5,6 @@ var { getNowDay } = require('../extend/time');
 
 module.exports = {
 	postmultipart: function(req, res, next) {
-		console.info(1111)
 		var data = {};
 	
 		if(req.file  === undefined) {
