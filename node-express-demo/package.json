@@ -42,6 +42,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
-    "open": "^7.0.4"
+    "open": "^7.0.4",
+    "qs": "^6.9.4"
   }
 }

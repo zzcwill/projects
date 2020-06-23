@@ -7,6 +7,9 @@ var uploadLoad = require('../middleware/upload');
 var upload = require('../controller/upload');
 var getdata = require('../controller/getdata');
 
+var timer = require('../controller/timer');
+
+
 //接口测试
 router.get('/get', api.get);
 router.post('/post/json', api.postjson);
@@ -21,6 +24,10 @@ router.get('/getcode', code.getcode);
 
 //请求第三方数据
 router.get('/getdata', getdata.getdata);
+
+//定时器
+router.get('/timer/start', timer.start);
+router.get('/timer/end', timer.end);
 
 
 module.exports = router;

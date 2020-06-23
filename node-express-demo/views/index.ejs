@@ -38,6 +38,10 @@
 	</h2>
 	<br />
 	<h2 id="get-data">获取第三方数据</h2>
+	<br />
+	<h2 id="timer-start">定时器开始</h2>
+	<h2 id="timer-end">定时器关闭</h2>
+	<br />
 
 
 	<script>
@@ -132,7 +136,33 @@
 				error: function () {
 				}
 			});
-		})		
+		})	
+		
+		$('#timer-start').bind('click', function () {
+			$.ajax({
+				type: "get",
+				url: "/api//timer/start",
+				data: {},
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})
+		$('#timer-end').bind('click', function () {
+			$.ajax({
+				type: "get",
+				url: "/api//timer/end",
+				data: {},
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})
+
 	</script>
 </body>
 
