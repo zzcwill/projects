@@ -31,11 +31,14 @@
 	<h2 id="get">get</h2>
 	<h2 id="post-json">json提交</h2>
 	<h2 id="post-from">表单提交</h2>
-
+	<br />
 	<h2 id="post-multipart">文件上传</h2>
 	<h2>
 		<input type="file" name="file" accept="image/*" class="dn" id="upImage" >		
 	</h2>
+	<br />
+	<h2 id="get-data">获取第三方数据</h2>
+
 
 	<script>
 		$('#get').bind('click', function () {
@@ -117,6 +120,19 @@
 				}
 			});			
 		})	
+
+		$('#get-data').bind('click', function () {
+			$.ajax({
+				type: "get",
+				url: "/api/getdata",
+				data: {},
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})		
 	</script>
 </body>
 
