@@ -9,6 +9,7 @@ var getdata = require('../controller/getdata');
 
 var timer = require('../controller/timer');
 var email = require('../controller/email');
+var crawler = require('../controller/crawler');
 
 //接口测试
 router.get('/get', api.get);
@@ -31,5 +32,8 @@ router.get('/timer/end', timer.end);
 
 //发送邮件
 router.get('/email', email.send);
+
+//爬虫第三方页面
+router.get('/crawler', crawler.get);
 
 module.exports = router;

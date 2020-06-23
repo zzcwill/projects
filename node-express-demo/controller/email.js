@@ -16,10 +16,10 @@ module.exports = {
 		}
 		var transporter = mailer.createTransport(smtpTransport(option));
 
-    const from = `express-demo<841811316@qq.com>`;
-    const to = '377950622@qq.com';
-    const subject = 'express-demo';
-		const html = '<p>您好：' + 'zzc' + '</p>';
+    var from = `express-demo<841811316@qq.com>`;
+    var to = '377950622@qq.com';
+    var subject = 'express-demo';
+		var html = '<p>您好：' + 'zzc' + '</p>';
 		
 		var data = await transporter.sendMail({
 			from,

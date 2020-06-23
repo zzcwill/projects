@@ -22,6 +22,12 @@
 		margin: 10px auto;
 		text-align: center;
 	}
+	h3{
+		margin: 10px auto;
+		width: 302px;
+		height: 34px;
+		background-color: #000;
+	}
 </style>
 
 <body>
@@ -43,6 +49,11 @@
 	<h2 id="timer-end">定时器关闭</h2>
 	<br />
 	<h2 id="email">发送邮件</h2>
+	<br />
+	<h2 id="crawler">爬虫</h2>
+	<h3 id="html" class="dn">
+		<img src="" />
+	</h3>
 
 
 	<script>
@@ -171,6 +182,21 @@
 				data: {},
 				success: function (res) {
 					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})
+
+		$('#crawler').bind('click', function () {
+			$.ajax({
+				type: "get",
+				url: "/api/crawler",
+				data: {},
+				success: function (res) {
+					console.log(res);
+					$('#html img').attr('src',res.data.src);
+					$('#html').removeClass('dn');
 				},
 				error: function () {
 				}
