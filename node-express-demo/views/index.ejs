@@ -42,6 +42,7 @@
 	<h2 id="timer-start">定时器开始</h2>
 	<h2 id="timer-end">定时器关闭</h2>
 	<br />
+	<h2 id="email">发送邮件</h2>
 
 
 	<script>
@@ -141,7 +142,7 @@
 		$('#timer-start').bind('click', function () {
 			$.ajax({
 				type: "get",
-				url: "/api//timer/start",
+				url: "/api/timer/start",
 				data: {},
 				success: function (res) {
 					console.log(res);
@@ -153,7 +154,20 @@
 		$('#timer-end').bind('click', function () {
 			$.ajax({
 				type: "get",
-				url: "/api//timer/end",
+				url: "/api/timer/end",
+				data: {},
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})
+
+		$('#email').bind('click', function () {
+			$.ajax({
+				type: "get",
+				url: "/api/email",
 				data: {},
 				success: function (res) {
 					console.log(res);

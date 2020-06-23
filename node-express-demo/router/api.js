@@ -8,7 +8,7 @@ var upload = require('../controller/upload');
 var getdata = require('../controller/getdata');
 
 var timer = require('../controller/timer');
-
+var email = require('../controller/email');
 
 //接口测试
 router.get('/get', api.get);
@@ -29,5 +29,7 @@ router.get('/getdata', getdata.getdata);
 router.get('/timer/start', timer.start);
 router.get('/timer/end', timer.end);
 
+//发送邮件
+router.get('/email', email.send);
 
 module.exports = router;
