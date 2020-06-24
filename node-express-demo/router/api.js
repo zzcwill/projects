@@ -11,6 +11,8 @@ var timer = require('../controller/timer');
 var email = require('../controller/email');
 var crawler = require('../controller/crawler');
 var socket = require('../controller/socket');
+var xml = require('../controller/xml');
+var excel = require('../controller/excel');
 
 //接口测试
 router.get('/get', api.get);
@@ -39,6 +41,13 @@ router.get('/crawler', crawler.get);
 
 //socket
 router.get('/socket', socket.serversend);
+
+//xml数据读取
+router.get('/xml', xml.get);
+
+//excel导出
+router.get('/excel', excel.get);
+router.get('/excel2', excel.get2);
 
 
 module.exports = router;
