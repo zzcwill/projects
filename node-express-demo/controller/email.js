@@ -10,7 +10,7 @@ module.exports = {
 				"port": 465,
 				"auth": {
 					"user": "841811316@qq.com",
-					"pass": "rohtjflqfinfbdgd"
+					"pass": "test"
 				},
 				"ignoreTLS": true		
 		}

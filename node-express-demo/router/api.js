@@ -18,6 +18,8 @@ var csurf = require('csurf');
 var csurfProtection = csurf({ cookie: true });
 var csurfApi = require('../controller/csurfApi');
 
+var dbApi = require('../controller/dbApi');
+
 //接口测试
 router.get('/get', api.get);
 router.post('/post/json', api.postjson);
@@ -55,6 +57,12 @@ router.get('/excel2', excel.get2);
 
 //防csrf攻击
 router.get('/csurf', csurfProtection, csurfApi.get);
+
+//mongoose-增删改查
+router.get('/mongoose/add', csurfProtection, dbApi.add);
+router.get('/mongoose/delete', csurfProtection, dbApi.delete);
+router.get('/mongoose/update', csurfProtection, dbApi.update);
+router.get('/mongoose/search', csurfProtection, dbApi.search);
 
 
 module.exports = router;
