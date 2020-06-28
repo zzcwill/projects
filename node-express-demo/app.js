@@ -6,6 +6,7 @@ var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 var serveStatic = require('serve-static');
 var config = require('config-lite')(__dirname);
+var helmet = require("helmet");
 
 var logger = require('morgan');
 var rfs = require('rotating-file-stream');
@@ -26,6 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(serveStatic(path.join(__dirname, 'public')));
+app.use(helmet());
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));

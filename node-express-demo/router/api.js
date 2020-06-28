@@ -14,6 +14,10 @@ var socket = require('../controller/socket');
 var xml = require('../controller/xml');
 var excel = require('../controller/excel');
 
+var csurf = require('csurf');
+var csurfProtection = csurf({ cookie: true });
+var csurfApi = require('../controller/csurfApi');
+
 //接口测试
 router.get('/get', api.get);
 router.post('/post/json', api.postjson);
@@ -48,6 +52,9 @@ router.get('/xml', xml.get);
 //excel导出
 router.get('/excel', excel.get);
 router.get('/excel2', excel.get2);
+
+//防csrf攻击
+router.get('/csurf', csurfProtection, csurfApi.get);
 
 
 module.exports = router;
