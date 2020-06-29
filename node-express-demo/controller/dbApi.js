@@ -1,11 +1,13 @@
 var { resDataApi } = require('../extend/api');
 var { Topic } = require('../model');
 var logger = require('../extend/logger');
+var _ = require('lodash');
+var uuid = require('uuid');
 
 module.exports = {
 	add: async function (req, res, next) {
 		var topic = new Topic({ 
-			title: 'zzc',
+			title: 'zzc-' + uuid.v1(),
 			content: 'youxi',
 			content_is_html: true,
 			tab: 'tab'
@@ -18,29 +20,58 @@ module.exports = {
 		},'ok'))
 	},
 	delete: async function (req, res, next) {
-		var query = { _id: '5ef9b19060d8f848d10f36a2' };
+		var findOneData = await Topic.findOne();
+
+		if(findOneData === null) {
+			res.json(resDataApi(20000,{
+			},'未找到数据'));
+			return;
+		}
+
+		var query = { _id: findOneData._id};
 		var data = await Topic.deleteOne(query);
-		
+
+		if(data.n === 0) {
+			res.json(resDataApi(20000,{
+				state: data.n
+			},'删除失败'))			
+		}
+
+		if(data.n === 1) {
+			res.json(resDataApi(10000,{
+				state: data.n
+			},'ok'))			
+		}		
+	},
+	update: async function (req, res, next) {
+		var findOneData = await Topic.findOne();
+
+		if(findOneData === null) {
+			res.json(resDataApi(20000,{
+			},'未找到数据'))
+			return;
+		}
+
+		var query = { title: 'update' + uuid.v1()};
+		var data = await Topic.updateOne(query).exec();
+
 		if(data.n === 1) {
 			res.json(resDataApi(10000,{
 				state: data.n
 			},'ok'))			
 		}
-
-		if(data.n === 0) {
-			res.json(resDataApi(20000,{
-				state: data.n
-			},'ok'))			
-		}		
 	},
-	update: function (req, res, next) {
-		var data = {};
+	search: async function (req, res, next) {
+		var page = 1;
+		var limit = 100;
+		var keyword = 'zzc';
+    var query = { title: { $regex: new RegExp(keyword, 'i') } };
+    var opts = { skip: (page - 1) * limit, limit: limit, sort: '-create_at' };
 
-		res.json(data)
-	},
-	search: function (req, res, next) {
-		var data = {};
-
-		res.json(data)
+		var data = await Topic.find(query, '_id', opts).exec();
+		res.json(resDataApi(10000,{
+			list: data,
+			total: data.length
+		},'ok'))
 	},		
 }
