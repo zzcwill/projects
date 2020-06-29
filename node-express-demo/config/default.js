@@ -8,7 +8,7 @@ module.exports = {
 	},
 	mongoConfig:{
     client: {
-			url: 'mongodb://root:root@127.0.0.1:27017/cnode?authSource=admin',
+			url: 'mongodb://root:root@127.0.0.1:27017/cnode2?authSource=admin',
       // host
       host: '127.0.0.1',
       // 端口号
@@ -18,7 +18,7 @@ module.exports = {
       // 密码
       password: 'root',
       // 数据库名
-      database: 'cnode',
+      database: 'cnode2',
     },
 	},
 	mysqlConfig: {
@@ -32,7 +32,7 @@ module.exports = {
       db: '0',
     }
   },
-  log_dir: path.join(__dirname, 'log4'),
+  log_dir: path.join(__dirname, '../log4'),
 	//上传路径-'/public/uploads/'
 	uploadsUrl: '/uploads/'
 }
