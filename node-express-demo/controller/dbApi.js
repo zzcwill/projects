@@ -14,9 +14,11 @@ module.exports = {
 		});
 
 		var topicData = await topic.save();
+		var topicData2 = topicData.toObject();
+		topicData2.create_at = topicData.create_at_ago();
 
 		res.json(resDataApi(10000,{
-			data: topicData
+			data: topicData2
 		},'ok'))
 	},
 	delete: async function (req, res, next) {

@@ -6,10 +6,6 @@ var time = require('../extend/time.js');
 
 module.exports = function (schema) {
   schema.methods.create_at_ago = function () {
-    return time.getNowDay(this.create_at);
-  };
-
-  schema.methods.update_at_ago = function () {
-    return time.getNowDay(this.update_at);
+    return time.today(this.create_at);
   };
 };
