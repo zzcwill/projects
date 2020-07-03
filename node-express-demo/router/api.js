@@ -19,6 +19,7 @@ var csurfProtection = csurf({ cookie: true });
 var csurfApi = require('../controller/csurfApi');
 
 var dbApi = require('../controller/dbApi');
+var mqlApi = require('../controller/mqlApi');
 
 //接口测试
 router.get('/get', api.get);
@@ -59,10 +60,15 @@ router.get('/excel2', excel.get2);
 router.get('/csurf', csurfProtection, csurfApi.get);
 
 //mongoose-增删改查
-router.get('/mongoose/add', csurfProtection, dbApi.add);
-router.get('/mongoose/delete', csurfProtection, dbApi.delete);
-router.get('/mongoose/update', csurfProtection, dbApi.update);
-router.get('/mongoose/search', csurfProtection, dbApi.search);
+router.get('/mongoose/add', dbApi.add);
+router.get('/mongoose/delete', dbApi.delete);
+router.get('/mongoose/update', dbApi.update);
+router.get('/mongoose/search', dbApi.search);
 
+//sequelize-增删改查
+router.get('/mysql/add', mqlApi.add);
+router.get('/mysql/delete', mqlApi.delete);
+router.get('/mysql/update', mqlApi.update);
+router.get('/mysql/search', mqlApi.search);
 
 module.exports = router;
