@@ -1,7 +1,10 @@
 // public define(modelName: String, attributes: Object, options: Object): Model
 // modelName：模型名称，自定义	attributes：模型中包含都数据，每一个数据映射对应表中都每一个字段 options：模型（表）的设置
+var Sequelize = require('sequelize');
+var sequelize = require('./db');
+const { fn } = require('sequelize');
 
-var user = sequelize.define(
+var User = sequelize.define(
   'yf_user', // 默认表名（一般这里写单数）,生成时会自动转换成复数形式。在模型访问时的model.name
   {
     uid: {
@@ -15,7 +18,7 @@ var user = sequelize.define(
       allowNull: true,
       unique: false // 字段是否UNIQUE
 		},
-    content: {
+    salt: {
       type: Sequelize.TEXT,
       allowNull: true,
       unique: false // 字段是否UNIQUE
@@ -23,12 +26,12 @@ var user = sequelize.define(
     user_name: {
       type: Sequelize.STRING(90),
       allowNull: true,
-      validate: { //模型验证 当前字段值发生改变的时候进行验证
-        is: ["^[a-z]+$",'i'],     // 只允许字母
-        not: ["[a-z]",'i'],       // 不能使用字母
-        isPhone: true
-      },
-      field: 'project_title' // 数据库中字段的实际名称	
+      // validate: { //模型验证 当前字段值发生改变的时候进行验证
+      //   is: ["^[a-z]+$",'i'],     // 只允许字母
+      //   not: ["[a-z]",'i'],       // 不能使用字母
+      //   isPhone: true
+      // },
+      // field: 'user_name' // 数据库中字段的实际名称	
     }
   },
   {
@@ -47,3 +50,5 @@ var user = sequelize.define(
 // project.sync({
 //     force: true
 // });
+
+module.exports = User
