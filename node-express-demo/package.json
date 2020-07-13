@@ -12,9 +12,6 @@
     "lint": "eslint .",
     "fix": "eslint . --fix "
   },
-  "pre-commit": [
-    "lint"
-  ],
   "keywords": [
     "pro"
   ],
@@ -62,7 +59,6 @@
   },
   "devDependencies": {
     "open": "^7.0.4",
-    "pre-commit": "^1.2.2",
     "supertest": "^4.0.2"
   }
 }
