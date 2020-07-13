@@ -1,9 +1,5 @@
-bin
-config
-dba
-extend
-log4
-model
+node_modules
 public
 views
+model
 test

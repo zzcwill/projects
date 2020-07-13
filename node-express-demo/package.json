@@ -9,7 +9,8 @@
     "pro": "cross-env NODE_ENV=pro node ./bin/www",
     "auto": "cross-env NODE_ENV=test && mocha 'test/*.test.js' --exit",
     "cover": "cross-env NODE_ENV=test && nyc --reporter=lcov mocha 'test/*.test.js' --exit",
-    "lint": "eslint . --ext .js"
+    "lint": "eslint .",
+    "fix": "eslint . --fix "
   },
   "pre-commit": [
     "lint"

@@ -7,7 +7,7 @@ module.exports = {
 	add: async function (req, res, next) {
 		//增删改查-操作
 		var data = await User.create({ 
-		  user_name: "zzc7",
+		  user_name: 'zzc7',
 		  phone: '18042434243',
 		  salt: 'neirongzzc'
 		});
@@ -17,7 +17,7 @@ module.exports = {
 	delete: async function (req, res, next) {
 		var data = await User.destroy({
 			where: {
-				user_name: "zzc7"
+				user_name: 'zzc7'
 			}
 		})
 		res.json(resDataApi(10000,data,'ok'));			

@@ -6,7 +6,7 @@ var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 var serveStatic = require('serve-static');
 var config = require('config-lite')(__dirname);
-var helmet = require("helmet");
+var helmet = require('helmet');
 
 var logger = require('morgan');
 var rfs = require('rotating-file-stream');

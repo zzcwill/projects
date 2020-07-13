@@ -1,12 +1,12 @@
-var code = require("svg-captcha");
+var code = require('svg-captcha');
 
 function createCode() {
     return code.create({
         size: 4,
-        ignoreChars: "0o1iIl",
+        ignoreChars: '0o1iIl',
         noise: 3,
         color: true,
-        background: "#fff",
+        background: '#fff',
         fontSize: 60
     });
 }
