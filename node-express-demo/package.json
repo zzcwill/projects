@@ -8,8 +8,12 @@
     "test": "cross-env NODE_ENV=test node ./bin/www",
     "pro": "cross-env NODE_ENV=pro node ./bin/www",
     "auto": "cross-env NODE_ENV=test && mocha 'test/*.test.js' --exit",
-    "cover": "cross-env NODE_ENV=test && nyc --reporter=lcov mocha 'test/*.test.js' --exit"
+    "cover": "cross-env NODE_ENV=test && nyc --reporter=lcov mocha 'test/*.test.js' --exit",
+    "lint": "eslint . --ext .js"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "keywords": [
     "pro"
   ],
@@ -57,6 +61,7 @@
   },
   "devDependencies": {
     "open": "^7.0.4",
+    "pre-commit": "^1.2.2",
     "supertest": "^4.0.2"
   }
 }
