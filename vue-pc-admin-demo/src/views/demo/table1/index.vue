@@ -24,8 +24,8 @@
             <el-col :span="8">
               <el-form-item label="提交时间：">
                 <el-date-picker
-                  class="w-200"
                   v-model="listQuery.createTime"
+                  class="w-200"                  
                   value-format="yyyy-MM-dd"
                   type="date"
                   placeholder="请选择时间"
@@ -63,24 +63,24 @@
     </el-card>
 
     <el-table
-      class="m-b-16"
       ref="orderTable"
+      v-loading="listLoading"  
+      class="m-b-16"
       :data="list"
+      border    
       @selection-change="handleSelectionChange"
-      v-loading="listLoading"
-      border
     >
       <el-table-column type="selection" width="60" align="center"></el-table-column>
       <el-table-column label="编号" align="center">
-        <template slot-scope="scope">{{scope.row.id}}</template>
+        <template slot-scope="scope">{{ scope.row.id }}</template>
       </el-table-column>
       <el-table-column label="订单状态" align="center">
-        <template slot-scope="scope">{{scope.row.status | formatStatus}}</template>
+        <template slot-scope="scope">{{ scope.row.status | formatStatus }}</template>
       </el-table-column>
       <el-table-column label="操作" align="center">
         <template slot-scope="scope">
           <el-button @click="handleViewOrder(scope.$index, scope.row)">查看订单</el-button>
-          <el-button type="danger" v-show="scope.row.status===4">只是看看</el-button>
+          <el-button v-show="scope.row.status===4" type="danger">只是看看</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -95,18 +95,18 @@
             :value="item.value"
           ></el-option>
         </el-select>
-        <el-button class="search-button m-l-20" @click="handleBatchOperate()" type="primary">确定</el-button>
+        <el-button class="search-button m-l-20" type="primary" @click="handleBatchOperate()">确定</el-button>
       </el-col>
       <el-col :span="9" :offset="7">
         <el-pagination
           background
-          @size-change="handleSizeChange"
-          @current-change="handleCurrentChange"
           layout="total, sizes,prev, pager, next,jumper"
           :current-page.sync="listQuery.pageNum"
           :page-size="listQuery.pageSize"
           :page-sizes="[5,10]"
           :total="total"
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"          
         ></el-pagination>
       </el-col>
     </el-row>
@@ -125,6 +125,12 @@ const defaultListQuery = {
 }
 export default {
   name: 'Table1',
+  filters: {
+    formatStatus(value) {
+      let arr = ['', '待发货', '已发货', '已完成', '已关闭', '无效订单']
+      return arr[value]
+    }
+  },  
   data() {
     return {
       listQuery: Object.assign({}, defaultListQuery),
@@ -162,15 +168,9 @@ export default {
         }
       ]
     }
-  },
+  },  
   created() {
     this.getList()
-  },
-  filters: {
-    formatStatus(value) {
-      let arr = ['', '待发货', '已发货', '已完成', '已关闭', '无效订单']
-      return arr[value]
-    }
   },
   methods: {
     handleResetSearch() {
@@ -196,10 +196,9 @@ export default {
         })
         return
       }
-      if (this.operateType === 1) {
+      // if (this.operateType === 1) {
 
-      }
-
+      // }
       if (this.operateType === 2) {
         //删除订单
         let ids = []

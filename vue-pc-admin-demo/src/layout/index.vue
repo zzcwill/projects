@@ -1,9 +1,9 @@
 <template>
   <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
-    <sidebar class="sidebar-container" v-if="showNav" />
+    <sidebar v-if="showNav" class="sidebar-container" />
     <div :class="{hasTagsView:needTagsView,showNav:!showNav}" class="main-container">
-      <div :class="{'fixed-header':fixedHeader}" v-if="showNav">
+      <div v-if="showNav" :class="{'fixed-header':fixedHeader}">
         <navbar />
         <tags-view v-if="needTagsView" />
       </div>
