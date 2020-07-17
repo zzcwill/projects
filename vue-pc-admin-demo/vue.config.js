@@ -8,8 +8,6 @@ function resolve(dir) {
 
 const name = defaultSettings.title
 
-const port = 8000
-
 module.exports = {
   publicPath: '/',
   outputDir: 'dist',
@@ -17,7 +15,7 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
-    port: port,
+    port: process.env.PORT,
     open: false,
     overlay: {
       warnings: false,
@@ -27,7 +25,7 @@ module.exports = {
     disableHostCheck: true,
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
-        target: 'http://open.gm9527.com',
+        target: process.env.VUE_APP_SERVICE,
         changeOrigin: true,
         ws: true,
         pathRewrite: {
