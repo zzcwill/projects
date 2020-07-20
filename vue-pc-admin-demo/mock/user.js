@@ -9,7 +9,7 @@ let loginData = {
 let useInfoData = {
   code: 0,
   data: {
-    account: 'admin'
+    userName: 'admin'
   }
 }
 
@@ -21,7 +21,7 @@ let logoutData = {
 export default [
   // user login
   {
-    url: '/api/1.0/manager/login',
+    url: '/login',
     type: 'post',
     response: _ => {
       return loginData
@@ -30,7 +30,7 @@ export default [
 
   // get user info
   {
-    url: '/api/1.0/manager/home/info',
+    url: '/user/session/get',
     type: 'post',
     response: _ => {
       return useInfoData
@@ -39,7 +39,7 @@ export default [
 
   // user logout
   {
-    url: 'api/1.0/manager/logout',
+    url: '/logout',
     type: 'post',
     response: _ => {
       return logoutData

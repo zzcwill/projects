@@ -3,7 +3,7 @@ import { getRoutes } from '@/api/routes'
 import { validatenull } from '@/utils/validate'
 import { trunRouteName, trunRouteName2, trunRoutePath } from '@/utils/str'
 // 模拟菜单返回数组，先前端处理，后期后端菜单配置好
-// import { asyncRoutes } from '@mock/routes/routes'
+import { asyncRoutes } from '@mock/routes/routes'
 
 // 对接口返回的路由做处理
 export const getApiRoutes = (apiData) => {
@@ -100,7 +100,7 @@ const actions = {
         let { data } = response
 
         // 模拟接口返回对象
-        // data = asyncRoutes
+        data = asyncRoutes
         let data2 = getApiRoutes(data)
         console.info(data2)
         let dataApi = formatRoutes(data2)

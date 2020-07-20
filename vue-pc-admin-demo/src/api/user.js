@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+import Qs from 'qs'
 
 // post-demo
 // export function login(data) {
@@ -33,22 +34,22 @@ import request from '@/utils/request'
 
 export function login(data) {
   return request({
-    url: '/api/1.0/manager/login',
+    url: '/login',
     method: 'post',
-    data
+    data   
   })
 }
 
 export function getInfo() {
   return request({
-    url: '/api/1.0/manager/home/info',
+    url: '/user/session/get',
     method: 'post'
   })
 }
 
 export function logout() {
   return request({
-    url: '/api/1.0/manager/logout',
+    url: '/logout',
     method: 'post'
   })
 }

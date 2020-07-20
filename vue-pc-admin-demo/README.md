@@ -93,19 +93,18 @@
 ### 关于路由缓存， 页面name名说明，前方高能
 ##### 特别重要的说明，关于路由缓存,按上面 二级菜单会议室预约（路由为/hysgl/hysyy）, 路由name为HysglHysyy, 相应的views/hysgl/hysyy/index.vue的name要命名为HysglHysyy
 #####  菜单路由vue页面已经添加，只需要相应页面开发，注意别忘了修改name按上面一条设置页面name
+
 ### 搭建环境所环境
-- vue-cli3.0搭建，相关依赖包
+- vue-cli4.x搭建，相关依赖包
 - dependencies：package.json的dependencies查看
 - devDependencies: package.json的devDependencies查看
 - node 版本 > 8.10.0+
 
 ### 接口调用地址
 - 测试环境，公网可以访问
-- http://open.gm9527.com
+- 
 - 接口文档地址
-- https://www.eolinker.com/#/share/project/api/?groupID=-1&shareCode=PphjfM&shareToken=$2y$10$2lpnOwt.TyWsmFaeFdRAv.epQdZuWJ01b5VwlRYGoPfMnrPRpAaV.&shareID=221916
-- 接口文档具体接口位置
-- 点击上面接口文档地址-选择30管理后台WEB接口
+- 
 
 ### 项目运行
 - 全局安装包安装

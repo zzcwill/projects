@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import personPhoto from '@/assets/common/1.jpg'
+import avatarPhoto from '@/assets/common/1.jpg'
 
 export default {
   name: 'SidebarLogo',
@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       title: '鸿雁管理系统',
-      logo: personPhoto
+      logo: avatarPhoto
     }
   }
 }

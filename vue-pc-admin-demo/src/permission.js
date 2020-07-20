@@ -19,27 +19,26 @@ router.beforeEach(async(to, from, next) => {
   // determine whether the user has logged in
   const hasToken = getToken()
   
-  console.info(to.path)
+  // console.info(to.path)
 
   if (hasToken) {
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
-      const hasRoles = store.getters.roles && store.getters.roles.length > 0
-      if (hasRoles) {
+      const userInfo = store.getters.userInfo
+      if (userInfo) {
         next()
       } else {
         try {
-          const { roles } = await store.dispatch('user/getInfo')
+          await store.dispatch('user/getInfo')
 
-          const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
+          const accessRoutes = await store.dispatch('permission/generateRoutes')
           
           router.addRoutes(accessRoutes)
 
           next({ ...to, replace: true })
         } catch (error) {
           await store.dispatch('user/resetToken')
-          //这里改去提示页面
           next(`/login?redirect=${to.path}`)
         }
       }
