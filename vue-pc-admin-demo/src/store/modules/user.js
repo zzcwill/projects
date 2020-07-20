@@ -1,6 +1,8 @@
 import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
+import personPhoto from '@/assets/common/1.jpg'
+
 
 const state = {
   token: getToken(),
@@ -52,7 +54,7 @@ const actions = {
 
         // 暂时角色不用,先初始化下
         data.roles = ['admin']
-        data.avatar = '/1.jpg'
+        data.avatar = personPhoto
         let { roles, account, avatar } = data
         commit('SET_ROLES', roles)
         commit('SET_NAME', account)

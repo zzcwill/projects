@@ -58,11 +58,6 @@ module.exports = {
     config.plugins.delete('preload') // TODO: need test
     config.plugins.delete('prefetch') // TODO: need test
 
-    // config.plugin('copy')
-    //   .use(require('copy-webpack-plugin'), [[{
-    //     from: './public/model',
-    //     to: './model'
-    //   }]])
     // set svg-sprite-loader
     config.module
       .rule('svg')

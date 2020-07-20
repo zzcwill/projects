@@ -1,9 +1,9 @@
 <template>
   <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
-    <sidebar v-if="showNav" class="sidebar-container" />
-    <div :class="{hasTagsView:needTagsView,showNav:!showNav}" class="main-container">
-      <div v-if="showNav" :class="{'fixed-header':fixedHeader}">
+    <sidebar class="sidebar-container" />
+    <div :class="{hasTagsView:needTagsView}" class="main-container">
+      <div :class="{'fixed-header':fixedHeader}">
         <navbar />
         <tags-view v-if="needTagsView" />
       </div>
@@ -15,7 +15,6 @@
 <script>
 import { Navbar, Sidebar, TagsView, AppMain } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
-import { getShowNav } from '@/utils/auth'
 
 export default {
   name: 'Layout',
@@ -38,9 +37,6 @@ export default {
     },
     needTagsView() {
       return this.$store.state.settings.tagsView
-    },
-    showNav() {
-      return getShowNav() === '1'
     }, 
     classObj() {
       return {

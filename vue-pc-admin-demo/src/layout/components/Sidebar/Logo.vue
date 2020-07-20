@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import personPhoto from '@/assets/common/1.jpg'
+
 export default {
   name: 'SidebarLogo',
   props: {
@@ -25,7 +27,7 @@ export default {
   data() {
     return {
       title: '鸿雁管理系统',
-      logo: '/1.jpg'
+      logo: personPhoto
     }
   }
 }

@@ -1,7 +1,7 @@
 import router from './router'
 import store from './store'
 // import { Message } from 'element-ui'
-import { getToken, setToken, setShowNav } from '@/utils/auth' // get token from cookie
+import { getToken, setToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
 
 const whiteList = ['/login'] // no redirect whitelist
@@ -14,13 +14,6 @@ router.beforeEach(async(to, from, next) => {
   if (to.query.token) {
     setToken(to.query.token)
     store.commit('user/SET_TOKEN', to.query.token)
-  }
-
-  //nav 1 显示,0 隐藏
-  if (to.query.nav) {
-    setShowNav(to.query.nav)
-  } else {
-    setShowNav('1')
   }
 
   // determine whether the user has logged in

@@ -13,18 +13,3 @@ export function setToken(token) {
 export function removeToken() {
   return Cookies.remove(TokenKey)
 }
-
-//菜单和顶部栏是否显示
-const showNav = 'showNav'
-
-export function getShowNav() {
-  return Cookies.get(showNav)
-}
-
-export function setShowNav(token) {
-  return Cookies.set(showNav, token)
-}
-
-export function removeShowNav() {
-  return Cookies.remove(showNav)
-}

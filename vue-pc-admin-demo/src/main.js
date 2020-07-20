@@ -14,8 +14,8 @@ import router from './router'
 
 import '@/icons' // icon
 import '@/permission' // permission control
-// import loadsh from 'loadsh'
-// import moment from 'moment'
+import loadsh from 'loadsh'
+import moment from 'moment'
 
 // 引入全局过滤器
 import '@/filters'
@@ -37,8 +37,8 @@ Vue.use(ElementUI,
 Vue.config.productionTip = false
 
 // 公共方法引入
-// Vue.prototype._ = loadsh
-// Vue.prototype.moment = moment
+Vue.prototype._ = loadsh
+Vue.prototype.moment = moment
 
 new Vue({
   el: '#app',
