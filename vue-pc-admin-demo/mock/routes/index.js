@@ -7,7 +7,7 @@ export default [
     type: 'post',
     response: _ => {
       return {
-        code: 0,
+        code: 10000,
         data: asyncRoutes
       }
     }

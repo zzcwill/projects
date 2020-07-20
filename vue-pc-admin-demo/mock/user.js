@@ -1,30 +1,15 @@
-
-let loginData = { 
-  code: 0,
-  data: {
-    token: 'mock-token'
-  }
-}
-
-let useInfoData = {
-  code: 0,
-  data: {
-    userName: 'admin'
-  }
-}
-
-let logoutData = {
-  code: 0,
-  data: ''
-}
-
 export default [
   // user login
   {
     url: '/login',
     type: 'post',
     response: _ => {
-      return loginData
+      return { 
+        code: 10000,
+        data: {
+          token: 'mock-token'
+        }
+      }
     }
   },
 
@@ -33,7 +18,12 @@ export default [
     url: '/user/session/get',
     type: 'post',
     response: _ => {
-      return useInfoData
+      return {
+        code: 10000,
+        data: {
+          realname: 'zzc'
+        }
+      }
     }
   },
 
@@ -42,7 +32,10 @@ export default [
     url: '/logout',
     type: 'post',
     response: _ => {
-      return logoutData
+      return {
+        code: 10000,
+        data: ''
+      }
     }
   }
 ]

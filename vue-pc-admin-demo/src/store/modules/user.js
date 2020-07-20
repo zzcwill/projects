@@ -25,7 +25,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       login({ userName: userName.trim(), password: password }).then(response => {
         const { data } = response
-        data.token = 'demo-token-123'
+        data.token = 'test-token'
         setToken(data.token)
         commit('SET_TOKEN', data.token)
         resolve()
@@ -42,7 +42,6 @@ const actions = {
         let { data } = response
 
         data.avatar = avatarPhoto
-        data.realname = data.realname ? data.realname : 'zzc'
         commit('SET_INFO', data)
         resolve(data)
       }).catch(error => {
