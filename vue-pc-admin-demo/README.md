@@ -4,7 +4,7 @@
 
 ### 命名规范
 ##### 命名规则：尽量简洁明了,尽量用英文（有道词典用起来），除了菜单路由和菜单文件夹是按中文名首字母命名（例如 系统管理 xtgl）
-- 项目命名： 一律中线分割(例如 hongyan-admin )
+- 项目命名： 一律中线分割(例如 demo-admin )
 - 文件夹命名： 小驼峰形式命名(例如 apiData)
 - 文件命名
   - vue组件文件命名：大驼峰式命名法（例如CamelCase.vue），且组件name值需要和文件名一致
@@ -112,16 +112,16 @@
 - npm install -g svgo
 - npm install -g @vue/cli
 - 安装相应依赖包
-- npm install --registry=https://registry.npm.taobao.org
+- yarn install
 - 开发环境运行
-- npm run dev
+- yarn run dev
 - 生成项目打包文件
-- npm run build
+- yarn run build
 
 #### 其他目录操作
 - 检测src目录代码是否规范
-- npm run lint
+- yarn run lint
 - 修复src目录不规范代码
-- npm run lintfix
+- yarn run lintfix
 - 对src/icons的svg图标压缩处理
-- npm run svgo
+- yarn run svgo
