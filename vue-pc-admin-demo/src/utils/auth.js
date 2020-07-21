@@ -1,15 +1,15 @@
 import Cookies from 'js-cookie'
 
-const csurfToken = 'csurfToken'
+const tokenName = 'token'
 
 export function getToken() {
-  return Cookies.get(csurfToken)
+  return Cookies.get(tokenName)
 }
 
 export function setToken(token) {
-  return Cookies.set(csurfToken, token)
+  return Cookies.set(tokenName, token)
 }
 
 export function removeToken() {
-  return Cookies.remove(csurfToken)
+  return Cookies.remove(tokenName)
 }

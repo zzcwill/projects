@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      title: '鸿雁管理系统',
+      title: 'zzc-admin',
       logo: avatarPhoto
     }
   }

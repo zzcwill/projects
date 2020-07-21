@@ -2,7 +2,7 @@
   <div class="login-container login">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
-      <h3 class="title">鸿雁管理系统</h3>
+      <h3 class="title">zzc-admin</h3>
 
       <el-form-item prop="userName">
         <el-input
@@ -14,7 +14,7 @@
           tabindex="1"
           auto-complete="on"
         >
-          <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
+          <svg-icon slot="prefix" icon-class="cs0" class="el-input__icon input-icon" />
         </el-input>
       </el-form-item>
 
@@ -29,7 +29,7 @@
           auto-complete="on"
           @keyup.enter.native="handleLogin"
         >
-          <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
+          <svg-icon slot="prefix" icon-class="cs00" class="el-input__icon input-icon" />
         </el-input>
       </el-form-item>  
 
@@ -39,7 +39,7 @@
 
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2019-2020 鸿雁 All Rights Reserved.</span>
+      <span>Copyright © 2019-2020 zzc-admin All Rights Reserved.</span>
     </div>    
   </div>
 </template>
@@ -91,7 +91,8 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/login', this.loginForm).then(() => {
+          let data = this._.pick(this.loginForm,['userName','password'])
+          this.$store.dispatch('user/login', data).then(() => {
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           }).catch(() => {
@@ -134,7 +135,7 @@ export default {
     }
   }
   .input-icon {
-    height: 39px;
+    height: 32px;
     width: 14px;
     margin-left: 2px;
   }

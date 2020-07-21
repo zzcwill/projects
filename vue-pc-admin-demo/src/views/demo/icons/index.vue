@@ -1,12 +1,15 @@
 <template>
   <div class="icons-container">
+    <br />
     <aside>
-      <a href="https://panjiachen.github.io/vue-element-admin-site/guide/advanced/icon.html" target="_blank">Add and use
+      <a href="https://www.iconfont.cn/manage/index?spm=a313x.7781069.1998910419.11&manage_type=myprojects&projectId=698080&keyword=&project_type=&page=" target="_blank">
+        iconfont库
       </a>
     </aside>
+    <br />
     <el-tabs type="border-card">
       <el-tab-pane label="Icons">
-        <div v-for="item of svgIcons" :key="item" @click="handleClipboard(generateIconCode(item),$event)">
+        <div v-for="item of svgIcons" :key="item">
           <el-tooltip placement="top">
             <div slot="content">
               {{ generateIconCode(item) }}
@@ -18,45 +21,23 @@
           </el-tooltip>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="Element-UI Icons">
-        <div v-for="item of elementIcons" :key="item" @click="handleClipboard(generateElementIconCode(item),$event)">
-          <el-tooltip placement="top">
-            <div slot="content">
-              {{ generateElementIconCode(item) }}
-            </div>
-            <div class="icon-item">
-              <i :class="'el-icon-' + item" />
-              <span>{{ item }}</span>
-            </div>
-          </el-tooltip>
-        </div>
-      </el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script>
-import clipboard from '@/utils/clipboard'
 import svgIcons from './svg-icons'
-import elementIcons from './element-icons'
 
 export default {
   name: 'Icons',
   data() {
     return {
-      svgIcons,
-      elementIcons
+      svgIcons
     }
   },
   methods: {
     generateIconCode(symbol) {
       return `<svg-icon icon-class="${symbol}" />`
-    },
-    generateElementIconCode(symbol) {
-      return `<i class="el-icon-${symbol}" />`
-    },
-    handleClipboard(text, event) {
-      clipboard(text, event)
     }
   }
 }

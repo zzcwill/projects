@@ -10,7 +10,7 @@
       <div class="bullshit">
         <div class="bullshit__oops">未找到!</div>
         <div class="bullshit__info">All rights reserved
-          <a style="color:#20a0ff" href="https://www.baidu.com/" target="_blank">鸿雁官网</a>
+          <a style="color:#20a0ff" href="https://www.baidu.com/" target="_blank">zzc官网</a>
         </div>
         <div class="bullshit__headline">{{ message }}</div>
         <div class="bullshit__info">请输入正确的页面，或者去登录</div>

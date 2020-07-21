@@ -2,8 +2,21 @@
 
 export const asyncRoutes = [
   {
-    "menuName": "平台管理",
-    "menuPicUrl": "hy2",
+    "menuName": "我的任务",
+    "menuPicUrl": "cs2",
+    "menuLevel": "1",
+    "menuUrl": "/wdrw",
+    "nextSubs": [
+      {
+        "menuName": "我的任务",
+        "menuUrl": "/wdrw/wdrw",
+        "menuLevel": "2"
+      }
+    ]
+  },  
+  {
+    "menuName": "平台管理-demo",
+    "menuPicUrl": "cs10",
     "menuLevel": "1",
     "menuUrl": "/ptgl",
     "nextSubs": [

@@ -1,5 +1,5 @@
 import { constantRoutes } from '@/router'
-import { getRoutes } from '@/api/routes'
+import { getRoutes } from '@/api/common'
 import { validatenull } from '@/utils/validate'
 import { trunRouteName, trunRouteName2, trunRoutePath } from '@/utils/str'
 // 模拟菜单返回数组，先前端处理，后期后端菜单配置好

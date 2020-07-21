@@ -1,6 +1,6 @@
 
 module.exports = {
-  title: 'vue管理后台',
+  title: 'zzc-admin',
   tagsView: true,
   fixedHeader: true,
   sidebarLogo: true

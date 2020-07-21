@@ -1,5 +1,5 @@
+// 公用接口方法定义在这里
 import request from '@/utils/request'
-import Qs from 'qs'
 
 // post-demo
 // export function login(data) {
@@ -32,6 +32,7 @@ import Qs from 'qs'
 //   })
 // }
 
+//登录
 export function login(data) {
   return request({
     url: '/login',
@@ -39,17 +40,27 @@ export function login(data) {
     data   
   })
 }
-
+//退出
+export function logout() {
+  return request({
+    url: '/logout',
+    method: 'post'
+  })
+}
+//获取用户信息
 export function getInfo() {
   return request({
     url: '/user/session/get',
     method: 'post'
   })
 }
-
-export function logout() {
+//获取路由
+export function getRoutes() {
   return request({
-    url: '/logout',
-    method: 'post'
+    url: '/za/menu/list',
+    method: 'post',
+    data: {
+      st: 'CLS_WEB_BEFORE'
+    }
   })
 }
