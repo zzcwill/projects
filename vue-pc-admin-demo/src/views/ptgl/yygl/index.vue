@@ -9,7 +9,7 @@
 // import { getInfo } from '@/api/user'
 
 export default {
-  name: 'PtglYygl',
+  name: 'ptglYygl',
   data() {
     return {
     }

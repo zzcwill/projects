@@ -1,40 +1,46 @@
 import Layout from '@/layout'
 
 export const appRoute = [
-  {
+  {   
     path: '/redirect',
     component: Layout,
-    hidden: true,
     children: [
       {
         path: '/redirect/:path*',
-        component: () => import('@/views/redirect/index')
+        component: () => import('@/views/redirect/index'),
+        name:'redirect',
+        meta: { title: 'redirect' }        
       }
-    ]
+    ],  
+    hidden: true
   },
   {
     path: '/login',
     component: () => import('@/views/login/index'),
+    name:'login',    
+    meta: { title: '登录' },
     hidden: true
   },
 
   {
-    path: '/404',
-    component: () => import('@/views/404'),
+    path: '/nopage',
+    component: () => import('@/views/nopage'),
+    name: 'nopage',
+    meta: { title: '没有页面' },
     hidden: true
   },
 
   {
     path: '/',
 		component: Layout,
-		hidden: true,
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '首页', icon: 'hy33', affix: true }
-    }]
+      name: 'dashboard',
+      meta: { title: '首页', affix: true }
+    }],
+		hidden: true   
   }
 ]
 

@@ -114,7 +114,6 @@
 </template>
 <script>
 // import { getTable1 } from '@/api/demo/table1'
-import { getExport } from '@/utils/index'
 const defaultListQuery = {
   pageNum: 1,
   pageSize: 5,
@@ -124,7 +123,7 @@ const defaultListQuery = {
   createTime: ''
 }
 export default {
-  name: 'Table1',
+  name: 'table1',
   filters: {
     formatStatus(value) {
       let arr = ['', '待发货', '已发货', '已完成', '已关闭', '无效订单']
@@ -263,7 +262,8 @@ export default {
       })
     },
     exportData() {
-      let data = getExport(this.listQuery)
+      console.info(this.listQuery)
+      let data = ''
       let exportUrl = window.location.origin + data
       console.info(exportUrl)
       // window.location.href = exportUrl

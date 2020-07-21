@@ -1,7 +1,7 @@
 import { constantRoutes } from '@/router'
 import { getRoutes } from '@/api/common'
 import { validatenull } from '@/utils/validate'
-import { trunRouteName, trunRouteName2, trunRoutePath } from '@/utils/str'
+import { trunRouteName, trunRouteName2, trunRoutePath } from '@/utils/config'
 // 模拟菜单返回数组，先前端处理，后期后端菜单配置好
 import { asyncRoutes } from '@mock/routes/routes'
 
@@ -75,7 +75,7 @@ export const formatRoutes = (aMenu) => {
   })
 
   aRouter.push(
-    { path: '*', redirect: '/404', hidden: true }
+    { path: '*', redirect: '/nopage', hidden: true }
   )
 
   return aRouter
@@ -102,7 +102,7 @@ const actions = {
         // 模拟接口返回对象
         data = asyncRoutes
         let data2 = getApiRoutes(data)
-        console.info(data2)
+        // console.info(data2)
         let dataApi = formatRoutes(data2)
 
         commit('SET_ROUTES', dataApi)

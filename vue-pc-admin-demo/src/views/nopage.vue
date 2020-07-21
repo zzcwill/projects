@@ -23,7 +23,7 @@
 <script>
 
 export default {
-  name: 'Page404',
+  name: 'nopage',
   computed: {
     message() {
       return '当前页面不存在'

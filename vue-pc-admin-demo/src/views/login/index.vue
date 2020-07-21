@@ -48,7 +48,7 @@
 import { validUsername } from '@/utils/validate'
 
 export default {
-  name: 'Login',
+  name: 'login',
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
@@ -74,16 +74,7 @@ export default {
         password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       loading: false,
-      redirect: undefined
-    }
-  },
-  watch: {
-    $route: {
-      handler: function(route) {
-        this.redirect = route.query && route.query.redirect
-      },
-      // 页面一刷新就获取
-      immediate: false
+      redirect: this.$route.query.redirect
     }
   },
   methods: {
@@ -104,7 +95,7 @@ export default {
         }
       })
     }   
-  }
+  } 
 }
 </script>
 

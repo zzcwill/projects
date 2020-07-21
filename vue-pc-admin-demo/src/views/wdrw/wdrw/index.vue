@@ -9,7 +9,7 @@
 // import { getInfo } from '@/api/wdrw/wdrw'
 
 export default {
-  name: 'WdrwWdrw',
+  name: 'wdrwWdrw',
   data() {
     return {
     }

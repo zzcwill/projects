@@ -29,7 +29,7 @@
 import svgIcons from './svg-icons'
 
 export default {
-  name: 'Icons',
+  name: 'icons',
   data() {
     return {
       svgIcons

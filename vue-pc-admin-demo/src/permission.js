@@ -1,28 +1,46 @@
 import router from './router'
 import store from './store'
 // import { Message } from 'element-ui'
-import { getToken, removeToken } from '@/utils/auth' // get token from cookie
-import getPageTitle from '@/utils/get-page-title'
+import { getToken, removeToken } from '@/utils/config' // get token from cookie
 
 const whiteList = ['/login'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
-  // set page title
-  document.title = getPageTitle(to.meta.title)
+  //console.info(to.path)
+  document.title = to.meta.title
 
-  // determine whether the user has logged in
   const hasToken = getToken()
-  
-  // console.info(to.path)
 
+  if(!hasToken) {       
+    if (whiteList.indexOf(to.path) !== -1) {
+      next()
+    } 
+    if (whiteList.indexOf(to.path) === -1) {
+      if (to.path.indexOf('/redirect') !== -1) {
+        next({ path: '/login' })
+      } 
+      if (to.path === '/nopage') {
+        next({ path: '/login' })
+      } 
+      if (to.path.indexOf('/redirect') === -1) {
+        if (to.path !== '/nopage') {
+          next(`/login?redirect=${to.path}`)
+        } 
+      }
+    }    
+  }
+ 
   if (hasToken) {
     if (to.path === '/login') {
       next({ path: '/' })
-    } else {
+    } 
+    
+    if (to.path !== '/login') {
       const userInfo = store.getters.userInfo
       if (userInfo) {
         next()
-      } else {
+      } 
+      if (!userInfo) {
         try {
           await store.dispatch('user/getInfo')
 
@@ -36,12 +54,6 @@ router.beforeEach(async(to, from, next) => {
           next(`/login?redirect=${to.path}`)
         }
       }
-    }
-  } else {
-    if (whiteList.indexOf(to.path) !== -1) {
-      next()
-    } else {
-      next(`/login?redirect=${to.path}`)
     }
   }
 })

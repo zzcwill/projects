@@ -1,5 +1,5 @@
 import { login, logout, getInfo } from '@/api/common'
-import { setToken, removeToken } from '@/utils/auth'
+import { setToken, removeToken } from '@/utils/config'
 import { resetRouter } from '@/router'
 import avatarPhoto from '@/assets/common/1.jpg'
 
