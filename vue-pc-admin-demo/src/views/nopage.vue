@@ -11,7 +11,7 @@
         <div class="bullshit__oops">未找到!</div>
         <div class="bullshit__headline">{{ message }}</div>
         <div class="bullshit__info">请输入正确的页面</div>
-        <a href="javascript:void(0);" class="bullshit__return-home" @click="toLogin">去登录</a>
+        <a href="javascript:void(0);" v-if="!isPhone" class="bullshit__return-home" @click="toLogin">去登录</a>
       </div>
     </div>
   </div>
@@ -21,10 +21,14 @@
 
 export default {
   name: 'nopage',
-  computed: {
-    message() {
-      return '当前页面不存在'
+  data() {
+    return {
+      isPhone: this.$route.query.phone === 1,
+      message: this.$route.query.nopageTip || '页面未找到'
     }
+  },
+  create() {
+    console.info(this.$route.query.phone)
   },
   methods: {
     toLogin() {

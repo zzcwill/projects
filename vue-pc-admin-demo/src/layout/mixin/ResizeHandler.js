@@ -1,43 +1,52 @@
-import store from '@/store'
+// import store from '@/store'
 
-const { body } = document
-const WIDTH = 992 // refer to Bootstrap's responsive design
+// const { body } = document
+// const WIDTH = 992
 
 export default {
-  watch: {
-    $route(route) {
-      if (this.device === 'mobile' && this.sidebar.opened) {
-        store.dispatch('app/closeSideBar', { withoutAnimation: false })
-      }
-    }
-  },
+  // watch: {
+  //   $route(route) {
+  //     if (this.device === 'mobile' && this.sidebar.opened) {
+  //       store.dispatch('app/closeSideBar', { withoutAnimation: false })
+  //     }
+  //   }
+  // },
   beforeMount() {
-    window.addEventListener('resize', this.$_resizeHandler)
+    window.addEventListener('resize', this.resizeHandler)
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.$_resizeHandler)
+    window.removeEventListener('resize', this.resizeHandler)
   },
   mounted() {
-    const isMobile = this.$_isMobile()
+    const isMobile = this.judgeMobile()
     if (isMobile) {
-      store.dispatch('app/toggleDevice', 'mobile')
-      store.dispatch('app/closeSideBar', { withoutAnimation: true })
+      this.$router.push({
+        path: '/nopage',
+        query: {  
+          nopageTip: '不支持手机端，请电脑访问',
+          phone: 1
+        } 
+      })
     }
   },
   methods: {
-    // use $_ for mixins properties
-    // https://vuejs.org/v2/style-guide/index.html#Private-property-names-essential
-    $_isMobile() {
-      const rect = body.getBoundingClientRect()
-      return rect.width - 1 < WIDTH
+    judgeMobile() {
+      var isMobile = /Android|Windows Phone|iPhone|iPod/i.test(navigator.userAgent)
+      return isMobile
     },
-    $_resizeHandler() {
+    resizeHandler() {
       if (!document.hidden) {
-        const isMobile = this.$_isMobile()
-        store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')
+        const isMobile = this.judgeMobile()
+        // store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')
 
         if (isMobile) {
-          store.dispatch('app/closeSideBar', { withoutAnimation: true })
+          this.$router.push({
+            path: '/nopage',
+            query: { 
+              nopageTip: '不支持手机端，请电脑访问',
+              phone: 1
+            } 
+          })
         }
       }
     }
