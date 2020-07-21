@@ -9,12 +9,9 @@
       </div>
       <div class="bullshit">
         <div class="bullshit__oops">未找到!</div>
-        <div class="bullshit__info">All rights reserved
-          <a style="color:#20a0ff" href="https://www.baidu.com/" target="_blank">zzc官网</a>
-        </div>
         <div class="bullshit__headline">{{ message }}</div>
-        <div class="bullshit__info">请输入正确的页面，或者去登录</div>
-        <a href="javascript:void(0);" class="bullshit__return-home" @click="toLogin">登录</a>
+        <div class="bullshit__info">请输入正确的页面</div>
+        <a href="javascript:void(0);" class="bullshit__return-home" @click="toLogin">去登录</a>
       </div>
     </div>
   </div>
@@ -164,7 +161,7 @@ export default {
     position: relative;
     float: left;
     width: 300px;
-    padding: 30px 0;
+    padding: 80px 0;
     overflow: hidden;
     &__oops {
       font-size: 32px;

@@ -7,9 +7,7 @@ export const appRoute = [
     children: [
       {
         path: '/redirect/:path*',
-        component: () => import('@/views/redirect/index'),
-        name:'redirect',
-        meta: { title: 'redirect' }        
+        component: () => import('@/views/redirect/index')     
       }
     ],  
     hidden: true
@@ -17,8 +15,7 @@ export const appRoute = [
   {
     path: '/login',
     component: () => import('@/views/login/index'),
-    name:'login',    
-    meta: { title: '登录' },
+    name:'login',
     hidden: true
   },
 
@@ -26,7 +23,6 @@ export const appRoute = [
     path: '/nopage',
     component: () => import('@/views/nopage'),
     name: 'nopage',
-    meta: { title: '没有页面' },
     hidden: true
   },
 

@@ -7,7 +7,8 @@ const whiteList = ['/login'] // no redirect whitelist
 
 router.beforeEach(async(to, from, next) => {
   //console.info(to.path)
-  document.title = to.meta.title
+  // document.title = to.meta.title
+  document.title = 'zzc-admin'
 
   const hasToken = getToken()
 

@@ -7,14 +7,20 @@
 <script>
 import { mapGetters } from 'vuex'
 
-export default {
-  name: 'Dashboard',
-  components: { 
+export default {  
+  name: 'dashboard',
+  filters: {
   },
   computed: {
     ...mapGetters([
       'userInfo'
     ])
+  },    
+  data() {
+    return {
+    }
+  },  
+  created() {
   },
   methods: {
   }  
