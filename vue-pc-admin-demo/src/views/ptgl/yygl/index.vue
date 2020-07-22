@@ -6,7 +6,7 @@
 </template>
 
 <script>
-// import { getInfo } from '@/api/user'
+// import yyglApi from '@/api/ptgl/yygl'
 
 export default {
   name: 'ptglYygl',
