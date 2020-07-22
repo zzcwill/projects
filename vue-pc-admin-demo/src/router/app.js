@@ -18,14 +18,18 @@ export const appRoute = [
     name:'login',
     hidden: true
   },
-
   {
     path: '/nopage',
     component: () => import('@/views/nopage'),
     name: 'nopage',
     hidden: true
   },
-
+  {
+    path: '/nopc',
+    component: () => import('@/views/nopc'),
+    name: 'nopc',
+    hidden: true
+  },
   {
     path: '/',
 		component: Layout,

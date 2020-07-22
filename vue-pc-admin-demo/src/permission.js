@@ -23,9 +23,14 @@ router.beforeEach(async(to, from, next) => {
       if (to.path === '/nopage') {
         next({ path: '/login' })
       } 
+      if (to.path === '/nopc') {
+        next({ path: '/login' })
+      }      
       if (to.path.indexOf('/redirect') === -1) {
-        if (to.path !== '/nopage') {
-          next(`/login?redirect=${to.path}`)
+        if (to.path !== '/nopc') {
+          if (to.path !== '/nopage') {
+            next(`/login?redirect=${to.path}`)
+          }
         } 
       }
     }    

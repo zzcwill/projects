@@ -41,8 +41,7 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'userInfo',
-      'device'
+      'userInfo'
     ])
   },
   methods: {

@@ -38,3 +38,9 @@ export function trunRoutePath(str) {
 	let str2 = arr[arr.length - 1]
 	return str2
 }
+
+//是否手机端访问
+export function judgeMobile() {
+	var isMobile = /Android|Windows Phone|iPhone|iPod/i.test(navigator.userAgent)
+	return isMobile
+}
