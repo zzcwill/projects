@@ -1,114 +1,123 @@
 <template>
   <div class="app-container">
-    <el-card shadow="never" class="m-b-16">
-      <div class="el-page-header m-b-30">
+    <el-card shadow="never" class="m-b-10">
+      <div class="el-page-header m-b-20">
         <div class="el-page-header__content m-lr-auto">我的任务</div>
       </div>
-      <div class="m-b-16">
-        <el-form
-          :inline="true"
-          :model="searchForm"
-          :rules="rules"
-          ref="searchForm"
-          label-width="140px"
-        >
-          <el-row :gutter="5">
-            <el-col :span="8">
-              <el-form-item label="客户名称：">
-                <el-input v-model="searchForm.cname" placeholder="客户名称" class></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="流程名称：">
-                <el-select v-model="searchForm.ftCode" class placeholder="请选择" clearable>
-                  <!-- <el-option
-                    v-for="item in statusOptions"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>-->
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="流程节点：">
-                <el-select v-model="searchForm.flowNode" class placeholder="请选择" clearable>
-                  <!-- <el-option
-                    v-for="item in statusOptions"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>-->
-                </el-select>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="5">
-            <el-col :span="8">
-              <el-form-item label="开始提交时间：">
-                <el-date-picker
-                  v-model="searchForm.createDateTimeOver"
-                  class
-                  value-format="yyyy-MM-dd"
-                  type="date"
-                  placeholder="请选择开始提交时间"
-                ></el-date-picker>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="结束提交时间：">
-                <el-date-picker
-                  v-model="searchForm.createDateTimeStart"
-                  class
-                  value-format="yyyy-MM-dd"
-                  type="date"
-                  placeholder="请选择结束提交时间"
-                ></el-date-picker>
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </el-form>
-      </div>
-      <div class="m-b-16">
-        <el-row :gutter="20">
-          <el-col :span="4" :offset="10">
-            <el-button type="primary" @click="handleSearchList()">查询</el-button>
-            <el-button @click="resetSearchForm('searchForm')">重置</el-button>
+      <el-form :inline="true" :model="searchForm" :rules="rules" ref="searchForm">
+        <el-row :gutter="5">
+          <el-col :span="8">
+            <el-form-item label="客户名称：" prop="cname" label-width="140px">
+              <el-input v-model="searchForm.cname" placeholder="客户名称" class="same-form-width"></el-input>
+            </el-form-item>
           </el-col>
-          <el-col :span="2" :offset="8">
-            <el-button type="primary" @click="exportData()">导出</el-button>
+          <el-col :span="8">
+            <el-form-item label="流程名称：" prop="ftCode" label-width="140px">
+              <el-select
+                v-model="searchForm.ftCode"
+                placeholder="请选择"
+                class="same-form-width"
+                @change="changeFtCode"
+              >
+                <el-option
+                  v-for="item in ftCodeOptions"
+                  :key="item.flowType"
+                  :label="item.flowName"
+                  :value="item.flowType"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="流程节点：" prop="flowNode" label-width="140px">
+              <el-select
+                v-model="searchForm.flowNode"
+                placeholder="请选择"
+                clearable
+                filterable
+                class="same-form-width"
+              >
+                <el-option
+                  v-for="item in flowNodeOptions"
+                  :key="item.nodeCode"
+                  :label="item.nodeName"
+                  :value="item.nodeCode"
+                ></el-option>
+              </el-select>
+            </el-form-item>
           </el-col>
         </el-row>
-      </div>
+        <el-row :gutter="5">
+          <el-col :span="8">
+            <el-form-item label="开始提交时间：" prop="createDateTimeOver" label-width="140px">
+              <el-date-picker
+                v-model="searchForm.createDateTimeOver"
+                value-format="yyyy-MM-dd"
+                type="date"
+                placeholder="请选择"
+                class="same-form-width"
+              ></el-date-picker>
+            </el-form-item>
+          </el-col>
+          <el-col :span="8">
+            <el-form-item label="结束提交时间：" prop="createDateTimeStart" label-width="140px">
+              <el-date-picker
+                v-model="searchForm.createDateTimeStart"
+                value-format="yyyy-MM-dd"
+                type="date"
+                placeholder="请选择"
+                class="same-form-width"
+              ></el-date-picker>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row :gutter="5">
+          <el-col :span="6" :offset="9">
+            <el-form-item>
+              <el-button type="primary" @click="searchTable('searchForm')">查询</el-button>
+              <el-button @click="resetSearchForm('searchForm')">重置</el-button>
+              <el-button type="primary" @click="exportData()">导出</el-button>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
     </el-card>
 
     <el-table
-      height="400"
-      v-loading="listLoading"
-      class="m-b-16"
-      :data="list"
+      max-height="380"
+      v-loading="tableData.tableLoading"
+      :data="tableData.tableList"
       border
       fit
       highlight-current-row
-      @selection-change="handleSelectionChange"
+      @selection-change="tableSelectionChange"
     >
-      <el-table-column type="selection" width="60" align="center"></el-table-column>
+      <el-table-column type="selection" width="60" align="center"></el-table-column>     
       <el-table-column label="流程名称" align="center">
         <template slot-scope="{row}">
-          <sapn>{{ row.currentNodeName }}</sapn>
+          <span>{{ row.currentNodeName }}</span>
         </template>
       </el-table-column>
       <el-table-column label="流程节点" align="center">
-        <template slot-scope="{row}">{{ row.currentNodeName}}</template>
+        <template slot-scope="{row}">
+          <span>{{ row.currentNodeName}}</span>
+        </template>
       </el-table-column>
       <el-table-column label="业务编号" align="center">
-        <template slot-scope="{row}">{{ row.businessNum}}</template>
+        <template slot-scope="{row}">
+          <span>{{ row.businessNum}}</span>
+        </template>
       </el-table-column>
       <el-table-column label="客户名称" align="center">
-        <template slot-scope="{row}">{{ row.customerName}}</template>
+        <template slot-scope="{row}">
+          <span>{{ row.customerName}}</span>
+        </template>
       </el-table-column>
       <el-table-column label="二手车业务" align="center">
-        <template slot-scope="{row}">{{ row.isSecondHandCar | isSecondHandCarFilter }}</template>
+        <template slot-scope="{row}">
+          <span>{{ row.isSecondHandCar | isSecondHandCarFilter }}</span>
+        </template>
       </el-table-column>
       <el-table-column label="操作" align="center">
         <template slot-scope="{row}">
@@ -117,24 +126,17 @@
       </el-table-column>
     </el-table>
 
-    <el-row class="m-b-16">
-      <el-pagination
-        background
-        layout="total, sizes,prev, pager, next,jumper"
-        :current-page.sync="searchForm.pageNum"
-        :page-size="searchForm.pageSize"
-        :page-sizes="[10, 20, 50]"
-        :total="total"
-        :hide-on-single-page="true"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        class="t-r"
-      ></el-pagination>
-    </el-row>
+    <pagination
+      v-show="tableData.tableTotal>0"
+      :total="tableData.tableTotal"
+      :page.sync="searchForm.page"
+      :limit.sync="searchForm.pageSize"
+      @pagination="getTableList"
+    />
   </div>
 </template>
 <script>
-import { mytasksSearch, flowGet, getInfo } from '@/api/wdrw/wdrw'
+import { mytasksSearch, flowGet, flowNodes, customerCreditInfoDownload } from '@/api/wdrw/wdrw'
 import Pagination from '@/components/Pagination'
 
 export default {
@@ -145,9 +147,9 @@ export default {
       return arr[value] || '--'
     }
   },
-  components: { 
-    Pagination 
-  },  
+  components: {
+    Pagination
+  },
   data() {
     return {
       searchForm: {
@@ -163,60 +165,69 @@ export default {
         ftCode: [
           { required: true, message: '请选择活动资源', trigger: 'change' }
         ]
+      },     
+      tableData: {
+        tableLoading: true,
+        tableList: [],
+        tableTotal: 0
       },
-
-      listLoading: true,
-      list: [],
-      total: 0
+      ftCodeOptions: [],
+      flowNodeOptions: []
     }
   },
   created() {
-    this.getList()
+    this.getTableList()
+    this.getFtCodeOptions()
   },
   methods: {
     resetSearchForm(formName) {
       this.$refs[formName].resetFields()
     },
-    handleSearchList() {
-      this.getList()
+    searchTable(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          this.getTableList()
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     },
-    handleSelectionChange(val) {
-      this.multipleSelection = val
+    tableSelectionChange(val) {
+      console.info(val)
     },
     toOperate(row) {
-      console.info(row)
+      this.$router.push({
+        path: '/wdrw/wdrw/page/info',
+        query: { projectId: row.businessId }
+      })
     },
-    handleSizeChange(val) {
-      this.searchForm.page = 1
-      this.searchForm.pageSize = val
-      this.getList()
-    },
-    handleCurrentChange(val) {
-      this.searchForm.page = val
-      this.getList()
-    },
-    async getList() {
-      this.listLoading = true
+    async getTableList() {
+      this.tableData.tableLoading = true
 
       //自行改接扣调用
       let apiData = await mytasksSearch(this.searchForm)
-      this.list = apiData.data
-      this.total = apiData.totalItem
-      this.listLoading = false
+      this.tableData.tableList = apiData.data
+      this.tableData.tableTotal = apiData.totalItem
+      this.tableData.tableLoading = false
     },
-    deleteOrder(ids) {
-      this.$confirm('是否要进行该删除操作?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {})
+    async getFtCodeOptions() {
+      let apiData = await flowGet()
+      this.ftCodeOptions = apiData.data
+    },
+    async changeFtCode(val) {
+      this.searchForm.flowNode = ''
+
+      let data = {
+        businessTypeCode: val
+      }
+      let apiData = await flowNodes(data)
+      this.flowNodeOptions = apiData.data
     },
     exportData() {
-      console.info(this.searchForm)
-      let data = ''
-      let exportUrl = window.location.origin + data
-      console.info(exportUrl)
-      // window.location.href = exportUrl
+      let data = '?customerName=' + '老大哥'
+      let exportUrl = customerCreditInfoDownload() + data
+      window.location.href = exportUrl
     }
   }
 }

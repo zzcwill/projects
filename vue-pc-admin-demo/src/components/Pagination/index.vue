@@ -1,15 +1,18 @@
 <template>
   <div :class="{'hidden':hidden}" class="pagination-container">
     <el-pagination
-      :background="background"
-      :current-page.sync="currentPage"
-      :page-size.sync="pageSize"
-      :layout="layout"
-      :page-sizes="pageSizes"
       :total="total"
-      v-bind="$attrs"
+      :current-page.sync="currentPage"
+      :page-size.sync="pageSize"  
+      :page-sizes="pageSizes"          
+      :layout="layout"
+      :background="background"  
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
+
+      v-bind="$attrs"
+      :hide-on-single-page="true"
+      class="m-t-10 m-b-10 t-r"
     />
   </div>
 </template>
@@ -19,6 +22,10 @@
 export default {
   name: 'Pagination',
   props: {
+    hidden: {
+      type: Boolean,
+      default: false
+    },    
     total: {
       required: true,
       type: Number
@@ -44,10 +51,6 @@ export default {
     background: {
       type: Boolean,
       default: true
-    },
-    hidden: {
-      type: Boolean,
-      default: false
     }
   },
   computed: {
@@ -80,10 +83,6 @@ export default {
 </script>
 
 <style scoped>
-.pagination-container {
-  background: #fff;
-  padding: 32px 16px;
-}
 .pagination-container.hidden {
   display: none;
 }

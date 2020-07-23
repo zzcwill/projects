@@ -101,6 +101,7 @@ const actions = {
         // 模拟接口返回对象
         data = asyncRoutes
         let data2 = getApiRoutes(data)
+        // console.info(constantRoutes)
         // console.info(data2)
         let dataApi = formatRoutes(data2)
 

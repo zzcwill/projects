@@ -15,10 +15,14 @@ export function flowGet() {
   })
 }
 
-export function getInfo(data) {
+export function flowNodes(data) {
   return request({
     url: '/flow/nodes',
 		method: 'post',
     data		
   })
+}
+
+export function customerCreditInfoDownload() {
+  return  process.env.VUE_APP_BASE_API + '/customer/creditInfo/download?customerName'
 }

@@ -8,4 +8,5 @@
 *.njsproj
 *.sln
 
-vue-element-admin-master
+/vue-element-admin-master
+/RuoYi-Vue

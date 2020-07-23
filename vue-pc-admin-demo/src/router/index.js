@@ -16,8 +16,10 @@ import app from '@/router/app'
 import demo from '@/router/demo'
 // 平台管理
 import ptgl from '@/router/modules/ptgl'
+// 我的任务
+import wdrw from '@/router/modules/wdrw'
 
-export const constantRoutes = app.concat(demo, ptgl)
+export const constantRoutes = app.concat(demo, ptgl, wdrw)
 
 const createRouter = () => new Router({
   mode: 'history',
