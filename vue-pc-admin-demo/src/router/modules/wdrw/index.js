@@ -11,9 +11,17 @@ const appRoute = [
 				name: 'wdrwWdrwPageInfo',
 				component: () => import('@/views/wdrw/wdrw/info'),
 				meta: {
-					title: '我的任务详情页',
+					title: '贷款详情页',
 				}
-			}
+			},
+			{
+				path: 'flow',
+				name: 'wdrwWdrwPageFlow',
+				component: () => import('@/views/wdrw/wdrw/flow'),
+				meta: {
+					title: '贷款申请流程',
+				}
+			}			
 		]
 	}
 ]

@@ -84,59 +84,117 @@
       </el-form>
     </el-card>
 
-    <el-table
-      max-height="380"
-      v-loading="tableData.tableLoading"
-      :data="tableData.tableList"
-      border
-      fit
-      highlight-current-row
-      @selection-change="tableSelectionChange"
-    >
-      <el-table-column type="selection" width="60" align="center"></el-table-column>     
-      <el-table-column label="流程名称" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.currentNodeName }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="流程节点" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.currentNodeName}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="业务编号" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.businessNum}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="客户名称" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.customerName}}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="二手车业务" align="center">
-        <template slot-scope="{row}">
-          <span>{{ row.isSecondHandCar | isSecondHandCarFilter }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column label="操作" align="center">
-        <template slot-scope="{row}">
-          <el-button @click="toOperate(row)" type="text">{{ row.currentNodeName }}</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+    <el-tabs v-model="activeTabName" type="card" @tab-click="tabClick">
+      <el-tab-pane label="待办任务" name="todo">
+        <el-table
+          max-height="380"
+          v-loading="tableData.tableLoading"
+          :data="tableData.tableList"
+          border
+          fit
+          highlight-current-row
+          @selection-change="tableSelectionChange"
+        >
+          <el-table-column type="selection" width="60" align="center"></el-table-column>
+          <el-table-column label="流程名称" align="center">
+            <template slot-scope="{row}">
+              <span>{{ row.businessTypeName }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="流程节点" align="center">
+            <template slot-scope="{row}">
+              <span>{{ row.currentNodeName}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="业务编号" align="center">
+            <template slot-scope="{row}">
+              <span>{{ row.businessNum}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="客户名称" align="center">
+            <template slot-scope="{row}">
+              <span>{{ row.customerName}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="二手车业务" align="center">
+            <template slot-scope="{row}">
+              <span>{{ row.isSecondHandCar | isSecondHandCarFilter }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="操作" align="center">
+            <template slot-scope="{row}">
+              <el-button @click="toOperate(row)" type="text">{{ row.currentNodeName }}</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
 
-    <pagination
-      v-show="tableData.tableTotal>0"
-      :total="tableData.tableTotal"
-      :page.sync="searchForm.page"
-      :limit.sync="searchForm.pageSize"
-      @pagination="getTableList"
-    />
+        <pagination
+          v-show="tableData.tableTotal>0"
+          :total="tableData.tableTotal"
+          :page.sync="searchForm.page"
+          :limit.sync="searchForm.pageSize"
+          @pagination="getTableList"
+        ></pagination>
+      </el-tab-pane>
+      <el-tab-pane label="已办任务" name="done">
+        <el-table
+          max-height="380"
+          v-loading="tableData.tableLoading"
+          :data="tableData.tableList"
+          border
+          fit
+          highlight-current-row
+        >
+          <el-table-column label="流程名称" align="center">
+            <template slot-scope="{row}">
+              <span>{{ row.businessTypeName }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="流程节点" align="center">
+            <template slot-scope="{row}">
+              <span>{{ row.currentNodeName}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="业务编号" align="center">
+            <template slot-scope="{row}">
+              <span>{{ row.businessNum}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="客户名称" align="center">
+            <template slot-scope="{row}">
+              <span>{{ row.customerName}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="二手车业务" align="center">
+            <template slot-scope="{row}">
+              <span>{{ row.isSecondHandCar | isSecondHandCarFilter }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="操作" align="center">
+            <template slot-scope="{row}">
+              <el-button @click="toOperate2(row)" type="text">查看详情</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+
+        <pagination
+          v-show="tableData.tableTotal>0"
+          :total="tableData.tableTotal"
+          :page.sync="searchForm.page"
+          :limit.sync="searchForm.pageSize"
+          @pagination="getTableList"
+        ></pagination>
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 <script>
-import { mytasksSearch, flowGet, flowNodes, customerCreditInfoDownload } from '@/api/wdrw/wdrw'
+import {
+  mytasksSearch,
+  flowGet,
+  flowNodes,
+  customerCreditInfoDownload,
+} from '@/api/wdrw/wdrw'
 import Pagination from '@/components/Pagination'
 
 export default {
@@ -145,10 +203,10 @@ export default {
     isSecondHandCarFilter(value) {
       let arr = ['', '是', '否']
       return arr[value] || '--'
-    }
+    },
   },
   components: {
-    Pagination
+    Pagination,
   },
   data() {
     return {
@@ -156,35 +214,38 @@ export default {
         page: 1,
         pageSize: 10,
         cname: '',
-        ftCode: '',
+        ftCode: 'LOAN_APPLY_FLOW',
         flowNode: '',
         createDateTimeStart: '',
-        createDateTimeOver: ''
+        createDateTimeOver: '',
+        isProcessed: false,
       },
       rules: {
-        ftCode: [
-          { required: true, message: '请选择活动资源', trigger: 'change' }
-        ]
-      },     
+        cname: [{ required: true, message: '请输入客户信息', trigger: 'blur' }],
+        // ftCode: [
+        //   { required: true, message: '请选择活动资源', trigger: 'change' }
+        // ]
+      },
       tableData: {
         tableLoading: true,
         tableList: [],
-        tableTotal: 0
+        tableTotal: 0,
       },
       ftCodeOptions: [],
-      flowNodeOptions: []
+      flowNodeOptions: [],
+      activeTabName: 'todo',
     }
   },
   created() {
-    this.getTableList()
     this.getFtCodeOptions()
+    this.getTableList()
   },
   methods: {
     resetSearchForm(formName) {
       this.$refs[formName].resetFields()
     },
     searchTable(formName) {
-      this.$refs[formName].validate(valid => {
+      this.$refs[formName].validate((valid) => {
         if (valid) {
           this.getTableList()
         } else {
@@ -197,9 +258,21 @@ export default {
       console.info(val)
     },
     toOperate(row) {
+      //传参query 最好不要用Boolean
+      this.$router.push({
+        path: '/wdrw/wdrw/page/flow',
+        query: {
+          projectId: row.businessId,
+        },
+      })
+    },
+    toOperate2(row) {
+      //传参query 最好不要用Boolean
       this.$router.push({
         path: '/wdrw/wdrw/page/info',
-        query: { projectId: row.businessId }
+        query: {
+          projectId: row.businessId,
+        },
       })
     },
     async getTableList() {
@@ -219,17 +292,26 @@ export default {
       this.searchForm.flowNode = ''
 
       let data = {
-        businessTypeCode: val
+        businessTypeCode: val,
       }
       let apiData = await flowNodes(data)
       this.flowNodeOptions = apiData.data
+    },
+    tabClick(tab) {
+      if (tab.name === 'todo') {
+        this.searchForm.isProcessed = false
+      }
+      if (tab.name === 'done') {
+        this.searchForm.isProcessed = true
+      }
+      this.getTableList()
     },
     exportData() {
       let data = '?customerName=' + '老大哥'
       let exportUrl = customerCreditInfoDownload() + data
       window.location.href = exportUrl
-    }
-  }
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>

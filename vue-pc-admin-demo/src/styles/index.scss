@@ -62,10 +62,14 @@ div:focus {
 
 // main-container global css
 .app-container {
-  padding: 20px;
+  padding: 10px;
 }
 
 .block {
   float: right;
   margin: 20px 0;
+}
+//form表单元素宽度-特殊处理
+.same-form-width{
+  width: 200px !important;
 }

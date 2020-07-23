@@ -44,10 +44,11 @@ http.interceptors.response.use((response) => {
     return Promise.reject(new Error(res.message || 'Error'))
   }
 }, (err) => {
-	// 这里是返回状态码不为200时候的错误处理
-	if (err && err.response) {
+	// http状态码不为200时-错误处理
+	if (err) {
+    console.info(err)
     Message({
-      message: `${err.response.data.path}报错: ${err.response.data.message}`,
+      message: err,
       type: 'error',
       duration: 5 * 1000
     })

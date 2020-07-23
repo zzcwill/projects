@@ -26,3 +26,12 @@ export function flowNodes(data) {
 export function customerCreditInfoDownload() {
   return  process.env.VUE_APP_BASE_API + '/customer/creditInfo/download?customerName'
 }
+
+//贷款详情
+export function pledgeInfoDetail(data) {
+  return request({
+    url: '/loanApprovalInfo/getApprovalBaseInfo',
+		method: 'post',
+    data		
+  })
+}
