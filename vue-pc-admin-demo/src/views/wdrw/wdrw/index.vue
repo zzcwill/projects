@@ -124,6 +124,7 @@
           <el-table-column label="操作" align="center">
             <template slot-scope="{row}">
               <el-button @click="toOperate(row)" type="text">{{ row.currentNodeName }}</el-button>
+              <el-button @click="toOperate2(row)" type="text">查看详情</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -221,7 +222,7 @@ export default {
         isProcessed: false,
       },
       rules: {
-        cname: [{ required: true, message: '请输入客户信息', trigger: 'blur' }],
+        // cname: [{ required: true, message: '请输入客户信息', trigger: 'blur' }],
         // ftCode: [
         //   { required: true, message: '请选择活动资源', trigger: 'change' }
         // ]
@@ -238,6 +239,7 @@ export default {
   },
   created() {
     this.getFtCodeOptions()
+    this.changeFtCode(this.searchForm.ftCode)
     this.getTableList()
   },
   methods: {
@@ -263,6 +265,8 @@ export default {
         path: '/wdrw/wdrw/page/flow',
         query: {
           projectId: row.businessId,
+          bopInfoId: row.businessObjectProcessInfoId,
+          currentNodeName: row.currentNodeName
         },
       })
     },
@@ -271,7 +275,7 @@ export default {
       this.$router.push({
         path: '/wdrw/wdrw/page/info',
         query: {
-          projectId: row.businessId,
+          projectId: row.businessId
         },
       })
     },

@@ -28,9 +28,34 @@ export function customerCreditInfoDownload() {
 }
 
 //贷款详情
-export function pledgeInfoDetail(data) {
+export function loanApprovalInfoGetApprovalBaseInfo(data) {
   return request({
     url: '/loanApprovalInfo/getApprovalBaseInfo',
+		method: 'post',
+    data		
+  })
+}
+
+//保存流程意见
+export function opinionSave(data) {
+  return request({
+    url: '/opinion/save',
+		method: 'post',
+    data		
+  })
+}
+
+//贷款预提交,提交
+export function loanReviewPreSubmit(data) {
+  return request({
+    url: '/loanReview/preSubmit',
+		method: 'post',
+    data		
+  })
+}
+export function loanReviewSubmit2next(data) {
+  return request({
+    url: '/loanReview/submit2next',
 		method: 'post',
     data		
   })

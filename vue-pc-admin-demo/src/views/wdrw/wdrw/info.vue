@@ -4,146 +4,127 @@
       <div class="el-page-header m-b-20">
         <div class="el-page-header__content m-lr-auto">贷款详情</div>
       </div>
-      <el-form :inline="true" :model="searchForm" :rules="rules" ref="searchForm">
-        <el-row :gutter="5">
-          <el-col :span="8">
-            <el-form-item label="客户名称：" prop="cname" label-width="140px">
-              <el-input v-model="searchForm.cname" placeholder="客户名称" class="same-form-width" disabled></el-input>
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="流程名称：" prop="ftCode" label-width="140px">
-              <el-select
-                v-model="searchForm.ftCode"
-                placeholder="请选择"
-                class="same-form-width"
-                @change="changeFtCode"
-              >
-                <el-option
-                  v-for="item in ftCodeOptions"
-                  :key="item.flowType"
-                  :label="item.flowName"
-                  :value="item.flowType"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="流程节点：" prop="flowNode" label-width="140px">
-              <el-select
-                v-model="searchForm.flowNode"
-                placeholder="请选择"
-                clearable
-                filterable
-                class="same-form-width"
-              >
-                <el-option
-                  v-for="item in flowNodeOptions"
-                  :key="item.nodeCode"
-                  :label="item.nodeName"
-                  :value="item.nodeCode"
-                ></el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <!-- <el-row :gutter="5">
-          <el-col :span="8">
-            <el-form-item label="开始提交时间：" prop="createDateTimeOver" label-width="140px">
-              <el-date-picker
-                v-model="searchForm.createDateTimeOver"
-                value-format="yyyy-MM-dd"
-                type="date"
-                placeholder="请选择"
-                class="same-form-width"
-              ></el-date-picker>
-            </el-form-item>
-          </el-col>
-        </el-row> -->
-
-        <el-row :gutter="5">
-          <el-col :span="6" :offset="9">
-            <el-form-item>
-              <el-button type="primary" @click="searchTable('searchForm')">提交</el-button>
-              <el-button @click="resetSearchForm('searchForm')">重置</el-button>
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </el-form>
+      <el-tabs type="card">
+        <el-tab-pane label="客户信息">
+          <el-tabs type="border-card" v-for="dom in domArr" :key="dom" class="m-b-20">
+            <el-tab-pane>
+              <span slot="label">
+                <i class="el-icon-date"></i> 我的行程
+              </span>
+              <el-form :inline="true" :model="searchForm" :rules="rules" ref="searchForm" disabled>
+                <el-row :gutter="5" v-for="dom2 in domArr2" :key="dom2">
+                  <el-col :span="8">
+                    <el-form-item label="客户名称：" prop="customerName" label-width="140px">
+                      <el-input
+                        v-model="searchForm.customerName"
+                        placeholder="客户名称"
+                        class="same-form-width"
+                        disabled
+                      ></el-input>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-form-item label="户籍性质：" prop="domicileType" label-width="140px">
+                      <el-select
+                        v-model="searchForm.domicileType"
+                        placeholder="请选择"
+                        class="same-form-width"
+                      >
+                        <el-option
+                          v-for="item in domicileTypeOptions"
+                          :key="item.value"
+                          :label="item.name"
+                          :value="item.value"
+                        ></el-option>
+                      </el-select>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="8">
+                    <el-form-item label="性别：" prop="sex" label-width="140px">
+                      <el-select
+                        v-model="searchForm.sex"
+                        placeholder="请选择"
+                        clearable
+                        filterable
+                        class="same-form-width"
+                      >
+                        <el-option
+                          v-for="item in sexOptions"
+                          :key="item.value"
+                          :label="item.name"
+                          :value="item.value"
+                        ></el-option>
+                      </el-select>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+              </el-form>
+            </el-tab-pane>
+          </el-tabs>
+        </el-tab-pane>
+        <el-tab-pane label="过程信息">过程信息</el-tab-pane>
+      </el-tabs>
     </el-card>
   </div>
 </template>
 <script>
-import {
-  pledgeInfoDetail,
-  flowGet,
-  flowNodes 
-} from '@/api/wdrw/wdrw'
-import Pagination from '@/components/Pagination'
+import { loanApprovalInfoGetApprovalBaseInfo } from '@/api/wdrw/wdrw'
 
 export default {
   name: 'wdrwWdrwInfo',
-  filters: {
-  },
+  filters: {},
   data() {
     return {
       projectId: '',
       searchForm: {
-        cname: '',
-        ftCode: '',
-        flowNode: ''
+        customerName: '',
+        domicileType: '',
+        sex: '',
       },
       rules: {
-        // cname: [{ required: true, message: '请输入客户信息', trigger: 'blur' }],
-        // ftCode: [
-        //   { required: true, message: '请选择活动资源', trigger: 'change' }
-        // ]
+        // customerName: [{ required: true, message: '请输入客户信息', trigger: 'blur' }],
       },
-      ftCodeOptions: [],
-      flowNodeOptions: []
+      domicileTypeOptions: [
+        {
+          name: '农业',
+          value: 1,
+        },
+        {
+          name: '非农',
+          value: 2,
+        },
+      ],
+      sexOptions: [
+        {
+          name: '男',
+          value: 1,
+        },
+        {
+          name: '女',
+          value: 0,
+        },
+      ],
+      domArr: [1,2],
+      domArr2: [1,2,3,4],      
     }
   },
   created() {
     this.projectId = this.$route.query.projectId
-    this.getFtCodeOptions()
     this.getLoanInfo()
-    console.info(this.searchForm)
   },
   methods: {
-    resetSearchForm(formName) {
-      this.$refs[formName].resetFields()
-    },
-    searchTable(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
-    },
     async getLoanInfo() {
       //自行改接扣调用
-      let apiData = await pledgeInfoDetail({
-        loanApplyId: this.projectId
-      })
-      let needDataArr = ['cname','ftCode','flowNode']
-      this.searchForm = apiData.data
-      // this.searchForm = this._.pick(apiData.data,needDataArr)
-    },
-    async getFtCodeOptions() {
-      let apiData = await flowGet()
-      this.ftCodeOptions = apiData.data
-    },
-    async changeFtCode(val) {
-      this.searchForm.flowNode = ''
-
-      let data = {
-        businessTypeCode: val,
+      let params = {
+        loanApplyId: this.projectId,
       }
-      let apiData = await flowNodes(data)
-      this.flowNodeOptions = apiData.data
+      let apiData = await loanApprovalInfoGetApprovalBaseInfo(params)
+
+      this.searchForm = this._.pick(apiData.data, [
+        'customerName',
+        'domicileType',
+        'sex',
+      ])
     },
   },
 }
