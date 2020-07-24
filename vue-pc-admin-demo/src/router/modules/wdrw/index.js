@@ -8,12 +8,20 @@ const appRoute = [
 		children: [
 			{
 				path: 'info',
-				name: 'wdrwWdrwPageInfo',
+				name: 'wdrwWdrwInfo',
 				component: () => import('@/views/wdrw/wdrw/info'),
 				meta: {
-					title: '贷款详情页',
+					title: '贷款详情',
 				}
 			},
+			{
+				path: 'imgInfo',
+				name: 'wdrwWdrwImgInfo',
+				component: () => import('@/views/wdrw/wdrw/imgInfo'),
+				meta: {
+					title: '贷款多媒体详情',
+				}
+			},			
 			{
 				path: 'flow',
 				name: 'wdrwWdrwPageFlow',

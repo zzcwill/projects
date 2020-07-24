@@ -5,11 +5,11 @@
         <div class="el-page-header__content m-lr-auto">贷款详情</div>
       </div>
       <el-tabs type="card">
-        <el-tab-pane label="客户信息">
+        <el-tab-pane label="基本信息">
           <el-tabs type="border-card" v-for="dom in domArr" :key="dom" class="m-b-20">
             <el-tab-pane>
               <span slot="label">
-                <i class="el-icon-date"></i> 客户信息
+                <i class="el-icon-date"></i>客户信息
               </span>
               <el-form :inline="true" :model="searchForm" :rules="rules" ref="searchForm" label-width="140px" disabled>
                 <el-row :gutter="5" v-for="dom2 in domArr2" :key="dom2">

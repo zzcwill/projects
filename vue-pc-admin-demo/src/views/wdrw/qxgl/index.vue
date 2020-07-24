@@ -69,7 +69,7 @@
 
     <el-dialog title="新增角色" width="600px" append-to-body :visible.sync="dialogFormVisible">
       <el-form :model="dialogForm" :rules="dialogRules" ref="dialogForm" label-width="100px">
-        <el-row>
+        <el-row :gutter="5">
           <el-col :span="12">
             <el-form-item label="角色名称：" prop="name">
               <el-input v-model="dialogForm.name" placeholder="角色名称"></el-input>

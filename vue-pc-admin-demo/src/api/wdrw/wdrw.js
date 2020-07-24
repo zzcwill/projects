@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 
+//查询列表页start
 export function mytasksSearch(data) {
   return request({
     url: '/mytasks/search',
@@ -7,14 +8,12 @@ export function mytasksSearch(data) {
     data   
   })
 }
-
 export function flowGet() {
   return request({
     url: '/flow/get',
     method: 'post'
   })
 }
-
 export function flowNodes(data) {
   return request({
     url: '/flow/nodes',
@@ -22,12 +21,12 @@ export function flowNodes(data) {
     data		
   })
 }
-
 export function customerCreditInfoDownload() {
   return  process.env.VUE_APP_BASE_API + '/customer/creditInfo/download?customerName'
 }
+//查询列表页end
 
-//贷款详情
+//贷款详情页start
 export function loanApprovalInfoGetApprovalBaseInfo(data) {
   return request({
     url: '/loanApprovalInfo/getApprovalBaseInfo',
@@ -35,8 +34,9 @@ export function loanApprovalInfoGetApprovalBaseInfo(data) {
     data		
   })
 }
+//贷款详情end
 
-//保存流程意见
+//贷款流程页start
 export function opinionSave(data) {
   return request({
     url: '/opinion/save',
@@ -44,8 +44,6 @@ export function opinionSave(data) {
     data		
   })
 }
-
-//贷款预提交,提交
 export function loanReviewPreSubmit(data) {
   return request({
     url: '/loanReview/preSubmit',
@@ -60,3 +58,29 @@ export function loanReviewSubmit2next(data) {
     data		
   })
 }
+//贷款流程页end
+
+//多媒体资料页start
+export function loanApprovalInfoGetApprovalDocumentDir(data) {
+  return request({
+    url: '/loanApprovalInfo/getApprovalDocumentDir',
+		method: 'post',
+    data		
+  })
+}
+export function loanApprovalInfoGetApprovalDocument(data) {
+  return request({
+    url: '/loanApprovalInfo/getApprovalDocument',
+		method: 'post',
+    data		
+  })
+}
+//上传图片
+export function loanDocumentUploadFileString(data) {
+  return request({
+    url: '/loanDocument/uploadFileString',
+		method: 'post',
+    data		
+  })
+}
+//多媒体资料页end

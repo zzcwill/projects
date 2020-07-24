@@ -124,7 +124,7 @@
           <el-table-column label="操作" align="center">
             <template slot-scope="{row}">
               <el-button @click="toOperate(row)" type="text">{{ row.currentNodeName }}</el-button>
-              <el-button @click="toOperate2(row)" type="text">查看详情</el-button>
+              <el-button @click="toOperate2(row)" type="text" v-if="row.businessTypeCode === 'LOAN_APPLY_FLOW'">多媒体资料</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -173,7 +173,7 @@
           </el-table-column>
           <el-table-column label="操作" align="center">
             <template slot-scope="{row}">
-              <el-button @click="toOperate2(row)" type="text">查看详情</el-button>
+              <el-button @click="toOperate3(row)" type="text">查看详情</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -271,14 +271,25 @@ export default {
       })
     },
     toOperate2(row) {
-      //传参query 最好不要用Boolean
+      this.$router.push({
+        path: '/wdrw/wdrw/page/imgInfo',
+        query: {
+          projectId: row.businessId,
+          currentNodeName: row.currentNodeName,
+          space: 'LOAN',
+          releventFlow: row.businessTypeCode,
+          releventFlowNode: row.currentNodeKey
+        },
+      })
+    },
+    toOperate3(row) {
       this.$router.push({
         path: '/wdrw/wdrw/page/info',
         query: {
           projectId: row.businessId
         },
       })
-    },
+    },    
     async getTableList() {
       this.tableData.tableLoading = true
 
