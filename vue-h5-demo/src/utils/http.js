@@ -3,13 +3,17 @@ import Axios from 'axios'
 import Qs from 'qs'
 
 const http = Axios.create({
-	transformRequest: [function (data) {
-		data = Qs.stringify(data)
-		return data
-	}],	
 	// api的base_url
 	baseURL: '/api/',
 	timeout: 5000,
+  transformRequest: [function(data) {
+    if (data && data.type && data.type === 'file') {
+      data = data.data
+    } else {
+      data = Qs.stringify(data)
+    }
+    return data
+  }]	
 })
 
 // 设置请求头

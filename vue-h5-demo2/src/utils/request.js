@@ -7,9 +7,13 @@ import { getTimeMs } from '@/utils/time'
 const http = Axios.create({
 	// api的base_url
 	baseURL: process.env.VUE_APP_BASE_API,
-  timeout: 50000,
+  timeout: 5000,
   transformRequest: [function(data) {
-    data = Qs.stringify(data)
+    if (data && data.type && data.type === 'file') {
+      data = data.data
+    } else {
+      data = Qs.stringify(data)
+    }
     return data
   }]
 })

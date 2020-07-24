@@ -45,7 +45,7 @@
 
 ### 搭建环境所需依赖包
 - vue-cli3.0搭建，还需装的依赖包
-- dependencies：axios，babel-polyfill，qs，vue-meta-info,vux
+- dependencies：axios，babel-polyfill，qs,vux
 - devDependencies: postcss-pxtorem
 
 
