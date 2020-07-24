@@ -30,7 +30,7 @@ if (process.env.VUE_APP_BASE_API === '/mock') {
 Vue.use(ElementUI, 
   {
     locale,
-    size: 'small'
+    size: 'mini'
   }
 )
 

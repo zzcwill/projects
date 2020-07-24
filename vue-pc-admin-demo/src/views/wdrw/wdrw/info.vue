@@ -11,10 +11,10 @@
               <span slot="label">
                 <i class="el-icon-date"></i> 我的行程
               </span>
-              <el-form :inline="true" :model="searchForm" :rules="rules" ref="searchForm" disabled>
+              <el-form :inline="true" :model="searchForm" :rules="rules" ref="searchForm" label-width="140px" disabled>
                 <el-row :gutter="5" v-for="dom2 in domArr2" :key="dom2">
                   <el-col :span="8">
-                    <el-form-item label="客户名称：" prop="customerName" label-width="140px">
+                    <el-form-item label="客户名称：" prop="customerName" >
                       <el-input
                         v-model="searchForm.customerName"
                         placeholder="客户名称"
@@ -24,7 +24,7 @@
                     </el-form-item>
                   </el-col>
                   <el-col :span="8">
-                    <el-form-item label="户籍性质：" prop="domicileType" label-width="140px">
+                    <el-form-item label="户籍性质：" prop="domicileType" >
                       <el-select
                         v-model="searchForm.domicileType"
                         placeholder="请选择"
@@ -40,7 +40,7 @@
                     </el-form-item>
                   </el-col>
                   <el-col :span="8">
-                    <el-form-item label="性别：" prop="sex" label-width="140px">
+                    <el-form-item label="性别：" prop="sex">
                       <el-select
                         v-model="searchForm.sex"
                         placeholder="请选择"

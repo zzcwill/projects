@@ -11,7 +11,12 @@ export const asyncRoutes = [
         "menuName": "我的任务",
         "menuUrl": "/wdrw/wdrw",
         "menuLevel": "2"
-      }
+      },
+      {
+        "menuName": "权限管理",
+        "menuUrl": "/wdrw/qxgl",
+        "menuLevel": "2"
+      }      
     ]
   },  
   {

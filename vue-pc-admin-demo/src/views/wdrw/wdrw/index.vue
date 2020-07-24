@@ -4,15 +4,15 @@
       <div class="el-page-header m-b-20">
         <div class="el-page-header__content m-lr-auto">我的任务</div>
       </div>
-      <el-form :inline="true" :model="searchForm" :rules="rules" ref="searchForm">
+      <el-form :inline="true" :model="searchForm" :rules="rules" ref="searchForm" label-width="140px">
         <el-row :gutter="5">
           <el-col :span="8">
-            <el-form-item label="客户名称：" prop="cname" label-width="140px">
+            <el-form-item label="客户名称：" prop="cname">
               <el-input v-model="searchForm.cname" placeholder="客户名称" class="same-form-width"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="流程名称：" prop="ftCode" label-width="140px">
+            <el-form-item label="流程名称：" prop="ftCode">
               <el-select
                 v-model="searchForm.ftCode"
                 placeholder="请选择"
@@ -29,7 +29,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="流程节点：" prop="flowNode" label-width="140px">
+            <el-form-item label="流程节点：" prop="flowNode">
               <el-select
                 v-model="searchForm.flowNode"
                 placeholder="请选择"
@@ -49,7 +49,7 @@
         </el-row>
         <el-row :gutter="5">
           <el-col :span="8">
-            <el-form-item label="开始提交时间：" prop="createDateTimeOver" label-width="140px">
+            <el-form-item label="开始提交时间：" prop="createDateTimeOver">
               <el-date-picker
                 v-model="searchForm.createDateTimeOver"
                 value-format="yyyy-MM-dd"
@@ -60,7 +60,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="结束提交时间：" prop="createDateTimeStart" label-width="140px">
+            <el-form-item label="结束提交时间：" prop="createDateTimeStart">
               <el-date-picker
                 v-model="searchForm.createDateTimeStart"
                 value-format="yyyy-MM-dd"

@@ -11,10 +11,10 @@
               <span slot="label">
                 <i class="el-icon-date"></i> 我的行程
               </span>
-              <el-form :inline="true" :model="searchForm" :rules="rules" ref="searchForm">
+              <el-form :inline="true" :model="searchForm" :rules="rules" ref="searchForm" label-width="140px">
                 <el-row :gutter="5">
                   <el-col :span="8">
-                    <el-form-item label="客户名称：" prop="customerName" label-width="140px">
+                    <el-form-item label="客户名称：" prop="customerName">
                       <el-input
                         v-model="searchForm.customerName"
                         placeholder="客户名称"
@@ -23,7 +23,7 @@
                     </el-form-item>
                   </el-col>
                   <el-col :span="8">
-                    <el-form-item label="户籍性质：" prop="domicileType" label-width="140px">
+                    <el-form-item label="户籍性质：" prop="domicileType">
                       <el-select
                         v-model="searchForm.domicileType"
                         placeholder="请选择"
@@ -62,7 +62,7 @@
 
                 <el-row :gutter="5">
                   <el-col :span="8" >
-                    <el-form-item label="意见结论" label-width="140px">
+                    <el-form-item label="意见结论">
                       <el-radio-group v-model="flowOpinion.conclusion">
                         <el-radio :label="1">同意</el-radio>
                         <el-radio :label="0">拒绝</el-radio>
@@ -73,8 +73,8 @@
 
                 <el-row :gutter="5">
                   <el-col :span="8" >
-                    <el-form-item label="意见说明" label-width="140px">
-                      <el-input type="textarea" v-model="flowOpinion.opinion"></el-input>
+                    <el-form-item label="意见说明">
+                      <el-input type="textarea" v-model="flowOpinion.opinion" class="same-form-width"></el-input>
                     </el-form-item>
                   </el-col>
                 </el-row>

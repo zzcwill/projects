@@ -82,8 +82,7 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
-          let data = this._.pick(this.loginForm,['userName','password'])
-          this.$store.dispatch('user/login', data).then(() => {
+          this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           }).catch(() => {
