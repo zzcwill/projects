@@ -9,14 +9,23 @@
           <el-row :gutter="20">
             <el-col :span="10">
               <el-card shadow="never">
-                <el-tree :data="imgTreeData" :props="imgTreeDataProps" @node-click="getImgList"></el-tree>
+                <el-tree ref="imgTreeDataDom" :data="imgTreeData" :props="imgTreeDataProps" @node-click="getImgList" default-expand-all></el-tree>
               </el-card>
             </el-col>
-            <el-col :span="4">
+            <el-col :span="6">
               <el-card shadow="never">
-                <el-button @click="toUloadFile">上传文件</el-button>
+                <el-upload
+                  action
+                  :before-upload="beforeUpload"
+                  :on-change="changeFile"
+                  :http-request="uploadFile"
+                  :show-file-list="false"
+                >
+                  <el-button type="primary" :disabled="currentDirId === '' ? true : false">点击上传</el-button>
+                  <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                </el-upload>
               </el-card>
-            </el-col>            
+            </el-col>
           </el-row>
         </el-tab-pane>
         <el-tab-pane label="过程信息">过程信息</el-tab-pane>
@@ -57,6 +66,9 @@ export default {
         children: 'children',
         label: 'name',
       },
+
+      currentDirId: '',
+      imgBase64: ''
     }
   },
   created() {
@@ -80,20 +92,55 @@ export default {
       this.imgTreeData = imgArr
     },
     async getImgList(data) {
-      if(data.children.length === 0) {
-        return
-      }
+      this.currentDirId = data.id
       let params = {
         loanApplyId: this.projectId,
         fileNamespace: this.$route.query.space,
         releventFlow: this.$route.query.releventFlow,
         releventFlowNode: this.$route.query.releventFlowNode,
-        dirId: data.id,
+        dirId: this.currentDirId,
       }
       let apiData = await loanApprovalInfoGetApprovalDocument(params)
-      console.log(apiData.data)
+      // console.log(apiData.data)
     },
-    toUloadFile() {},
+
+    //图片上传相关
+    beforeUpload(file) {
+      const isPng = file.type === 'image/png'
+      const isLt2M = file.size / 1024 / 1024 < 2
+
+      if (!isPng) {
+        this.$message.error('上传头像图片只能是 PNG 格式!')
+      }
+      if (!isLt2M) {
+        this.$message.error('上传头像图片大小不能超过 2MB!')
+      }
+      return isPng && isLt2M
+    },
+    changeFile(file, fileList) {
+      let that = this
+      let reader = new FileReader()
+      reader.onload = () => {
+        that.imgBase64 = reader.result
+      }
+      reader.readAsDataURL(file.raw)
+    },
+    async uploadFile(file) {
+      let params = {
+        loanApplyId: this.projectId,
+        fileNamespace: this.$route.query.space,
+        releventFlow: this.$route.query.releventFlow,
+        releventFlowNode: this.$route.query.releventFlowNode,
+        dirId: this.currentDirId,
+        'LoanDocuments[0].fileName': file.file.name,
+        'LoanDocuments[0].filePath': this.imgBase64
+      }
+      let apiData = await loanDocumentUploadFileString(params)
+
+      if (apiData) {
+        this.$message(apiData.message)
+      }
+    },
   },
 }
 </script>

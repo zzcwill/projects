@@ -6,7 +6,7 @@ import Qs from 'qs'
 const http = Axios.create({
 	// api的base_url
 	baseURL: process.env.VUE_APP_BASE_API,
-  timeout: 50000,
+  timeout: 5000,
   transformRequest: [function(data) {
     if (data && data.type && data.type === 'file') {
       data = data.data

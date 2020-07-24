@@ -174,7 +174,7 @@ export default {
       this.$refs['dialogForm'].validate(async (valid) => {
         if (valid) {
           let newData = await zaRoleAdd(this.dialogForm)
-          if(newData) {
+          if(newData) {        
             this.$message('添加成功')
             this.closeDialogForm()
             this.getTableList()
