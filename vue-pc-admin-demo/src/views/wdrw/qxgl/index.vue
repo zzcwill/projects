@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-card shadow="never" class="m-b-10">
       <div class="el-page-header m-b-20">
-        <div class="el-page-header__content m-lr-auto">权限管理</div>
+        <div class="el-page-header__content m-lr-auto">角色管理</div>
       </div>
       <el-form :inline="true" :model="searchForm" :rules="rules" ref="searchForm" label-width="140px">
         <el-row :gutter="5">
@@ -55,7 +55,6 @@
       <el-table-column label="操作" align="center">
         <template slot-scope="{row}">
           <el-button @click="toOperate(row)" type="text">修改角色</el-button>
-          <el-button @click="toOperate2(row)" type="text">修改车贷权限</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -157,9 +156,6 @@ export default {
       this.isNewPerson = false
       this.dialogForm = this._.pick(row,['name','note','id'])
       this.openDialogForm()
-    },
-    toOperate2(row) {
-
     },
     async getTableList() {
       this.tableData.tableLoading = true

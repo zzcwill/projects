@@ -9,7 +9,7 @@
           <el-tabs type="border-card" v-for="dom in domArr" :key="dom" class="m-b-20">
             <el-tab-pane>
               <span slot="label">
-                <i class="el-icon-date"></i> 我的行程
+                <i class="el-icon-date"></i> 客户信息
               </span>
               <el-form :inline="true" :model="searchForm" :rules="rules" ref="searchForm" label-width="140px" disabled>
                 <el-row :gutter="5" v-for="dom2 in domArr2" :key="dom2">
