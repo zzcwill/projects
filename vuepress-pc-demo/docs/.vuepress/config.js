@@ -17,8 +17,8 @@ module.exports = {
   // 默认为 true，设置为 false 来禁用
   editLinks: true,
   themeConfig: {
-    repo: 'zzcwill/vuepress',
-    docsRepo: 'zzcwill/vuepress',
+    repo: 'zzcwill',
+    docsRepo: 'zzcwill',
     // 如果你的文档不在仓库的根部
     docsDir: 'docs',
     // 可选，默认为 master
