@@ -5,8 +5,8 @@
 - 安装全局包
 - npm install -g gulp-cli
 - 安装相应依赖包
-- npm install
+- yarn install
 - 开发环境运行
-- gulp 
+- yarn dev 
 - 生成项目打包文件
-- gulp build
+- yarn build

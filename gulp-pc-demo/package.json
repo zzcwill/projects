@@ -1,29 +1,24 @@
 {
   "name": "gulp-demo",
   "version": "1.0.0",
+  "private": true,
   "description": "A gulp demo project",
   "scripts": {
-    "dev": "gulp",
-    "build": "gulp build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zzcwill/gulp.git"
+    "dev": "cross-env NODE_ENV=development gulp dev",
+    "build": "cross-env NODE_ENV=production gulp build"
   },
   "author": "zzcwill",
-  "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "del": "^5.0.0",
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "cross-env": "^7.0.2",
+    "del": "^5.1.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
-    "gulp-clean-css": "^4.2.0",
+    "gulp-clean-css": "^4.3.0",
     "gulp-connect": "^5.7.0",
     "gulp-htmlmin": "^5.0.1",
-    "gulp-imagemin": "^6.0.0",
-    "gulp-sass": "^4.0.2",
-    "gulp-uglify": "^3.0.2",
-    "node-sass": "^4.12.0"
+    "gulp-less": "^4.0.1",
+    "gulp-uglify": "^3.0.2"
   }
 }

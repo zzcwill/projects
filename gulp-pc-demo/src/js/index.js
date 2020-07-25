@@ -1,6 +1,6 @@
 const say = () => {
 	return 'hi'
 }    
-const type = 'dog' 
+const type = 'zzc' 
 
-console.log(`The ${type} says ${say()}`)
+console.log(`${type} says ${say()}`)
