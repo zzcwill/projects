@@ -14,11 +14,11 @@ import App from '@/App.vue'
 import router from '@/router'
 import store from '@/store'
 // 引入字体库
-//import '@/assets/icons/iconfont.css'
+//import '@/icons/iconfont.css'
 // 引入css样式重置
 import 'normalize.css/normalize.css'
 // 引入css公共样式
-import '@/assets/styles/common.less'
+import '@/styles/index.less'
 // 引入路由权限控制
 import '@/permission'
 

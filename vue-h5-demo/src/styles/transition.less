@@ -1,0 +1,111 @@
+//设置宽度、高度
+.generate-WH(1px);
+.generate-WH(@n, @i: 1) when (@i =< 750) {
+  .w@{i} {
+    width: @i* @n !important;
+  }
+  .h@{i} {
+    height: @i* @n !important;
+  }
+  .generate-WH(@n, (@i + 1));
+}
+//设置透明度
+.generate-OP(1);
+.generate-OP(@n, @i: 0) when (@i =< 10) {
+  .opacity@{i} {
+    opacity: (@i/10)* @n !important;
+  }
+  .generate-OP(@n, (@i + 1));
+}
+//设置高度宽度百分比
+.generate-PWH(1%);
+.generate-PWH(@n, @i: 1) when (@i =< 100) {
+  .Wpercent@{i} {
+    width: @i* @n !important;
+  }
+  .Hpercent@{i} {
+    height: @i* @n !important;
+  }
+  .generate-PWH(@n, (@i + 1));
+}
+//设置padding、margin
+.generate-PM(1px);
+.generate-PM(@n, @i: 1) when (@i =< 150) {
+  .p@{i} {
+    padding: @i* @n;
+  }
+  .plr@{i} {
+    padding-left: @i* @n !important;
+    padding-right: @i* @n !important;
+  }
+  .ptb@{i} {
+    padding-top: @i* @n !important;
+    padding-bottom: @i* @n !important;
+  }
+  .pt@{i} {
+    padding-top: @i* @n !important;
+  }
+  .pb@{i} {
+    padding-bottom: @i* @n !important;
+  }
+  .pr@{i} {
+    padding-right: @i* @n !important;
+  }
+  .pl@{i} {
+    padding-left: @i* @n !important;
+  }
+  .m@{i} {
+    margin: @i* @n;
+  }
+  .mt@{i} {
+    margin-top: @i* @n !important;
+  }
+  .mb@{i} {
+    margin-bottom: @i* @n !important;
+  }
+  .mr@{i} {
+    margin-right: @i* @n !important;
+  }
+  .ml@{i} {
+    margin-left: @i* @n !important;
+  }
+  .generate-PM(@n, (@i + 1));
+}
+
+//设置line-height
+.generate-LH(1px);
+.generate-LH(@n, @i: 0) when (@i =< 50) {
+  .line-height@{i} {
+    line-height: @i* @n;
+  }
+  .top@{i} {
+    top: @i* @n;
+  }
+  .left@{i} {
+    left: @i* @n;
+  }
+  .right@{i} {
+    right: @i* @n;
+  }
+  .bottom@{i} {
+    bottom: @i* @n;
+  }
+  .generate-LH(@n, (@i + 1));
+}
+
+//设置z-index
+.generate-INDEX(1);
+.generate-INDEX(@n, @i: 0) when (@i <= 50) {
+  .zIndex@{i} {
+    z-index: @i* @n !important;
+  }
+  .generate-INDEX(@n, (@i + 1));
+}
+
+.generate-Spacing(1px);
+.generate-Spacing(@n, @i: 0) when (@i <= 5) {
+  .textSpacing@{i} {
+    letter-spacing: @i* @n;
+  }
+  .generate-Spacing(@n, (@i + 1));
+}

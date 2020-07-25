@@ -1,3 +1,11 @@
+'use strict'
+const path = require('path')
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
+
+const name = 'zzc-h5'
+
 module.exports = {
   // 默认部署在服务器根目录，不是根目录调整样式
   publicPath: '/',
@@ -36,7 +44,7 @@ module.exports = {
       errors: true
     },
     // 端口号
-    port: 8002,
+    port: 6001,
     // 配置ip地址
     // host: 'localhost',
     // https:{type:Boolean}
@@ -63,6 +71,36 @@ module.exports = {
         }
       },                 
     },  
-  }   
+  },
+  configureWebpack: {
+    name: name,
+    resolve: {
+      alias: {
+        '@': resolve('src'),
+        '@mock': resolve('mock')
+      }
+    },
+    performance: {
+      hints:'warning',
+      //入口起点的最大体积
+      maxEntrypointSize: 30000*1024,
+      //生成文件的最大体积
+      maxAssetSize: 30000*1024,
+      //只给出 js 文件的性能提示
+      assetFilter: function(assetFilename) {
+        return assetFilename.endsWith('.js');
+      }
+    }    
+  },
+  // chainWebpack(config) {
+  //   config.plugins.delete('preload')
+  //   config.plugins.delete('prefetch')
+
+  //   config
+  //   // https://webpack.js.org/configuration/devtool/#development
+  //     .when(process.env.NODE_ENV === 'development',
+  //       config => config.devtool('cheap-source-map')
+  //     )
+  // }   
 
 }

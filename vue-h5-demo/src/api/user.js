@@ -6,13 +6,6 @@ import http from '@/utils/http'
 //     url: 'login',
 //     method: 'post',
 //     data: data,
-//     headers: {
-//       'Content-Type': 'application/x-www-form-urlencoded'     
-//     },
-//     transformRequest: [function (data) {
-//       data = Qs.stringify(data)
-//       return data
-//     }],
 //     baseURL: '/mock/',
 //   })
 // }

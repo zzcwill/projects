@@ -12,39 +12,40 @@
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml"
   },
   "dependencies": {
+    "core-js": "^3.6.5",    
+    "vue": "^2.6.11",
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0",
+
     "axios": "^0.19.0",
-    "core-js": "^3.6.5",
     "element-ui": "^2.11.1",
     "js-cookie": "^2.2.0",
     "loadsh": "^0.0.4",
     "moment": "^2.27.0",
     "normalize.css": "^8.0.1",
     "path-to-regexp": "^3.0.0",
-    "qs": "^6.9.1",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "qs": "^6.9.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.4.0",
     "@vue/cli-plugin-eslint": "~4.4.0",
-    "@vue/cli-plugin-pwa": "~4.4.0",
     "@vue/cli-plugin-router": "~4.4.0",
     "@vue/cli-plugin-vuex": "~4.4.0",
     "@vue/cli-service": "~4.4.0",
-    "autoprefixer": "^9.5.1",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "html-webpack-plugin": "3.2.0",
-    "mockjs": "1.0.1-beta3",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
+    "vue-template-compiler": "^2.6.11",
+
+    "autoprefixer": "^9.5.1",
+    "html-webpack-plugin": "3.2.0",
+    "mockjs": "1.0.1-beta3",
     "script-ext-html-webpack-plugin": "2.1.3",
     "script-loader": "0.7.2",
     "serve-static": "^1.13.2",
     "svg-sprite-loader": "4.1.3",
-    "svgo": "1.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "svgo": "1.2.2"
   }
 }

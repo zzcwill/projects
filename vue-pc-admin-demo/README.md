@@ -34,18 +34,6 @@
 ##### css,html,js缩进要求
 - 缩进都用2空格
 
-
-### 框架所用包相关功能
-- 样式 ：normalize.css, sass
-- UI ： element-ui 
-- 网络 ： axios, qs
-- 基础库: vue.js、vue-router、vuex
-- 编译/打包工具：webpack、babel、、node-sass
-- svgo图标：svgo
-- 复制功能: clipboard
-- 本地缓存: js-cookie
-- js代码检验: eslint
-
 ### 项目目录说明
 
 ```bash
@@ -96,28 +84,40 @@
 
 ### 搭建环境所环境
 - vue-cli4.x搭建，相关依赖包
-- dependencies：package.json的dependencies查看
-- devDependencies: package.json的devDependencies查看
-- node 版本 > 8.10.0+
+- vue-cli4-dependencies：
+  core-js
+  vue 
+  vue-router
+  vuex
+- vue-cli4-devDependencies: 
+  @vue/cli-plugin-babel, 
+  @vue/cli-plugin-eslint
+  @vue/cli-plugin-router
+  @vue/cli-plugin-vuex
+  @vue/cli-service
+  babel-eslint
+  eslint
+  eslint-plugin-vue
+  sass
+  sass-loader
+  vue-template-compiler
+- node版本 
+  12.18.3
+- 全局包
+  eslint
+  svgo
 
-### 接口调用地址
-- 测试环境，公网可以访问
-- 
-- 接口文档地址
-- 
 
 ### 项目运行
 - 全局安装包安装
 - npm install -g svgo
-- npm install -g @vue/cli
+- npm install -g eslint
 - 安装相应依赖包
 - yarn install
 - 开发环境运行
 - yarn run dev
 - 生成项目打包文件
 - yarn run build
-
-#### 其他目录操作
 - 检测src目录代码是否规范
 - yarn run lint
 - 修复src目录不规范代码
