@@ -42,16 +42,16 @@ module.exports = {
       }
     },
     performance: {
-      hints:'warning',
+      hints: 'warning',
       //入口起点的最大体积
-      maxEntrypointSize: 30000*1024,
+      maxEntrypointSize: 30000 * 1024,
       //生成文件的最大体积
-      maxAssetSize: 30000*1024,
+      maxAssetSize: 30000 * 1024,
       //只给出 js 文件的性能提示
-      assetFilter: function(assetFilename) {
+      assetFilter: function (assetFilename) {
         return assetFilename.endsWith('.js');
       }
-    }    
+    }
   },
   chainWebpack(config) {
     config.plugins.delete('preload')
@@ -86,7 +86,7 @@ module.exports = {
       .end()
 
     config
-    // https://webpack.js.org/configuration/devtool/#development
+      // https://webpack.js.org/configuration/devtool/#development
       .when(process.env.NODE_ENV === 'development',
         config => config.devtool('cheap-source-map')
       )
@@ -98,7 +98,7 @@ module.exports = {
             .plugin('ScriptExtHtmlWebpackPlugin')
             .after('html')
             .use('script-ext-html-webpack-plugin', [{
-            // `runtime` must same as runtimeChunk name. default is `runtime`
+              // `runtime` must same as runtimeChunk name. default is `runtime`
               inline: /runtime\..*\.js$/
             }])
             .end()

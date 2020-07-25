@@ -48,6 +48,7 @@ const actions = {
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
       logout().then(() => {
+        commit('SET_INFO', '')
         removeToken()
         resetRouter()
         resolve()
