@@ -1,5 +1,5 @@
 <template>
-  <div class="UserLogin">
+  <div class="UserLogin f-s-16">
     demo
   </div>
 </template>

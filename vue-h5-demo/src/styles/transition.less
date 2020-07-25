@@ -1,111 +1,92 @@
-//设置宽度、高度
-.generate-WH(1px);
-.generate-WH(@n, @i: 1) when (@i =< 750) {
-  .w@{i} {
-    width: @i* @n !important;
+//项目width,height,padding,border,margin
+
+.loop(@counter) when (@counter > 10) {
+  .f-s-@{counter} {
+    font-size: (1px * @counter);
   }
-  .h@{i} {
-    height: @i* @n !important;
-  }
-  .generate-WH(@n, (@i + 1));
-}
-//设置透明度
-.generate-OP(1);
-.generate-OP(@n, @i: 0) when (@i =< 10) {
-  .opacity@{i} {
-    opacity: (@i/10)* @n !important;
-  }
-  .generate-OP(@n, (@i + 1));
-}
-//设置高度宽度百分比
-.generate-PWH(1%);
-.generate-PWH(@n, @i: 1) when (@i =< 100) {
-  .Wpercent@{i} {
-    width: @i* @n !important;
-  }
-  .Hpercent@{i} {
-    height: @i* @n !important;
-  }
-  .generate-PWH(@n, (@i + 1));
-}
-//设置padding、margin
-.generate-PM(1px);
-.generate-PM(@n, @i: 1) when (@i =< 150) {
-  .p@{i} {
-    padding: @i* @n;
-  }
-  .plr@{i} {
-    padding-left: @i* @n !important;
-    padding-right: @i* @n !important;
-  }
-  .ptb@{i} {
-    padding-top: @i* @n !important;
-    padding-bottom: @i* @n !important;
-  }
-  .pt@{i} {
-    padding-top: @i* @n !important;
-  }
-  .pb@{i} {
-    padding-bottom: @i* @n !important;
-  }
-  .pr@{i} {
-    padding-right: @i* @n !important;
-  }
-  .pl@{i} {
-    padding-left: @i* @n !important;
-  }
-  .m@{i} {
-    margin: @i* @n;
-  }
-  .mt@{i} {
-    margin-top: @i* @n !important;
-  }
-  .mb@{i} {
-    margin-bottom: @i* @n !important;
-  }
-  .mr@{i} {
-    margin-right: @i* @n !important;
-  }
-  .ml@{i} {
-    margin-left: @i* @n !important;
-  }
-  .generate-PM(@n, (@i + 1));
+
+  .loop((@counter - 2)); // 递归调用自身
 }
 
-//设置line-height
-.generate-LH(1px);
-.generate-LH(@n, @i: 0) when (@i =< 50) {
-  .line-height@{i} {
-    line-height: @i* @n;
+.loop2(@counter) when (@counter > 0) {
+  .t-@{counter} {
+    top: (1px * @counter);
   }
-  .top@{i} {
-    top: @i* @n;
+
+  .l-@{counter} {
+    left: (1px * @counter);
   }
-  .left@{i} {
-    left: @i* @n;
+
+  .b-@{counter} {
+    bottom: (1px * @counter);
   }
-  .right@{i} {
-    right: @i* @n;
+
+  .r-@{counter} {
+    right: (1px * @counter);
   }
-  .bottom@{i} {
-    bottom: @i* @n;
+
+  .w-@{counter} {
+    width: (1px * @counter);
   }
-  .generate-LH(@n, (@i + 1));
+
+  .h-@{counter} {
+    height: (1px * @counter);
+  }
+
+  .l-h-@{counter} {
+    line-height: (1px * @counter);
+  }
+
+  .p-@{counter} {
+    padding: (1px * @counter);
+  }
+
+  .p-l-@{counter} {
+    padding-left: (1px * @counter);
+  }
+
+  .p-r-@{counter} {
+    padding-right: (1px * @counter);
+  }
+
+  .p-t-@{counter} {
+    padding-top: (1px * @counter);
+  }
+
+  .p-b-@{counter} {
+    padding-bottom: (1px * @counter);
+  }
+
+  .m-@{counter} {
+    margin: (1px * @counter);
+  }
+
+  .m-l-@{counter} {
+    margin-left: (1px * @counter);
+  }
+
+  .m-r-@{counter} {
+    margin-right: (1px * @counter);
+  }
+
+  .m-t-@{counter} {
+    margin-top: (1px * @counter);
+  }
+
+  .m-b-@{counter} {
+    margin-bottom: (1px * @counter);
+  }
+
+  .brs-@{counter} {
+    border-radius: (1px * @counter);
+  }
+
+  .z-@{counter} {
+    z-index: (1px * @counter);
+  }
+
+  .loop((@counter - 1)); // 递归调用自身
 }
 
-//设置z-index
-.generate-INDEX(1);
-.generate-INDEX(@n, @i: 0) when (@i <= 50) {
-  .zIndex@{i} {
-    z-index: @i* @n !important;
-  }
-  .generate-INDEX(@n, (@i + 1));
-}
-
-.generate-Spacing(1px);
-.generate-Spacing(@n, @i: 0) when (@i <= 5) {
-  .textSpacing@{i} {
-    letter-spacing: @i* @n;
-  }
-  .generate-Spacing(@n, (@i + 1));
-}
+.loop(36);
+.loop2(100);

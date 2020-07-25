@@ -92,15 +92,15 @@ module.exports = {
       }
     }    
   },
-  // chainWebpack(config) {
-  //   config.plugins.delete('preload')
-  //   config.plugins.delete('prefetch')
+  chainWebpack(config) {
+    config.plugins.delete('preload')
+    config.plugins.delete('prefetch')
 
-  //   config
-  //   // https://webpack.js.org/configuration/devtool/#development
-  //     .when(process.env.NODE_ENV === 'development',
-  //       config => config.devtool('cheap-source-map')
-  //     )
-  // }   
+    config
+    // https://webpack.js.org/configuration/devtool/#development
+      .when(process.env.NODE_ENV === 'development',
+        config => config.devtool('cheap-source-map')
+      )
+  }   
 
 }
