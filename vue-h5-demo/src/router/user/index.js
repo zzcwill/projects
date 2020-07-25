@@ -1,4 +1,4 @@
-const UserLogin = () => import('@/views/user/UserLogin.vue')
+const userLogin = () => import('@/views/user/userLogin.vue')
 
 const userRoute = [
   {
@@ -8,7 +8,7 @@ const userRoute = [
 	{
 		path: '/userLogin',
 		name: 'userLogin',
-		component: UserLogin
+		component: userLogin
 	}		
 ]
 

@@ -3,7 +3,7 @@ import http from '@/utils/http'
 
 // export function loginApi (data) {
 //   return http({
-//     url: 'login',
+//     url: '/login',
 //     method: 'post',
 //     data: data,
 //     baseURL: '/mock/',
@@ -12,7 +12,7 @@ import http from '@/utils/http'
 
 export function topicsApi (data) {
   return http({
-    url: 'topics',
+    url: '/topics',
     method: 'get',
     params: data,
   })

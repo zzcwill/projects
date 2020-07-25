@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import { Message } from 'element-ui'
-import store from '@/store'
+import { getToken } from '@/utils/config' 
 import Qs from 'qs'
 
 const http = Axios.create({
@@ -19,8 +19,8 @@ const http = Axios.create({
 
 // 设置请求头
 http.interceptors.request.use(config => {
-  if (store.getters.token) {
-    config.headers['token'] = store.getters.token
+  if (getToken()) {
+    config.headers['token'] = getToken()
   }
 	return config
 }, error => {

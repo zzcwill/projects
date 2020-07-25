@@ -1,5 +1,5 @@
 <template>
-  <div class="UserLogin f-s-16">
+  <div class="UserLogin">
     demo
   </div>
 </template>
@@ -8,16 +8,7 @@
 import { topicsApi } from '@/api/user'
 
 export default {
-  name: 'UserLogin',
-  metaInfo: {
-    title: '用户绑定',
-    meta: [
-      {
-        name: 'keywords',
-        content: '公司'
-      }
-    ]
-  },
+  name: 'userLogin',
   data() {
     return {
 			code: this.$route.query.code,
@@ -45,12 +36,6 @@ export default {
       }
       let res = await topicsApi(data)
       console.info(res)
-
-      // if (res.data.isBind) {
-      //   this.$router.push({
-      //     path: '/bindOk',
-      //   })
-      // }
     },    
 	},
 }
