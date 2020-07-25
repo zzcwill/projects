@@ -82,7 +82,7 @@ deploy:
 
 #新增start
 server:
-  port: 8001
+  port: 8000
   compress: true
   header: true
 #新增end
