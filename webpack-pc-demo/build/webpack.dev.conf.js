@@ -6,7 +6,7 @@ module.exports = {
   devtool: "source-map",
   devServer: {
     contentBase: path.join(__dirname, "dist"),
-    port: 8004,
+    port: 8000,
     hot: true,
     overlay: true,
     open: true,

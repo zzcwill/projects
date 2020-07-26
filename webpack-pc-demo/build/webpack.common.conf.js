@@ -15,11 +15,8 @@ const generateConfig = env => {
 
   return {
     entry: {
-      css: "./src/css.js",
       app: "./src/app.js",
-      app2: "./src/app2.js",
-      pageA: "./src/pageA.js",
-      pageB: "./src/pageB.js"
+      pageA: "./src/pageA.js"
     },
     output: {
       publicPath: env === "production" ? "./" : "/",
@@ -73,8 +70,8 @@ const generateConfig = env => {
               options: {
                 name: "[name]-[hash:5].min.[ext]",
                 limit: 20000, // size <= 20KB
-                publicPath: "./img/",
-                outputPath: "img/"
+                publicPath: "./images/",
+                outputPath: "images/"
               }
             }
           ]
@@ -99,16 +96,17 @@ const generateConfig = env => {
       splitChunks: {
         cacheGroups: {
           // 注意: priority属性
-          // 其次: 打包业务中公共代码
+          // 其次: 打包vendor公共代码
           common: {
-            name: "common",
+            name: "vendor",
+            test: /[\\/]vendor[\\/]/,
             chunks: "all",
             minSize: 1,
             priority: 0
           },
           // 首先: 打包node_modules中的文件
           vendor: {
-            name: "vendor",
+            name: "vendor2",
             test: /[\\/]node_modules[\\/]/,
             chunks: "all",
             priority: 10
@@ -126,12 +124,12 @@ const generateConfig = env => {
       new HtmlWebpackPlugin({
         filename: "index.html",
         template: "./index.html",
-        chunks: ['css','common','vendor',"app","app2",'pageA','pageB'], // entry中的app入口才会被打包
+        chunks: ['vendor','vendor2',"app",'pageA'], // entry中的app入口才会被打包
         minify: {
           // 压缩选项
           collapseWhitespace: true
         },
-        favicon: './src/img/favicon.ico'
+        favicon: './src/images/favicon.ico'
       }),
       new webpack.ProvidePlugin({
         $: "jquery", // npm

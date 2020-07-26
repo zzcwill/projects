@@ -1,18 +1,14 @@
 {
   "name": "webpck-demo",
   "version": "1.0.0",
+  "private": true,  
   "description": "A webpack demo",
   "scripts": {
     "dev": "webpack-dev-server --env development --config build/webpack.common.conf.js",
+    "build": "webpack --env production --progress --display-reasons --color --config build/webpack.common.conf.js",    
     "dev2": "webpack-dev-server --env development",
-    "build": "webpack --env production --progress --display-reasons --color --config build/webpack.common.conf.js",
     "build2": "webpack --env production --progress --display-reasons --color"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zzcwill/webpack.git"
-  },
-  "author": "zzcwill",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",

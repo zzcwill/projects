@@ -1,0 +1,28 @@
+@charset "utf-8";
+@import './common.scss';
+
+*,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.demo {
+  margin: 20px auto;
+  height: 160px;
+  width: 160px;
+  border: 1px solid blue;
+  color: #000;
+  .bg-img {
+    margin: auto;
+    width: 100px;
+    height: 100px; 
+    background: url('./../images/2.png') no-repeat center center; 
+  } 
+  .img-box {
+    margin: auto;
+    display: block;
+    width: 100px;
+    height: 100px; 
+  }
+}

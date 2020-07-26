@@ -1,2 +1,6 @@
-import * as _ from "lodash";
-console.log("At page 'B' :", _);
+let data = {
+	page: 'pageA',
+}
+console.info(data.page)
+
+console.info('zhengzhichao')

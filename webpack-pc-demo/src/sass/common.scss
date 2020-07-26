@@ -1,0 +1,206 @@
+@charset "utf-8";
+// 引入的公共样式
+
+//布局定位
+//浮动、清除浮动
+.clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+.f-l {
+  float: left;
+}
+.f-r {
+  float: right;
+}
+.p-r {
+  position: relative;
+}
+.p-a {
+  position: absolute;
+}
+.p-f {
+  position: fixed;
+}
+.flex-d-c {
+  flex-direction: column;
+}
+.flex-d-r {
+  flex-direction: row;
+}
+.overflow-h {
+  overflow: hidden;
+}
+.flex {
+  display: -webkit-flex;
+  display: flex;
+}
+.display-if {
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
+.display-ib {
+  display: inline-block !important;
+}
+.display-b {
+  display: block;
+}
+.display-n {
+  display: none;
+}
+.justify-c-c {
+  justify-content: center;
+}
+.justify-c-sb {
+  justify-content: space-between;
+}
+.justify-c-fs {
+  justify-content: flex-start;
+}
+.justify-c-fe {
+  justify-content: flex-end;
+}
+.align-i-c {
+  align-items: center;
+}
+.align-i-fs{
+  align-items: flex-start
+}
+.align-i-fe{
+  align-items: flex-end
+}
+
+// 文字位置设置
+.text-l {
+  text-align: left !important;
+}
+.text-r {
+  text-align: right !important;
+}
+.text-c {
+  text-align: center !important;
+}
+.text-u {
+  text-decoration: underline;
+}
+
+//颜色
+.color-w {
+  color: #fff!important;
+}
+.bg-b {
+  background: #000 !important;
+}
+
+// 设置光标样式
+.cursor-p {
+  cursor: pointer !important;
+}
+.cursor-d {
+  cursor: default !important;
+}
+
+//边框
+.border {
+  border: solid 1px #eee;
+}
+.border-l {
+  border-left: solid 1px #eee;
+}
+.border-r {
+  border-right: solid 1px #eee;
+}
+.border-t {
+  border-top: solid 1px #eee;
+}
+.border-b {
+  border-bottom: solid 1px #eee;
+}
+
+
+@for $counter from 1 through 40 {
+  .f-s-#{$counter} {
+    font-size: (1px * $counter);
+  }  
+}
+
+@for $counter from 1 through 100 {
+  .t-#{$counter} {
+    top: (1px * $counter);
+  }
+
+  .l-#{$counter} {
+    left: (1px * $counter);
+  }
+
+  .b-#{$counter} {
+    bottom: (1px * $counter);
+  }
+
+  .r-#{$counter} {
+    right: (1px * $counter);
+  }
+
+  .w-#{$counter} {
+    width: (1px * $counter);
+  }
+
+  .h-#{$counter} {
+    height: (1px * $counter);
+  }
+
+  .l-h-#{$counter} {
+    line-height: (1px * $counter);
+  }
+
+  .p-#{$counter} {
+    padding: (1px * $counter);
+  }
+
+  .p-l-#{$counter} {
+    padding-left: (1px * $counter);
+  }
+
+  .p-r-#{$counter} {
+    padding-right: (1px * $counter);
+  }
+
+  .p-t-#{$counter} {
+    padding-top: (1px * $counter);
+  }
+
+  .p-b-#{$counter} {
+    padding-bottom: (1px * $counter);
+  }
+
+  .m-#{$counter} {
+    margin: (1px * $counter);
+  }
+
+  .m-l-#{$counter} {
+    margin-left: (1px * $counter);
+  }
+
+  .m-r-#{$counter} {
+    margin-right: (1px * $counter);
+  }
+
+  .m-t-#{$counter} {
+    margin-top: (1px * $counter);
+  }
+
+  .m-b-#{$counter} {
+    margin-bottom: (1px * $counter);
+  }
+
+  .brs-#{$counter} {
+    border-radius: (1px * $counter);
+  }
+
+  .z-#{$counter} {
+    z-index: (1px * $counter);
+  }
+}

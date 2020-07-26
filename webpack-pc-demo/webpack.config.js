@@ -1,15 +1,18 @@
+'use strict'
+
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
+
 module.exports = {
   entry: {
-    css: "./src/css.js",
     app: "./src/app.js",
-    app2: "./src/app2.js",
     pageA: "./src/pageA.js",
-    pageB: "./src/pageB.js"
   },
   output: {
     publicPath: "/",
@@ -63,8 +66,8 @@ module.exports = {
             options: {
               name: "[name]-[hash:5].min.[ext]",
               limit: 20000, // size <= 20KB
-              publicPath: "./img/",
-              outputPath: "img/"
+              publicPath: "./images/",
+              outputPath: "images/"
             }
           }
         ]
@@ -89,16 +92,17 @@ module.exports = {
     splitChunks: {
       cacheGroups: {
         // 注意: priority属性
-        // 其次: 打包业务中公共代码
+        // 其次: 打包vendor公共代码
         common: {
-          name: "common",
+          name: "vendor",
+          test: /[\\/]vendor[\\/]/,
           chunks: "all",
           minSize: 1,
           priority: 0
         },
         // 首先: 打包node_modules中的文件
         vendor: {
-          name: "vendor",
+          name: "vendor2",
           test: /[\\/]node_modules[\\/]/,
           chunks: "all",
           priority: 10
@@ -109,12 +113,13 @@ module.exports = {
   },
   resolve: {
     alias: {
-      jquery2: path.resolve(__dirname, "src/vendor/jquery-1.11.1.min.js")
+      '@': resolve('src'),
+      'jquery2': resolve('src/vendor/jquery-1.11.1.min.js')
     }
   },
   devServer: {
     contentBase: path.join(__dirname, "dist"),
-    port: 8004,
+    port: 8000,
     hot: true,
     overlay: true,
     open: true,
@@ -133,12 +138,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "./index.html",
-      chunks: ['css','common','vendor',"app","app2",'pageA','pageB'], // entry中的app入口才会被打包
+      chunks: ['vendor','vendor2',"app",'pageA'], // entry中的app入口才会被打包
       minify: {
         // 压缩选项
-        collapseWhitespace: true
+        // collapseWhitespace: true,
+        collapseWhitespace: false
       },
-      favicon: './src/img/favicon.ico'
+      favicon: './src/images/favicon.ico'
     }),
     new webpack.ProvidePlugin({
       $: "jquery", // npm
