@@ -1,22 +1,18 @@
 {
   "name": "express-demo",
   "version": "1.0.0",
+  "private": true,
   "description": "express-demo",
   "main": "app.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev DEBUG=dev nodemon ./bin/www",
+    "dev": "cross-env NODE_ENV=development DEBUG=dev nodemon ./bin/www",
     "test": "cross-env NODE_ENV=test node ./bin/www",
-    "pro": "cross-env NODE_ENV=pro node ./bin/www",
-    "auto": "cross-env NODE_ENV=test && mocha 'test/*.test.js' --exit",
-    "cover": "cross-env NODE_ENV=test && nyc --reporter=lcov mocha 'test/*.test.js' --exit",
-    "lint": "eslint .",
-    "fix": "eslint . --fix "
+    "pro": "cross-env NODE_ENV=production node ./bin/www",
+    "auto": "mocha 'test/*.test.js' --exit",
+    "cover": "nyc --reporter=lcov mocha 'test/*.test.js' --exit",
+    "lint": "eslint --ext .js",
+    "lintfix": "eslint --fix --ext .js"
   },
-  "keywords": [
-    "pro"
-  ],
-  "author": "zzc",
-  "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
