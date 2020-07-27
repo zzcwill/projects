@@ -49,7 +49,7 @@ const generateConfig = env => {
           }
         },
         {
-          test: /\.scss$/,       
+          test: /\.less$/,       
           // scss处理为style标签
           use: [
             {
@@ -62,7 +62,7 @@ const generateConfig = env => {
               loader: "css-loader"
             },
             {
-              loader: "sass-loader"
+              loader: "less-loader"
             }          
           ]
         },
@@ -127,7 +127,7 @@ const generateConfig = env => {
     plugins: [
       new HtmlWebpackPlugin({
         filename: "index.html",
-        template: resolve("./index.html"),
+        template: resolve("../index.html"),
         chunks: ['vendor','vendor2',"app",'pageA'], // entry中的app入口才会被打包
         minify: {
           // 压缩选项

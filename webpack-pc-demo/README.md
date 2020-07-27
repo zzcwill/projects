@@ -18,14 +18,14 @@
 
 ### 2 转es6需要包
 #### devDependencies
--	babel-core
--	babel-loader
--	babel-plugin-transform-runtime
-- babel-preset-env
+-	@babel/core
+-	babel-loader-8.0.0-beta.0
+- @babel/preset-env
+- @babel/plugin-transform-runtime
 注意：babel-loader的版本
 #### dependencies
--  babel-polyfill
--  babel-runtime
+-  @babel/polyfill
+-  @babel/runtime
 
 
 ### 3处理css
@@ -33,14 +33,14 @@
 -	file-loader
 -	style-loader
 
-### 4处理scss
--	node-sass
--	sass-loader
+### 4处理less
+-	less
+-	less-loader
 
-### 6 scss引入图片
+### 6 less引入图片
 - url-loader
 
-### 7 scss引入字体
+### 7 less引入字体
 - url-loader
 
 ### 8 自动生成html

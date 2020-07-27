@@ -41,7 +41,7 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,       
+        test: /\.less$/,       
         // scss处理为style标签
         use: [
           {
@@ -54,7 +54,7 @@ module.exports = {
             loader: "css-loader"
           },
           {
-            loader: "sass-loader"
+            loader: "less-loader"
           }          
         ]
       },

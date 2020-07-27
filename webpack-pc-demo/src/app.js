@@ -1,6 +1,7 @@
-import "babel-polyfill";
-import "./fonts/iconfont.scss";
-import "./sass/index.scss";
+import "@babel/polyfill";
+
+import "./fonts/iconfont.less";
+import "./less/index.less";
 
 import $_ from "lodash";
 
