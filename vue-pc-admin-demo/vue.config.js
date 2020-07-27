@@ -30,7 +30,15 @@ module.exports = {
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''
         }
-      }
+      },
+      '/egg': {
+        target: 'http://127.0.0.1:7002/api/',
+        changeOrigin: true,
+        ws: true,
+        pathRewrite: {
+          '^/egg': ''
+        }
+      },      
     }
   },
   configureWebpack: {

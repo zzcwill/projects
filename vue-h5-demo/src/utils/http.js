@@ -6,12 +6,15 @@ const http = Axios.create({
 	// api的base_url
 	baseURL: '/api',
   timeout: 5000,
+  headers: {
+    //后端json
+    //  'Content-Type': 'application/json;charset=UTF-8'
+    //后端表单
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  //后端表单application/x-www-form-urlencoded的参数转对象
   transformRequest: [function(data) {
-    if (data && data.type && data.type === 'file') {
-      data = data.data
-    } else {
-      data = Qs.stringify(data)
-    }
+    data = Qs.stringify(data)
     return data
   }]  
 })

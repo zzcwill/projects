@@ -4,7 +4,7 @@ import request from '@/utils/request'
 // post-demo
 // export function login(data) {
 //   return request({
-//     url: '/api/1.0/manager/login',
+//     url: '/login',
 //     method: 'post',
 //     data
 //   })
@@ -12,23 +12,33 @@ import request from '@/utils/request'
 // get-demo
 // export function getInfo(token) {
 //   return request({
-//     url: '/api/1.0/manager/home/info',
+//     url: '/info',
 //     method: 'get',
 //     params: { token }
 //   })
 // }
-// 图片上传
-// export function getImage(data) {
+// baseURL-demo
+// export function login(data) {
 //   return request({
-//     url: '图片上传接口方法',
+//     url: '/api/1.0/manager/login',
 //     method: 'post',
-//     transformRequest: [function(data) {
-//       return data
-//     }],
+//     data,
+//     baseURL: '/mock'
+//   })
+// }
+// 
+// upload-文件流-demo
+// export function uploadNew(data) {
+//   return request({
+//     url: '/upload/new',
+// 		 method: 'post',
+//     data,
 //     headers: {
-//       "Content-type": "multipart/form-data"
-//     },        
-//     data
+//       'Content-Type': 'multipart/form-data'
+//     },
+//     transformRequest: [function(data) {
+//       return data  
+//     }]		
 //   })
 // }
 

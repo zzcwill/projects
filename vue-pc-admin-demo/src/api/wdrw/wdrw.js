@@ -75,12 +75,28 @@ export function loanApprovalInfoGetApprovalDocument(data) {
     data		
   })
 }
-//上传图片
+//上传图片-base64
 export function loanDocumentUploadFileString(data) {
   return request({
     url: '/loanDocument/uploadFileString',
 		method: 'post',
-    data		
+    data      	
+  })
+}
+//上传图片-文件流
+export function uploadNew(data) {
+  return request({
+    //本地egg-user-admin
+    url: '/upload/new',
+		method: 'post',
+    data,
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    transformRequest: [function(data) {
+      return data  
+    }],   
+    baseURL: '/egg'		
   })
 }
 //多媒体资料页end
