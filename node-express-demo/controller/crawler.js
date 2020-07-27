@@ -1,5 +1,5 @@
 var cheerio = require('cheerio');
-var qs = require('qs');
+// var qs = require('qs');
 var axios = require('axios');
 
 var { resDataApi } = require('../extend/api');
