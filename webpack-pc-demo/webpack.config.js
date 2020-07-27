@@ -11,12 +11,12 @@ function resolve(dir) {
 
 module.exports = {
   entry: {
-    app: "./src/app.js",
-    pageA: "./src/pageA.js",
+    app: resolve("./src/app.js"),
+    pageA: resolve("./src/pageA.js"),
   },
   output: {
     publicPath: "/",
-    path: path.resolve(__dirname, "dist"),
+    path: resolve("./dist"),
     filename: "[name]-[hash:5].bundle.js",
     chunkFilename: "[name]-[hash:5].chunk.js"
   },
@@ -113,7 +113,6 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@': resolve('src'),
       'jquery2': resolve('src/vendor/jquery-1.11.1.min.js')
     }
   },
@@ -137,7 +136,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: "./index.html",
+      template: resolve("./index.html"),
       chunks: ['vendor','vendor2',"app",'pageA'], // entry中的app入口才会被打包
       minify: {
         // 压缩选项

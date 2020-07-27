@@ -6,6 +6,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const productionConfig = require("./webpack.prod.conf.js"); // 引入生产环境配置文件
 const developmentConfig = require("./webpack.dev.conf.js"); // 引入开发环境配置文件
 
+function resolve(dir) {
+  return path.join(__dirname, dir)
+}
+
 /**
  * 根据不同的环境，生成不同的配置
  * @param {String} env "development" or "production"
@@ -15,11 +19,11 @@ const generateConfig = env => {
 
   return {
     entry: {
-      app: "./src/main.js"
+      app: resolve("../src/main.js")
     },
     output: {
       publicPath: env === "production" ? "./" : "/",
-      path: path.resolve(__dirname, "../dist"),
+      path: resolve("../dist"),
       filename: "[name]-[hash:5].bundle.js",
       chunkFilename: "[name]-[hash:5].chunk.js"
     },
@@ -116,19 +120,19 @@ const generateConfig = env => {
     },
     resolve: {
       alias: {
-        jquery2: path.resolve(__dirname, "../src/vendor/jquery-1.11.1.min.js")
+        jquery2: resolve("../src/vendor/jquery-1.11.1.min.js")
       }
     },
     plugins: [
       new HtmlWebpackPlugin({
         filename: "index.html",
-        template: "./index.html",
+        template: resolve("../public/index.html"),
         chunks: ['vendor','vendor2',"app"], // entry中的app入口才会被打包
         minify: {
           // 压缩选项
           collapseWhitespace: true
         },
-        favicon: './src/images/favicon.ico'
+        favicon: resolve('../public/favicon.ico')
       }),
       new webpack.ProvidePlugin({
         $: "jquery", // npm
