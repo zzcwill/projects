@@ -19,7 +19,7 @@
 ### 2 转es6需要包
 #### devDependencies
 -	@babel/core
--	babel-loader-8.0.0-beta.0
+-	babel-loader
 - @babel/preset-env
 - @babel/plugin-transform-runtime
 注意：babel-loader的版本
