@@ -12,7 +12,7 @@
 
       v-bind="$attrs"
       :hide-on-single-page="true"
-      class="m-t-10 m-b-10 t-r"
+      class="m-t-10 m-b-10 text-r"
     />
   </div>
 </template>
@@ -73,10 +73,10 @@ export default {
   },
   methods: {
     handleSizeChange(val) {
-      this.$emit('pagination', { page: this.currentPage, limit: val })
+      this.$emit('pagination')
     },
     handleCurrentChange(val) {
-      this.$emit('pagination', { page: val, limit: this.pageSize })
+      this.$emit('pagination')
     }
   }
 }
