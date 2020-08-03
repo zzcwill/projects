@@ -15,7 +15,6 @@ const LayoutHeader = (props) => {
     sidebarCollapsed,
     logout,
     getUserInfo,
-    fixedHeader,
   } = props;
   token && getUserInfo(token);
   const handleLogout = (token) => {
@@ -46,31 +45,25 @@ const LayoutHeader = (props) => {
       <Menu.Item key="project">
         <a
           target="_blank"
-          href="https://github.com/NLRX-WJC/react-antd-admin-template"
+          href="https://www.baidu.com/"
           rel="noopener noreferrer"
         >
-          项目地址
+          百度
         </a>
       </Menu.Item>
       <Menu.Divider />
-      <Menu.Item key="logout">注销</Menu.Item>
+      <Menu.Item key="logout">退出</Menu.Item>
     </Menu>
   );
   const computedStyle = () => {
     let styles;
-    if (fixedHeader) {
-      if (sidebarCollapsed) {
-        styles = {
-          width: "calc(100% - 80px)",
-        };
-      } else {
-        styles = {
-          width: "calc(100% - 200px)",
-        };
-      }
+    if (sidebarCollapsed) {
+      styles = {
+        width: "calc(100% - 80px)",
+      };
     } else {
       styles = {
-        width: "100%",
+        width: "calc(100% - 200px)",
       };
     }
     return styles;
@@ -79,10 +72,10 @@ const LayoutHeader = (props) => {
     <>
       {/* 这里是仿照antd pro的做法,如果固定header，
       则header的定位变为fixed，此时需要一个定位为relative的header把原来的header位置撑起来 */}
-      {fixedHeader ? <Header /> : null}
+      <Header />
       <Header
         style={computedStyle()}
-        className={fixedHeader ? "fix-header" : ""}
+        className="fix-header"
       >
         <Hamburger />
         <BreadCrumb />

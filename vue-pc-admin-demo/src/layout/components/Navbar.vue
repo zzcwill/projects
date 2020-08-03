@@ -16,7 +16,7 @@
               首页
             </el-dropdown-item>
           </router-link>
-          <a target="_blank" href="https://www.baidu.com/">
+          <a target="_blank" href="https://www.baidu.com/" rel="noopener noreferrer">
             <el-dropdown-item>百度</el-dropdown-item>
           </a>
           <el-dropdown-item divided>
