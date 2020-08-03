@@ -17,7 +17,6 @@ const Login = (props) => {
     setLoading(true);
     login(username, password)
       .then((data) => {
-        message.success("登录成功");
         handleUserInfo(data.token);
       })
       .catch((error) => {
