@@ -1,36 +1,26 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { Form, Icon, Input, Button, message, Spin } from "antd";
 import { connect } from "react-redux";
-import { getToken } from "@/utils/config";
 import DocumentTitle from "react-document-title";
 import "./index.less";
-import { login, getUserInfo } from "@/store/actions";
+import { tologin } from "@/store/actions";
 
 const Login = (props) => {
-  const { form, login, getUserInfo } = props;
+  const { form, tologin, history } = props;
   const { getFieldDecorator } = form;
 
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = (username, password) => {
+  const handleLogin = (userName, password) => {
     // 登录完成后 发送请求 调用接口获取用户信息
     setLoading(true);
-    login(username, password)
+    tologin(userName, password)
       .then((data) => {
-        handleUserInfo(data.token);
+        history.push('/');
       })
       .catch((error) => {
         setLoading(false);
-        message.error(error);
-      });
-  };
-
-  // 获取用户信息
-  const handleUserInfo = (token) => {
-    getUserInfo(token)
-      .then((data) => {})
-      .catch((error) => {
         message.error(error);
       });
   };
@@ -43,18 +33,14 @@ const Login = (props) => {
     form.validateFields((err, values) => {
       // 检验成功
       if (!err) {
-        const { username, password } = values;
-        handleLogin(username, password);
+        const { userName, password } = values;
+        handleLogin(userName, password);
       } else {
         console.log("检验失败!");
       }
     });
   };
 
-  let token = getToken();
-  if (token) {
-    return <Redirect to="/dashboard" />;
-  }
   return (
     <DocumentTitle title={"用户登录"}>
       <div className="login-container">
@@ -64,7 +50,7 @@ const Login = (props) => {
           </div>
           <Spin spinning={loading} tip="登录中...">
             <Form.Item>
-              {getFieldDecorator("username", {
+              {getFieldDecorator("userName", {
                 rules: [
                   {
                     required: true,
@@ -72,7 +58,7 @@ const Login = (props) => {
                     message: "请输入用户名",
                   },
                 ],
-                initialValue: "admin", // 初始值
+                initialValue: "18088888888", // 初始值
               })(
                 <Input
                   prefix={
@@ -91,7 +77,7 @@ const Login = (props) => {
                     message: "请输入密码",
                   },
                 ],
-                initialValue: "123456", // 初始值
+                initialValue: "123456a", // 初始值
               })(
                 <Input
                   prefix={
@@ -111,13 +97,6 @@ const Login = (props) => {
                 登录
               </Button>
             </Form.Item>
-            <Form.Item>
-              <span>账号 : admin 密码 : 随便填</span>
-              <br />
-              <span>账号 : editor 密码 : 随便填</span>
-              <br />
-              <span>账号 : guest 密码 : 随便填</span>
-            </Form.Item>
           </Spin>
         </Form>
       </div>
@@ -127,6 +106,4 @@ const Login = (props) => {
 
 const WrapLogin = Form.create()(Login);
 
-export default connect((state) => state.user, { login, getUserInfo })(
-  WrapLogin
-);
+export default connect((state) => state.user, { tologin })(withRouter(WrapLogin));

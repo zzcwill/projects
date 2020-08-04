@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "@/assets/images/logo.svg";
+import logo from "@/assets/common/1.jpg";
 import "./index.less";
 const Logo = () => {
   return (

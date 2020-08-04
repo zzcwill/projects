@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Icon, Menu, Dropdown, Modal, Layout, Avatar } from "antd";
-import { Link } from "react-router-dom";
-import { logout } from "@/store/actions";
+import { Link, withRouter } from "react-router-dom";
+import { tologout } from "@/store/actions";
 import Hamburger from "@/components/Hamburger";
 import BreadCrumb from "@/components/BreadCrumb";
 import "./index.less";
@@ -12,7 +12,8 @@ const LayoutHeader = (props) => {
   const {
     userInfo,
     sidebarCollapsed,
-    logout,
+    tologout,
+    history
   } = props;
   const handleLogout = () => {
     Modal.confirm({
@@ -21,7 +22,8 @@ const LayoutHeader = (props) => {
       okText: "确定",
       cancelText: "取消",
       onOk: () => {
-        logout();
+        tologout();
+        history.push('/login');
       },
     });
   };
@@ -97,4 +99,4 @@ const mapStateToProps = (state) => {
     ...state.user
   };
 };
-export default connect(mapStateToProps, { logout })(LayoutHeader);
+export default connect(mapStateToProps, { tologout })(withRouter(LayoutHeader));

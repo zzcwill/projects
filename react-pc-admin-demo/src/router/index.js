@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import { getUserInfo } from "@/store/actions";
+import { togetInfo } from "@/store/actions";
 import Layout from "@/views/layout";
 import Login from "@/views/login";
-import { getToken } from "@/utils/config";
+import { getToken, removeToken } from "@/utils/config";
 class Router extends React.Component {
   render() {
-    const { userInfo, getUserInfo } = this.props;
+    const { userInfo, togetInfo } = this.props;
     let token = getToken();
     return (
       <BrowserRouter>
@@ -18,11 +18,20 @@ class Router extends React.Component {
             render={() => {
               if (!token) {
                 return <Redirect to="/login" />;
-              } else {
-                if (userInfo.role) {
+              } 
+
+              if(token) {
+                if (userInfo !== '') {
                   return <Layout />;
-                } else {
-                  getUserInfo().then(() => <Layout />);
+                } 
+                
+                if (userInfo === '') {
+                  togetInfo()
+                  .then(() => <Layout />)
+                  .catch((error) => {
+                    removeToken();
+                    return <Redirect to="/login" />;  
+                  });
                 }
               }
             }}
@@ -33,4 +42,4 @@ class Router extends React.Component {
   }
 }
 
-export default connect((state) => state.user, { getUserInfo })(Router);
+export default connect((state) => state.user, { togetInfo })(Router);

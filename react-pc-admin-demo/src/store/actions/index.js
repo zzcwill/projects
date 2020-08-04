@@ -1,13 +1,14 @@
-import { login, logout, getUserInfo, setUserInfo } from "./user";
+import { tologin, tologout, togetInfo } from "./user";
 import { toggleSiderBar } from "./app";
 import { addTag, emptyTaglist, deleteTag, closeOtherTags } from "./tagsView";
 
 export {
-  login,
-  logout,
-  getUserInfo,
-  setUserInfo,
+  tologin,
+  tologout,
+  togetInfo,
+
   toggleSiderBar,
+  
   addTag,
   emptyTaglist,
   deleteTag,

@@ -1,6 +1,5 @@
 import * as types from "../action-types";
-import { reqUserInfo } from "@/api/user";
-import { reqLogin, reqLogout } from "@/api/login";
+import { login, logout, getInfo } from "@/api/common";
 import { setToken, removeToken } from "@/utils/config";
 import avatarPhoto from '@/assets/common/1.jpg'
 
@@ -11,9 +10,9 @@ export const setUserInfo = (userInfo) => {
   };
 };
 
-export const login = (username, password) => (dispatch) => {
+export const tologin = (userName, password) => (dispatch) => {
   return new Promise((resolve, reject) => {
-    reqLogin({ username: username.trim(), password: password })
+    login({ userName: userName.trim(), password: password })
       .then((response) => {
         const { data } = response;
         setToken(data.token)
@@ -25,9 +24,9 @@ export const login = (username, password) => (dispatch) => {
   });
 };
 
-export const getUserInfo = () => (dispatch) => {
+export const togetInfo = () => (dispatch) => {
   return new Promise((resolve, reject) => {
-    reqUserInfo()
+    getInfo()
       .then((response) => {
         const { data } = response
         data.avatar = avatarPhoto;
@@ -40,9 +39,9 @@ export const getUserInfo = () => (dispatch) => {
   });
 };
 
-export const logout = (token) => (dispatch) => {
+export const tologout = (token) => (dispatch) => {
   return new Promise((resolve, reject) => {
-    reqLogout(token)
+    logout(token)
       .then((response) => {
         const { data } = response;
         dispatch(setUserInfo(''));
