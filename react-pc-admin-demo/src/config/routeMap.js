@@ -4,6 +4,6 @@ const Dashboard = Loadable({loader: () => import(/*webpackChunkName:'Dashboard'*
 const Error404 = Loadable({loader: () => import(/*webpackChunkName:'Error404'*/'@/views/error/404'),loading: Loading});
 
 export default [
-  { path: "/dashboard", component: Dashboard, roles: ["admin"] },
-  { path: "/error/404", component: Error404, roles: ["admin"] },
+  { path: "/dashboard", component: Dashboard },
+  { path: "/error/404", component: Error404 },
 ];

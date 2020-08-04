@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
-import { Form, Icon, Input, Button, message, Spin } from "antd";
+import { Form, Icon, Input, Button, Spin } from "antd";
 import { connect } from "react-redux";
 import DocumentTitle from "react-document-title";
+import { getToken } from "@/utils/config";
 import "./index.less";
 import { tologin } from "@/store/actions";
 
@@ -16,15 +17,25 @@ const Login = (props) => {
     // 登录完成后 发送请求 调用接口获取用户信息
     setLoading(true);
     tologin(userName, password)
-      .then((data) => {
+      .then(() => {
         history.push('/');
       })
-      .catch((error) => {
+      .catch(() => {
         setLoading(false);
-        message.error(error);
       });
   };
 
+  const timeout = () => {
+    setTimeout(() => {
+      let token = getToken();
+      if (token) {
+        history.push('/');
+      } 
+    }, 1000);   
+  }
+
+  timeout()
+  
   const handleSubmit = (event) => {
     // 阻止事件的默认行为
     event.preventDefault();
@@ -39,7 +50,7 @@ const Login = (props) => {
         console.log("检验失败!");
       }
     });
-  };
+  }; 
 
   return (
     <DocumentTitle title={"用户登录"}>
@@ -106,4 +117,6 @@ const Login = (props) => {
 
 const WrapLogin = Form.create()(Login);
 
-export default connect((state) => state.user, { tologin })(withRouter(WrapLogin));
+export default withRouter(
+  connect((state) => state.user, { tologin })(WrapLogin)
+);
