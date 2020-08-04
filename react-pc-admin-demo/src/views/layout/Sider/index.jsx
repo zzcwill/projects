@@ -22,8 +22,7 @@ const LayoutSider = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    ...state.app,
-    ...state.settings,
+    ...state.app
   };
 };
 export default connect(mapStateToProps)(LayoutSider);

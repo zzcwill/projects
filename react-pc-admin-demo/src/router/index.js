@@ -4,9 +4,11 @@ import { connect } from "react-redux";
 import { getUserInfo } from "@/store/actions";
 import Layout from "@/views/layout";
 import Login from "@/views/login";
+import { getToken } from "@/utils/config";
 class Router extends React.Component {
   render() {
-    const { token, role, getUserInfo } = this.props;
+    const { userInfo, getUserInfo } = this.props;
+    let token = getToken();
     return (
       <BrowserRouter>
         <Switch>
@@ -17,10 +19,10 @@ class Router extends React.Component {
               if (!token) {
                 return <Redirect to="/login" />;
               } else {
-                if (role) {
+                if (userInfo.role) {
                   return <Layout />;
                 } else {
-                  getUserInfo(token).then(() => <Layout />);
+                  getUserInfo().then(() => <Layout />);
                 }
               }
             }}

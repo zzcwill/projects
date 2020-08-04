@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Icon, Menu, Dropdown, Modal, Layout, Avatar } from "antd";
 import { Link } from "react-router-dom";
-import { logout, getUserInfo } from "@/store/actions";
+import { logout } from "@/store/actions";
 import Hamburger from "@/components/Hamburger";
 import BreadCrumb from "@/components/BreadCrumb";
 import "./index.less";
@@ -10,28 +10,25 @@ const { Header } = Layout;
 
 const LayoutHeader = (props) => {
   const {
-    token,
-    avatar,
+    userInfo,
     sidebarCollapsed,
     logout,
-    getUserInfo,
   } = props;
-  token && getUserInfo(token);
-  const handleLogout = (token) => {
+  const handleLogout = () => {
     Modal.confirm({
       title: "注销",
       content: "确定要退出系统吗?",
       okText: "确定",
       cancelText: "取消",
       onOk: () => {
-        logout(token);
+        logout();
       },
     });
   };
   const onClick = ({ key }) => {
     switch (key) {
       case "logout":
-        handleLogout(token);
+        handleLogout();
         break;
       default:
         break;
@@ -83,7 +80,7 @@ const LayoutHeader = (props) => {
           <div className="dropdown-wrap">
             <Dropdown overlay={menu}>
               <div>
-                <Avatar shape="square" size="medium" src={avatar} />
+                <Avatar shape="square" size="medium" src={userInfo.avatar} />
                 <Icon style={{ color: "rgba(0,0,0,.3)" }} type="caret-down" />
               </div>
             </Dropdown>
@@ -97,8 +94,7 @@ const LayoutHeader = (props) => {
 const mapStateToProps = (state) => {
   return {
     ...state.app,
-    ...state.user,
-    ...state.settings,
+    ...state.user
   };
 };
-export default connect(mapStateToProps, { logout, getUserInfo })(LayoutHeader);
+export default connect(mapStateToProps, { logout })(LayoutHeader);

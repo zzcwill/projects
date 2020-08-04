@@ -19,11 +19,11 @@ const getPageTitle = (menuList, pathname) => {
 };
 
 const LayoutContent = (props) => {
-  const { role, location } = props;
+  const { userInfo, location } = props;
   const { pathname } = location;
   const handleFilter = (route) => {
     // 过滤没有权限的页面
-    return role === "admin" || !route.roles || route.roles.includes(role);
+    return userInfo.role === "admin" || !route.roles || route.roles.includes(userInfo.role);
   };
   return (
     <DocumentTitle title={getPageTitle(menuList, pathname)}>

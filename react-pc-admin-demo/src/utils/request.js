@@ -2,7 +2,7 @@ import Axios from 'axios'
 import Qs from 'qs'
 // import store from "@/store";
 import { message } from "antd";
-import { getToken } from "@/utils/auth";
+import { getToken } from "@/utils/config";
 
 const http = Axios.create({
 	// api的base_url

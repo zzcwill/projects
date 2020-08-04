@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { Form, Icon, Input, Button, message, Spin } from "antd";
 import { connect } from "react-redux";
+import { getToken } from "@/utils/config";
 import DocumentTitle from "react-document-title";
 import "./index.less";
 import { login, getUserInfo } from "@/store/actions";
 
 const Login = (props) => {
-  const { form, token, login, getUserInfo } = props;
+  const { form, login, getUserInfo } = props;
   const { getFieldDecorator } = form;
 
   const [loading, setLoading] = useState(false);
@@ -50,6 +51,7 @@ const Login = (props) => {
     });
   };
 
+  let token = getToken();
   if (token) {
     return <Redirect to="/dashboard" />;
   }
