@@ -5,6 +5,7 @@ import { togetInfo } from "@/store/actions";
 import Layout from "@/views/layout";
 import Login from "@/views/login";
 import { getToken, removeToken } from "@/utils/config";
+
 class Router extends React.Component {
   render() {
     const { userInfo, togetInfo } = this.props;
@@ -15,12 +16,16 @@ class Router extends React.Component {
           <Route
             path="/"
             render={() => {
-              let token = getToken();
-              if (!token) {
+              if (!getToken()) {
                 return <Redirect to="/login" />;
               } 
 
-              if(token) {
+
+              if(getToken()) {
+                if( window.location.pathname === '/' ) {
+                  return <Redirect to="/dashboard" />;
+                }
+
                 if (userInfo !== '') {
                   return <Layout />;
                 } 

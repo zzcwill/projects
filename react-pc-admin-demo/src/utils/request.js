@@ -34,10 +34,14 @@ http.interceptors.request.use(config => {
 http.interceptors.response.use((response) => {
   const res = response.data
 
+  if (res.code === 30000) {
+    return
+  } 
+  
   if (res.code !== 10000) {
     message.error(res.message || 'Error');
     return
-  }
+  } 
 
   return res
 }, (err) => {

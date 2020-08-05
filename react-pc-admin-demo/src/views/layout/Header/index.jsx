@@ -15,6 +15,7 @@ const LayoutHeader = (props) => {
     tologout,
     history
   } = props;
+
   const handleLogout = () => {
     Modal.confirm({
       title: "注销",
@@ -22,16 +23,19 @@ const LayoutHeader = (props) => {
       okText: "确定",
       cancelText: "取消",
       onOk: () => {
-        tologout();
-        history.push('/login');
+        tologout()
+        .then(() => {
+          history.push('/login');
+        })
       },
     });
-  };
+  };  
+
   const onClick = ({ key }) => {
     switch (key) {
       case "logout":
         handleLogout();
-        break;
+        break;       
       default:
         break;
     }
@@ -99,4 +103,6 @@ const mapStateToProps = (state) => {
     ...state.user
   };
 };
-export default connect(mapStateToProps, { tologout })(withRouter(LayoutHeader));
+export default withRouter(
+  connect(mapStateToProps, { tologout })(LayoutHeader)
+);

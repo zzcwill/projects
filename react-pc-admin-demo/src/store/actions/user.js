@@ -39,9 +39,9 @@ export const togetInfo = () => (dispatch) => {
   });
 };
 
-export const tologout = (token) => (dispatch) => {
+export const tologout = () => (dispatch) => {
   return new Promise((resolve, reject) => {
-    logout(token)
+    logout()
       .then((response) => {
         const { data } = response;
         dispatch(setUserInfo(''));
