@@ -13,28 +13,25 @@ const Login = (props) => {
 
   const [loading, setLoading] = useState(false);
 
-  const handleLogin = (userName, password) => {
+  const handleLogin = (loginData) => {
     // 登录完成后 发送请求 调用接口获取用户信息
     setLoading(true);
-    tologin(userName, password)
+    tologin(loginData)
       .then(() => {
-        history.push('/');
+        history.push('/dashboard');
       })
       .catch(() => {
         setLoading(false);
       });
   };
 
-  const timeout = () => {
-    setTimeout(() => {
-      let token = getToken();
-      if (token) {
-        history.push('/');
-      } 
-    }, 1000);   
+  const autoJump = () => {
+    let token = getToken();
+    if (token) {
+      history.push('/dashboard');
+    }   
   }
-
-  timeout()
+  autoJump()
   
   const handleSubmit = (event) => {
     // 阻止事件的默认行为
@@ -45,7 +42,11 @@ const Login = (props) => {
       // 检验成功
       if (!err) {
         const { userName, password } = values;
-        handleLogin(userName, password);
+        let loginData = {
+          userName,
+          password
+        }
+        handleLogin(loginData);
       } else {
         console.log("检验失败!");
       }

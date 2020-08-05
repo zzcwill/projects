@@ -8,7 +8,6 @@ import { getToken, removeToken } from "@/utils/config";
 class Router extends React.Component {
   render() {
     const { userInfo, togetInfo } = this.props;
-    let token = getToken();
     return (
       <BrowserRouter>
         <Switch>
@@ -16,6 +15,7 @@ class Router extends React.Component {
           <Route
             path="/"
             render={() => {
+              let token = getToken();
               if (!token) {
                 return <Redirect to="/login" />;
               } 

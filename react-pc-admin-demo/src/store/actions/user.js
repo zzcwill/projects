@@ -10,9 +10,9 @@ export const setUserInfo = (userInfo) => {
   };
 };
 
-export const tologin = (userName, password) => (dispatch) => {
+export const tologin = (loginData) => (dispatch) => {
   return new Promise((resolve, reject) => {
-    login({ userName: userName.trim(), password: password })
+    login(loginData)
       .then((response) => {
         const { data } = response;
         setToken(data.token)
