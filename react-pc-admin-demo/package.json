@@ -29,12 +29,13 @@
     "dev": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject",
-    "lint": "eslint --ext .js src/",
-    "lintfix": "eslint --fix --ext .js src/"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules":{
+      "jsx-a11y/anchor-is-valid":"off"
+    }    
   },
   "browserslist": {
     "production": [

@@ -5,7 +5,7 @@ function resolve(dir) {
 	return path.join(__dirname, dir);
 }
 
-module.exports = override(  
+module.exports = override(
   //针对antd实现按需打包: 根据import来打包(使用babel-plugin-import)
   fixBabelImports("import", {
     libraryName: "antd",
@@ -17,8 +17,8 @@ module.exports = override(
   addLessLoader({
     javascriptEnabled: true
   }),
-  
+
 	addWebpackAlias({
 		['@']: resolve('src')
-  })  
+  })
 )
