@@ -3,9 +3,7 @@ import { Spin } from "antd";
 
 const Loading = () => {
   return (
-    <div className="app-container">
-      <Spin />
-    </div>
+    <Spin />
   );
 };
 

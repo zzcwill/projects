@@ -10,7 +10,7 @@ const LayoutContent = (props) => {
   const { location } = props;
 
   return (
-    <Content style={{ height: "calc(100% - 100px)" }}>
+    <Content style={{ height: "calc(100% - 100px)" }} className="app-container">
       <TransitionGroup>
         <CSSTransition
           key={location.pathname}

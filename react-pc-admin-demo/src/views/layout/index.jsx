@@ -7,7 +7,7 @@ import TagsView from "./TagsView";
 import { Layout } from "antd";
 const Main = (props) => {
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout style={{ minHeight: "100vh", backgroundColor: '#fff' }}>
       <Sider />
       <Layout>
         <Header />

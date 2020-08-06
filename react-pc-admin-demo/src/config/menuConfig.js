@@ -7,32 +7,31 @@ const menuList = [
     path: "/dashboard",
     icon: "home",
   }, 
-  // {
-  //   title: "路由嵌套",
-  //   path: "/nested",
-  //   icon: "cluster",
-  //   children: [
-  //     {
-  //       title: "菜单1",
-  //       path: "/nested/menu1",
-  //       children: [
-  //         {
-  //           title: "菜单1-1",
-  //           path: "/nested/menu1/menu1-1",
-  //         },
-  //         {
-  //           title: "菜单1-2",
-  //           path: "/nested/menu1/menu1-2",
-  //           children: [
-  //             {
-  //               title: "菜单1-2-1",
-  //               path: "/nested/menu1/menu1-2/menu1-2-1",
-  //             },
-  //           ],
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // }
+  {
+    title: "我的任务",
+    path: "/wdrw",
+    icon: "cluster",
+    children: [
+      {
+        title: "我的任务",
+        path: "/wdrw/wdrw",
+      },
+      {
+        title: "权限管理",
+        path: "/wdrw/qxgl",
+      },      
+    ]
+  },
+  {
+    title: "平台管理-demo",
+    path: "/ptgl",
+    icon: "copy",
+    children: [
+      {
+        title: "我的任务",
+        path: "/ptgl/yygl",
+      }      
+    ]
+  }   
 ];
 export default menuList;

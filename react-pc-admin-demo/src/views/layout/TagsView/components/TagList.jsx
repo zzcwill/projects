@@ -123,7 +123,7 @@ class TagList extends Component {
                 <Tag
                   onClose={this.handleClose.bind(null, tag)}
                   closable={tag.path !== "/dashboard"}
-                  color={currentPath === tag.path ? "geekblue" : "gold"}
+                  color={currentPath === tag.path ? "#1890ff" : ""}
                   onClick={this.handleClick.bind(null, tag.path)}
                   onContextMenu={this.openContextMenu.bind(null, tag)}
                 >
