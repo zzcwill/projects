@@ -97,8 +97,7 @@
 import {
   zaRoleList,
   zaRoleAdd,
-  zaRoleUpdate,
-  roleSetauth,
+  zaRoleUpdate
 } from '@/api/wdrw/qxgl'
 import Pagination from '@/components/Pagination'
 
