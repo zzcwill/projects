@@ -6,11 +6,14 @@ import {
   Input,
   Collapse,
   Pagination,
-  Divider,
-  message
+  message,
+  Col,
+  Row
 } from "antd";
 
 import { zaRoleList, zaRoleAdd, zaRoleUpdate } from "@/api/wdrw/qxgl";
+import EditForm from "./forms/editForm"
+import loadsh from "loadsh";
 const { Column } = Table;
 const { Panel } = Collapse;
 class Page extends Component {
@@ -18,38 +21,25 @@ class Page extends Component {
   state = {
     list: [],
     loading: false,
-    total: 0,
-    listQuery: {
+    total: 0,    
+    searchForm: {
       page: 1,
       pageSize: 10,
       name: ''
     },
-    editModalVisible: false,
-    editModalLoading: false,
-    currentRowData: {
-      id: 0,
-      author: "",
-      date: "",
-      readings: 0,
-      star: "★",
-      status: "published",
-      title: ""
-    }
-  };
-  fetchData = () => {
-    this.setState({ loading: true });
-    zaRoleList(this.state.listQuery).then((res) => {
-      this.setState({ loading: false });
-      const list = res.data;
-      const totalItem = res.totalItem;
-      if (this._isMounted) {
-        this.setState({ list, totalItem });
-      }
-    });
+
+    dialogForm: {
+      name: '',
+      note: '',
+      id: ''
+    },
+    dialogFormVisible: false,
+    dialogFormLoading: false,
+    isNewPerson: true    
   };
   componentDidMount() {
     this._isMounted = true;
-    this.fetchData();
+    this.handleSearch();
   }
   componentWillUnmount() {
     this._isMounted = false;
@@ -57,142 +47,204 @@ class Page extends Component {
   filterTitleChange = (e) => {
     let value = e.target.value
     this.setState((state) => ({
-      listQuery: {
-        ...state.listQuery,
-        name:value,
-      }
-    }));
-  };
-  filterStatusChange = (value) => {
-    this.setState((state) => ({
-      listQuery: {
-        ...state.listQuery,
-        status:value,
-      }
-    }));
-  };
-  filterStarChange  = (value) => {
-    this.setState((state) => ({
-      listQuery: {
-        ...state.listQuery,
-        star:value,
+      searchForm: {
+        ...state.searchForm,
+        name: value,
       }
     }));
   };
   changePage = (page, pageSize) => {
     this.setState(
       (state) => ({
-        listQuery: {
-          ...state.listQuery,
+        searchForm: {
+          ...state.searchForm,
           page,
         },
       }),
       () => {
-        this.fetchData();
+        this.handleSearch();
       }
     );
   };
   changePageSize = (current, pageSize) => {
     this.setState(
       (state) => ({
-        listQuery: {
-          ...state.listQuery,
+        searchForm: {
+          ...state.searchForm,
           page: 1,
           pageSize,
         },
       }),
       () => {
-        this.fetchData();
+        this.handleSearch();
       }
     );
-  };
-  handleDelete = (row) => {
-  }
-  handleEdit = (row) => {
-    this.setState({
-      currentRowData:Object.assign({}, row),
-      editModalVisible: true,
-    });
-  };
+  }; 
 
-  handleOk = _ => {
+  handleSearch = () => {
+    this.setState({ loading: true });
+    zaRoleList(this.state.searchForm).then((res) => {
+      this.setState({ loading: false });
+      const list = res.data;
+      const total = res.totalItem;
+      if (this._isMounted) {
+        this.setState({ list, total });
+      }
+    });
+  };  
+  handleReset = () => {
+    this.setState((state) => ({
+      searchForm: {
+        ...state.searchForm,
+        name: '',
+      }
+    }));    
+  }; 
+
+  toAddRole = () => {
+    this.setState({
+      isNewPerson: true
+    });
+    this.openDialogForm()
+  }; 
+
+  openDialogForm = () => {
+    this.setState({
+      dialogFormVisible: true
+    });
+  };  
+  handleEdit = (row) => {
+    let dialogForm = loadsh.pick(row,['name','note','id']);
+    this.setState((state) => ({
+      isNewPerson: false,
+      dialogForm: {
+        ...dialogForm
+      }
+    }));
+    this.openDialogForm();
+  };
+  closeDialogForm = () => {
     const { form } = this.formRef.props;
-    form.validateFields((err, fieldsValue) => {
+    form.resetFields();
+    this.setState({
+      dialogFormVisible: false      
+    });
+  }; 
+  saveRole = () => {
+    const { form } = this.formRef.props;
+    form.validateFields(async (err, fieldsValue) => {
       if (err) {
         return;
       }
       const values = {
-        ...fieldsValue,
-        'star': "".padStart(fieldsValue['star'], '★'),
-        'date': fieldsValue['date'].format('YYYY-MM-DD HH:mm:ss'),
+        ...fieldsValue
       };
-      this.setState({ editModalLoading: true, });
-      zaRoleUpdate(values).then((response) => {
-        form.resetFields();
-        this.setState({ editModalVisible: false, editModalLoading: false });
-        message.success("编辑成功!")
-        this.fetchData()
-      }).catch(e => {
-        message.success("编辑失败,请重试!")
-      })
+      this.setState({ dialogFormLoading: true });
+
+       if(this.state.isNewPerson) {
+        let newData = await zaRoleAdd(values)
+        if(newData) {        
+          form.resetFields();
+          this.setState({ 
+            dialogFormVisible: false, 
+            dialogFormLoading: false 
+          });
+          message.success('添加成功')
+          this.handleSearch()
+        }
+        return        
+      }
+
+      if(!this.state.isNewPerson) {
+        let newData = await zaRoleUpdate(values)
+        if(newData) {        
+          form.resetFields();
+          this.setState({ 
+            dialogFormVisible: false, 
+            dialogFormLoading: false 
+          });
+          message.success('修改成功')
+          this.handleSearch()
+        }
+        return        
+      }
       
     });
-  };
+  }; 
 
-  handleCancel = _ => {
-    this.setState({
-      editModalVisible: false,
-    });
-  };
   render() {
     return (
-      <div className="app-container">
-        <Collapse defaultActiveKey={["1"]}>
-          <Panel header="筛选" key="1">
+      <div>
+        <Collapse defaultActiveKey={['1']}>
+          <Panel header="权限管理" key="1">
             <Form layout="inline">
-              <Form.Item label="角色名称:">
-                <Input onChange={this.filterTitleChange} />
-              </Form.Item>
-              <Form.Item>
-                <Button type="primary" icon="search" onClick={this.fetchData}>
-                  查询
-                </Button>
-              </Form.Item>
+              <Row gutter={24}>
+                <Col span={8}>
+                  <Form.Item label="角色名称:">
+                    <Input value={this.state.searchForm.name} onChange={this.filterTitleChange} />
+                  </Form.Item>
+                </Col>               
+              </Row>
+              <Row style={{ marginTop: '10px' }}>
+                <Col span={24} style={{ textAlign: 'center' }}>
+                  <Button type="primary" onClick={this.handleSearch}>
+                    查询
+                  </Button>
+                  <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
+                    重置
+                  </Button>
+                  <Button style={{ marginLeft: 8 }} type="primary" onClick={this.toAddRole}>
+                    新增角色
+                  </Button>                  
+                </Col>
+              </Row>
             </Form>
           </Panel>
         </Collapse>
         <br />
+
         <Table
           bordered
           rowKey={(record) => record.id}
           dataSource={this.state.list}
           loading={this.state.loading}
           pagination={false}
+          scroll={{ y: 380 }}
+          size="small"
         >
-          <Column title="角色名称" dataIndex="name" key="name" align="center" sorter={(a, b) => a.id - b.id}/>
-          <Column title="角色描述" dataIndex="note" key="note" align="center"/>
-          <Column title="功能权限" dataIndex="menus" key="menus" align="center"/>
-          <Column title="节点权限" dataIndex="nodes" key="nodes" align="center"/>
-          <Column title="操作" key="action" align="center" width={160} render={(text, row) => (
+          <Column title="角色名称" dataIndex="name" key="name" align="center" width={100} />
+          <Column title="角色描述" dataIndex="note" key="note" align="center" />
+          <Column title="功能权限" dataIndex="menus" key="menus" align="center" />
+          <Column title="节点权限" dataIndex="nodes" key="nodes" align="center" />
+          <Column title="操作" key="action" align="center" width={200} render={(text, row) => (
             <span>
-              <a onClick={this.handleEdit.bind(null,row)}>修改角色</a>
-              <Divider type="vertical" />
-              <a>删除</a>
+              <Button type="link" onClick={this.handleEdit.bind(null, row)}>修改角色</Button>
             </span>
-          )}/>
+          )} />
         </Table>
         <br />
-        <Pagination
-          total={this.state.total}
-          pageSizeOptions={["10", "20", "40"]}
-          showTotal={(total) => `共${total}条数据`}
-          onChange={this.changePage}
-          current={this.state.listQuery.page}
-          onShowSizeChange={this.changePageSize}
-          showSizeChanger
-          showQuickJumper
-          hideOnSinglePage={true}
-        /> 
+        <div className="m-t-10 m-b-10 text-r">
+          <Pagination
+            total={this.state.total}
+            pageSizeOptions={["10", "20", "30", "50"]}
+            showTotal={(total) => `共${total}条数据`}
+            onChange={this.changePage}
+            current={this.state.searchForm.page}
+            onShowSizeChange={this.changePageSize}
+            showSizeChanger
+            showQuickJumper
+            hideOnSinglePage={true}
+            size="small"
+          />
+        </div>
+        <EditForm
+          currentRowData={this.state.dialogForm}
+          wrappedComponentRef={formRef => this.formRef = formRef}
+          visible={this.state.dialogFormVisible}
+          confirmLoading={this.state.dialogFormLoading}
+          onCancel={this.closeDialogForm}
+          onOk={this.saveRole}
+        />        
       </div>
     );
   }

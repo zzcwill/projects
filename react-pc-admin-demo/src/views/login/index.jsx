@@ -103,6 +103,10 @@ const Login = (props) => {
           </Form.Item>
         </Spin>
       </Form>
+
+      <div className="login-footer">
+        <span>Copyright © 2019-2020 zzc-admin All Rights Reserved.</span>
+      </div>       
     </div>
 
   );
