@@ -22,7 +22,7 @@ export function flowNodes(data) {
   })
 }
 export function customerCreditInfoDownload() {
-  return  process.env.VUE_APP_BASE_API + '/customer/creditInfo/download?customerName'
+  return  process.env.REACT_APP_BASE_API + '/customer/creditInfo/download?customerName'
 }
 //查询列表页end
 

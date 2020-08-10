@@ -33,10 +33,7 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app",
-    "rules": {
-      "jsx-a11y/anchor-is-valid": "off"
-    }
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [

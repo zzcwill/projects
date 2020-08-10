@@ -322,7 +322,7 @@ export default {
       this.getTableList()
     },
     exportData() {
-      let data = '?customerName=' + '老大哥'
+      let data = '?customerName=老大哥'
       let exportUrl = customerCreditInfoDownload() + data
       window.location.href = exportUrl
     },
