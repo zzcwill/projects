@@ -64,13 +64,3 @@ export function getInfo() {
     method: 'post'
   })
 }
-//获取路由
-export function getRoutes() {
-  return request({
-    url: '/za/menu/list',
-    method: 'post',
-    data: {
-      st: 'CLS_WEB_BEFORE'
-    }
-  })
-}

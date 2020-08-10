@@ -2,45 +2,25 @@ import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { togetInfo } from "@/store/actions";
-import Layout from "@/views/layout";
-import Login from "@/views/login";
-import { getToken, removeToken } from "@/utils/config";
+// import { getToken, removeToken } from "@/utils/config";
+import app from "@/router/app";
 
 class Router extends React.Component {
   render() {
-    const { userInfo, togetInfo } = this.props;
+    // const { userInfo, togetInfo } = this.props;
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route
-            path="/"
-            render={() => {
-              if (!getToken()) {
-                return <Redirect to="/login" />;
-              } 
-
-
-              if(getToken()) {
-                if( window.location.pathname === '/' ) {
-                  return <Redirect to="/dashboard" />;
-                }
-
-                if (userInfo !== '') {
-                  return <Layout />;
-                } 
-                
-                if (userInfo === '') {
-                  togetInfo()
-                  .then(() => <Layout />)
-                  .catch((error) => {
-                    removeToken();
-                    return <Redirect to="/login" />;  
-                  });
-                }
-              }
-            }}
-          />
+          <Redirect exact from="/" to="/login" />
+          {app.map((route) => {
+            return (
+              <Route
+                component={route.component}
+                key={route.path}
+                path={route.path}
+              />
+            );
+          })}
         </Switch>
       </BrowserRouter>
     );
