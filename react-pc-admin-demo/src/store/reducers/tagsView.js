@@ -6,7 +6,15 @@ export default function app(state = initState, action) {
   switch (action.type) {
     case types.TAGSVIEW_ADD_TAG:
       const tag = action.tag;
-      if (state.taglist.includes(tag)) {
+      let isHasMenu = false;
+      
+      for(let num = 0 ; num < state.taglist.length ; num++) {
+        if(state.taglist[num].path === tag.path) {
+          isHasMenu = true
+        }
+      }
+
+      if (isHasMenu) {
         return state;
       } else {
         return {

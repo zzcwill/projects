@@ -32,6 +32,6 @@ const menuList = [
         path: "/ptgl/yygl",
       }      
     ]
-  }   
+  }  
 ];
 export default menuList;

@@ -1,8 +1,12 @@
 import React from "react";
 import { Row, Col, Alert } from "antd";
+import { withRouter } from "react-router-dom";
 import "./index.less";
 
-const Page = () => {
+const Page = (props) => {
+  const { history } = props;
+  console.info(history.location)
+
   return (
     <div>
       <Row gutter={32}>
@@ -14,5 +18,5 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default withRouter(Page);
 

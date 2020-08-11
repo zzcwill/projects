@@ -20,7 +20,6 @@ class Router extends React.Component {
                 return <Redirect to="/login" />;
               } 
 
-
               if(getToken()) {
                 if( window.location.pathname === '/' ) {
                   return <Redirect to="/dashboard" />;

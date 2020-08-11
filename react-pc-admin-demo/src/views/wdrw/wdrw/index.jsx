@@ -13,14 +13,14 @@ import {
   Divider,
   DatePicker
 } from "antd";
-
+import { connect } from "react-redux";
+import { addTag } from "@/store/actions";
 import {
   mytasksSearch,
   flowGet,
   flowNodes,
   customerCreditInfoDownload,
 } from '@/api/wdrw/wdrw';
-import loadsh from "loadsh";
 import moment from "moment";
 import "moment/locale/zh-cn";
 moment.locale("zh-cn");
@@ -121,13 +121,52 @@ class Page extends Component {
   };
 
   handleEdit = (row) => {
-    this.props.history.push('/wdrw/flow');
+    this.handleMenuSelect({
+      title: row.currentNodeName,
+      path:  '/wdrw/flow'
+    });
+    this.props.history.push(
+      {
+        pathname: '/wdrw/flow',
+        query:{
+          projectId: row.businessId,
+          bopInfoId: row.businessObjectProcessInfoId,
+          currentNodeName: row.currentNodeName
+        }
+      }
+    );
   };
   handleEdit2 = (row) => {
-    this.props.history.push('/wdrw/imgInfo');
+    this.handleMenuSelect({
+      title: '多媒体资料',
+      path:  '/wdrw/imgInfo'
+    });    
+    this.props.history.push(
+      {
+        pathname: '/wdrw/imgInfo',
+        query:{
+          projectId: row.businessId,
+          currentNodeName: '多媒体资料',
+          space: 'LOAN',
+          releventFlow: row.businessTypeCode,
+          releventFlowNode: row.currentNodeKey
+        }
+      }
+    );      
   };
   handleEdit3 = (row) => {
-    this.props.history.push('/wdrw/info');
+    this.handleMenuSelect({
+      title: '查看贷款详情',
+      path:  '/wdrw/info'
+    });
+    this.props.history.push(
+      {
+        pathname: '/wdrw/info',
+        query:{
+          projectId: row.businessId
+        }
+      }
+    );
   };
 
   getFtCodeOptions = async () => {
@@ -186,7 +225,11 @@ class Page extends Component {
         }
       })     
     );
-  };  
+  }; 
+  
+  handleMenuSelect = (menuItem) => {
+    this.props.addTag(menuItem);
+  };
 
   render() {
     return (
@@ -322,5 +365,4 @@ class Page extends Component {
     );
   }
 }
-
-export default withRouter(Page);
+export default connect((state) => state.user, { addTag })(withRouter(Page));
