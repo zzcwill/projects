@@ -144,13 +144,7 @@ class Page extends Component {
     this.props.history.push(
       {
         pathname: '/wdrw/imgInfo',
-        query:{
-          projectId: row.businessId,
-          currentNodeName: '多媒体资料',
-          space: 'LOAN',
-          releventFlow: row.businessTypeCode,
-          releventFlowNode: row.currentNodeKey
-        }
+        search: `projectId=${row.businessId}&currentNodeName多媒体资料&space=LOAN&releventFlow=${row.businessTypeCode}&releventFlowNode=${row.currentNodeKey}`
       }
     );      
   };
