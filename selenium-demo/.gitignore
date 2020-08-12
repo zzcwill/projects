@@ -1,0 +1,9 @@
+npm-debug.log
+yarn-error.log
+node_modules/
+.idea/
+run/
+.DS_Store
+*.sw*
+*.un~
+.nyc_output/
