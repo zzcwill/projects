@@ -1,0 +1,42 @@
+{
+  "name": "node-egg-demo",
+  "version": "1.0.0",
+  "description": "node-egg-demo",
+  "private": true,
+  "dependencies": {
+    "egg": "^2.15.1",
+    "egg-mysql2": "^1.0.2",
+    "egg-redis": "^2.4.0",
+    "egg-scripts": "^2.11.0",
+    "egg-view-nunjucks": "^2.2.0",
+    "koa-is-json": "^1.0.0",
+    "moment": "^2.27.0"
+  },
+  "devDependencies": {
+    "autod": "^3.0.1",
+    "autod-egg": "^1.1.0",
+    "egg-bin": "^4.11.0",
+    "egg-ci": "^1.11.0",
+    "egg-mock": "^3.21.0",
+    "eslint": "^5.13.0",
+    "eslint-config-egg": "^7.1.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "scripts": {
+    "start": "egg-scripts start --daemon --title=egg-server-node-egg-demo-pro",
+    "starttest": "EGG_SERVER_ENV=unittest egg-scripts start --daemon --title=egg-server-node-egg-demo-test",
+    "stop": "egg-scripts stop --title=egg-server-node-egg-demo-pro",
+    "restart": "npm run stop && npm run start",
+    "docker": "egg-scripts start --title=egg-server-node-egg-demo",
+    "dev": "egg-bin dev",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "autod": "autod"
+  }
+}
