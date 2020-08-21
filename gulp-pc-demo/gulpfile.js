@@ -16,6 +16,9 @@ const uglify = require('gulp-uglify');
 
 const connect = require('gulp-connect');
 
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
+
 // 删除dist文件
 function delFn(cb) {
 	return del([
@@ -56,11 +59,11 @@ function uglifyCss() {
 
 // js
 function copyJs() {
-	return src('./src/js/*.js')
+	return src('./src/js/**/*.js')
 		// .pipe(babel({
 		// 	presets: ['@babel/env']
 		// }))
-		.pipe(babel())		
+		.pipe(babel())
 		.pipe(dest('./dist/js'))
 }
 function uglifyJs() {
@@ -75,6 +78,18 @@ function devServer() {
 		root: 'dist/',
 		port: 8000,
 		host: '127.0.0.1',
+		middleware: function (connect, opt) {
+			return [
+				createProxyMiddleware('/api', {
+					target: 'https://cnodejs.org/api/v1',
+					changeOrigin: true,
+					pathRewrite: {
+						'^/api': ''
+					},
+					ws: true
+				}),
+			]
+		},
 		livereload: true
 	})
 }
@@ -91,7 +106,7 @@ function watchFn() {
 	watch(['./src/views/*.html', './src/img/*', './src/less/*.less', './src/js/*.js'], series(delFn, copyhtml, copyImg, copyCss, copyJs, serverReload));
 }
 
-if(process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
 	watchFn()
 }
 

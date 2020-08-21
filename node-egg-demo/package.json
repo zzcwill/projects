@@ -29,7 +29,7 @@
     "starttest": "EGG_SERVER_ENV=unittest egg-scripts start --daemon --title=egg-server-node-egg-demo-test",
     "stop": "egg-scripts stop --title=egg-server-node-egg-demo-pro",
     "restart": "npm run stop && npm run start",
-    "docker": "egg-scripts start --title=egg-server-node-egg-demo",
+    "docker": "egg-scripts start --title=egg-server-node-egg-demo-pro",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
     "test": "npm run lint -- --fix && npm run test-local",

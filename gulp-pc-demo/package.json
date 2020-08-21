@@ -18,6 +18,7 @@
     "gulp-connect": "^5.7.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-less": "^4.0.1",
-    "gulp-uglify": "^3.0.2"
+    "gulp-uglify": "^3.0.2",
+    "http-proxy-middleware": "^1.0.5"
   }
 }
