@@ -21,15 +21,11 @@ module.exports = appInfo => {
   // add your middleware config here
   config.middleware = [
     'robot',
-    'gzip',
   ];
   config.robot = {
     ua: [
       /Baiduspider/i,
     ],
-  };
-  config.gzip = {
-    threshold: 1024, // 小于 1k 的响应体不压缩
   };
 
   config.security = {

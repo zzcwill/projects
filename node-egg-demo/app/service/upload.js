@@ -16,8 +16,8 @@ class UploadService extends Service {
 
     return {
       name: filename,
-      url: `${ctx.request.header.origin}/public/upload_img/${filename}`,      
-    }
+      url: `${ctx.request.header.origin}/public/upload_img/${filename}`,
+    };
   }
 }
 

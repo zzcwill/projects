@@ -5,7 +5,8 @@ class HomeController extends Controller {
   async index() {
     const { ctx } = this;
     // ctx.body = ctx.session;
-    ctx.body = ctx.app.cache;
+    // ctx.body = ctx.app.cache;
+    ctx.body = 'zzc';
   }
   async user() {
     const { ctx } = this;

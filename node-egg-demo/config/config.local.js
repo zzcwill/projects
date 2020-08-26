@@ -28,7 +28,7 @@ module.exports = appInfo => {
     // 是否加载到 agent 上，默认关闭
     agent: false,
   };
-  
+
 
   config.redis = {
     client: {
@@ -38,7 +38,7 @@ module.exports = appInfo => {
       db: '1',
     },
     agent: true,
-  };  
+  };
 
   return config;
 };

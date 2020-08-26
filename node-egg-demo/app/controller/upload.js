@@ -10,15 +10,15 @@ class UploadController extends Controller {
 
     const stream = await ctx.getFileStream();
 
-    if(stream.fields.user === 'zzc') {
-      console.info(stream.fields)
+    if (stream.fields.user === 'zzc') {
+      console.info(stream.fields);
     }
 
     try {
       const data = await ctx.service.upload.new(stream);
 
-      if(stream.fields.user) {
-        data.user = stream.fields.user
+      if (stream.fields.user) {
+        data.user = stream.fields.user;
       }
 
       this.success(data);
