@@ -12,7 +12,7 @@ describe('test/app/controller/home.test.js', () => {
   //   let ctx = app.mockContext();
   //   return app.httpRequest()
   //     .get('/')
-  //     .expect('zzc')
+  //     .expect('egg-node-web')
   //     .expect(200);
   // });
 });

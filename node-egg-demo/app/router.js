@@ -1,8 +1,9 @@
 'use strict';
 
 module.exports = app => {
-  require('./router/home')(app);
-  require('./router/news')(app);
-  require('./router/upload')(app);
-  require('./router/mysql')(app);
+  // 页面
+  require('./router/web')(app);
+
+  // 接口
+  require('./router/api')(app);
 };

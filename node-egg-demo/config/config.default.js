@@ -20,7 +20,7 @@ module.exports = appInfo => {
 
   // add your middleware config here
   config.middleware = [
-    'robot',
+    'robot'
   ];
   config.robot = {
     ua: [
