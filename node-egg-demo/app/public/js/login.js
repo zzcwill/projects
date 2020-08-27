@@ -21,6 +21,9 @@ $(function() {
     $.ajax({
       type: 'post',
       url: '/api/userinfo',
+      headers: {
+        token: getCookie('csrfToken')
+      },
       data: {
         name: $('#name').val(),
       },
@@ -34,6 +37,8 @@ $(function() {
   });
 });
 
+console.info(getCookie('sessionId'))
+console.info(getCookie('csrfToken'))
 function getCookie(cookie_name) {
   const allcookies = document.cookie;
   // 索引长度，开始索引的位置

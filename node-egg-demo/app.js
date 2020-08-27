@@ -2,6 +2,7 @@
 
 module.exports = app => {
   console.info(app.config.env);
+  app.cache = {}
 
   app.once('server', server => {
   });

@@ -4,7 +4,7 @@ module.exports = appInfo => {
   const config = {};
 
   config.keys = appInfo.name + '_1585114634462_7124';
-  config.maxAge = 4 * 3600 * 1000;
+  config.maxAge = 6 * 3600 * 1000;
 
   config.view = {
     defaultViewEngine: 'nunjucks',
@@ -56,11 +56,12 @@ module.exports = appInfo => {
   };
 
   config.session = {
-    key: 'token',
+    key: 'sessionId',
     // maxAge: 24 * 3600 * 1000, // 1 天
-    maxAge: 4 * 3600 * 1000,
+    maxAge: 6 * 3600 * 1000,
     httpOnly: true,
     encrypt: true,
+    renew: true
   };
 
 

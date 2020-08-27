@@ -2,26 +2,39 @@
 const Controller = require('../core/base_controller');
 
 class HomeController extends Controller {
-  async apilogin() {
+  async login() {
     const { ctx, app } = this;
     const { name } = ctx.request.body;
 
-    ctx.session.token = name;
-    await app.redis.set('token', name, 'EX', 60 * 10);
-    this.success(name);
+    if(ctx.session.sessionId) {
+      ctx.body = ctx.resfail(20000,'已经登录')
+      return
+    }
+
+    ctx.session.sessionId = name;
+    // await app.redis.set('sessionId', name, 'EX', 60 * 10);
+
+    ctx.body = ctx.resok(name)
   }
-  async apiuserinfo() {
+  async logout() {
     const { ctx } = this;
 
-    const token = ctx.session.token;
+    ctx.session.sessionId = '';
 
-    if (!token) {
+    ctx.body = ctx.resok()
+  }  
+  async userinfo() {
+    const { ctx } = this;
+
+    const sessionId = ctx.session.sessionId;
+
+    if (!sessionId) {
       ctx.logger.warn('api/userinfo请求错误');
-      this.fail(20000, '未登录');
+      ctx.body = ctx.resfail(20000, '未登录');
       return;
     }
 
-    this.success(token);
+    ctx.body = ctx.resok(sessionId)
   }
 }
 

@@ -5,15 +5,13 @@ class PageController extends Controller {
   async index() {
     const { ctx } = this;
 
-    console.info(ctx.query.name)
-    if (!ctx.query.name) {
-      ctx.body = 'egg-node-web';
-    }    
-
-    if (ctx.query.name) {
-      ctx.body = 'egg-node-web' + '-' + ctx.query.name;
-    }
+    ctx.body = 'egg-node-web';
   }
+  
+  async login() {
+    const { ctx } = this;
+    await ctx.render('login/login.html');
+  }  
 }
 
 module.exports = PageController;
