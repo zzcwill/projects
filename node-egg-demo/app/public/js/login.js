@@ -3,7 +3,7 @@ $(function() {
   $('#login').bind('click', function() {
     $.ajax({
       type: 'post',
-      url: '/api/login',
+      url: '/api/user/login',
       data: {
         name: $('#name').val(),
         password: $('#password').val(),
@@ -20,7 +20,7 @@ $(function() {
   $('#logout').bind('click', function() {
     $.ajax({
       type: 'post',
-      url: '/api/logout',
+      url: '/api/user/logout',
       data: {},
       dataType: 'json',
       success(res) {
@@ -34,7 +34,7 @@ $(function() {
   $('#getInfo').bind('click', function() {
     $.ajax({
       type: 'post',
-      url: '/api/userinfo',
+      url: '/api/user/userinfo',
       headers: {
         token: getCookie('csrfToken')
       },
@@ -49,6 +49,22 @@ $(function() {
       },
     });
   });
+
+  $('#menu').bind('click', function() {
+    $.ajax({
+      type: 'post',
+      url: '/api/menu/list',
+      data: {
+        menuCode: 'CLS_WEB_BEFORE'
+      },
+      dataType: 'json',
+      success(res) {
+        console.info(res);
+      },
+      error() {
+      },
+    });
+  });  
 });
 
 console.info(getCookie('sessionId'))

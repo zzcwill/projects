@@ -19,3 +19,11 @@ exports.resfail = (code, msg = '调用失败') => {
 		message: msg,
 	};
 }
+
+exports.resmiss = (parameter) => {
+	return {
+		code: 20000,
+		data: '',
+		message: `缺少${parameter}参数`
+	};
+}

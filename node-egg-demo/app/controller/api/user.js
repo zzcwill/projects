@@ -6,6 +6,16 @@ class ApiUserController extends BaseController {
     const { ctx, app } = this;
     const { name, password } = ctx.request.body;
 
+    if(name === undefined) {
+      ctx.body = ctx.resmiss('name')
+      return
+    }
+
+    if(password === undefined) {
+      ctx.body = ctx.resmiss('password')
+      return
+    }    
+
     if(name === '') {
       ctx.body = ctx.resfail(20000,'用户名不能为空')
       return      

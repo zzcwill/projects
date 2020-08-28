@@ -5,5 +5,5 @@ module.exports = app => {
   require('./router/page')(app);
 
   // 接口
-  // require('./router/api')(app);
+  require('./router/api')(app);
 };
