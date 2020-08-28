@@ -7,7 +7,7 @@ module.exports = app => {
   const tokenRequired = middleware.tokenRequired();
   const pagination = middleware.pagination();
 
-  apiRouter.post('/login', controller.api.login);
-  apiRouter.post('/login', tokenRequired, controller.api.logout);
-  apiRouter.post('/userinfo', tokenRequired, controller.api.userinfo);
+  // apiRouter.post('/login', controller.api.user.login);
+  // apiRouter.post('/logout', tokenRequired, controller.api.user.logout);
+  // apiRouter.post('/userinfo', tokenRequired, controller.api.user.userinfo);
 };

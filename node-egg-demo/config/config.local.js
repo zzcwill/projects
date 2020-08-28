@@ -13,7 +13,7 @@ module.exports = appInfo => {
     clients: {
       db1: {
         // host
-        host: '192.168.27.11',
+        host: '192.168.26.11',
         // 端口号
         port: '3306',
         // 用户名
@@ -25,7 +25,7 @@ module.exports = appInfo => {
       },
       db2: {
         // host
-        host: '192.168.27.11',
+        host: '192.168.26.11',
         // 端口号
         port: '3306',
         // 用户名

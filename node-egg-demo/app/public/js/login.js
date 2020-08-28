@@ -17,6 +17,20 @@ $(function() {
     });
   });
 
+  $('#logout').bind('click', function() {
+    $.ajax({
+      type: 'post',
+      url: '/api/logout',
+      data: {},
+      dataType: 'json',
+      success(res) {
+        console.info(res);
+      },
+      error() {
+      },
+    });
+  });
+
   $('#getInfo').bind('click', function() {
     $.ajax({
       type: 'post',

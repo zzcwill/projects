@@ -1,7 +1,7 @@
 'use strict';
-const Controller = require('../core/base_controller');
+const BaseController = require('../../core/base_controller');
 
-class PageController extends Controller {
+class PageLoginController extends BaseController {
   async index() {
     const { ctx } = this;
 
@@ -14,4 +14,4 @@ class PageController extends Controller {
   }  
 }
 
-module.exports = PageController;
+module.exports = PageLoginController;

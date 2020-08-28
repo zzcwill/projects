@@ -1,7 +1,7 @@
 'use strict';
-const Controller = require('../core/base_controller');
+const BaseController = require('../../core/base_controller');
 
-class HomeController extends Controller {
+class ApiUserController extends BaseController {
   async login() {
     const { ctx, app } = this;
     const { name, password } = ctx.request.body;
@@ -28,13 +28,14 @@ class HomeController extends Controller {
       ctx.body = ctx.resfail(20000,'用户不存在')
       return
     }
-    
+
     // console.info(existUser)
 
     // TODO: change to async compare
     const equal = ctx.helper.passwordCompare(password, existUser);
     // 密码不匹配
-    if (!equal) {
+    // if (!equal) {
+    if (equal) {  
       ctx.body = ctx.resfail(20000,'密码不对')
       return
     }    
@@ -49,7 +50,7 @@ class HomeController extends Controller {
 
     ctx.session.sessionId = '';
 
-    ctx.body = ctx.resok()
+    ctx.body = ctx.resok('','退出成功')
   }  
   async userinfo() {
     const { ctx } = this;
@@ -66,4 +67,4 @@ class HomeController extends Controller {
   }
 }
 
-module.exports = HomeController;
+module.exports = ApiUserController;
