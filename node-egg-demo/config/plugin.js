@@ -11,7 +11,7 @@ exports.nunjucks = {
 
 exports.mysql = {
   enable: true,
-  package: 'egg-mysql2',
+  package: 'egg-mysql',
 }
 
 exports.redis = {

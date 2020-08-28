@@ -20,13 +20,7 @@ module.exports = appInfo => {
 
   // add your middleware config here
   config.middleware = [
-    'robot'
   ];
-  config.robot = {
-    ua: [
-      /Baiduspider/i,
-    ],
-  };
 
   config.security = {
     csrf: {
