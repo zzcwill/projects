@@ -80,6 +80,47 @@ $(function() {
       error() {
       },
     });
+  });
+  
+  $('#cnode').bind('click', function() {
+    $.ajax({
+      type: 'post',
+      url: '/api/cnode/list',
+      data: {
+        page: 2,
+        pageSize: 20,
+        tab: 'ask'
+      },
+      dataType: 'json',
+      success(res) {
+        console.info(res);
+      },
+      error() {
+      },
+    });
+  }); 
+  
+  // 上传图片1
+  $('#upImage1').click(function() {
+    $('#upImageInput1').trigger('click');
+  });
+  $('#upImageInput1').change(function() {
+    const formData = new FormData();
+    const _this = this;
+
+    formData.append('fileImg', _this.files[0]);
+    formData.append('user', $('#name').val());
+
+    $.ajax({
+      url: '/api/upload/new',
+      type: 'post',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success(res) {
+        console.info(res);
+      },
+    });
   });  
 });
 

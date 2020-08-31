@@ -12,6 +12,7 @@
     "egg-view-nunjucks": "^2.2.0",
     "lodash": "^4.17.20",
     "moment": "^2.27.0",
+    "stream-wormhole": "^1.1.0",
     "utility": "^1.16.3"
   },
   "devDependencies": {

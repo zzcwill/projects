@@ -7,10 +7,10 @@ const sendToWormhole = require('stream-wormhole');
 
 class UploadService extends Service {
   async new(stream) {
-    const { ctx } = this;
+    const { ctx, config } = this;
 
     const filename = (new Date()).getTime() + path.basename(stream.filename);
-    const target = path.join(this.config.baseDir, `app/public/upload_img/${filename}`);
+    const target = path.join(config.baseDir, `app/public/upload_img/${filename}`);
     const readFileStream = fs.createWriteStream(target);
     stream.pipe(readFileStream);
 

@@ -29,9 +29,6 @@ class ApiUserController extends BaseController {
     menuIdData = ctx.helper.lodash.uniq(menuIdData);
     menuIdData = ctx.helper.lodash.sortBy(menuIdData);
 
-    console.info(userId)
-    console.info(menuIdData.length)
-
     let menuPromise = Promise.all(menuIdData.map(item => ctx.service.menu.getMenuByMenuId(item, menuCode)));
     let [ menuList ] = await Promise.all([ menuPromise ]);    
 

@@ -37,6 +37,8 @@ module.exports = appInfo => {
 
   config.multipart = {
     mode: 'stream',
+    uploadFileDir: '/app/public/upload_img/',
+    uploadFileDirOut: '/public/upload_img/'
   };
 
   config.cluster = {
@@ -57,6 +59,12 @@ module.exports = appInfo => {
     encrypt: true,
     renew: true
   };
+
+  config.cnodePage = {
+    page: 1,
+    pageSize: 10,
+    serverUrl: 'https://cnodejs.org/api/v1',
+  }
 
 
   return config;
