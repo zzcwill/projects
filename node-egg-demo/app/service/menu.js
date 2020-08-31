@@ -47,8 +47,38 @@ class MenuService extends Service {
 
 		let apiData = this.ctx.helper.turnHumpDataArr(dbData)
 
+    return apiData[0];
+  }
+  
+  async getMenuByUserId(userId, menuCode) {
+    const { mysql } = this.app;
+
+    const client1 = mysql.get('db1');
+
+
+    // let dbtable = 'za_sys_menu';
+    let dbquery = 'd.*';   
+    let sql = `
+      SELECT
+        ${dbquery}
+      FROM
+        za_user  a 
+        INNER JOIN 
+        za_user_role  b     on    a.uid = b.user_id
+        INNER JOIN 
+        za_role_menu   c     on        b.role_id = c.role_id
+        INNER JOIN 
+        za_sys_menu   d     on        c.menu_id = d.id
+      WHERE
+        a.uid = ${userId} and
+        d.sys_type = '${menuCode}'
+    `;
+    let dbData = await client1.query(sql)
+
+		let apiData = this.ctx.helper.turnHumpDataArr(dbData)
+
     return apiData;
-	}	
+  }
 }
 
 module.exports = MenuService;

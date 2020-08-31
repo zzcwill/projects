@@ -29,7 +29,8 @@ exports.turnHumpData = (data) => {
 
 	for(let key in data) {
 		let name = lodash.camelCase(key)
-		turnData[name] = data[key]
+		let value = data[key] !== null ? data[key] : ''
+		turnData[name] = value
 	}
 
 	return turnData
@@ -42,8 +43,9 @@ exports.turnHumpDataArr = (dataArr) => {
 		let itemData = {}
 		for(let key in dataArr[n]) {
 			let name = lodash.camelCase(key)
-			itemData[name] = dataArr[n][key]
-		}	
+			let value = dataArr[n][key] !== null ? dataArr[n][key] : ''
+			itemData[name] = value
+		}
 		turnDataArr.push(itemData)		
 	}
 

@@ -14,4 +14,5 @@ module.exports = app => {
 
   //菜单相关
   apiRouter.post('/menu/list', tokenRequired, controller.api.menu.list);
+  apiRouter.post('/menu/list2', tokenRequired, controller.api.menu.list2);
 };

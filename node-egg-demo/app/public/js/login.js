@@ -65,6 +65,22 @@ $(function() {
       },
     });
   });  
+
+  $('#menu2').bind('click', function() {
+    $.ajax({
+      type: 'post',
+      url: '/api/menu/list2',
+      data: {
+        menuCode: 'CLS_WEB_BEFORE'
+      },
+      dataType: 'json',
+      success(res) {
+        console.info(res);
+      },
+      error() {
+      },
+    });
+  });  
 });
 
 console.info(getCookie('sessionId'))
