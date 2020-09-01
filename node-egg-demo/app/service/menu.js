@@ -1,7 +1,4 @@
 'use strict';
-
-const utility = require('utility');
-const uuid = require('uuid');
 const Service = require('egg').Service;
 
 class MenuService extends Service {

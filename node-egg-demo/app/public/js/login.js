@@ -121,6 +121,22 @@ $(function() {
         console.info(res);
       },
     });
+  }); 
+  
+  $('#loan').bind('click', function() {
+    $.ajax({
+      type: 'post',
+      url: '/api/loan/list',
+      data: {
+        flowType: 'LOAN_APPLY_FLOW'
+      },
+      dataType: 'json',
+      success(res) {
+        console.info(res);
+      },
+      error() {
+      },
+    });
   });  
 });
 

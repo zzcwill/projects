@@ -1,55 +1,63 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-	<head>
-		<link rel="shortcut icon" href="/favicon.ico"/>
-		<meta name="viewport" content="width=1240,user-scalable=yes">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<title>login-egg</title>
-		<link rel="stylesheet" href="/public/css/reset.css" />
-		<script src="/public/js/jquery-1.11.1.min.js"></script>
-    <script src="/public/js/login.js"></script>
-    <style>
-      body{
-        padding: 100px;
-      }
-    </style>
-	</head>
-	<body>
-      <form id="loginForm" autocomplete="off">
-        <div class="login_box">
-          <div class="inputCar">
-            <input type="text" name="name" placeholder="用户名" class="form-control" maxlength="11" id="name" value="15777777777">
-          </div>
-          <div class="inputCar">
-            <input type="password" name="password" placeholder="请输入密码" class="form-control" id="password" value="123456a">
-          </div>
-          <br />
-          <br />
-          <button id="login" type="button">登录</button>
-          <br />
-          <br />
-          <button id="logout" type="button">退出</button>
-          <br />
-          <br />
-          <button id="getInfo" type="button">用户信息</button>
-          <br />
-          <br />
-          <button id="menu" type="button">菜单列表</button>
-          <br />
-          <br />
-          <button id="menu2" type="button">菜单列表-sql</button>
-          <br />
-          <br />
-          <button id="cnode" type="button">获取第三方cnode-分页数据</button>   
-          <br />
-          <br />
-          <div>
-            <button type="button" id="upImage1">
-              <span>上传图片</span>
-            </button>
-            <input type="file" name="fileImg" accept="image/*" class="hide" id="upImageInput1" >
-          </div>     
-        </div>
-      </form>    
-	</body>
+
+<head>
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=1240,user-scalable=yes">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>login-egg</title>
+  <link rel="stylesheet" href="/public/css/reset.css" />
+  <script src="/public/js/jquery-1.11.1.min.js"></script>
+  <script src="/public/js/login.js"></script>
+  <style>
+    body {
+      padding: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <form id="loginForm" autocomplete="off">
+    <div class="login_box">
+      <div class="inputCar">
+        <input type="text" name="name" placeholder="用户名" class="form-control" maxlength="11" id="name"
+          value="15777777777">
+      </div>
+      <div class="inputCar">
+        <input type="password" name="password" placeholder="请输入密码" class="form-control" id="password" value="123456a">
+      </div>
+      <br />
+      <br />
+      <button id="login" type="button">登录</button>
+      <br />
+      <br />
+      <button id="logout" type="button">退出</button>
+      <br />
+      <br />
+      <button id="getInfo" type="button">用户信息</button>
+      <br />
+      <br />
+      <button id="menu" type="button">菜单列表</button>
+      <br />
+      <br />
+      <button id="menu2" type="button">菜单列表-sql</button>
+      <br />
+      <br />
+      <button id="cnode" type="button">获取第三方cnode-分页数据</button>
+      <br />
+      <br />
+      <div>
+        <button type="button" id="upImage1">
+          <span>上传图片</span>
+        </button>
+        <input type="file" name="fileImg" accept="image/*" class="hide" id="upImageInput1">
+      </div>
+      <br />
+      <br />
+      <button id="loan" type="button">我的任务-已办贷款记录</button>
+      <br />
+      <br />
+    </div>
+  </form>
+</body>
 </html>

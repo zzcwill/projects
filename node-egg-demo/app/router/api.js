@@ -20,5 +20,8 @@ module.exports = app => {
   apiRouter.post('/cnode/list', tokenRequired, controller.api.cnode.list);
 
   //上传接口校验
-  apiRouter.post('/upload/new', controller.api.upload.new);
+  apiRouter.post('/upload/new', tokenRequired, controller.api.upload.new);
+
+  //贷款相关
+  apiRouter.post('/loan/list', tokenRequired, controller.api.loan.list);
 };
