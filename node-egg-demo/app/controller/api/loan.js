@@ -25,8 +25,6 @@ class LoanController extends BaseController {
       page,
       pageSize
     }
-
-    console.info(reqData)
     
     let loanList = await ctx.service.loan.getLoanByUserId(reqData)
  

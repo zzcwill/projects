@@ -137,7 +137,27 @@ $(function() {
       error() {
       },
     });
-  });  
+  }); 
+ 
+  var customerName = '王'
+  $('#customerList').bind('click', function() {
+    $.ajax({
+      type: 'post',
+      url: '/api/customer/list',
+      data: {
+        customerName: customerName
+      },
+      dataType: 'json',
+      success(res) {
+        console.info(res);
+      },
+      error() {
+      },
+    });
+  });
+  $('#customerExport').bind('click', function() {
+    window.location.href = '/api/customer/export' + '?customerName=' + customerName
+  });    
 });
 
 console.info(getCookie('sessionId'))

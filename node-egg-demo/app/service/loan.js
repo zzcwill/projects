@@ -22,8 +22,8 @@ class LoanService extends Service {
         INNER JOIN 
         cls.loan_project_info   c     on        b.business_object_id = c.id
       WHERE
-        a.uid = ${userId} and
-        b.business_type = '${flowType}' and
+        a.uid = ${userId} AND
+        b.business_type = '${flowType}' AND
         b.borrower_name LIKE '王%'
       ORDER BY c.id ASC
         LIMIT ${pageSize}
@@ -39,8 +39,8 @@ class LoanService extends Service {
         INNER JOIN 
         cls.loan_project_info   c     on        b.business_object_id = c.id
       WHERE
-        a.uid = ${userId} and
-        b.business_type = '${flowType}' and
+        a.uid = ${userId} AND
+        b.business_type = '${flowType}' AND
         b.borrower_name LIKE '王%'
       ORDER BY c.id ASC
         LIMIT ${pageSize}

@@ -24,4 +24,8 @@ module.exports = app => {
 
   //贷款相关
   apiRouter.post('/loan/list', tokenRequired, controller.api.loan.list);
+
+  //客户相关
+  apiRouter.post('/customer/list', tokenRequired, controller.api.customer.list);
+  apiRouter.get('/customer/export', tokenRequired, controller.api.customer.export);
 };
