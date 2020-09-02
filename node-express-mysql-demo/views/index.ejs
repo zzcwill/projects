@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<!-- <link rel="shortcut icon" href="/images/favicon.ico"/> -->
+	<meta name="viewport" content="width=1240,user-scalable=yes">
+	<meta name="keywords" content="zzc" />
+	<meta name="description" content="zzc" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title><%= title %></title>
+	<link rel='stylesheet' href='/css/reset.css' />
+	<link rel='stylesheet' href='/css/common.css' />
+	<script src="/js/jquery-1.11.1.min.js"></script>
+</head>
+<style>
+	h1 {
+		margin: 20px auto;
+		text-align: center;
+	}
+
+	h2{
+		margin: 10px auto;
+		text-align: center;
+	}
+	h3{
+		margin: 10px auto;
+		width: 302px;
+		height: 34px;
+		background-color: #000;
+	}
+</style>
+
+<body>
+	<h1><%= title %></h1>
+
+	<h1>接口demo</h1>
+	<h2 id="get">get</h2>
+	<h2 id="post-json">json提交</h2>
+	<h2 id="post-from">表单提交</h2>
+	<br />
+	<h2 id="post-multipart">文件上传</h2>
+	<h2>
+		<input type="file" name="file" accept="image/*" class="dn" id="upImage" >		
+	</h2>
+	<br />
+	<h2 id="get-data">获取第三方数据</h2>
+	<br />
+	<h2 id="timer-start">定时器开始</h2>
+	<h2 id="timer-end">定时器关闭</h2>
+	<br />
+	<h2 id="email">发送邮件</h2>
+	<br />
+	<h2 id="crawler">爬虫</h2>
+	<h3 id="html" class="dn">
+		<img src="" />
+	</h3>
+
+
+	<script>
+		$('#get').bind('click', function () {
+			var data = {
+				way: '/api/get',
+			}
+
+			$.ajax({
+				type: "get",
+				url: "/api/get",
+				data: data,
+				// dataType: "json",
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})
+
+		$('#post-json').bind('click', function () {
+			var data = {
+				way: '/api/post/json',
+			}
+
+			$.ajax({
+				type: "post",
+				url: "/api/post/json",
+				contentType: 'application/json',
+				data: JSON.stringify(data),
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})
+		
+		$('#post-from').bind('click', function () {
+			$.ajax({
+				type: "post",
+				url: "/api/post/from",
+				contentType: 'application/x-www-form-urlencoded',
+				data: {
+					way: '/api/post/from',
+				},
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})	
+		
+
+
+		$('#post-multipart').bind('click', function () {
+			$("#upImage").trigger("click");
+		})	
+		$("#upImage").change(function () {
+			var formData = new FormData();
+			var _this = this;
+
+			formData.append('file', _this.files[0]);	
+			formData.append('way', '/api/post/multipart');			
+
+
+			$.ajax({
+				type: "post",
+				url: "/api/post/multipart",
+        processData: false,
+        contentType: false, 				
+				// contentType: 'multipart/form-data',
+				data: formData,
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});			
+		})	
+
+		$('#get-data').bind('click', function () {
+			$.ajax({
+				type: "get",
+				url: "/api/getdata",
+				data: {},
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})	
+		
+		$('#timer-start').bind('click', function () {
+			$.ajax({
+				type: "get",
+				url: "/api/timer/start",
+				data: {},
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})
+		$('#timer-end').bind('click', function () {
+			$.ajax({
+				type: "get",
+				url: "/api/timer/end",
+				data: {},
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})
+
+		$('#email').bind('click', function () {
+			$.ajax({
+				type: "get",
+				url: "/api/email",
+				data: {},
+				success: function (res) {
+					console.log(res);
+				},
+				error: function () {
+				}
+			});
+		})
+
+		$('#crawler').bind('click', function () {
+			$.ajax({
+				type: "get",
+				url: "/api/crawler",
+				data: {},
+				success: function (res) {
+					console.log(res);
+					$('#html img').attr('src',res.data.src);
+					$('#html').removeClass('dn');
+				},
+				error: function () {
+				}
+			});
+		})
+
+	</script>
+</body>
+
+</html>
