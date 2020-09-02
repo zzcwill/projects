@@ -66,6 +66,9 @@ module.exports = appInfo => {
     serverUrl: 'https://cnodejs.org/api/v1',
   }
 
+  config.userVisitTimes = {
+    max: 5
+  }
 
   return config;
 };

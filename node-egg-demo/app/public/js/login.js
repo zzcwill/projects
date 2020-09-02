@@ -157,7 +157,21 @@ $(function() {
   });
   $('#customerExport').bind('click', function() {
     window.location.href = '/api/customer/export' + '?customerName=' + customerName
-  });    
+  }); 
+  
+  $('#cache').bind('click', function() {
+    $.ajax({
+      type: 'post',
+      url: '/api/cache/visit',
+      data: {},
+      dataType: 'json',
+      success(res) {
+        console.info(res);
+      },
+      error() {
+      },
+    });
+  });
 });
 
 console.info(getCookie('sessionId'))

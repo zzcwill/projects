@@ -1,11 +1,11 @@
 'use strict';
 
 module.exports = app => {
-  const { router, controller, middleware } = app;
+  const { router, controller, middleware, config } = app;
   const apiRouter = router.namespace('/api');
 
   const tokenRequired = middleware.tokenRequired();
-  const pagination = middleware.pagination();
+  const userVisitTimes = middleware.userVisitTimes(config.userVisitTimes.max);
 
   //用户相关
   apiRouter.post('/user/login', controller.api.user.login);
@@ -28,4 +28,7 @@ module.exports = app => {
   //客户相关
   apiRouter.post('/customer/list', tokenRequired, controller.api.customer.list);
   apiRouter.get('/customer/export', tokenRequired, controller.api.customer.export);
+
+  //redis相关-访问次数统计
+  apiRouter.post('/cache/visit', userVisitTimes, controller.api.cache.visit);
 };
