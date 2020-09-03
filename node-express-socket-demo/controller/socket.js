@@ -7,7 +7,7 @@ module.exports = {
 		var data = {
 			msg: `服务端发给客户端${socketCache[0]}消息`
 		}
-		// socketio.to(socketCache[0]).emit("message", data);
+
 		res.json(resDataApi(10000,data,'服务端发送消息成功'))		
 	}
 }

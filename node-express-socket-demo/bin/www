@@ -38,6 +38,10 @@ socketio.on('connection', function(socket){
       socketio.to(socket.id).emit("message", data);
     });
 });
+
+setInterval(() => {
+  socketio.to(socketCache[0]).emit("message", 'zzc');
+}, 1000);
 //socket.io-end
 
 
