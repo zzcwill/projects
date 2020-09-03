@@ -24,15 +24,19 @@ module.exports = appInfo => {
 
   config.security = {
     csrf: {
-      // 判断是否需要 ignore 的方法，请求上下文 context 作为第一个参数
-      ignore: ctx => {
-        if (ctx.request.url.indexOf('/api') !== -1) {
-          return true;
-        }
-        return false;
+      ignore: '/api/*/*',
+    }, 
+    domainWhiteList: [ 'http://127.0.0.1:7000' ],   
+    // csrf: {
+    //   // 判断是否需要 ignore 的方法，请求上下文 context 作为第一个参数
+    //   ignore: ctx => {
+    //     if (ctx.request.url.indexOf('/api') !== -1) {
+    //       return true;
+    //     }
+    //     return false;
 
-      },
-    },
+    //   },
+    // },
   };
 
   config.multipart = {

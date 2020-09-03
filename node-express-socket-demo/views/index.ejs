@@ -34,6 +34,10 @@
 	<h1><%= title %></h1>
 
 	<h1>接口demo</h1>
+	<h2 id="login">登录</h2>
+	<h2 id="logout">退出</h2>
+	<br />	
+	<br />	
 	<h2 id="get">get</h2>
 	<h2 id="post-json">json提交</h2>
 	<h2 id="post-from">表单提交</h2>
@@ -57,6 +61,39 @@
 
 
 	<script>
+		// login
+		$('#login').bind('click', function() {
+			$.ajax({
+				type: 'post',
+				url: 'http://127.0.0.1:7002/api/user/login',
+				data: {
+					name: '15777777777',
+					password: '123456a',
+				},
+				dataType: 'json',
+				success(res) {
+					console.info(res);
+				},
+				error() {
+				},
+			});
+		});
+
+		$('#logout').bind('click', function() {
+			$.ajax({
+				type: 'post',
+				url: 'http://127.0.0.1:7002/api/user/logout',
+				data: {},
+				dataType: 'json',
+				success(res) {
+					console.info(res);
+				},
+				error() {
+				},
+			});
+		});
+
+
 		$('#get').bind('click', function () {
 			var data = {
 				way: '/api/get',
