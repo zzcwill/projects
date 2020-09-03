@@ -60,6 +60,5 @@ app.use(function(err, req, res, next) {
 });
 
 require('./model');
-require('./dba');
 
 module.exports = app;
