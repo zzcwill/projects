@@ -5,10 +5,4 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'socket' });
 });
-
-router.get('/error', function(req, res, next) {
-  res.locals.message = 'error-zzc';
-  res.render('error');
-});
-
 module.exports = router;
