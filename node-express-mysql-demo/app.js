@@ -59,7 +59,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-require('./model');
 require('./dba');
 
 module.exports = app;

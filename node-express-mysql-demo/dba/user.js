@@ -23,7 +23,7 @@ var User = sequelize.define(
       allowNull: true,
       unique: false // 字段是否UNIQUE
     },		
-    user_name: {
+    userName: {
       type: Sequelize.STRING(90),
       allowNull: true,
       // validate: { //模型验证 当前字段值发生改变的时候进行验证
@@ -31,7 +31,7 @@ var User = sequelize.define(
       //   not: ["[a-z]",'i'],       // 不能使用字母
       //   isPhone: true
       // },
-      // field: 'user_name' // 数据库中字段的实际名称	
+      field: 'user_name' // 数据库中字段的实际名称	
     }
   },
   {

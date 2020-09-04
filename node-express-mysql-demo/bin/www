@@ -9,8 +9,6 @@ var chalk = require('chalk');
 var open = require('open');
 var os = require('os');
 
-var { socketCache } = require('../extend/socket');
-
 var app = require('../app');
 // var debug = require('debug')('dev');
 
@@ -19,26 +17,6 @@ var config = require('config-lite')(path.join(__dirname,'../'));
 app.set('port', config.port);
 
 var server = http.createServer(app);
-
-//socket.io-satrt
-var socketio = require('socket.io')(server);
-
-socketio.on('connection', function(socket){
-    socketCache.push(socket.id);
-    console.log(`客户端${socket.id}连上`);
-
-    socket.on("disconnect", function(socket) {
-      socketCache[socket.id] = '';
-      console.log(`客户端${socket.id}退出`);
-    });
-
-    socket.on("message", function(data) {
-      console.log(`接收到客户端${socket.id}消息: ${data}`);
-      // socketio.emit("message", data);
-      socketio.to(socket.id).emit("message", data);
-    });
-});
-//socket.io-end
 
 
 server.listen(config.port);

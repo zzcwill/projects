@@ -45,8 +45,8 @@ module.exports = {
 					[Sequelize.Op.like]: 'z%'
 				}
 			},
-			offset: 2,
-			limit: 2
+			// offset: 2,
+			// limit: 2
 		});
 
 		res.json(resDataApi(10000,{

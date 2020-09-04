@@ -6,8 +6,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'index' });
 });
 
-router.get('/socket', function(req, res, next) {
-  res.render('socket', { title: 'socket' });
-});
-
 module.exports = router;

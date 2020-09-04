@@ -10,7 +10,6 @@ var getdata = require('../controller/getdata');
 var timer = require('../controller/timer');
 var email = require('../controller/email');
 var crawler = require('../controller/crawler');
-var socket = require('../controller/socket');
 var xml = require('../controller/xml');
 var excel = require('../controller/excel');
 
@@ -18,7 +17,6 @@ var csurf = require('csurf');
 var csurfProtection = csurf({ cookie: true });
 var csurfApi = require('../controller/csurfApi');
 
-var dbApi = require('../controller/dbApi');
 var mqlApi = require('../controller/mqlApi');
 
 //接口测试
@@ -46,9 +44,6 @@ router.get('/email', email.send);
 //爬虫第三方页面
 router.get('/crawler', crawler.get);
 
-//socket
-router.get('/socket', socket.serversend);
-
 //xml数据读取
 router.get('/xml', xml.get);
 
@@ -58,12 +53,6 @@ router.get('/excel2', excel.get2);
 
 //防csrf攻击
 router.get('/csurf', csurfProtection, csurfApi.get);
-
-//mongoose-增删改查
-router.get('/mongoose/add', dbApi.add);
-router.get('/mongoose/delete', dbApi.delete);
-router.get('/mongoose/update', dbApi.update);
-router.get('/mongoose/search', dbApi.search);
 
 //sequelize-增删改查
 router.get('/mysql/add', mqlApi.add);
