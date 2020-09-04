@@ -20,7 +20,7 @@ module.exports = {
     
   },
   get2: async function (req, res, next) {
-    var url = '/excel.xlsx'
+    var url = '/demo.xlsx'
     res.redirect(url)
   }
 }
