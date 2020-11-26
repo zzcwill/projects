@@ -3,7 +3,7 @@ const userLogin = () => import('@/views/user/userLogin.vue')
 const userRoute = [
   {
 		path: '/',
-		redirect: '/userLogin'
+		redirect: '/chartDemo'
 	},
 	{
 		path: '/userLogin',

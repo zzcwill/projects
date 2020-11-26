@@ -3,11 +3,12 @@ import Router from 'vue-router'
 
 import user from '@/router/user'
 import app from '@/router/app'
+import chart from '@/router/chart'
 
 Vue.use(Router)
 
 // 后续可添加模块
-const constantRouterMap = user.concat(app)
+const constantRouterMap = user.concat(app,chart)
 
 export default new Router({
   mode: 'history',
