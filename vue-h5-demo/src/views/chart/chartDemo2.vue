@@ -7,15 +7,15 @@ import { topicsApi } from '@/api/user'
 import echarts from 'echarts'
 
 export default {
-  name: 'chartDemo',
+  name: 'chartDemo2',
   data() {
     return {
       domId: 'chartDemo',
       chart: null,
-      colorArr: ['#86D9E0', '#E086CE', '#8184D6'],
-      legendData: ['发起', '完成', '通过'],
+      colorArr: ['#E086CE', '#8184D6'],
+      seriesName: ['征信平均时效', '签约平均时效'],
       xAxisData: ['11-01','11-02','11-03','11-04','11-05','11-06','11-07'],
-      yAxisName: '笔数',
+      yAxisName: '分钟',
       seriesData: [
         [0, 20, 15, 40, 50, 70, 100],
         [0, 10, 15, 20, 25, 30, 40],
@@ -47,7 +47,6 @@ export default {
     setOptions() {
       let option = {
         backgroundColor: '#FFF',
-        // 表格标题
         title: {
           top: 20,
           text: '',
@@ -58,7 +57,6 @@ export default {
           },
           left: '1%'
         },
-        // 点击-提示信息
         tooltip: {
           trigger: 'axis',
           axisPointer: {
@@ -67,7 +65,6 @@ export default {
             }
           }
         },
-        // 右上角标题
         legend: {
           top: 20,
           icon: 'circle',
@@ -81,21 +78,19 @@ export default {
             color: '#333'
           }
         },
-        // 折线图形-距离顶部的配置        
         grid: {
           top: 60,
           left: '2%',
           right: '2%',
           bottom: '2%',
           containLabel: true
-        },
+        },        
         xAxis: [{
           type: 'category',
-          boundaryGap: true,
-          // x轴刻度线 
+          data: this.xAxisData,
           axisTick: {
-            show: false
-          },                   
+            alignWithLabel: false
+          },
           axisLine: {
             show: true,
             lineStyle: {
@@ -108,13 +103,11 @@ export default {
               fontSize: 12,
               color: '#333'
             }
-          },              
-          data: this.xAxisData
+          }                    
         }],
         yAxis: [{
           type: 'value',
           name: this.yAxisName,
-          // y轴刻度线
           axisTick: {
             show: false
           },
@@ -132,62 +125,30 @@ export default {
             }
           }
         }],
-        series: [
-          {
-            name: this.legendData[0],
-            type: 'line',
-            symbol: 'circle',
-            symbolSize: 4,
-            showSymbol: true,
-            lineStyle: {
-              normal: {
-                width: 1
-              }
-            },
-            itemStyle: {
-              normal: {
-                color: this.colorArr[0],
-                borderColor: this.colorArr[0],
-              }
-            },
-            data: this.seriesData[0]
-        }, 
-          {
-          name: this.legendData[1],
-          type: 'line',
-          symbol: 'circle',
-          symbolSize: 4,
-          showSymbol: true,
-          lineStyle: {
+        series: [{
+          name: this.seriesName[0],
+          type: 'bar',
+          stack: 'vistors',
+          barWidth: '60%',
+          itemStyle: {
             normal: {
-              width: 1
+              color: this.colorArr[0],
+              borderColor: this.colorArr[0],
             }
-          },
+          },          
+          data: this.seriesData[0],
+        }, {
+          name: this.seriesName[1],
+          type: 'bar',
+          stack: 'vistors',
+          barWidth: '60%',
           itemStyle: {
             normal: {
               color: this.colorArr[1],
               borderColor: this.colorArr[1],
             }
-          },
-          data: this.seriesData[1]
-        }, {
-          name: this.legendData[2],
-          type: 'line',
-          symbol: 'circle',
-          symbolSize: 4,
-          showSymbol: true,
-          lineStyle: {
-            normal: {
-              width: 1
-            }
-          },
-          itemStyle: {
-            normal: {
-              color: this.colorArr[2],
-              borderColor: this.colorArr[2],
-            }
-          },
-          data: this.seriesData[2]
+          },          
+          data: this.seriesData[1],
         }]
       };      
       this.chart.setOption(option)
