@@ -89,10 +89,10 @@ export default {
           type: 'category',
           data: this.xAxisData,
           axisTick: {
-            alignWithLabel: false
+            show: false
           },
           axisLine: {
-            show: true,
+            show: false,
             lineStyle: {
               color: '#E5E5E5'
             }
