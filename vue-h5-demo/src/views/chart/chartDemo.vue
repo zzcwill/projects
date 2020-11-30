@@ -13,7 +13,7 @@ export default {
       domId: 'chartDemo',
       chart: null,
       colorArr: ['#86D9E0', '#E086CE', '#8184D6'],
-      legendData: ['发起', '完成', '通过'],
+      seriesName: ['发起', '完成', '通过'],
       xAxisData: ['11-01','11-02','11-03','11-04','11-05','11-06','11-07'],
       yAxisName: '笔数',
       seriesData: [
@@ -69,12 +69,11 @@ export default {
         },
         // 右上角标题
         legend: {
-          top: 20,
+          top: 10,
           icon: 'circle',
           itemWidth: 14,
           itemHeight: 5,
           itemGap: 13,
-          data: this.legendData,
           right: '4%',
           textStyle: {
             fontSize: 12,
@@ -134,7 +133,7 @@ export default {
         }],
         series: [
           {
-            name: this.legendData[0],
+            name: this.seriesName[0],
             type: 'line',
             symbol: 'circle',
             symbolSize: 4,
@@ -153,7 +152,7 @@ export default {
             data: this.seriesData[0]
         }, 
           {
-          name: this.legendData[1],
+          name: this.seriesName[1],
           type: 'line',
           symbol: 'circle',
           symbolSize: 4,
@@ -171,7 +170,7 @@ export default {
           },
           data: this.seriesData[1]
         }, {
-          name: this.legendData[2],
+          name: this.seriesName[2],
           type: 'line',
           symbol: 'circle',
           symbolSize: 4,
