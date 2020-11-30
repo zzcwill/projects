@@ -14,12 +14,12 @@ export default {
       chart: null,
       colorArr: ['#E086CE', '#8184D6'],
       seriesName: ['逾期笔数', '逾期金额'],
-      xAxisData: ['N1','N2','N3','N4以及以上'],
+      xAxisData: ['N1','N2','N3','N4及以上'],
       yAxisName: '逾期笔数',
       yAxisName2: '逾期金额/元',
       seriesData: [
         [0, 100, 200, 300.8],
-        [1000, 3000, 4000, 5000.2],
+        [1000, 3000, 4000, 9000.2],
       ]
     }
   },
