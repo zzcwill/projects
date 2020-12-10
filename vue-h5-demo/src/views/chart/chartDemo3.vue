@@ -186,13 +186,9 @@ export default {
       let strMax = parseInt(max) + ''
       let maxHightNumber = parseInt(strMax[0])
 
-      if(maxHightNumber === 0) {
-        return reurnMax
-      }
-
       reurnMax = maxHightNumber+1
 
-      for( let key = 1 ; key < strMax.length ; key++) {
+      for( let key = 0 ; key < strMax.length ; key++) {
         reurnMax = reurnMax*10
       }
 
@@ -205,14 +201,9 @@ export default {
 
       let maxHightNumber = parseInt(strMax[0])
 
-      if(maxHightNumber === 0) {
-        return reurnMax
-      }
-
       reurnMax = maxHightNumber+1
-      console.info(strMax)
-      console.info(strMax.length)
-      for( let key = 1 ; key < strMax.length ; key++) {
+
+      for( let key = 0 ; key < strMax.length ; key++) {
         reurnMax = reurnMax*10
       }
 
