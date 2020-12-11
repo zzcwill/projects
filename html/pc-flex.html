@@ -46,6 +46,28 @@
 				height: 30px;
 				line-height: 30px;
 			}
+
+			.flex-box2{
+				display: flex;
+				margin: 20px auto;
+				width: 560px;
+				height: 400px;
+				
+				flex-direction: row;
+				/* item垂直水平线对齐 */
+				align-items: center;
+				/* 水平居中 */
+				justify-content: center;
+				background-color: #eee;			
+			}
+			.flex-item2{
+				width: 100px;
+				background-color: #ddd;
+				text-align: center;
+				font-size: 12px;
+				height: 20px;
+				line-height: 20px;
+			}			
 		</style>
 		<div class="flex-box">
 			<div class="flex-item">1</div>
@@ -58,6 +80,10 @@
 			<div class="flex-item">2</div>
 			<div class="flex-item h30">3</div>
 			<div class="flex-item">4</div>				
-		</div>		
+		</div>
+		
+		<div class="flex-box2">
+			<div class="flex-item2">垂直居中</div>
+		</div>
 	</body>
 </html>
