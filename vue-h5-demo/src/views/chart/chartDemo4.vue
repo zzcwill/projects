@@ -59,7 +59,7 @@ export default {
             }
           },
           trigger: 'item',
-          formatter: '{d}%'          
+          formatter: '{c} ({d}%)'          
         },
         legend: {
           orient: 'vertical',
