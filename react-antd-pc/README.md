@@ -110,8 +110,7 @@
 
 ### 项目运行
 - 全局安装包安装
-- npm install -g svgo
-- npm install -g eslint
+- npm install -g cross-env
 - 安装相应依赖包
 - yarn install
 - 开发环境运行
