@@ -1,4 +1,4 @@
-# vue-h5
+# react-h5
 > A react-h5 demo project
 
 ### 项目运行
