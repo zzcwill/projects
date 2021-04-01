@@ -13,27 +13,27 @@ module.exports = appInfo => {
     clients: {
       db1: {
         // host
-        host: '192.168.26.11',
+        host: '127.0.0.1',
         // 端口号
         port: '3306',
         // 用户名
-        user: 'ftcs_test',
+        user: 'root',
         // 密码
-        password: 'ftcs_test_12@Chedai44',
+        password: 'root',
         // 数据库名
-        database: 'za_admin',
+        database: 'shop',
       },
       db2: {
         // host
-        host: '192.168.26.11',
+        host: '127.0.0.1',
         // 端口号
         port: '3306',
         // 用户名
-        user: 'ftcs_test',
+        user: 'root',
         // 密码
-        password: 'ftcs_test_12@Chedai44',
+        password: 'root',
         // 数据库名
-        database: 'cls',
+        database: 'boblog',
       },
     },
     // 单数据库信息配置        
@@ -60,7 +60,7 @@ module.exports = appInfo => {
     client: {
       host: '127.0.0.1',
       port: '6379',
-      password: '',
+      password: 'root',
       db: '1',
     },
     agent: true,
