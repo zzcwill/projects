@@ -1,10 +1,17 @@
 var path = require('path');
 
 module.exports = {
-	hostname: 'http://127.0.0.1',
-	port: 7000,
+	port: 4000,
 	cookieSession: {
+		name: 'session',
 		keys: ['zzc']
 	},
-  log_dir: path.join(__dirname, '../log4')
+  log_dir: path.join(__dirname, '../logs/error'),
+  security: {
+    secretKey: "zzc",
+    // 过期时间 3小时
+    expiresIn: 60 * 60 * 24
+  },
+	// /api以下
+	noauthArr: ['/socket']
 }
