@@ -10,13 +10,16 @@ async function consumerDLX(connnection) {
     const testQueueDLX = 'testQueueDLX';
 
     const ch = await connnection.createChannel();
+
+    console.log('consumer connect success');
+
     await ch.assertExchange(testExchangeDLX, 'direct', { durable: true });
     const queueResult = await ch.assertQueue(testQueueDLX, {
         exclusive: false,
     });
     await ch.bindQueue(queueResult.queue, testExchangeDLX, testRoutingKeyDLX);
     await ch.consume(queueResult.queue, msg => {
-        console.log('consumer msg：', msg.content.toString());
+        console.log('consumer：', msg.content.toString());
     }, { noAck: true });
 }
 

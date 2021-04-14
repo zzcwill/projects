@@ -1,8 +1,8 @@
 const amqp = require('amqplib');
 
-let rabbitMqOption= {
+let rabbitMqOption = {
     protocol: 'amqp',
-    hostname: '127.0.0.1',
+    hostname:'127.0.0.1',
     port:'5672',
     username:'root',
     password:'root',
@@ -13,7 +13,6 @@ let rabbitMqOption= {
     }  
 }
 
-
 async function producer() {
     // 1. 创建链接对象
     const connection = await amqp.connect(rabbitMqOption);
@@ -21,23 +20,19 @@ async function producer() {
     // 2. 获取通道
     const channel = await connection.createChannel();
 
-    console.log('producer connect success');
-
     // 3. 声明参数
-    const routingKey = 'testQueue';
-    
-    let msg = {
-        uid: '1',
-        username: 'zzc'
-    };
-    msg = JSON.stringify(msg)
+    const exchangeName = 'qosEx';
+    const routingKey = 'qos.test001';
+    const msg = 'Producer：';
 
+    // 4. 声明交换机
+    await channel.assertExchange(exchangeName, 'topic', { durable: true });
+    
     for (let i=0; i<5; i++) {
-        // 4. 发送消息
-        await channel.publish('', routingKey, Buffer.from(`${i} : ${msg}`));
+        // 5. 发送消息
+        await channel.publish(exchangeName, routingKey, Buffer.from(`${msg} 第${i}条消息`));
     }
 
-    // 5. 关闭链接
     await channel.close();
 }
 

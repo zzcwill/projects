@@ -11,6 +11,9 @@ const rabbitmq = require('./rabbitmq.js');
     const testRoutingKeyDLX = 'testRoutingKeyDLX';
     
     const ch = await connnection.createChannel();
+
+    console.log('producer connect success');
+
     await ch.assertExchange(testExchange, 'direct', { durable: true });
     const queueResult = await ch.assertQueue(testQueue, {
         exclusive: false,
@@ -18,11 +21,19 @@ const rabbitmq = require('./rabbitmq.js');
         deadLetterRoutingKey: testRoutingKeyDLX,
     });
     await ch.bindQueue(queueResult.queue, testExchange);
-    const msg = 'hello world!';
-    console.log('producer msg：', msg);
-    await ch.sendToQueue(queueResult.queue, new Buffer(msg), {
+
+    let msg = {
+        uid: '1',
+        username: 'zzc'
+    };
+    msg = JSON.stringify(msg)
+    console.info(msg)
+
+    await ch.sendToQueue(queueResult.queue, Buffer.from(msg), {
         expiration: '10000'
     });
     
     ch.close();
 }
+
+rabbitmq.init().then(connection => producerDLX(connection));

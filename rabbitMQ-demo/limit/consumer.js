@@ -1,6 +1,6 @@
 const amqp = require('amqplib');
 
-let rabbitMqOption= {
+let rabbitMqOption = {
     protocol: 'amqp',
     hostname:'127.0.0.1',
     port:'5672',
@@ -20,19 +20,25 @@ async function consumer() {
     // 2. 获取通道
     const channel = await connection.createChannel();
 
-    console.log('consumer connect success');
-
     // 3. 声明参数
-    const queueName = 'testQueue';
+    const exchangeName = 'qosEx';
+    const queueName = 'qosQueue';
+    const routingKey = 'qos.#';
 
-    // 4. 声明队列，交换机默认为 AMQP default
+    // 4. 声明交换机、对列进行绑定
+    await channel.assertExchange(exchangeName, 'topic', { durable: true });
     await channel.assertQueue(queueName);
+    await channel.bindQueue(queueName, exchangeName, routingKey);
+    
+    // 5. 限流参数设置
+    await channel.prefetch(1, false);
 
-    // 5. 消费
+    // 6. 限流，noAck参数必须设置为false
     await channel.consume(queueName, msg => {
         console.log('Consumer：', msg.content.toString());
+
         channel.ack(msg);
-    });
+    }, { noAck: false });
 }
 
 consumer();
