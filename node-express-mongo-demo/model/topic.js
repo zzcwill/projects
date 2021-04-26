@@ -21,6 +21,8 @@ var TopicSchema = new Schema({
   content_is_html: { type: Boolean },
   tab: {type: String},
   deleted: {type: Boolean, default: false},
+
+  // zzc: {type: Boolean, default: false}
 });
 
 TopicSchema.plugin(BaseModel);
@@ -28,4 +30,4 @@ TopicSchema.index({create_at: -1});
 TopicSchema.index({top: -1, last_reply_at: -1});
 TopicSchema.index({author_id: 1, create_at: -1});
 
-mongoose.model('Topic', TopicSchema);
+mongoose.model('Topic', TopicSchema, 'topic');

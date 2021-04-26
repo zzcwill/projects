@@ -5,9 +5,11 @@ var logger = require('../extend/logger')
 
 mongoose.connect(config.mongoConfig.client.url,{
   poolSize: 20,
-  useCreateIndex: true,
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+
+  useCreateIndex: false,
+  useFindAndModify: false,
 }, function (err) {
   console.info('db connect')
   if (err) {
