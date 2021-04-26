@@ -3,17 +3,18 @@ var path = require('path');
 module.exports = {
 	mongoConfig:{
     client: {
-			url: 'mongodb://root:root@127.0.0.1:27017/cnode2?authSource=admin',
+			// url: 'mongodb://root:root@127.0.0.1:27017/cnode?authSource=cnode',
+      url: 'mongodb://zzc:root@127.0.0.1:27017/cnode',
       // host
       host: '127.0.0.1',
       // 端口号
       port: '27017',
       // 用户名
-      user: 'root',
+      user: 'zzc',
       // 密码
       password: 'root',
       // 数据库名
-      database: 'cnode2',
+      database: 'cnode',
     },
 	},
 	redisConfig: {
