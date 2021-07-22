@@ -7,6 +7,6 @@
 - 安装相应依赖包
 - yarn install
 - 开发环境运行
-- yarn dev 
+- yarn dev
 - 生成项目打包文件
 - yarn build

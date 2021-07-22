@@ -4,4 +4,5 @@
 ### 项目运行
 - 全局包安装
 - npm install apidoc -g
-- npm apidoc -i src/ -o apidoc/
+- 生成文档
+apidoc -i src/ -o apidoc/

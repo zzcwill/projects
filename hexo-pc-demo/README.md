@@ -3,7 +3,7 @@
 
 ### 项目运行
 - 开发包安装
-- npm install
+- yarn install
 - 开发环境运行
 - yarn run dev
 - 生成项目打包文件

@@ -6,8 +6,6 @@ const del = require('del');
 
 const htmlmin = require('gulp-htmlmin');
 
-// const imagemin = require('gulp-imagemin');
-
 const less = require('gulp-less');
 const cleanCss = require('gulp-clean-css');
 
