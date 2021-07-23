@@ -19,8 +19,7 @@ const generateConfig = env => {
 
   return {
     entry: {
-      app: resolve("../src/app.js"),
-      pageA: resolve("../src/pageA.js")
+      app: resolve("../src/app.js")
     },
     output: {
       publicPath: env === "production" ? "./" : "/",
@@ -73,13 +72,13 @@ const generateConfig = env => {
               loader: "url-loader",
               options: {
                 name: "[name]-[hash:5].min.[ext]",
-                limit: 20000, // size <= 20KB
+                limit: 2000, // size <= 2KB
                 publicPath: "./images/",
                 outputPath: "images/"
               }
-            }
+            }           
           ]
-        },
+        },       
         {
           test: /\.(eot|woff|ttf|svg)$/,
           use: [
@@ -102,15 +101,15 @@ const generateConfig = env => {
           // 注意: priority属性
           // 其次: 打包vendor公共代码
           common: {
-            name: "vendor",
-            test: /[\\/]vendor[\\/]/,
+            name: "utils",
+            test: /[\\/]utils[\\/]/,
             chunks: "all",
             minSize: 1,
             priority: 0
           },
           // 首先: 打包node_modules中的文件
           vendor: {
-            name: "vendor2",
+            name: "modules",
             test: /[\\/]node_modules[\\/]/,
             chunks: "all",
             priority: 10
@@ -121,14 +120,14 @@ const generateConfig = env => {
     },
     resolve: {
       alias: {
-        jquery2: resolve("../src/vendor/jquery-1.11.1.min.js")
+        "@": resolve("../src"),
       }
     },
     plugins: [
       new HtmlWebpackPlugin({
         filename: "index.html",
         template: resolve("../index.html"),
-        chunks: ['vendor','vendor2',"app",'pageA'], // entry中的app入口才会被打包
+        chunks: ['utils','modules',"app"], // entry中的app入口才会被打包
         minify: {
           // 压缩选项
           collapseWhitespace: true
@@ -137,7 +136,6 @@ const generateConfig = env => {
       }),
       new webpack.ProvidePlugin({
         $: "jquery", // npm
-        jquery2: "jquery2" // 本地Js文件
       })
     ]     
   };

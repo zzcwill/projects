@@ -6,7 +6,6 @@
 - yarn install
 - 开发环境运行
 - yarn dev
-- 或 yarn dev2
 - 生成项目打包文件
 - yarn build
 - 或 yarn build

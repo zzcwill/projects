@@ -3,9 +3,11 @@ import "@babel/polyfill";
 import "./fonts/iconfont.less";
 import "./less/index.less";
 
-import $_ from "lodash";
+import _ from "lodash";
 
-//测试jquery
+import { add } from "@/utils/common"
+
+// webpack引入jquery
 $.ajax({
 	type:"get",
 	url:"/api/topics",
@@ -19,11 +21,9 @@ $.ajax({
 	error:function(){
 	}
 });
-jquery2('.demo').css('border-color','#eee')
 
-//测试lodash
-let data = {
-	a: 'app',
-}
-let outData = $_.pick(data,['a'])
-console.log(`${outData.a}`);
+let data = add(1, 2)
+
+let isNum = _.isNumber(data)
+
+console.info(isNum)

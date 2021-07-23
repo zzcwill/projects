@@ -5,9 +5,7 @@
   "description": "A webpack demo",
   "scripts": {
     "dev": "webpack-dev-server --env development --config build/webpack.common.conf.js",
-    "build": "webpack --env production --progress --display-reasons --color --config build/webpack.common.conf.js",
-    "dev2": "webpack-dev-server --env development",
-    "build2": "webpack --env production --progress --display-reasons --color"
+    "build": "webpack --env production --progress --display-reasons --color --config build/webpack.common.conf.js"
   },
   "devDependencies": {
     "@babel/core": "^7.10.5",

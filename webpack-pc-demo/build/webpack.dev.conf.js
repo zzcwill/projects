@@ -7,9 +7,10 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     port: 8000,
+    // 开启热更新-1
     hot: true,
     overlay: true,
-    open: true,
+    open: false,
     proxy: {
       '/api': {
         target: 'https://cnodejs.org/api/v1',
@@ -22,6 +23,7 @@ module.exports = {
     historyApiFallback: true
   },
   plugins: [
+    // 开启热更新-2
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin()
   ]
