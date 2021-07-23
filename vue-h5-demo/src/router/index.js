@@ -8,7 +8,9 @@ import chart from '@/router/chart'
 Vue.use(Router)
 
 // 后续可添加模块
-const constantRouterMap = app.concat(chart, user)
+const constantRouterMap = user.concat(chart, app)
+
+console.info(constantRouterMap)
 
 export default new Router({
   mode: 'history',
