@@ -5,9 +5,9 @@
 - 开发包安装
 - yarn install
 - 开发环境运行
-- yarn run dev
+- yarn dev
 - 生成项目打包文件
-- yarn run build
+- yarn build
 
 ### 写文章
 - hexo new 'new doc'

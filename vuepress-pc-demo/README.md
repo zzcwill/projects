@@ -2,9 +2,9 @@
 > A vuepress demo project
 
 ### 项目运行
-- 全局安装
-- npm install -g vuepress
+- 安装
+- npm install
 - 开发环境运行
-- yarn run dev
+- yarn dev
 - 生成项目打包文件
-- yarn run build
+- yarn build

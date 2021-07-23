@@ -8,7 +8,6 @@
 - yarn dev
 - 生成项目打包文件
 - yarn build
-- 或 yarn build
 
 ### 1 webpack需要安装包
 #### devDependencies

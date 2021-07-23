@@ -1,10 +1,13 @@
 {
   "name": "doc-demo",
   "version": "1.0.0",
-  "private": true,  
+  "private": true,
   "description": "A vuepress demo project",
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "vuepress": "^1.8.2"
   }
 }
