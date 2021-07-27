@@ -1,17 +1,17 @@
 const app = {
   state: {
-    language: 'zh',
+    sysname: 'app',
   },
 
   mutations: {
-    set_app_language: (state, language) => {
-        state.language = language
+    app_sysname: (state, sysname) => {
+        state.sysname = sysname
     }  
   },
 
   actions: {
-    set_app_language({ commit }, lan) {
-      commit('set_app_language', lan)
+    app_sysname({ commit }, sysname) {
+      commit('app_sysname', sysname)
     }    
   }
 }

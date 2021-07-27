@@ -28,17 +28,17 @@ export default {
 			}
 		}
 
-    if (!Vue.$za) {
-      Vue.$za = {
+    if (!Vue.plug) {
+      Vue.plug = {
         tip
       }
     } else {
-      Vue.$za.tip = tip
+      Vue.plug.tip = tip
     }
 
     Vue.mixin({
       created: function() {
-        this.$za = Vue.$za
+        this.plug = Vue.plug
       }
     })		
 	}	

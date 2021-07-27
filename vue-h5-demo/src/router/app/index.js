@@ -1,12 +1,16 @@
 const appRoute = [
   {
-    path: '*',
-    redirect: '/404'
-  },
+		path: '/',
+		redirect: '/demo'
+	},
 	{
     path: '/404',
-    redirect: '/userLogin'
-	}	
+    redirect: '/demo'
+	},    
+  {
+    path: '*',
+    redirect: '/404'
+  }
 ]
 
 export default appRoute

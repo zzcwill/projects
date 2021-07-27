@@ -33,7 +33,7 @@ http.interceptors.response.use((response) => {
   const res = response.data
 
   // if (res.code !== 10000) {
-	// 	vue.$za.tip.open({
+	// 	vue.plug.tip.open({
 	// 		text: res.message || 'Error',
 	// 	})
   //   return
@@ -43,7 +43,7 @@ http.interceptors.response.use((response) => {
 }, (err) => {
 	// http状态码不为200时-错误处理
 	if (err) {
-		vue.$za.tip.open({
+		vue.plug.tip.open({
 			text: err
 		})
 	}

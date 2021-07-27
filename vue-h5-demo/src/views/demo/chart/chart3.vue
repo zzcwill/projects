@@ -7,10 +7,10 @@ import { topicsApi } from '@/api/user'
 import echarts from 'echarts'
 
 export default {
-  name: 'chartDemo3',
+  name: 'chart3',
   data() {
     return {
-      domId: 'chartDemo3',
+      domId: 'chart3',
       chart: null,
       colorArr: ['#E086CE', '#8184D6'],
       seriesName: ['逾期笔数', '逾期金额'],

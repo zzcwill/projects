@@ -22,6 +22,8 @@ module.exports = {
     //组件大小写未使用
     "vue/no-unused-components": ["error", {
       "ignoreWhenBindingPresent": true
-    }]    
+    }],
+    
+    "no-undef": "off"
   }
 }

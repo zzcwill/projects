@@ -1,14 +1,10 @@
-const userLogin = () => import('@/views/user/userLogin.vue')
+const login = () => import('@/views/user/login.vue')
 
 const userRoute = [
-  {
-		path: '/',
-		redirect: '/chartDemo'
-	},
 	{
-		path: '/userLogin',
-		name: 'userLogin',
-		component: userLogin
+		path: '/login',
+		name: 'login',
+		component: login
 	}		
 ]
 

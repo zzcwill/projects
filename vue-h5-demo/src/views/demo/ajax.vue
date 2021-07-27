@@ -1,6 +1,6 @@
 <template>
-  <div class="UserLogin">
-    demo
+  <div>
+    ajax
   </div>
 </template>
 
@@ -8,19 +8,15 @@
 import { topicsApi } from '@/api/user'
 
 export default {
-  name: 'userLogin',
+  name: 'ajax',
   data() {
     return {
-			code: this.$route.query.code,
-      user: {
-        phone: '',
-        idCard: '',
-        smsCode: ''
-      }
+			code: this.$route.query.code
     }
   },
   created() {
-    this.judgeUserIsBind()
+    console.info(this.code)
+    this.getData()
   },
   mounted() {
 	},
@@ -28,7 +24,7 @@ export default {
 
   },
   methods: {
-    async judgeUserIsBind() {
+    async getData() {
       let data = {
         page: 1,
         tab: 'good',
@@ -41,6 +37,6 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 
 </style>

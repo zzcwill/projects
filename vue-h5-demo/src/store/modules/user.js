@@ -1,22 +1,30 @@
+import { topicsApi } from '@/api/user'
+
 const user = {
   state: {
-    name: '用户名',
+    userInfo: '',
   },
 
-  // mutations: {
-  //   set_user_name: (state, name) => {
-  //     state.name = name
-  //   },
-  // },
+  mutations: {
+    user_info: (state, userData) => {
+      state.userInfo = userData
+    },
+  },
 
-  // actions: {
-  //   //设置用户名
-  //   async set_user_name ({ commit }, data) {
-  //     let res = await loginApi(data)
-  //     commit('set_user_name', res.data.systemName)
-  //     return res
-  //   },         
-  // }
+  actions: {
+    //设置用户信息
+    async user_info ({ commit }, userData) {
+      let res = await topicsApi(userData)
+      res = {
+        username: 'zzc',
+        phone: '18042434280',
+        token: '123456'
+      }
+      let userInfoStr = JSON.stringify(res)
+      commit('user_info', userInfoStr)
+      return res
+    }       
+  }
 }
 
 export default user
