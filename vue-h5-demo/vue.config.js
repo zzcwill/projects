@@ -12,7 +12,7 @@ module.exports = {
   // 文件打包路径
   outputDir:'dist',
   // 文件打吧路径下的静态资源放置目录
-  assetsDir:'',
+  assetsDir:'static',
   // 指定生成的 index.html 的输出路径 (相对于 outputDir)
   indexPath:'index.html',
   // 生成静态资源文件是否加hash命名

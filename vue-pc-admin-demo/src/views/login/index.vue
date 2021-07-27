@@ -39,7 +39,7 @@
 
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2019-2020 zzc-admin All Rights Reserved.</span>
+      <span>Copyright © 2020-2021 zzc-admin All Rights Reserved.</span>
     </div>    
   </div>
 </template>
