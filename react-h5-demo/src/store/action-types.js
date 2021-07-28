@@ -1,3 +1,0 @@
-export const USER_SET_USER_INFO = "USER_SET_USER_INFO";
-
-

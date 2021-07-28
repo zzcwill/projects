@@ -1,11 +1,10 @@
-import * as types from "../action-types";
 import { login, logout, getInfo } from "@/api/common";
 import { setToken, removeToken } from "@/utils/config";
 import avatarPhoto from '@/assets/common/1.jpg'
 
 export const setUserInfo = (userInfo) => {
   return {
-    type: types.USER_SET_USER_INFO,
+    type: 'USER_SET_USER_INFO',
     userInfo,
   };
 };
@@ -13,10 +12,14 @@ export const setUserInfo = (userInfo) => {
 export const tologin = (loginData) => (dispatch) => {
   return new Promise((resolve, reject) => {
     login(loginData)
-      .then((response) => {
-        const { data } = response;
-        setToken(data.token)
-        resolve(data);
+      .then((res) => {
+        if(res.code !== 10000) {
+          resolve(res);
+        }
+        // test
+        res.data.token = 'zzc'
+        setToken(res.data.token)
+        resolve(res);
       })
       .catch((error) => {
         reject(error);
@@ -24,29 +27,35 @@ export const tologin = (loginData) => (dispatch) => {
   });
 };
 
-export const togetInfo = () => (dispatch) => {
-  return new Promise((resolve, reject) => {
-    getInfo()
-      .then((response) => {
-        const { data } = response
-        data.avatar = avatarPhoto;
-        dispatch(setUserInfo(data));
-        resolve(data);
-      })
-      .catch((error) => {
-        reject(error);
-      });
-  });
+export const togetInfo = () =>  async (dispatch) => {
+  let res = await getInfo()
+
+  if(res.code === 10000) {
+    res.data.avatar = avatarPhoto;
+    dispatch(setUserInfo(res.data));
+    return res  
+  }
+  // return new Promise((resolve, reject) => {
+  //   getInfo()
+  //     .then((res) => {
+  //       // test
+  //       res.data.avatar = avatarPhoto;
+  //       dispatch(setUserInfo(res.data));
+  //       resolve(res);
+  //     })
+  //     .catch((error) => {
+  //       reject(error);
+  //     });
+  // });
 };
 
 export const tologout = () => (dispatch) => {
   return new Promise((resolve, reject) => {
     logout()
-      .then((response) => {
-        const { data } = response;
+      .then((res) => {
         dispatch(setUserInfo(''));
         removeToken();
-        resolve(data);
+        resolve(res);
       })
       .catch((error) => {
         reject(error);

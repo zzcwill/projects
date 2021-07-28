@@ -1,7 +1,6 @@
 import Axios from 'axios'
 import Qs from 'qs'
-// import store from "@/store";
-// import { message } from "antd";
+import { message } from "antd";
 import { getToken } from "@/utils/config";
 
 const http = Axios.create({
@@ -33,21 +32,17 @@ http.interceptors.request.use(config => {
 // 拦截响应response，并做一些错误处理
 http.interceptors.response.use((response) => {
   const res = response.data
-
-  if (res.code === 30000) {
-    return
-  } 
   
   if (res.code !== 10000) {
-    // message.error(res.message || 'Error');
-    return
+    message.error(res.message || 'Error');
+    return res
   } 
 
   return res
 }, (err) => {
 	// http状态码不为200时-错误处理
 	if (err) {   
-    // message.error(err);
+    message.error(err);
 	}
 })
 
