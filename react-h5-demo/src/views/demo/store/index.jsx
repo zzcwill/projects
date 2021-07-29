@@ -1,12 +1,12 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import "./index.less";
+// import "./index.less";
 
-const Dashboard = (props) => {
+const Store = (props) => {
   const { userInfo, history } = props;
 
-  // console.info(userInfo)
+  console.info(userInfo)
 
   return (
     <div>
@@ -22,6 +22,5 @@ const mapStateToProps = (state) => {
   };
 };
 export default withRouter(
-  connect(mapStateToProps)(Dashboard)
+  connect(mapStateToProps)(Store)
 );
-

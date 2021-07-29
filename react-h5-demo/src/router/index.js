@@ -4,6 +4,9 @@ import { connect } from "react-redux";
 import { togetInfo } from "@/store/actions";
 // import { getToken, removeToken } from "@/utils/config";
 import app from "@/router/app";
+import demo from "@/router/demo";
+
+const constantRoutes = app.concat(demo)
 
 class Router extends React.Component {
   render() {
@@ -12,7 +15,7 @@ class Router extends React.Component {
       <BrowserRouter>
         <Switch>
           <Redirect exact from="/" to="/login" />
-          {app.map((route) => {
+          {constantRoutes.map((route) => {
             return (
               <Route
                 component={route.component}
@@ -21,6 +24,7 @@ class Router extends React.Component {
               />
             );
           })}
+          <Redirect exact from="/*" to="/login" />
         </Switch>
       </BrowserRouter>
     );

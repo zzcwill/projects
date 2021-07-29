@@ -1,5 +1,7 @@
 const initUserInfo = {
-  userInfo: ''
+  userInfo: {
+    name: 'zzc'
+  }
 };
 export default function user(state = initUserInfo, action) {
   switch (action.type) {

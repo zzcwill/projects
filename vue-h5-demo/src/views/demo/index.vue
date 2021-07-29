@@ -16,8 +16,8 @@ export default {
     return {
       routes: [
         {
-          name: 'chart1',
-          path: '/demo/chart1',
+          name: 'chart',
+          path: '/demo/chart',
           query: {},
         },
         {
