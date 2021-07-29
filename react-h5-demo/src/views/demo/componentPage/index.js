@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import "./index.less";
@@ -9,6 +9,7 @@ const ComponentPage = (props) => {
   const { userInfo, history } = props;
 
   let [subInfo, setSubInfo] = useState('')
+  let [subInfo2, setSubInfo2] = useState('')
 
   const [pieOption, setPieOption] = useState(
     {
@@ -27,38 +28,26 @@ const ComponentPage = (props) => {
   );
 
   const clickItem = (item) => {
-    console.info(this)
     console.info(item)
     setSubInfo(item)
-    func()
   }
-
-  const useSyncCallback = callback => {
-    const [proxyState, setProxyState] = useState({ current: false })
-
-    const Func = useCallback(() => {
-        setProxyState({ current: true })
-    }, [proxyState])
-
-    useEffect(() => {
-        if (proxyState.current === true) setProxyState({ current: false })
-    }, [proxyState])
-
-    useEffect(() => {
-        proxyState.current && callback()
-    })
-
-    return Func
-  }
-
-
-  const func = useSyncCallback(() => {
-    console.info(subInfo);
-  });
 
 
   useEffect(() => {
+    console.info(2)
   })
+
+  console.info(1)
+
+  useEffect(() => {
+    console.info(3)
+    console.info(subInfo)
+  }, [subInfo])
+
+  useEffect(() => {
+    console.info(4)
+    console.info(subInfo2)
+  }, [subInfo2])  
 
   return (
     <div>
@@ -70,7 +59,7 @@ const ComponentPage = (props) => {
         xAxisData={pieOption.xAxisData}
         yAxisName={pieOption.yAxisName}
         seriesData={pieOption.seriesData}
-        // clickItem={clickItem}
+        clickItem={clickItem}
       />
     </div>
   );

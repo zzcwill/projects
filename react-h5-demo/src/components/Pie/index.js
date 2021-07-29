@@ -189,9 +189,9 @@ Pie.propTypes = {
   // chart: PropTypes.object.isRequired,
   colorArr: PropTypes.array.isRequired,
 
-  seriesName: PropTypes.string.isRequired,
+  seriesName: PropTypes.array.isRequired,
   xAxisData: PropTypes.array.isRequired,
-  yAxisName: PropTypes.array.isRequired,
+  yAxisName: PropTypes.string.isRequired,
   seriesData: PropTypes.array.isRequired,
   clickItem: PropTypes.func.isRequired
 };
