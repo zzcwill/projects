@@ -60,7 +60,7 @@ class Page extends Component {
     this.setState((state) => ({
       searchForm: {
         ...state.searchForm,
-        name: value,
+        cname: value,
       }
     }));
   };  
@@ -106,7 +106,8 @@ class Page extends Component {
   handleReset = () => {
     this.setState((state) => ({
       searchForm: {
-        name: '',
+        ...state.searchForm,
+        cname: '',
       }
     }));
   };
@@ -275,13 +276,13 @@ class Page extends Component {
               </Row>
               <Row gutter={24}>
                 <Col span={8}>
-                  <Form.Item label="客户名称:">
+                  <Form.Item label="开始时间:">
                     <DatePicker showTime format="YYYY-MM-DD" defaultValue={ moment('2015-06-06', 'YYYY-MM-DD')} onChange={this.createDateTimeStartChange} />
                   </Form.Item>
                 </Col>
 
                 <Col span={8}>
-                  <Form.Item label="客户名称:">
+                  <Form.Item label="结束时间:">
                     <DatePicker showTime format="YYYY-MM-DD" onChange={this.createDateTimeOverChange} />
                   </Form.Item>
                 </Col>               

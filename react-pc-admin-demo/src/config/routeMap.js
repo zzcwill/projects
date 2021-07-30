@@ -22,7 +22,6 @@ export default [
   { path: "/wdrw/info", component: WdrwInfo },
   { path: "/wdrw/imgInfo", component: WdrwImgInfo },
 
-
   { path: "/ptgl/yygl", component: PtglYygl },
     
   { path: "/error/404", component: Error404 }
