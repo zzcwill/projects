@@ -6,8 +6,8 @@ import "./index.less";
 import {
   loanApprovalInfoGetApprovalDocumentDir,
   loanApprovalInfoGetApprovalDocument,
-  loanDocumentUploadFileString,
-  uploadNew
+  // loanDocumentUploadFileString,
+  // uploadNew
 } from '@/api/wdrw/wdrw'
 import { Tree } from 'antd';
 const { TreeNode } = Tree;
