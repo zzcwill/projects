@@ -193,6 +193,10 @@ module.exports = {
     'object-curly-spacing': [2, 'always', {
       objectsInObjects: false
     }],
-    'array-bracket-spacing': [2, 'never']
+    'array-bracket-spacing': [2, 'never'],
+
+    // new
+    'no-unused-vars': 'off',
+    'prefer-const': 'off'
   }
 }
