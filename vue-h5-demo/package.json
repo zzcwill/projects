@@ -9,7 +9,7 @@
     "lintfix": "eslint --fix --ext .js,.vue src/"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "core-js": "^3.6.5",
     "echarts": "^4.9.0",
