@@ -25,6 +25,12 @@ const Demo = (props) => {
       },
     },
     {
+      name: 'component2',
+      path: '/demo/component2',
+      query: {
+      },
+    },    
+    {
       name: 'img',
       path: '/demo/img',
       query: {
@@ -36,7 +42,14 @@ const Demo = (props) => {
       query: {
         name: 'css'
       },
-    }           
+    },
+    {
+      name: 'ref',
+      path: '/demo/ref',
+      query: {
+        name: 'ref'
+      },
+    }            
   ]
   const [routes, setRoutes] = useState(initRoutes);
 
