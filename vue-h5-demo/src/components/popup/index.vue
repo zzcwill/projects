@@ -1,5 +1,5 @@
 <template>
-	<div class="Popup" v-show="visible">
+	<div class="Popup2" v-show="visible">
 		<div class="mask"></div>
 		<div class="content">
 			<div class="top">
@@ -15,7 +15,7 @@
 
 <script>
 	export default {
-		name: 'Popup',
+		name: 'Popup2',
 		props: {
 			title: {
 				type: String,
@@ -44,6 +44,9 @@
 			hide() {
 				this.visible = false
 			},
+			changeVisible() {
+				this.visible = !this.visible
+			},
 			sure() {
 				this.visible = false
 				this.callBack()
@@ -53,7 +56,7 @@
 </script>
 
 <style lang="less">
-	.Popup {
+	.Popup2 {
 		position: fixed;
 		top: 0;
 		left: 0;

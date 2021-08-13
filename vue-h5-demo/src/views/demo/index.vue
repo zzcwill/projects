@@ -74,11 +74,41 @@ export default {
 					},
         },
         {
+          name: 'component2',
+          path: '/demo/component2',
+          query: {
+					},
+        }, 
+        {
+          name: 'component3',
+          path: '/demo/component3',
+          query: {
+					},
+        },               
+        {
           name: 'img',
           path: '/demo/img',
           query: {
 					},
-        }        
+        },
+        {
+          name: 'ref',
+          path: '/demo/ref',
+          query: {
+					}
+        },
+        {
+          name: 'sync',
+          path: '/demo/sync',
+          query: {
+					}
+        },
+        {
+          name: 'popup',
+          path: '/demo/popup',
+          query: {
+					}
+        }
       ],
     }
   },

@@ -12,8 +12,16 @@ const store2 = () => import('@/views/demo/store2.vue')
 
 const filter = () => import('@/views/demo/filter.vue')
 const componentPage = () => import('@/views/demo/componentPage.vue')
+const componentPage2 = () => import('@/views/demo/componentPage2.vue')
+const componentPage3 = () => import('@/views/demo/componentPage3.vue')
 
 const img = () => import('@/views/demo/img.vue')
+
+const ref = () => import('@/views/demo/ref.vue')
+
+const sync = () => import('@/views/demo/sync.vue')
+
+const popup = () => import('@/views/demo/popup.vue')
 
 const demoRoute = [
 	{
@@ -79,10 +87,40 @@ const demoRoute = [
 	},	
 
 	{
+		path: '/demo/component2',
+		name: 'component2',
+		component: componentPage2
+	},
+
+	{
+		path: '/demo/component3',
+		name: 'component3',
+		component: componentPage3
+	},	
+
+	{
 		path: '/demo/img',
 		name: 'img',
 		component: img
-	}
+	},
+
+	{
+		path: '/demo/ref',
+		name: 'ref',
+		component: ref
+	},
+
+	{
+		path: '/demo/sync',
+		name: 'sync',
+		component: sync
+	},
+
+	{
+		path: '/demo/popup',
+		name: 'popup',
+		component: popup
+	}	
 ]
 
 export default demoRoute

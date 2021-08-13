@@ -1,10 +1,13 @@
 <template>
-	<div class="Popup" v-show="visible">
+	<div class="tablePopup" v-show="visible">
 		<div class="mask"></div>
 		<div class="content">
 			<div class="top">
 				<div class="title">{{title}}</div>
 				<div class="txt">{{text}}</div>
+			</div>
+			<div class="center">
+				<slot>center</slot>
 			</div>
 			<div class="bottom">
 				<button @click="sure">确定</button>
@@ -15,7 +18,7 @@
 
 <script>
 	export default {
-		name: 'Popup',
+		name: 'TablePopup',
 		props: {
 			title: {
 				type: String,
@@ -44,6 +47,9 @@
 			hide() {
 				this.visible = false
 			},
+			changeVisible() {
+				this.visible = !this.visible
+			},
 			sure() {
 				this.visible = false
 				this.callBack()
@@ -53,7 +59,7 @@
 </script>
 
 <style lang="less">
-	.Popup {
+	.tablePopup {
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -75,7 +81,7 @@
 		.content {
 			position: absolute;
 			width: 560px;
-			height: 290px;
+			height: 590px;
 			top: 50%;
 			left: 50%;
 			margin-left: -280px;
@@ -102,6 +108,10 @@
 				}
 			}
 			
+			.center{
+				height: 300px;
+			}
+
 			.bottom{
 				height:100px;
 				button{

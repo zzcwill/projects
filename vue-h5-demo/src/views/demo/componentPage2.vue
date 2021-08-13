@@ -1,22 +1,31 @@
 <template>
   <div>
-		<pie
-			:renderData="pieOption.renderData"
-			:legendColor="pieOption.legendColor"
-			:domId="pieOption.domId"
-			:titleName="pieOption.titleName"
-			@clickItem="pieOption.clickItem"
-			:unit="pieOption.unit"
-		/>
+    <table-popup ref="refTablePopup">
+      <pie
+        :renderData="pieOption.renderData"
+        :legendColor="pieOption.legendColor"
+        :domId="pieOption.domId"
+        :titleName="pieOption.titleName"
+        @clickItem="pieOption.clickItem"
+        :unit="pieOption.unit"
+        v-if="showPie"
+      />
+      <div class="no-pie text-c" v-if="!showPie">
+        no-pie
+      </div>
+    </table-popup>
+
+    <div class="m-t-10 text-c" @click="change" >change</div>
   </div>
 </template>
 
 <script>
+import tablePopup from '@/components/tablePopup'
 import pie from '@/components/pie'
 import { topicsApi } from '@/api/user'
 
 export default {
-  name: 'componentPage',
+  name: 'componentPage2',
   data() {
     return {
       // 饼图
@@ -37,19 +46,20 @@ export default {
           },
         ],
         legendColor: ['#34d85f', '#FFBE2E', '#30A2FA'],
-        domId: 'pieOne',
+        domId: 'pieOne2',
         titleName: '2021年',
         clickItem: (item) => {
           console.info(item)
         },
       },
+      showPie: false
     }
   },
 	components: {
-		pie
+    pie,
+		tablePopup
 	},
   created() {
-    this.getData()
   },
   mounted() {
 	},
@@ -57,15 +67,17 @@ export default {
 
   },
   methods: {
-    async getData() {
+    async change() {
+      this.showPie = !this.showPie
+      this.$refs.refTablePopup.changeVisible()
     },    
 	},
 }
 </script>
 
 <style lang="less" scoped>
-#pieOne {
-  width: 750px !important;
-  height: 450px !important;
+#pieOne2 {
+  width: 560px !important;
+  height: 300px !important;
 }
 </style>

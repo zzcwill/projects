@@ -28,17 +28,17 @@ export default {
 			}
 		}
 
-    if (!Vue.$za) {
-      Vue.$za = {
+    if (!Vue.plug) {
+      Vue.plug = {
         popup
       }
     } else {
-      Vue.$za.popup = popup
+      Vue.plug.popup = popup
     }
 
     Vue.mixin({
       created: function() {
-        this.$za = Vue.$za
+        this.plug = Vue.plug
       }
     })
 	}	
