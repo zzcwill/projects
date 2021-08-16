@@ -29,7 +29,13 @@ const Demo = (props) => {
       path: '/demo/component2',
       query: {
       },
-    },    
+    },  
+    {
+      name: 'portals',
+      path: '/demo/portals',
+      query: {
+      },
+    },
     {
       name: 'img',
       path: '/demo/img',

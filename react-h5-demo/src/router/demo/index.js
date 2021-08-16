@@ -6,6 +6,8 @@ const Chart = Loadable({loader: () => import(/*webpackChunkName:'Chart'*/'@/view
 const ComponentPage = Loadable({loader: () => import(/*webpackChunkName:'ComponentPage'*/'@/views/demo/componentPage'),loading: Loading});
 const ComponentPage2 = Loadable({loader: () => import(/*webpackChunkName:'ComponentPage2'*/'@/views/demo/componentPage2'),loading: Loading});
 
+const Portals = Loadable({loader: () => import(/*webpackChunkName:'Portals'*/'@/views/demo/portals'),loading: Loading});
+
 const Store = Loadable({loader: () => import(/*webpackChunkName:'Store'*/'@/views/demo/store'),loading: Loading});
 
 const Img = Loadable({loader: () => import(/*webpackChunkName:'Img'*/'@/views/demo/img'),loading: Loading});
@@ -18,6 +20,7 @@ export default [
   { path: "/demo/chart", component: Chart },
   { path: "/demo/component", component: ComponentPage },
   { path: "/demo/component2", component: ComponentPage2 },
+  { path: "/demo/portals", component: Portals },
   { path: "/demo/store", component: Store },
   { path: "/demo/img", component: Img },
   { path: "/demo/css", component: Css },
