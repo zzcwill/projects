@@ -15,6 +15,8 @@ const Css = Loadable({loader: () => import(/*webpackChunkName:'Css'*/'@/views/de
 
 const Ref = Loadable({loader: () => import(/*webpackChunkName:'Ref'*/'@/views/demo/ref'),loading: Loading});
 
+const Life = Loadable({loader: () => import(/*webpackChunkName:'Life'*/'@/views/demo/life'),loading: Loading});
+
 export default [
   { path: "/demo/index", component: Demo },
   { path: "/demo/chart", component: Chart },
@@ -25,4 +27,5 @@ export default [
   { path: "/demo/img", component: Img },
   { path: "/demo/css", component: Css },
   { path: "/demo/ref", component: Ref },
+  { path: "/demo/life", component: Life },
 ];

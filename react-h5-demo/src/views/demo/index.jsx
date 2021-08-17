@@ -55,7 +55,14 @@ const Demo = (props) => {
       query: {
         name: 'ref'
       },
-    }            
+    },
+    {
+      name: 'life',
+      path: '/demo/life',
+      query: {
+        name: 'life'
+      },
+    }              
   ]
   const [routes, setRoutes] = useState(initRoutes);
 
