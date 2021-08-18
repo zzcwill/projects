@@ -72,7 +72,7 @@ class Record extends React.Component {
 		console.info('componentWillUnmount')
 	}
 
-	componentDidCatch() {
+	componentDidCatch(error, info) {
 		console.info('componentDidCatch')
 	}
 
