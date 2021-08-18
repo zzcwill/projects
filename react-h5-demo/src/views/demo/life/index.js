@@ -78,6 +78,7 @@ class Record extends React.Component {
 
 
   render() {
+		console.info('render')
     return (
       <div className="box" >
 				<div className="record-item" ref={this.refDiv} onClick={this.getRef} >ref</div>
