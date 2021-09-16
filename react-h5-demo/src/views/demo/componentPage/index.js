@@ -1,15 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { setUserInfo } from "@/store/actions/user"
 import "./index.less";
 
 import Pie from '@/components/Pie'
 
 const ComponentPage = (props) => {
-  const { userInfo, history } = props;
+  // const { userInfo, history } = props;
+  const { history } = props;
 
   let [subInfo, setSubInfo] = useState('')
   let [subInfo2, setSubInfo2] = useState('')
+
+  const dispatch = useDispatch();
+
+  const setUser = useCallback(
+    () => {
+      console.info('dispatch')
+      let user = {
+        name: 'zzc-test'
+      }
+      dispatch(setUserInfo(user));
+    },
+    [dispatch]
+  );  
+
+
+  const { userInfo } = useSelector((state) => state.user);
 
   const [pieOption, setPieOption] = useState(
     {
@@ -32,10 +51,15 @@ const ComponentPage = (props) => {
     setSubInfo(item)
   }
 
+  let [count, setConut] = useState(0)
+  let double = useMemo(()=>{
+    return count*2
+  },[count])
+  let double2 = count*2
 
   useEffect(() => {
     console.info(2)
-  })
+  },[])
 
   console.info(1)
 
@@ -47,7 +71,7 @@ const ComponentPage = (props) => {
   useEffect(() => {
     console.info(4)
     console.info(subInfo2)
-  }, [subInfo2])  
+  }, [subInfo2])
 
   return (
     <div>
@@ -61,17 +85,27 @@ const ComponentPage = (props) => {
         seriesData={pieOption.seriesData}
         clickItem={clickItem}
       />
+      <br />
+      <div>{userInfo.name}</div>
+      <br />
+      <div onClick={setUser}>change-store-name</div>
+      <br />
+      <div>{count}</div>
+      <div>{double}</div>
+      <div>{double2}</div>
+      <div onClick={()=> { setConut(count+1) }}>add-count</div>
     </div>
   );
 };
 
 
-const mapStateToProps = (state) => {
-  return {
-    ...state.user
-  };
-};
-export default withRouter(
-  connect(mapStateToProps)(ComponentPage)
-);
+// const mapStateToProps = (state) => {
+//   return {
+//     ...state.user
+//   };
+// };
+// export default withRouter(
+//   connect(mapStateToProps)(ComponentPage)
+// );
 
+export default withRouter(ComponentPage);

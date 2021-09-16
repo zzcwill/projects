@@ -43,6 +43,8 @@ class Record extends React.Component {
 
 	// componentWillMount
 	static getDerivedStateFromProps(nextProps, prevState) {
+		console.info(nextProps)
+		console.info(prevState)
 		console.info('getDerivedStateFromProps')
 		return null	
 	}
@@ -56,11 +58,15 @@ class Record extends React.Component {
 	// getDerivedStateFromProps() {
 	// 	console.info('getDerivedStateFromProps')
 	// }	
-	shouldComponentUpdate() {
+	shouldComponentUpdate(nextProps, nextState) {
+		console.info(nextProps)
+		console.info(nextState)
 		console.info('shouldComponentUpdate')
 		return true
 	}
-	getSnapshotBeforeUpdate() {
+	getSnapshotBeforeUpdate(prevProps, prevState) {
+		console.info(prevProps)
+		console.info(prevState)
 		console.info('getSnapshotBeforeUpdate')
 		return true
 	}
