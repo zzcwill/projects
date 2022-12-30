@@ -24,7 +24,7 @@ const generateConfig = env => {
     output: {
       publicPath: env === "production" ? "./" : "/",
       path: resolve("../dist"),
-      filename: "[name]-[hash:5].bundle.js",
+      filename: "[name].bundle.js",
       chunkFilename: "[name]-[hash:5].chunk.js"
     },
     module: {
@@ -100,13 +100,13 @@ const generateConfig = env => {
         cacheGroups: {
           // 注意: priority属性
           // 其次: 打包vendor公共代码
-          common: {
-            name: "utils",
-            test: /[\\/]utils[\\/]/,
-            chunks: "all",
-            minSize: 1,
-            priority: 0
-          },
+          // common: {
+          //   name: "utils",
+          //   test: /[\\/]utils[\\/]/,
+          //   chunks: "all",
+          //   minSize: 1,
+          //   priority: 0
+          // },
           // 首先: 打包node_modules中的文件
           vendor: {
             name: "modules",
@@ -127,7 +127,8 @@ const generateConfig = env => {
       new HtmlWebpackPlugin({
         filename: "index.html",
         template: resolve("../index.html"),
-        chunks: ['utils','modules',"app"], // entry中的app入口才会被打包
+        // chunks: ['utils','modules',"app"], // entry中的app入口才会被打包
+        chunks: ['modules',"app"],
         minify: {
           // 压缩选项
           collapseWhitespace: true
