@@ -1,6 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const isDev = process.env.NODE_ENV === 'development' // 是否是开发模式
 
 // console.log('NODE_ENV', process.env.NODE_ENV)
 // console.log('BASE_ENV', process.env.BASE_ENV)
@@ -30,7 +32,8 @@ module.exports = {
         test: /.css$/, //匹配所有的 css 文件
         include: [path.resolve(__dirname, '../src')],
         use: [
-          'style-loader',
+          // 开发环境使用style-looader,打包模式抽离css
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           // 使用postcss.config配置
           'postcss-loader'
@@ -40,7 +43,8 @@ module.exports = {
         test: /.less$/, //匹配所有的 less 文件
         include: [path.resolve(__dirname, '../src')],
         use: [
-          'style-loader',
+          // 开发环境使用style-looader,打包模式抽离css
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           // 使用postcss.config配置
           'postcss-loader',
