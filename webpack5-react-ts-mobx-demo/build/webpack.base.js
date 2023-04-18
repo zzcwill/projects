@@ -21,7 +21,7 @@ module.exports = {
       {
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
         // 使用babel.config.js的配置
-        use: 'babel-loader'
+        use: ['thread-loader', 'babel-loader']
       },
       {
         test: /.(css|less)$/, //匹配 css和less 文件
