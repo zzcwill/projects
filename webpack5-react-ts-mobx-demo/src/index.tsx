@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './app';
+import App from './views/app';
 
 const initApp = () => {
   console.log('NODE_ENV', process.env.NODE_ENV)
