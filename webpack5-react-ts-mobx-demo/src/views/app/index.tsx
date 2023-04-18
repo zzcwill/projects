@@ -27,7 +27,7 @@ function App() {
       <br />
       <Demo1 />
       <br />
-      <div 
+      <div
         onClick={()=> {
           setShow(true)
         }}
