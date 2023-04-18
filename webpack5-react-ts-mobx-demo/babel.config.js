@@ -1,10 +1,12 @@
+const isDEV = process.env.NODE_ENV === 'development'
+
 module.exports = {
   // 执行顺序由右往左,所以先处理ts,再处理jsx,最后再试一下babel转换为低版本语法
   "presets": [
     [
       "@babel/preset-env",
       {
-        // 设置兼容目标浏览器版本,这里可以不写,babel-loader会自动寻找上面配置好的文件.browserslistrc
+        // 设置兼容目标浏览器版本, 自动从.browserslistrc获取
         // "targets": {
         //  "chrome": 35,
         //  "ie": 9
@@ -15,5 +17,9 @@ module.exports = {
     ],
     "@babel/preset-react",
     "@babel/preset-typescript"
-  ]
+  ],
+  "plugins": [
+    isDEV && require.resolve('react-refresh/babel'), // 如果是开发模式,就启动react热更新插件
+    // ...
+  ].filter(Boolean) // 过滤空值
 }

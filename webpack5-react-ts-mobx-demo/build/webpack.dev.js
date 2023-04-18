@@ -1,6 +1,7 @@
 // webpack.dev.js
 const path = require('path')
 const { merge } = require('webpack-merge')
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const baseConfig = require('./webpack.base.js')
 
 // 合并公共配置,并添加开发环境配置
@@ -15,5 +16,8 @@ module.exports = merge(baseConfig, {
     static: {
       directory: path.join(__dirname, "../public"), //托管静态资源public文件夹
     }
-  }
+  },
+  plugins: [
+    new ReactRefreshWebpackPlugin(), // 添加热更新插件
+  ]  
 })
