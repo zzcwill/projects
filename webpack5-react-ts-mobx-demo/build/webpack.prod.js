@@ -23,6 +23,10 @@ module.exports = merge(baseConfig, {
         `${path.join(__dirname, '../src')}/**/*.tsx`,
         path.join(__dirname, '../public/index.html')
       ]),
+      // 过滤以ant-开头的类名，哪怕没用到也不删除
+      safelist: {
+        standard: [/^ant-/],
+      }      
     }),   
     // 复制文件插件
     new CopyPlugin({
