@@ -86,6 +86,9 @@ module.exports = {
     ]
   },
   resolve: {
+    // 如果用的是pnpm 就暂时不要配置这个，会有幽灵依赖的问题，访问不到很多模块。
+    // 查找第三方模块只在本项目的node_modules中查找
+    modules: [path.resolve(__dirname, '../node_modules')],
     // 只写js, 其他文件后缀写加快loader
     extensions: ['.js', '.tsx', '.ts'],
     alias: {
