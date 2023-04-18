@@ -4,6 +4,8 @@ const CopyPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const globAll = require('glob-all')
+const PurgeCSSPlugin = require('purgecss-webpack-plugin')
 const baseConfig = require('./webpack.base.js')
 
 module.exports = merge(baseConfig, {
@@ -12,7 +14,16 @@ module.exports = merge(baseConfig, {
     // 抽离css插件
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:8].css' // 抽离css的输出目录和名称
-    }),    
+    }),  
+    // MiniCssExtractPlugin和PurgeCSSPlugin配合使用清理无用css
+    new PurgeCSSPlugin({
+      // 检测src下所有tsx文件和public下index.html中使用的类名和id和标签名称
+      // 只打包这些文件中用到的样式
+      paths: globAll.sync([
+        `${path.join(__dirname, '../src')}/**/*.tsx`,
+        path.join(__dirname, '../public/index.html')
+      ]),
+    }),   
     // 复制文件插件
     new CopyPlugin({
       patterns: [

@@ -1,5 +1,8 @@
-import React from "react";
+import React from "react"
+import './index.less'
 
 export default () => {
-  return <h3>我是Demo2组件</h3>
+  return (
+    <div className="demo2">demo2</div>
+  )
 }
