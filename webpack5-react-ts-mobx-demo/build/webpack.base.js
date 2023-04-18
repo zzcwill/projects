@@ -19,18 +19,31 @@ module.exports = {
   module: {
     rules: [
       {
+        // 只对项目src文件的ts,tsx进行loader解析
+        include: [path.resolve(__dirname, '../src')],
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
         // babel-loader使用babel.config.js的配置
         // thread-loader开启多线程loader解析, 启动也要6s适合大项目
         use: ['thread-loader', 'babel-loader']
       },
       {
-        test: /.(css|less)$/, //匹配 css和less 文件
+        test: /.css$/, //匹配所有的 css 文件
+        include: [path.resolve(__dirname, '../src')],
         use: [
           'style-loader',
           'css-loader',
           // 使用postcss.config配置
-          'postcss-loader',      
+          'postcss-loader'
+        ]
+      },
+      {
+        test: /.less$/, //匹配所有的 less 文件
+        include: [path.resolve(__dirname, '../src')],
+        use: [
+          'style-loader',
+          'css-loader',
+          // 使用postcss.config配置
+          'postcss-loader',
           'less-loader'
         ]
       },
