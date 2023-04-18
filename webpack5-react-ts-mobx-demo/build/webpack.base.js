@@ -20,7 +20,8 @@ module.exports = {
     rules: [
       {
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
-        // 使用babel.config.js的配置
+        // babel-loader使用babel.config.js的配置
+        // thread-loader开启多线程loader解析, 启动也要6s适合大项目
         use: ['thread-loader', 'babel-loader']
       },
       {
@@ -72,7 +73,11 @@ module.exports = {
     ]
   },
   resolve: {
+    // 只写js, 其他文件后缀写加快loader
     extensions: ['.js', '.tsx', '.ts'],
+    alias: {
+      '@': path.join(__dirname, '../src')
+    }    
   },
   plugins: [
     new HtmlWebpackPlugin({
