@@ -20,8 +20,8 @@ function App() {
   const [show, setShow] = useState(false);
 
   return (
-    <div className='app'>
-      <div className='info'>info</div>
+    <div className="app">
+      <div className="info">info</div>
       <div className='txt'>txt</div>
       <img src={logo} />
       <br />
