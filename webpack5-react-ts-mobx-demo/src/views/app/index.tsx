@@ -17,7 +17,7 @@ import './index.css'
 import './index.less'
 
 function App() {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
 
   return (
     <div className="app">
