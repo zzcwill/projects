@@ -13,14 +13,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react", // react18这里也可以改成react-jsx
+    // react18这里也可以改成react-jsx
+    "jsx": "react",
     // webpack-resolve-alias配置路径无提示，baseUrl和paths让ts自动提示
     "baseUrl": ".",
     "paths": {
       "@/*": [
         "src/*"
       ]
-    }    
+    }
   },
   "include": ["./src"]
 }
