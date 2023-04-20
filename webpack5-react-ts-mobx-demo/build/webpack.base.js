@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const WebpackBar = require('webpackbar')
 const isDev = process.env.NODE_ENV === 'development' // 是否是开发模式
 
 // console.log('NODE_ENV', process.env.NODE_ENV)
@@ -9,14 +10,14 @@ const isDev = process.env.NODE_ENV === 'development' // 是否是开发模式
 
 module.exports = {
   entry: {
-    app: path.join(__dirname, '../src/index.tsx') // 入口文件
+    app: path.join(__dirname, '../src/index.tsx'), // 入口文件
   },
   // 打包文件出口
   output: {
     filename: 'js/[name].[chunkhash:8].js', // 每个输出js的名称
     path: path.join(__dirname, '../dist'), // 打包结果输出路径
     clean: true, // webpack4需要配置clean-webpack-plugin来删除dist文件,webpack5内置了
-    publicPath: '/' // 打包后文件的公共前缀路径
+    publicPath: '/', // 打包后文件的公共前缀路径
   },
   module: {
     rules: [
@@ -26,7 +27,7 @@ module.exports = {
         test: /.(ts|tsx)$/, // 匹配.ts, tsx文件
         // babel-loader使用babel.config.js的配置
         // thread-loader开启多线程loader解析, 启动也要6s适合大项目
-        use: ['thread-loader', 'babel-loader']
+        use: ['thread-loader', 'babel-loader'],
       },
       {
         test: /.css$/, //匹配所有的 css 文件
@@ -36,8 +37,8 @@ module.exports = {
           isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           // 使用postcss.config配置
-          'postcss-loader'
-        ]
+          'postcss-loader',
+        ],
       },
       {
         test: /.less$/, //匹配所有的 less 文件
@@ -48,46 +49,46 @@ module.exports = {
           'css-loader',
           // 使用postcss.config配置
           'postcss-loader',
-          'less-loader'
-        ]
+          'less-loader',
+        ],
       },
       {
         test:/.(png|jpg|jpeg|gif|svg)$/, // 匹配图片文件
-        type: "asset", // type选择asset
+        type: 'asset', // type选择asset
         parser: {
           dataUrlCondition: {
             maxSize: 10 * 1024, // 小于10kb转base64位
-          }
+          },
         },
-        generator:{ 
+        generator:{
           filename:'images/[name].[contenthash:8][ext]', // 文件输出目录和命名
         },
-      }, 
+      },
       {
         test:/.(woff2?|eot|ttf|otf)$/, // 匹配字体图标文件
-        type: "asset", // type选择asset
+        type: 'asset', // type选择asset
         parser: {
           dataUrlCondition: {
             maxSize: 10 * 1024, // 小于10kb转base64位
-          }
+          },
         },
-        generator:{ 
+        generator:{
           filename:'fonts/[name].[contenthash:8][ext]', // 文件输出目录和命名
         },
       },
       {
         test:/.(mp4|webm|ogg|mp3|wav|flac|aac)$/, // 匹配媒体文件
-        type: "asset", // type选择asset
+        type: 'asset', // type选择asset
         parser: {
           dataUrlCondition: {
             maxSize: 10 * 1024, // 小于10kb转base64位
-          }
+          },
         },
-        generator:{ 
+        generator:{
           filename:'media/[name].[contenthash:8][ext]', // 文件输出目录和命名
         },
-      },              
-    ]
+      },
+    ],
   },
   resolve: {
     // 如果用的是pnpm 就暂时不要配置这个，会有幽灵依赖的问题，访问不到很多模块。
@@ -96,8 +97,8 @@ module.exports = {
     // 只写js, 其他文件后缀写加快loader
     extensions: ['.js', '.tsx', '.ts'],
     alias: {
-      '@': path.join(__dirname, '../src')
-    }    
+      '@': path.join(__dirname, '../src'),
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -105,10 +106,15 @@ module.exports = {
       inject: true, // 自动注入静态资源
     }),
     new webpack.DefinePlugin({
-      'process.env.BASE_ENV': JSON.stringify(process.env.BASE_ENV)
-    })
+      'process.env.BASE_ENV': JSON.stringify(process.env.BASE_ENV),
+    }),
+    new WebpackBar({
+      color: 'green',  // 默认green，进度条颜色支持HEX
+      basic: false,   // 默认true，启用一个简单的日志报告器
+      profile:false,  // 默认false，启用探查器。
+    }),
   ],
   cache: {
     type: 'filesystem', // 使用文件缓存
-  },  
+  },
 }
