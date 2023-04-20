@@ -10,7 +10,7 @@ const LazyDemo = lazy(() => import(
   '@/components/lazy-demo'
 ))
 
-import logo from '@/images/logo.png'
+import logo from '@/assets/images/logo.png'
 
 
 import './index.css'
