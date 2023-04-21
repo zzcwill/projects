@@ -4,24 +4,27 @@ import {
   // useLocation,
   // useNavigate
 } from 'react-router-dom'
-import { observer } from 'mobx-react'
-import { useStore } from '@/hooks'
+import {
+  observer,
+  Provider,
+  useLocalStore,
+} from 'mobx-react'
+import Store from '@/stores'
 
 export default observer(() => {
-  const [{ appStore }] = useStore()
-  // console.info(appStore.userInfo)
   // const navigate = useNavigate()
   // const location = useLocation()
-
-
+  const store = useLocalStore(() => new Store())
 
   useEffect(() => {
-    // console.log('NODE_ENV', process.env.NODE_ENV)
-    // console.log('BASE_ENV', process.env.BASE_ENV)
     // console.info(navigate)
     // console.info(location)
-    // appStore.getUserInfo()
+    store.appStore.initAppData()
   }, [])
 
-  return <Outlet />
+  return (
+    <Provider rootStore={store}>
+      <Outlet />
+    </Provider>
+  )
 })

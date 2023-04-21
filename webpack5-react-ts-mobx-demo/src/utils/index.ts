@@ -1,10 +1,3 @@
-export const getNum = (num: string) => {
-  console.info(num)
-}
 
-export function sleep(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms))
-}
-
-
-getNum(1)
+export { sleep } from './sleep'
+export { uuid } from './uuid'

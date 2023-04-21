@@ -1,4 +1,6 @@
 import React, { lazy, Suspense, useState } from 'react'
+import { observer } from 'mobx-react'
+import { useStore } from '@/hooks'
 import { Demo1 } from '@/components'
 
 // 使用import语法配合react的Lazy动态引入资源
@@ -16,12 +18,16 @@ import logo from '@/assets/images/logo.png'
 import './index.css'
 import './index.less'
 
-function App() {
+const App = observer(() => {
+  const rootStore = useStore('rootStore')
   const [show, setShow] = useState(false)
 
   return (
     <div className="app">
-      <div className="info">info</div>
+      <div>{(rootStore.appStore.appLoading ? 1 : 0)}</div>
+      <div className="info" onClick={()=> {
+        rootStore.appStore.initAppData()
+      }}>info</div>
       <div className='txt'>txt</div>
       <img src={logo} />
       <br />
@@ -39,5 +45,6 @@ function App() {
       }
     </div>
   )
-}
+})
+
 export default App
