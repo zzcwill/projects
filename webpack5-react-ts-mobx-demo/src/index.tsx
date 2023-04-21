@@ -1,11 +1,18 @@
 import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
-import App from './views/app'
+import Routes from '@/routes'
+// import App from './views/app'
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
+  )
+}
 
 const initApp = () => {
-  console.log('NODE_ENV', process.env.NODE_ENV)
-  console.log('BASE_ENV', process.env.BASE_ENV)
-
   const root = document.getElementById('root')
 
   if(root) {
