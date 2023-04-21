@@ -24,11 +24,8 @@ export class AppStore extends BaseStore {
     // console.log('NODE_ENV', process.env.NODE_ENV)
     // console.log('BASE_ENV', process.env.BASE_ENV)
 
-    console.info(this)
     this.appLoading = true
     await this.getUserInfo()
-    console.info(this.rootStore)
-    console.info(this.userInfo)
     this.appLoading = false
   }
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 import Routes from '@/routes'
-// import App from './views/app'
 
 const App = () => {
   return (
@@ -12,7 +11,7 @@ const App = () => {
   )
 }
 
-const initApp = () => {
+const initApp = async () => {
   const root = document.getElementById('root')
 
   if(root) {

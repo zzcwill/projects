@@ -6,25 +6,27 @@ import {
 } from 'react-router-dom'
 import {
   observer,
-  Provider,
-  useLocalStore,
-} from 'mobx-react'
-import Store from '@/stores'
+} from 'mobx-react-lite'
+import { useStore } from '@/hooks'
 
 export default observer(() => {
   // const navigate = useNavigate()
   // const location = useLocation()
-  const store = useLocalStore(() => new Store())
+  const [{appStore}] = useStore()
 
   useEffect(() => {
     // console.info(navigate)
     // console.info(location)
-    store.appStore.initAppData()
+    appStore.initAppData()
   }, [])
 
+  if (appStore.appLoading) {
+    return (
+      <div>loading</div>
+    )
+  }
+
   return (
-    <Provider rootStore={store}>
-      <Outlet />
-    </Provider>
+    <Outlet />
   )
 })
