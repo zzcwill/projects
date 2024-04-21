@@ -1,9 +1,10 @@
 # vue-h5
 > A vue-h5 demo project
 
+### node
+16.14.0
+
 ### 项目运行
-- 全局安装包安装
-- npm install -g eslint
 - 安装相应依赖包
 - yarn install
 - 开发环境运行

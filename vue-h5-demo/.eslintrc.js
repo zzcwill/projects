@@ -1,5 +1,5 @@
 module.exports = {
-  root: true,  
+  root: true,
   env: {
     browser: true,
     node: true,
@@ -23,7 +23,6 @@ module.exports = {
     "vue/no-unused-components": ["error", {
       "ignoreWhenBindingPresent": true
     }],
-    
     "no-undef": "off"
   }
 }

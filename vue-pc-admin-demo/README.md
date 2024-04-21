@@ -107,20 +107,22 @@
   eslint
   svgo
 
+### node
+16.14.0  
+
 
 ### 项目运行
 - 全局安装包安装
 - npm install -g svgo
-- npm install -g eslint
 - 安装相应依赖包
 - yarn install
 - 开发环境运行
-- yarn run dev
+- yarn dev
 - 生成项目打包文件
-- yarn run build
+- yarn build
 - 检测src目录代码是否规范
-- yarn run lint
+- yarn lint
 - 修复src目录不规范代码
-- yarn run lintfix
+- yarn lintfix
 - 对src/icons的svg图标压缩处理
-- yarn run svgo
+- yarn svgo

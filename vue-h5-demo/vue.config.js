@@ -61,16 +61,8 @@ module.exports = {
         pathRewrite: {
           '^/api': ''
         }
-      }, 
-      '/mock': {
-        target: 'http://192.168.27.11:8080/app/mock/26/',
-        changeOrigin: true,
-        ws: true,
-        pathRewrite: {
-          '^/mock': ''
-        }
-      },                 
-    },  
+      },
+    },
   },
   configureWebpack: {
     name: name,
@@ -90,7 +82,7 @@ module.exports = {
       assetFilter: function(assetFilename) {
         return assetFilename.endsWith('.js');
       }
-    }    
+    }
   },
   chainWebpack(config) {
     config.plugins.delete('preload')
@@ -100,7 +92,7 @@ module.exports = {
     // https://webpack.js.org/configuration/devtool/#development
       .when(process.env.NODE_ENV === 'development',
         config => config.devtool('cheap-source-map')
-      )  
-  }   
+      )
+  }
 
 }
