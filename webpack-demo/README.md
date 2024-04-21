@@ -1,6 +1,10 @@
 # webpack
 > A webpack4 demo
 
+# node
+18.20.2
+nvm use 18.20.2
+
 ### 项目运行
 - 安装相应依赖包
 - yarn install
