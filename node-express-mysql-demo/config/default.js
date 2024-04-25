@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
 	hostname: 'http://127.0.0.1',
-	port: 7000,
+	port: 8003,
 	cookieSession: {
 		keys: ['zzc']
 	},

@@ -19,22 +19,22 @@ module.exports = appInfo => {
         // 用户名
         user: 'root',
         // 密码
-        password: 'zzc123456',
+        password: 'root',
         // 数据库名
-        database: 'shop',
+        database: 'car-loan',
       },
-      db2: {
-        // host
-        host: '127.0.0.1',
-        // 端口号
-        port: '3306',
-        // 用户名
-        user: 'root',
-        // 密码
-        password: 'zzc123456',
-        // 数据库名
-        database: 'shop2',
-      },
+      // db2: {
+      //   // host
+      //   host: '127.0.0.1',
+      //   // 端口号
+      //   port: '3306',
+      //   // 用户名
+      //   user: 'root',
+      //   // 密码
+      //   password: 'root',
+      //   // 数据库名
+      //   database: 'car-loan',
+      // },
     },
     // 是否加载到 app 上，默认开启
     app: true,
@@ -48,7 +48,7 @@ module.exports = appInfo => {
       host: '127.0.0.1',
       port: '6379',
       password: '',
-      db: '0',
+      db: '1',
     },
     agent: true,
   };

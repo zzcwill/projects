@@ -34,11 +34,9 @@ function onError(error) {
     case 'EACCES':
       console.error(config.port + ' requires elevated privileges');
       process.exit(1);
-      break;
     case 'EADDRINUSE':
       console.error(config.port + ' is already in use');
       process.exit(1);
-      break;
     default:
       throw error;
   }

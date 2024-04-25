@@ -36,7 +36,7 @@ $(function() {
       type: 'post',
       url: '/api/user/userinfo',
       headers: {
-        token: getCookie('csrfToken')
+        token: getCookie('csrfToken'),
       },
       data: {
         name: $('#name').val(),
@@ -55,23 +55,7 @@ $(function() {
       type: 'post',
       url: '/api/menu/list',
       data: {
-        menuCode: 'CLS_WEB_BEFORE'
-      },
-      dataType: 'json',
-      success(res) {
-        console.info(res);
-      },
-      error() {
-      },
-    });
-  });  
-
-  $('#menu2').bind('click', function() {
-    $.ajax({
-      type: 'post',
-      url: '/api/menu/list2',
-      data: {
-        menuCode: 'CLS_WEB_BEFORE'
+        menuCode: 'CLS_WEB_BEFORE',
       },
       dataType: 'json',
       success(res) {
@@ -81,15 +65,13 @@ $(function() {
       },
     });
   });
-  
-  $('#cnode').bind('click', function() {
+
+  $('#menu2').bind('click', function() {
     $.ajax({
       type: 'post',
-      url: '/api/cnode/list',
+      url: '/api/menu/list2',
       data: {
-        page: 2,
-        pageSize: 20,
-        tab: 'ask'
+        menuCode: 'CLS_WEB_BEFORE',
       },
       dataType: 'json',
       success(res) {
@@ -98,8 +80,26 @@ $(function() {
       error() {
       },
     });
-  }); 
-  
+  });
+
+  $('#cnode').bind('click', function() {
+    $.ajax({
+      type: 'post',
+      url: '/api/cnode/list',
+      data: {
+        page: 2,
+        pageSize: 20,
+        tab: 'ask',
+      },
+      dataType: 'json',
+      success(res) {
+        console.info(res);
+      },
+      error() {
+      },
+    });
+  });
+
   // 上传图片1
   $('#upImage1').click(function() {
     $('#upImageInput1').trigger('click');
@@ -121,14 +121,14 @@ $(function() {
         console.info(res);
       },
     });
-  }); 
-  
+  });
+
   $('#loan').bind('click', function() {
     $.ajax({
       type: 'post',
       url: '/api/loan/list',
       data: {
-        flowType: 'LOAN_APPLY_FLOW'
+        flowType: 'LOAN_APPLY_FLOW',
       },
       dataType: 'json',
       success(res) {
@@ -137,15 +137,15 @@ $(function() {
       error() {
       },
     });
-  }); 
- 
-  var customerName = '王'
+  });
+
+  const customerName = '王';
   $('#customerList').bind('click', function() {
     $.ajax({
       type: 'post',
       url: '/api/customer/list',
       data: {
-        customerName: customerName
+        customerName,
       },
       dataType: 'json',
       success(res) {
@@ -156,9 +156,9 @@ $(function() {
     });
   });
   $('#customerExport').bind('click', function() {
-    window.location.href = '/api/customer/export' + '?customerName=' + customerName
-  }); 
-  
+    window.location.href = '/api/customer/export' + '?customerName=' + customerName;
+  });
+
   $('#cache').bind('click', function() {
     $.ajax({
       type: 'post',
@@ -174,8 +174,8 @@ $(function() {
   });
 });
 
-console.info(getCookie('sessionId'))
-console.info(getCookie('csrfToken'))
+console.info(getCookie('sessionId'));
+console.info(getCookie('csrfToken'));
 function getCookie(cookie_name) {
   const allcookies = document.cookie;
   // 索引长度，开始索引的位置

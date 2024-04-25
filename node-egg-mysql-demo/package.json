@@ -2,7 +2,6 @@
   "name": "node-egg-demo",
   "version": "1.0.0",
   "description": "node-egg-demo",
-  "private": true,
   "dependencies": {
     "content-disposition": "^0.5.3",
     "egg": "^2.27.0",
@@ -39,7 +38,7 @@
     "test": "npm run lint && npm run test-local",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
-    "lint": "eslint --ext .js app/",
+    "lint": "eslint --ext .js app/ --fix",
     "ci": "npm run lint && npm run cov",
     "autod": "autod"
   }

@@ -1,8 +1,7 @@
 {
-  "name": "express-demo",
+  "name": "node-express-mongo-demo",
   "version": "1.0.0",
-  "private": true,
-  "description": "express-demo",
+  "description": "node-express-mongo-demo",
   "main": "app.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development DEBUG=dev nodemon ./bin/www",
@@ -10,8 +9,7 @@
     "pro": "cross-env NODE_ENV=production node ./bin/www",
     "auto": "mocha 'test/*.test.js' --exit",
     "cover": "nyc --reporter=lcov mocha 'test/*.test.js' --exit",
-    "lint": "eslint --ext .js",
-    "lintfix": "eslint --fix --ext .js"
+    "lint": "eslint --ext .js --fix"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -50,6 +48,7 @@
     "xmlbuilder": "^15.1.1"
   },
   "devDependencies": {
+    "nodemon": "^3.1.0",
     "open": "^7.0.4",
     "supertest": "^4.0.2"
   }

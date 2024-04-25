@@ -7,46 +7,46 @@ class MenuService extends Service {
 
     const client1 = mysql.get('db1');
 
-    let dbData = await client1.select('za_user_role', { // 搜索 post 表
+    const dbData = await client1.select('za_user_role', { // 搜索 post 表
       where: { user_id: userId }, // WHERE 条件
-      columns: ['role_id']
+      columns: [ 'role_id' ],
     });
 
-    let apiData = this.ctx.helper.turnHumpDataArr(dbData)
+    const apiData = this.ctx.helper.turnHumpDataArr(dbData);
 
     return apiData;
-	}
+  }
 
   async getMenuIdByRoleId(roleId) {
     const { mysql } = this.app;
 
     const client1 = mysql.get('db1');
 
-    let dbData = await client1.select('za_role_menu', { // 搜索 post 表
+    const dbData = await client1.select('za_role_menu', { // 搜索 post 表
       where: { role_id: roleId }, // WHERE 条件
-      columns: ['menu_id']
+      columns: [ 'menu_id' ],
     });
 
-		let apiData = this.ctx.helper.turnHumpDataArr(dbData)
+    const apiData = this.ctx.helper.turnHumpDataArr(dbData);
 
     return apiData;
-	}	
+  }
 
   async getMenuByMenuId(menuId, menuCode) {
     const { mysql } = this.app;
 
     const client1 = mysql.get('db1');
 
-    let dbData = await client1.select('za_sys_menu', { // 搜索 post 表
-      where: { id: menuId ,sys_type: menuCode}, // WHERE 条件
+    const dbData = await client1.select('za_sys_menu', { // 搜索 post 表
+      where: { id: menuId, sys_type: menuCode }, // WHERE 条件
       // columns: ['menu_id']
     });
 
-		let apiData = this.ctx.helper.turnHumpDataArr(dbData)
+    const apiData = this.ctx.helper.turnHumpDataArr(dbData);
 
     return apiData[0];
   }
-  
+
   async getMenuByUserId(userId, menuCode) {
     const { mysql } = this.app;
 
@@ -54,8 +54,8 @@ class MenuService extends Service {
 
 
     // let dbtable = 'za_sys_menu';
-    let dbquery = 'd.*';   
-    let sql = `
+    const dbquery = 'd.*';
+    const sql = `
       SELECT
         ${dbquery}
       FROM
@@ -70,9 +70,9 @@ class MenuService extends Service {
         a.uid = ${userId} and
         d.sys_type = '${menuCode}'
     `;
-    let dbData = await client1.query(sql)
+    const dbData = await client1.query(sql);
 
-		let apiData = this.ctx.helper.turnHumpDataArr(dbData)
+    const apiData = this.ctx.helper.turnHumpDataArr(dbData);
 
     return apiData;
   }

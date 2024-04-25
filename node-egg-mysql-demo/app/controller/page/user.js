@@ -7,11 +7,11 @@ class PageLoginController extends BaseController {
 
     ctx.body = 'egg-node-web';
   }
-  
+
   async login() {
     const { ctx } = this;
     await ctx.render('login/login.html');
-  }  
+  }
 }
 
 module.exports = PageLoginController;

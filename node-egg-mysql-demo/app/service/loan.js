@@ -2,14 +2,14 @@
 
 const Service = require('egg').Service;
 
-class LoanService extends Service {  
+class LoanService extends Service {
   async getLoanByUserId(reqData) {
     const { mysql } = this.app;
     const client1 = mysql.get('db1');
 
-    let { userId, flowType, page, pageSize } = reqData
-    let count = (page-1)*pageSize
-    let sql = `
+    const { userId, flowType, page, pageSize } = reqData;
+    const count = (page - 1) * pageSize;
+    const sql = `
       SELECT
         c.*,
         b.node_key,
@@ -29,7 +29,7 @@ class LoanService extends Service {
         LIMIT ${pageSize}
         OFFSET ${count};      
     `;
-    let sql2 = `
+    const sql2 = `
       SELECT
         COUNT(*) as total
       FROM
@@ -45,16 +45,16 @@ class LoanService extends Service {
       ORDER BY c.id ASC
         LIMIT ${pageSize}
         OFFSET ${count};      
-    `;    
-    let dbData = await client1.query(sql)
-    let dbData2 = await client1.query(sql2)
+    `;
+    const dbData = await client1.query(sql);
+    const dbData2 = await client1.query(sql2);
 
-    let apiData = this.ctx.helper.turnHumpDataArr(dbData)
+    const apiData = this.ctx.helper.turnHumpDataArr(dbData);
 
-    let resData = {
+    const resData = {
       apiData,
-      total: dbData2[0].total
-    }
+      total: dbData2[0].total,
+    };
 
     return resData;
   }

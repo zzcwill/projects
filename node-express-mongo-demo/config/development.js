@@ -10,7 +10,7 @@ module.exports = {
       // 端口号
       port: '27017',
       // 用户名
-      user: 'zzc',
+      user: 'root',
       // 密码
       password: 'root',
       // 数据库名

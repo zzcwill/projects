@@ -8,7 +8,7 @@ class UpdateCache extends Subscription {
     return {
       interval: '30m',
       // cron: '* */30 * * * *',
-      type: 'worker'
+      type: 'worker',
     };
   }
 
@@ -16,7 +16,7 @@ class UpdateCache extends Subscription {
   async subscribe() {
     const { ctx } = this;
     ctx.app.cache.now = ctx.helper.moment().format('LTS');
-    console.info(ctx.app.cache)
+    console.info(ctx.app.cache);
   }
 }
 

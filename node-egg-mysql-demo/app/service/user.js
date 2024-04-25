@@ -15,16 +15,16 @@ class UserService extends Service {
     // let sql = `select ${dbquery} from ${dbtable} where username= "${loginName}"`;
     // let dbData = await client1.query(sql);
 
-    let dbData = await client1.select('za_user', { // 搜索 post 表
+    const dbData = await client1.select('za_user', { // 搜索 post 表
       where: { username: loginName }, // WHERE 条件
-      columns: [ 'uid', 'level', 'username', 'realname', 'phone', 'company_id', 'company_name', 'department_id', 'department_name', 'bz_group_id', 'bz_group_name']
+      columns: [ 'uid', 'level', 'username', 'realname', 'phone', 'company_id', 'company_name', 'department_id', 'department_name', 'bz_group_id', 'bz_group_name' ],
     });
 
-    if(dbData.length === 0) {
-      return {}
+    if (dbData.length === 0) {
+      return {};
     }
 
-    let apiData = this.ctx.helper.turnHumpData(dbData[0])
+    const apiData = this.ctx.helper.turnHumpData(dbData[0]);
 
     return apiData;
   }

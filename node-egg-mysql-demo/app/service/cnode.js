@@ -11,9 +11,9 @@ class CnodeService extends Service {
     // use build-in http client to GET hacker-news api
     const cnodeData = await this.ctx.curl(`${serverUrl}/topics`, {
       data: {
-        page: page,
+        page,
         limit: pageSize,
-        tab: tab,
+        tab,
       },
       method: 'GET',
       dataType: 'json',
