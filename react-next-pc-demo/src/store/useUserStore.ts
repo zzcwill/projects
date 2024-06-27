@@ -10,12 +10,6 @@ type IUser = {
   mobile?: string;
 };
 
-// interface IState {
-//   user: TUser;
-//   update: (state: IState) => void;
-//   clear: () => void;
-// }
-
 const initUser: IUser = {
   id: '',
   token: '',
