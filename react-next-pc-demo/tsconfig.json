@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "src/*": [
+      "@src/*": [
         "src/*"
       ]
     },
@@ -23,20 +23,20 @@
     "isolatedModules": true, // 将每个文件作为单独的模块
     "resolveJsonModule": true, // 允许把json文件当做模块进行解析
     "skipLibCheck": true, // 跳过所有声明文件的类型检查
-    "forceConsistentCasingInFileNames": true // 不允许对同一文件使用不一致大小写的引用
-    ,
+    "forceConsistentCasingInFileNames": true, // 不允许对同一文件使用不一致大小写的引用
     "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
-    ]    
+    ]
   },
   "include": [
-    "next-env.d.ts", 
-    ".next/types/**/*.ts", 
-    "**/*.ts", 
-    "**/*.tsx"
+    "typings.d.ts",
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
   ],
   "exclude": [
     "node_modules",
@@ -44,4 +44,3 @@
     "dist"
   ]
 }
-

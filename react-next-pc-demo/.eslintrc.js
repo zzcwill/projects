@@ -4,22 +4,25 @@ const config = {
     'next/core-web-vitals',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
+    'prettier',
+    'plugin:prettier/recommended'
   ],
   rules: {
+    'prettier/prettier': ['error', require('./.prettierrc.js')]
   },
   globals: {
-    React: 'writable',
+    React: 'writable'
   },
   settings: {
     react: {
-      version: 'detect',
-    },
+      version: 'detect'
+    }
   },
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
-  ignorePatterns: ['public/**/*.js'],
+  ignorePatterns: ['public/**/*.js']
 };
 
 module.exports = config;

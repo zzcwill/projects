@@ -10,27 +10,15 @@
     "source.fixAll.tslint": "never",
     "source.fixAll.stylelint": "explicit"
   },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-  ],
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "eslint.alwaysShowStatus": true,
   // 关闭编辑器内置样式检查（避免与stylelint冲突）
   "css.validate": false,
   "less.validate": false,
   "scss.validate": false,
   // 配置stylelint检查的文件类型范围
-  "stylelint.validate": [
-    "css",
-    "less",
-    "postcss",
-    "scss",
-    "sass",
-    "vue"
-  ],
-  "js/ts.implicitProjectConfig.checkJs": true,
+  "stylelint.validate": ["css", "less", "postcss", "scss", "sass", "vue"],
+  "js/ts.implicitProjectConfig.checkJs": true
   // "tailwindCSS.rootFontSize": 100,
   // "cssrem.rootFontSize": 100,
 }
