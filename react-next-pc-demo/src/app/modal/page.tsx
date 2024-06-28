@@ -9,7 +9,7 @@ import { Icon } from '@src/components';
 import './index.scss';
 
 export default function Page() {
-  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {}, []);
 
@@ -18,34 +18,34 @@ export default function Page() {
       <div
         className="m-[200px] w-[200px] cursor-pointer rounded-[10px] bg-[blue] text-center font-[20px] leading-[100px] text-[#fff]"
         onClick={() => {
-          setDrawerOpen(true);
+          setModalOpen(true);
         }}
       >
-        drawerOpen
+        modalOpen
       </div>
-      <div className={classNames('zui-drawer')}>
+      <div className={classNames('zui-modal')}>
         <div
-          className={classNames('zui-drawer-mask', { '!hidden': !drawerOpen })}
+          className={classNames('zui-modal-mask', { '!hidden': !modalOpen })}
           onClick={() => {
-            setDrawerOpen(false);
+            setModalOpen(false);
           }}
         ></div>
         <div
-          className={classNames('zui-drawer-content-wrapper', {
-            'zui-drawer-content-wrapper-open': drawerOpen
+          className={classNames('zui-modal-wrap', {
+            'zui-modal-wrap-open': modalOpen
           })}
         >
-          <div className="zui-drawer-content">
-            <div className="zui-drawer-header">
+          <div className="zui-modal-content">
+            <div className="zui-modal-header">
               <Icon
                 name="icon-close"
                 className="h-[20px] w-[20px] cursor-pointer fill-[#999]"
                 onClick={() => {
-                  setDrawerOpen(false);
+                  setModalOpen(false);
                 }}
               />
             </div>
-            <div className="zui-drawer-body">
+            <div className="zui-modal-body">
               <div className="h-[2000px] w-full">test</div>
             </div>
           </div>
