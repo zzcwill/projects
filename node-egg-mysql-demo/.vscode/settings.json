@@ -2,11 +2,11 @@
 	// eslint配置
   "eslint.format.enable": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImport": true,
-    "source.fixAll": true, // 对所有文件，保存时自动格式化
-    "source.fixAll.eslint": true, // 更细. 在文件保存时，禁用eslint规则生效。此配置会影响 eslint.format.enable
-    "source.fixAll.tslint": false, // 更细. 在文件保存时，禁用tslint规则生效。 此配置会影响 typescript.validate.enable
-    "source.fixAll.stylelint": false // 更细. 在文件保存时，禁用stylelint样式规则生效
+    "source.organizeImport": "explicit",
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.tslint": "never",
+    "source.fixAll.stylelint": "never"
   },
 	"eslint.validate": [
     "javascript",
