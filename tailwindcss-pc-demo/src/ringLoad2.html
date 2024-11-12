@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <!-- <script src="../js/tailwind-config.js"></script> -->
+  <style>
+    .load-box-tip {
+      margin-left: 100px;
+      position: relative;
+      height: 38px;
+      width: 290px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      background-color: #6767DA;
+      border-radius: 4px;
+    }
+
+    .load-box-tip::before {
+      position: absolute;
+      content: '';
+      top: 13px;
+      left: -6px;
+      border-style: solid;
+      border-width: 6px 6px 6px 0px;
+      border-color: transparent #6767DA transparent transparent;      
+    }
+
+    .circle {
+      margin-left: 6px;
+      position: relative;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background-color: #fff;
+    }
+
+    .circle-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: transparent;
+      clip-path: circle(50% at 50% 50%);
+      /* transform: rotate(-90deg); */
+    }
+
+    .circle-mask {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #6767DA;
+    }
+
+    /* .circle-value {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 20px;
+    } */
+  </style>
+</head>
+<body>
+  <div class="load-box-tip">
+    <div class="circle">
+      <div class="circle-progress"></div>
+      <div class="circle-mask"></div>
+    </div>
+  </div>
+  <script>
+    const circleProgress = document.querySelector('.circle-progress');
+    let progress = 0; // 进度值
+
+    setTimeout(() => {
+        let timer = setInterval(() => {
+        progress = progress + 4;
+
+        if (progress >= 80) {
+          timer = null;
+          // circleProgress.style.background = `conic-gradient(#fff 360deg, #9C9CE7 0deg)`;
+          return;
+        }
+
+        circleProgress.style.background = `conic-gradient(#fff ${progress * 3.6}deg, #9C9CE7 0deg)`;
+      }, 70);
+    }, 1000);
+  </script>
+</body>
+</html>

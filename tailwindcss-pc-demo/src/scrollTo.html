@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../js/tailwind-config.js"></script>
+</head>
+<body>
+  <div class="flex justify-center text-base">
+    <div class="w-[1000px] leading-[80px] text-[16px] overflow-x-auto bg-black h-[100px] p-[10px]" id="demo">
+      <div class="w-[2000px] h-[200px]">
+        <div class="w-[100px] h-[50px] bg-slate-200"></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const element = document.getElementById('demo');
+    setTimeout(() => {
+      element.scrollTo({
+        top: 100,
+        left: 300,
+        behavior: "smooth",
+      });
+    }, 1000);
+  </script>
+</body>
+</html>

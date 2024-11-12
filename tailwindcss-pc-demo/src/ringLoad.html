@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../js/tailwind-config.js"></script>
+</head>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .loader {
+    border: 16px solid #f3f3f3; /* 轻灰色部分 */
+    border-top: 16px solid #3498db; /* 蓝色部分 */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite; /* 动画名称、时间、速度曲线、播放次数 */
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+<body>
+  <div class="loader"></div>
+  <script>
+    const loader = document.querySelector('.loader');
+
+    function startLoading() {
+      loader.style.animationPlayState = 'running';
+    }
+
+    function stopLoading() {
+      loader.style.animationPlayState = 'paused';
+    }
+
+    setTimeout(startLoading, 1000); // 1秒后开始加载动画
+    setTimeout(stopLoading, 5000);  // 5秒后停止加载动画    
+  </script>
+</body>
+</html>
