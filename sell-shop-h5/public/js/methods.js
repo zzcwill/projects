@@ -3,7 +3,7 @@
  * @param {string} message - 要显示的消息
  * @param {number} duration - 显示时长(毫秒)，默认2000ms
  */
-function showToast(message, duration = 2000) {
+function openToast(message, duration = 2000) {
   // 创建toast元素
   const toast = document.createElement('div');
   

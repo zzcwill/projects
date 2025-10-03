@@ -1,3 +1,4 @@
+// @ts-nocheck
 $(document).ready(function() {
   // 验证码按钮倒计时功能
   const getCodeBtn = $('#getCodeBtn');
@@ -11,7 +12,7 @@ $(document).ready(function() {
     
     // 简单的手机号验证
     if (!/^1\d{10}$/.test(phone)) {
-      showToast('请输入正确的手机号码');
+      openToast('请输入正确的手机号码');
       return;
     }
     
@@ -48,12 +49,12 @@ $(document).ready(function() {
     const code = $('#verificationCode').val().trim();
     
     if (!phone) {
-      showToast('请输入手机号');
+      openToast('请输入手机号');
       return;
     }
     
     if (!code) {
-      showToast('请输入验证码');
+      openToast('请输入验证码');
       return;
     }
     
