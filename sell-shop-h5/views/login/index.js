@@ -11,7 +11,7 @@ $(document).ready(function() {
     
     // 简单的手机号验证
     if (!/^1\d{10}$/.test(phone)) {
-      alert('请输入正确的手机号码');
+      showToast('请输入正确的手机号码');
       return;
     }
     
@@ -48,12 +48,12 @@ $(document).ready(function() {
     const code = $('#verificationCode').val().trim();
     
     if (!phone) {
-      alert('请输入手机号');
+      showToast('请输入手机号');
       return;
     }
     
     if (!code) {
-      alert('请输入验证码');
+      showToast('请输入验证码');
       return;
     }
     
