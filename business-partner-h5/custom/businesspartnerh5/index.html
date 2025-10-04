@@ -1,0 +1,149 @@
+<!doctype html>
+<html style="font-size: 100px;">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../../public/businesspartnerh5/js/resize-font.js"></script>
+  <script src="../../public/businesspartnerh5/js/openToast.js"></script>
+  <script src="../../public/businesspartnerh5/js/methods.js"></script>
+  <link rel="stylesheet" href="../../public/businesspartnerh5/css/global.css">
+  <style>
+    /* 按钮悬停效果 */
+    #loginBtn:hover {
+      background-color: #3b82f6;
+    }
+
+    #weChatLoginBtn:hover {
+      background-color: #10b981;
+    }
+
+    /* 验证码按钮禁用状态 */
+    #getCodeBtn:disabled {
+      background-color: #e5e7eb;
+      color: #9ca3af;
+      cursor: not-allowed;
+    }
+  </style>
+  <title>用户登录</title>
+</head>
+
+<body class="bg-white text-[0.18rem]">
+  <div class="container mx-auto px-[0.2rem] py-[0.4rem] max-w-[10rem]">
+    <h1 class="text-gray-700 text-[0.28rem] mb-[0.5rem]">用户登录</h1>
+
+    <form id="loginForm" action="#" method="post">
+      <!-- 手机号输入 -->
+      <div class="mb-[0.25rem]">
+        <label class="block text-gray-600 text-[0.16rem] mb-[0.08rem]">手机号</label>
+        <input type="tel" id="phone" name="phone" placeholder="请输入手机号"
+          class="w-full border border-gray-300 p-[0.12rem] text-[0.14rem] focus:outline-none focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <!-- 验证码输入 -->
+      <div class="mb-[0.25rem]">
+        <label class="block text-gray-600 text-[0.16rem] mb-[0.08rem]">验证码</label>
+        <div class="flex items-center">
+          <input type="text" id="verificationCode" name="verificationCode" placeholder="请输入验证码"
+            class="flex-1 border border-gray-300 p-[0.12rem] text-[0.14rem] focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <button type="button" id="getCodeBtn"
+            class="ml-[0.12rem] bg-gray-100 text-gray-500 border border-gray-300 px-[0.12rem] py-[0.12rem] text-[0.12rem] whitespace-nowrap">获取验证码</button>
+        </div>
+      </div>
+      
+      <!-- 错误提示 -->
+      <div id="errorMessage" class="text-red-500 text-[0.14rem] mb-[0.1rem]">
+        登录失败，请检查手机号和验证码是否正确
+      </div>
+      
+      <!-- 登录按钮 -->
+      <button type="submit" id="loginBtn"
+        class="w-full bg-blue-500 text-white rounded-md py-[0.12rem] text-[0.16rem] mt-[0.25rem]">登录</button>
+    </form>
+
+    <!-- 微信登录按钮 -->
+    <button id="weChatLoginBtn"
+      class="w-full bg-green-500 text-white rounded-md py-[0.12rem] text-[0.16rem] mt-[0.15rem] hidden">微信一键授权</button>
+  </div>
+
+  <script>
+    // 验证码按钮倒计时功能
+    const getCodeBtn = document.getElementById('getCodeBtn');
+    const phoneInput = document.getElementById('phone');
+    let countdown = 60; // 倒计时秒数
+    let timer = null;
+
+    // 获取验证码按钮点击事件
+    getCodeBtn.addEventListener('click', function () {
+      const phone = phoneInput.value.trim();
+
+      // 简单的手机号验证
+      if (!/^1\d{10}$/.test(phone)) {
+        openToast('请输入正确的手机号码');
+        return;
+      }
+
+      // 禁用按钮并开始倒计时
+      startCountdown();
+
+      // 这里可以添加发送验证码的AJAX请求
+      console.log('发送验证码到手机号：' + phone);
+    });
+
+    // 开始倒计时
+    function startCountdown() {
+      // 禁用按钮
+      getCodeBtn.disabled = true;
+      getCodeBtn.textContent = `${countdown}秒后重新获取`;
+
+      timer = setInterval(function () {
+        countdown--;
+        getCodeBtn.textContent = `${countdown}秒后重新获取`;
+
+        if (countdown <= 0) {
+          // 倒计时结束，恢复按钮状态
+          clearInterval(timer);
+          getCodeBtn.disabled = false;
+          getCodeBtn.textContent = '获取验证码';
+          countdown = 60; // 重置倒计时
+        }
+      }, 1000);
+    }
+
+    // 表单提交事件
+    const loginForm = document.getElementById('loginForm');
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault(); // 阻止表单默认提交行为
+
+      const phone = phoneInput.value.trim();
+      const code = document.getElementById('verificationCode').value.trim();
+
+      if (!phone) {
+        openToast('请输入手机号');
+        return false;
+      }
+
+      if (!code) {
+        openToast('请输入验证码');
+        return false;
+      }
+
+      // 这里可以添加登录验证的AJAX请求
+      console.log('提交登录：', { phone, code });
+
+      // 如果需要提交表单到服务器，可以使用以下代码
+      this.submit();
+    });
+
+    // 微信登录按钮点击事件
+    const weChatLoginBtn = document.getElementById('weChatLoginBtn');
+    weChatLoginBtn.addEventListener('click', function () {
+      console.log('微信一键授权登录');
+      // 这里可以添加微信授权登录的逻辑
+    });
+  </script>
+</body>
+
+</html>
