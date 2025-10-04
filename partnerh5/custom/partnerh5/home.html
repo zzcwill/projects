@@ -1,0 +1,204 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .fixed-bottom {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: #fff;
+      border-top: 1px solid #eee;
+      z-index: 100;
+    }
+
+    .news-item {
+      border-bottom: 1px solid #f0f0f0;
+      padding: 0.15rem 0;
+    }
+
+    .news-item:last-child {
+      border-bottom: none;
+    }
+  </style>
+  <title>首页</title>
+</head>
+
+<body class="bg-white text-[0.18rem] pb-[0.7rem]">
+  <div class="container mx-auto max-w-[10rem] px-[0.1rem] py-[0.1rem]">
+    <!-- 顶部图片区域 -->
+    <div class="w-full">
+      <img src="../commonh5/img/test.jpg" class="w-full">
+    </div>
+
+    <!-- 统计数据展示 -->
+    <div class="flex justify-between gap-[.08rem] py-[0.1rem]">
+      <div class="border border-gray-300 p-[0.08rem] flex items-center">
+        <div class="text-gray-500 text-[0.18rem] mr-[0.1rem] w-[0.4rem]">服务中心</div>
+        <div class="flex flex-col">
+          <div class="text-gray-700 text-[0.24rem] font-bold">326</div>
+          <div class="text-gray-400 text-[0.16rem]">12</div>
+        </div>
+      </div>
+      <div class="border border-gray-300 p-[0.08rem] flex items-center">
+        <div class="text-gray-500 text-[0.18rem] mr-[0.1rem] w-[0.4rem]">服务中心中心</div>
+        <div class="flex flex-col">
+          <div class="text-gray-700 text-[0.24rem] font-bold">326</div>
+          <div class="text-gray-400 text-[0.16rem]">12</div>
+        </div>
+      </div>
+      <div class="border border-gray-300 p-[0.08rem] flex items-center">
+        <div class="text-gray-500 text-[0.18rem] mr-[0.1rem] w-[0.4rem]">服务中心</div>
+        <div class="flex flex-col">
+          <div class="text-gray-700 text-[0.24rem] font-bold">326</div>
+          <div class="text-gray-400 text-[0.16rem]">12</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 市场分布图 -->
+    <div class="py-[0.1rem]">
+      <div class="text-[0.2rem] font-bold mb-[0.1rem]">市场分布图</div>
+      <div class="w-full">
+        <img src="../commonh5/img/test.jpg" class="w-full">
+      </div>
+    </div>
+
+    <!-- 合作区域 -->
+    <div class="bg-gray-200 p-[0.1rem]">
+      <div class="text-[0.2rem] font-bold mb-[0.1rem]">合作</div>
+      <div class="grid grid-cols-2 gap-[0.2rem]">
+        <div class="bg-blue-500 text-white text-left p-[0.1rem]">
+          我要成为职业红娘
+        </div>
+        <div class="bg-blue-500 text-white text-left p-[0.1rem]">
+          我要成为服务站长
+        </div>
+        <div class="bg-blue-500 text-white text-left p-[0.1rem]">
+          我要成为分区县中心主任
+        </div>
+        <div class="bg-blue-500 text-white text-left p-[0.1rem]">
+          我要成为市级中心主任
+        </div>
+      </div>
+    </div>
+
+    <!-- 邀请用户区域 -->
+    <div class="bg-gray-200 px-[0.1rem] py-[0.1rem] mt-[0.1rem]">
+      <div class="text-[0.2rem] font-bold mb-[0.2rem]">邀请用户</div>
+      <div class="flex justify-end">
+        <div id="invite-user" class="bg-blue-500 text-white text-center py-[0.1rem] px-[0.1rem]">
+          点击邀请用户登记
+        </div>
+      </div>
+    </div>
+
+    <!-- 公益基金池和百问百答 -->
+    <div class="bg-orange-50 px-[0.1rem] py-[0.1rem] mt-[0.1rem] flex justify-between items-center">
+      <div>
+        <div class="text-[0.2rem] font-bold">公益基金池</div>
+        <div class="text-[0.14rem] text-gray-500">每笔婚介会员费2元进入基金池</div>
+        <div class="text-red-500 text-[0.24rem] font-bold">3073.2</div>
+        <div class="text-[0.14rem] text-gray-500">基金池总金额</div>
+      </div>
+      <div class="flex flex-col items-center">
+        <img src="../commonh5/img/test.jpg" class="w-[0.8rem] mb-[0.1rem]">
+        <div class="text-[0.2rem]">百问百答</div>
+      </div>
+    </div>
+
+    <!-- 最新政策 -->
+    <div class="px-[0.1rem] py-[0.1rem]">
+      <div class="flex justify-between items-center">
+        <div class="text-[0.2rem] font-bold">最新政策</div>
+        <div id="view-more-policy" class="text-gray-500 text-[0.16rem] cursor-pointer hover:opacity-80">查看更多</div>
+      </div>
+      <div class="news-item flex mt-[0.1rem]">
+        <img src="../commonh5/img/test.jpg" class="w-[1.5rem] h-[1.2rem] object-cover">
+        <div class="ml-[0.15rem] flex-1">
+          <div class="text-[0.18rem] line-clamp-2">风雨兼程促联姻 智能平台助良缘风雨兼程促联姻 智能平台助良缘</div>
+          <div class="text-[0.14rem] text-gray-500 mt-[0.05rem] line-clamp-2">中婚｜报道：2025年8月19日，河北省保定市执行委员会长风雨兼程促联姻 智能平台助良缘风雨兼程促联姻 智能平台助良缘</div>
+          <div class="text-[0.14rem] text-gray-500 mt-[0.05rem]">2025-08-19 14:10:23</div>
+        </div>
+      </div>
+      <div class="news-item flex mt-[0.1rem]">
+        <img src="../commonh5/img/test.jpg" class="w-[1.5rem] h-[1.2rem] object-cover">
+        <div class="ml-[0.15rem] flex-1">
+          <div class="text-[0.18rem] line-clamp-2">风雨兼程促联姻 智能平台助良缘风雨兼程促联姻 智能平台助良缘</div>
+          <div class="text-[0.14rem] text-gray-500 mt-[0.05rem] line-clamp-2">中婚｜报道：2025年8月19日，河北省保定市执行委员会长风雨兼程促联姻 智能平台助良缘风雨兼程促联姻 智能平台助良缘</div>
+          <div class="text-[0.14rem] text-gray-500 mt-[0.05rem]">2025-08-19 14:10:23</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 新闻动态 -->
+    <div class="px-[0.1rem] py-[0.1rem]">
+      <div class="flex justify-between items-center">
+        <div class="text-[0.2rem] font-bold">新闻动态</div>
+        <div id="view-more-news" class="text-gray-500 text-[0.16rem] cursor-pointer hover:opacity-80">查看更多</div>
+      </div>
+      <div class="news-item flex mt-[0.1rem]">
+        <img src="../commonh5/img/test.jpg" class="w-[1.5rem] h-[1.2rem] object-cover">
+        <div class="ml-[0.15rem] flex-1">
+          <div class="text-[0.18rem] line-clamp-2">风雨兼程促联姻 智能平台助良缘风雨兼程促联姻 智能平台助良缘</div>
+          <div class="text-[0.14rem] text-gray-500 mt-[0.05rem] line-clamp-2">中婚｜报道：2025年8月19日，河北省保定市执行委员会长风雨兼程促联姻 智能平台助良缘风雨兼程促联姻 智能平台助良缘</div>
+          <div class="text-[0.14rem] text-gray-500 mt-[0.05rem]">2025-08-19 14:10:23</div>
+        </div>
+      </div>
+      <div class="news-item flex mt-[0.1rem]">
+        <img src="../commonh5/img/test.jpg" class="w-[1.5rem] h-[1.2rem] object-cover">
+        <div class="ml-[0.15rem] flex-1">
+          <div class="text-[0.18rem] line-clamp-2">风雨兼程促联姻 智能平台助良缘风雨兼程促联姻 智能平台助良缘</div>
+          <div class="text-[0.14rem] text-gray-500 mt-[0.05rem] line-clamp-2">中婚｜报道：2025年8月19日，河北省保定市执行委员会长风雨兼程促联姻 智能平台助良缘风雨兼程促联姻 智能平台助良缘</div>
+          <div class="text-[0.14rem] text-gray-500 mt-[0.05rem]">2025-08-19 14:10:23</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部固定菜单 -->
+    <div class="fixed-bottom flex justify-around items-center py-[0.1rem]">
+      <div id="menu-home" class="flex flex-col items-center cursor-pointer hover:opacity-80">
+        <div class="text-blue-500">首页</div>
+      </div>
+      <div id="menu-team" class="flex flex-col items-center cursor-pointer hover:opacity-80">
+        <div class="text-gray-500">团队</div>
+      </div>
+      <div id="menu-income" class="flex flex-col items-center cursor-pointer hover:opacity-80">
+        <div class="text-gray-500">收益</div>
+      </div>
+      <div id="menu-my" class="flex flex-col items-center cursor-pointer hover:opacity-80">
+        <div class="text-gray-500">我的</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $(function() {
+      // 底部菜单点击事件
+      $('#menu-home, #menu-team, #menu-income, #menu-my').on('click', function() {
+        window.location.href = 'login.html';
+      });
+
+      // "查看更多"按钮点击事件
+      $('#view-more-policy, #view-more-news').on('click', function() {
+        window.location.href = 'login.html';
+      });
+      
+      // "点击邀请用户登记"按钮点击事件
+      $('#invite-user').on('click', function() {
+        window.location.href = 'login.html';
+      });
+    });
+  </script>
+</body>
+
+</html>
