@@ -43,23 +43,28 @@ $(document).ready(function() {
     }, 1000);
   }
   
-  // 登录按钮点击事件
-  $('#loginBtn').on('click', function() {
+  // 表单提交事件
+  $('#loginForm').on('submit', function(e) {
+    e.preventDefault(); // 阻止表单默认提交行为
+    
     const phone = phoneInput.val().trim();
     const code = $('#verificationCode').val().trim();
     
     if (!phone) {
       openToast('请输入手机号');
-      return;
+      return false;
     }
     
     if (!code) {
       openToast('请输入验证码');
-      return;
+      return false;
     }
     
     // 这里可以添加登录验证的AJAX请求
     console.log('提交登录：', { phone, code });
+    
+    // 如果需要提交表单到服务器，可以使用以下代码
+    this.submit();
   });
   
   // 微信登录按钮点击事件
