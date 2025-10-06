@@ -165,38 +165,31 @@
     </div>
 
     <!-- 底部固定菜单 -->
-    <div class="fixed-bottom flex justify-around items-center py-[0.1rem]">
-      <div id="menu-home" class="flex flex-col items-center cursor-pointer hover:opacity-80">
+    <div class="fixed-bottom flex justify-around items-center">
+      <a href="login.html" id="menu-home" class="flex flex-col items-center cursor-pointer hover:opacity-80 flex-1 py-[0.1rem]">
         <div class="text-blue-500">首页</div>
-      </div>
-      <div id="menu-team" class="flex flex-col items-center cursor-pointer hover:opacity-80">
+      </a>
+      <a href="login.html" id="menu-team" class="flex flex-col items-center cursor-pointer hover:opacity-80 flex-1 py-[0.1rem]">
         <div class="text-gray-500">团队</div>
-      </div>
-      <div id="menu-income" class="flex flex-col items-center cursor-pointer hover:opacity-80">
+      </a>
+      <a href="login.html" id="menu-income" class="flex flex-col items-center cursor-pointer hover:opacity-80 flex-1 py-[0.1rem]">
         <div class="text-gray-500">收益</div>
-      </div>
-      <div id="menu-my" class="flex flex-col items-center cursor-pointer hover:opacity-80">
+      </a>
+      <a href="login.html" id="menu-my" class="flex flex-col items-center cursor-pointer hover:opacity-80 flex-1 py-[0.1rem]">
         <div class="text-gray-500">我的</div>
-      </div>
+      </a>
     </div>
   </div>
 
   <script>
-    $(function() {
-      // 底部菜单点击事件
-      $('#menu-home, #menu-team, #menu-income, #menu-my').on('click', function() {
-        window.location.href = 'login.html';
-      });
-
-      // "查看更多"按钮点击事件
-      $('#view-more-policy, #view-more-news').on('click', function() {
-        window.location.href = 'login.html';
-      });
-      
-      // "点击邀请用户登记"按钮点击事件
-      $('#invite-user').on('click', function() {
-        window.location.href = 'login.html';
-      });
+    // "查看更多"按钮点击事件
+    $('#view-more-policy, #view-more-news').on('click', function() {
+      window.location.href = 'login.html';
+    });
+    
+    // "点击邀请用户登记"按钮点击事件
+    $('#invite-user').on('click', function() {
+      window.location.href = 'login.html';
     });
   </script>
 </body>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_5035182_5w80ywjt1ya.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .benefit-card {
+      background-color: #fff;
+      padding: 0.1rem;
+      margin-bottom: 0.1rem;
+    }
+    
+    .benefit-item {
+      border: 1px solid #f0f0f0;
+      border-radius: 0.08rem;
+      padding: 0.1rem;
+      margin-bottom: 0.1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .benefit-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .benefit-title {
+      color: #FF9500;
+      font-size: 0.16rem;
+    }
+    
+    .benefit-amount {
+      font-size: 0.16rem;
+      font-weight: bold;
+    }
+    
+    .arrow-icon {
+      color: #999;
+      font-size: 0.16rem;
+    }
+    
+    .divider {
+      width: 1px;
+      height: 0.5rem;
+      background-color: #f0f0f0;
+      margin: 0 0.1rem;
+    }
+  </style>
+  <title>我的权益</title>
+</head>
+
+<body class="bg-gray-100 text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem] p-[0.1rem]">
+    <!-- 结算中心 -->
+    <div class="benefit-card mb-[0.1rem]">
+      <div class="flex justify-between items-center mb-[0.1rem]">
+        <h2 class="text-[0.2rem] font-bold text-gray-700">结算中心</h2>
+        <a href="javascript:;" class="text-[0.16rem] text-[#FF9500] bg-[#FFF5E6] px-[0.1rem] py-[0.1rem] rounded-[0.32rem]">领取</a>
+      </div>
+      
+      <div class="flex items-center justify-between mb-[0.1rem]">
+        <div class="flex items-center">
+          <span class="text-gray-500 text-[0.14rem] mr-[0.1rem]">待结算</span>
+          <span class="text-[0.32rem] font-bold">123123123</span>
+        </div>
+        <a href="javascript:;" class="text-[0.14rem] text-[#FF9500]">明细</a>
+      </div>
+      
+      <div class="flex justify-between items-center border-t border-gray-100 pt-[0.1rem]">
+        <div class="flex-1 text-center">
+          <p class="text-[0.24rem] font-bold">999999999</p>
+          <p class="text-[0.14rem] text-[#FF9500]">喜糖</p>
+        </div>
+        <div class="divider"></div>
+        <div class="flex-1 text-center">
+          <p class="text-[0.24rem] font-bold">999999999</p>
+          <p class="text-[0.14rem] text-[#FF9500]">糖豆</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 我的收益 -->
+    <div class="mb-[0.1rem]">
+      <h2 class="text-[0.2rem] font-bold text-gray-700 mb-[0.1rem]">我的收益</h2>
+      
+      <div class="benefit-card">
+        <div class="benefit-item">
+          <span class="benefit-title">推广合作伙伴津贴</span>
+          <div class="flex items-center">
+            <span class="benefit-amount">999999999</span>
+            <span class="arrow-icon ml-[0.1rem]">></span>
+          </div>
+        </div>
+        
+        <div class="benefit-item">
+          <span class="benefit-title">推广单身用户奖励</span>
+          <div class="flex items-center">
+            <span class="benefit-amount">999999999</span>
+            <span class="arrow-icon ml-[0.1rem]">></span>
+          </div>
+        </div>
+        
+        <div class="benefit-item">
+          <span class="benefit-title">团队管理奖金</span>
+          <div class="flex items-center">
+            <span class="benefit-amount">999999999</span>
+            <span class="arrow-icon ml-[0.1rem]">></span>
+          </div>
+        </div>
+        
+        <div class="benefit-item">
+          <span class="benefit-title">培育补贴</span>
+          <div class="flex items-center">
+            <span class="benefit-amount">999999999</span>
+            <span class="arrow-icon ml-[0.1rem]">></span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="benefit-card mt-[0.1rem]">
+        <div class="benefit-item">
+          <span class="benefit-title">服务补贴</span>
+          <div class="flex items-center">
+            <span class="benefit-amount">999999999</span>
+            <span class="arrow-icon ml-[0.1rem]">></span>
+          </div>
+        </div>
+        
+        <div class="benefit-item">
+          <span class="benefit-title">限时福利补贴</span>
+          <div class="flex items-center">
+            <span class="benefit-amount">999999999</span>
+            <span class="arrow-icon ml-[0.1rem]">></span>
+          </div>
+        </div>
+        
+        <div class="benefit-item">
+          <span class="benefit-title">物质补贴</span>
+          <div class="flex items-center">
+            <span class="benefit-amount">999999999</span>
+            <span class="arrow-icon ml-[0.1rem]">></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // 点击领取按钮
+    $('.benefit-card a').on('click', function() {
+      // 这里可以添加领取逻辑
+      openToast('领取成功');
+    });
+    
+    // 点击明细链接
+    $('.benefit-card a:contains("明细")').on('click', function() {
+      // 跳转到明细页面
+      window.location.href = 'detail.html';
+    });
+    
+    // 点击收益项
+    $('.benefit-item').on('click', function() {
+      // 获取收益类型
+      const benefitType = $(this).find('.benefit-title').text();
+      // 跳转到对应的详情页面
+      window.location.href = 'benefitDetail.html?type=' + encodeURIComponent(benefitType);
+    });
+  </script>
+</body>
+
+</html>
