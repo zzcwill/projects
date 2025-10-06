@@ -3,4 +3,6 @@
 3 当前项目是 1rem 为 100px， 设计稿宽度为375px
 4 当前项目为h5项目
 5 生成页面以custom/partnerh5/demo.html为模板
+6 有input，都用form表单提交
+7 jquery不使用$(document).ready()，也不使用$(function(){});
 

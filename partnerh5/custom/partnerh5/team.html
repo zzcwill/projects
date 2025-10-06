@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_5035182_5w80ywjt1ya.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .team-card {
+      box-shadow: 0 0.04rem 0.08rem rgba(0, 0, 0, 0.05);
+    }
+    .team-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .team-table tr {
+      border-bottom: 0.01rem solid #f0f0f0;
+    }
+    .team-table tr:last-child {
+      border-bottom: none;
+    }
+  </style>
+  <title>我的团队</title>
+</head>
+
+<body class="bg-gray-100 text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem] p-[0.1rem]">
+    <!-- 糖糖提示 -->
+    <div class="bg-white p-[0.1rem] mb-[0.1rem]">
+      <div class="flex items-center">
+        <i class="iconfont icon-partner-chat-dot-round text-[0.24rem] text-gray-400 mr-[0.1rem]"></i>
+        <span class="text-gray-400">糖糖提示</span>
+      </div>
+      <p class="text-gray-400">这里展示您发展的所有用户信息。</p>
+    </div>
+
+    <!-- 团队总人数 -->
+    <div class="bg-white p-[0.1rem] mb-[0.1rem]">
+      <h2 class="text-center text-[0.24rem] font-medium mb-[0.1rem]">团队总人数</h2>
+      <div class="text-center text-[0.4rem] font-bold mb-[0.1rem]">1231231</div>
+      
+      <div class="grid grid-cols-3 gap-[0.1rem]">
+        <div class="team-card border border-gray-200 p-[0.1rem] text-center">
+          <div class="text-[0.2rem] mb-[0.1rem]">公益红娘</div>
+          <div class="text-[0.24rem] font-medium">12222</div>
+        </div>
+        <div class="team-card border border-gray-200 p-[0.1rem] text-center">
+          <div class="text-[0.2rem] mb-[0.1rem]">职业红娘</div>
+          <div class="text-[0.24rem] font-medium">12222</div>
+        </div>
+        <div class="team-card bg-blue-500 text-white p-[0.1rem] text-center">
+          <div class="text-[0.2rem] mb-[0.1rem]">单身用户</div>
+          <div class="text-[0.24rem] font-medium">12222</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 用户列表 -->
+    <div class="bg-white p-[0.1rem]">
+      <table class="team-table">
+        <tr>
+          <th class="text-left py-[0.2rem] w-[2.5rem]">注册日期</th>
+          <th class="text-left py-[0.2rem] w-[1.5rem]">姓名</th>
+          <th class="text-left py-[0.2rem] w-[3rem]">手机号码</th>
+          <th class="text-left py-[0.2rem]">状态</th>
+        </tr>
+        <tr>
+          <td class="py-[0.2rem]">2025-12-12</td>
+          <td class="py-[0.2rem]">张三</td>
+          <td class="py-[0.2rem]">13012312312</td>
+          <td class="py-[0.2rem]">未激活</td>
+        </tr>
+        <tr>
+          <td class="py-[0.2rem]">2025-12-12</td>
+          <td class="py-[0.2rem]">张三</td>
+          <td class="py-[0.2rem]">13012312312</td>
+          <td class="py-[0.2rem] text-green-500">已激活</td>
+        </tr>
+        <tr>
+          <td class="py-[0.2rem]">2025-12-12</td>
+          <td class="py-[0.2rem]">张三</td>
+          <td class="py-[0.2rem]">13012312312</td>
+          <td class="py-[0.2rem]">未激活</td>
+        </tr>
+        <tr>
+          <td class="py-[0.2rem]">2025-12-12</td>
+          <td class="py-[0.2rem]">张三</td>
+          <td class="py-[0.2rem]">13012312312</td>
+          <td class="py-[0.2rem] text-green-500">已激活</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  
+  <script>
+  </script>
+</body>
+
+</html>
