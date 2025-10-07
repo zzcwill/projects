@@ -1,0 +1,8 @@
+.fx-input:hover {
+  border-color: #3b82f6 !important;
+  outline: none !important;
+}
+
+.fx-button {
+  background-color: #3b82f6 !important;
+}

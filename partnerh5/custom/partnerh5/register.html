@@ -36,29 +36,29 @@
       
       <div class="flex flex-col gap-[0.1rem]">
         <label class="text-[0.18rem] text-gray-700">昵称</label>
-        <input type="text" name="nickname" class="w-full border border-gray-300 p-[0.1rem] text-[0.18rem]" required>
+        <input type="text" name="nickname" class="w-full border border-gray-300 p-[0.1rem] text-[0.18rem] fx-input" required>
       </div>
       
       <div class="flex flex-col gap-[0.1rem]">
         <label class="text-[0.18rem] text-gray-700">性别</label>
         <div class="flex gap-[0.2rem]">
-          <button type="button" class="gender-btn active flex-1 border border-gray-300 py-[0.1rem] text-center" data-gender="1">男</button>
-          <button type="button" class="gender-btn flex-1 border border-gray-300 py-[0.1rem] text-center" data-gender="2">女</button>
+          <button type="button" class="gender-btn active flex-1 border border-gray-300 py-[0.1rem] text-center fx-button" data-gender="1">男</button>
+          <button type="button" class="gender-btn flex-1 border border-gray-300 py-[0.1rem] text-center fx-button" data-gender="2">女</button>
         </div>
         <input type="hidden" name="gender" value="1">
       </div>
       
       <div class="flex flex-col gap-[0.1rem]">
         <label class="text-[0.18rem] text-gray-700">出生日期</label>
-        <input type="text" id="birthdate" name="birthdate" class="w-full border border-gray-300 p-[0.1rem] text-[0.18rem]" value="" required>
+        <input type="text" id="birthdate" name="birthdate" class="w-full border border-gray-300 p-[0.1rem] text-[0.18rem] fx-input" value="" required>
       </div>
       
       <div class="flex flex-col gap-[0.1rem]">
         <label class="text-[0.18rem] text-gray-700">联系方式</label>
-        <input type="tel" name="contact" class="w-full border border-gray-300 p-[0.1rem] text-[0.18rem]" required>
+        <input type="tel" name="contact" class="w-full border border-gray-300 p-[0.1rem] text-[0.18rem] fx-input" required>
       </div>
       
-      <button type="submit" class="mt-[0.4rem] bg-[#1DA1F2] text-white rounded-md py-[0.1rem] text-[0.2rem]">提交</button>
+      <button type="submit" class="mt-[0.4rem] bg-[#1DA1F2] text-white rounded-md py-[0.1rem] text-[0.2rem] fx-button">提交</button>
     </form>
   </div>
   <script>
