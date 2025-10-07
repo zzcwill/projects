@@ -1,8 +1,19 @@
+.fx-input {
+  width: 100%;
+  padding: 0.1rem;
+  font-size: 0.16rem;
+  outline: none;
+  border: 1px solid #d1d5db;
+}
+
 .fx-input:hover {
-  border-color: #3b82f6 !important;
-  outline: none !important;
+  border-color: #3b82f6;
 }
 
 .fx-button {
-  background-color: #3b82f6 !important;
+  width: 100%;
+  padding: 0.1rem;
+  background-color: #3b82f6;
+  color: #fff;
+  font-size: 0.16rem;
 }

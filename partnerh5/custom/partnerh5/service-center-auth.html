@@ -1,0 +1,291 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_5035182_5w80ywjt1ya.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>    
+    .upload-box {
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    .upload-box input[type="file"] {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+    
+    .step-circle {
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 50%;
+      border: 1px solid #999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 0.18rem;
+    }
+  </style>
+  <title>服务中心认证</title>
+</head>
+
+<body class="bg-white text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem]">
+    <!-- 服务中心权益说明 -->
+    <div class="p-[0.1rem]">
+      <h1 class="text-[0.24rem] text-gray-700 font-bold mb-[0.2rem]">服务中心权益说明</h1>
+      <img 
+        class="w-full flex w-[3.2rem] h-[2rem]"
+        src="../commonh5/img/test.jpg"
+      >
+    </div>
+
+    <!-- 加盟流程说明 -->
+    <div class="p-[0.1rem] bg-white">
+      <h2 class="text-[0.22rem] text-gray-700 font-bold mb-[0.2rem]">加盟流程说明</h2>
+      
+      <div class="flex items-start mb-[0.3rem]">
+        <div class="step-circle mr-[0.2rem]">1</div>
+        <div class="flex-1">
+          <p class="text-[0.18rem] text-gray-600">第一步，填写下面表单报名登记。</p>
+        </div>
+      </div>
+      
+      <div class="flex items-start mb-[0.3rem]">
+        <div class="step-circle mr-[0.2rem]">2</div>
+        <div class="flex-1">
+          <p class="text-[0.18rem] text-gray-600">第二步，完成线下缴费</p>
+        </div>
+      </div>
+      
+      <div class="flex items-start mb-[0.3rem]">
+        <div class="step-circle mr-[0.2rem]">3</div>
+        <div class="flex-1">
+          <p class="text-[0.18rem] text-gray-600">第三步，完成场地装修</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 加盟服务中心 -->
+    <div class="p-[0.1rem] bg-gray-50">
+      <h2 class="text-[0.22rem] text-gray-700 font-bold mb-[0.2rem]">加盟服务中心</h2>
+      
+      <form id="authForm">
+        <div class="mb-[0.1rem] flex items-center">
+          <input type="checkbox" id="agreement" class="mr-[0.1rem]">
+          <label for="agreement" class="text-[0.16rem]">我同意<span class="text-blue-500">服务中心加盟协议</span></label>
+        </div>
+        
+        <p class="text-[0.14rem] text-gray-500 mb-[0.1rem]">注意：以下图像请使用水印相机app拍摄</p>
+        
+        <div class="mb-[0.1rem]">
+          <label class="block text-[0.16rem] mb-[0.1rem]">1、负责人真实姓名</label>
+          <input type="text" class="fx-input" name="realName" placeholder="请输入">
+        </div>
+        
+        <div class="mb-[0.1rem]">
+          <label class="block text-[0.16rem] mb-[0.1rem]">2、身份证号码</label>
+          <input type="text" class="fx-input" name="idNumber" placeholder="请输入">
+        </div>
+        
+        <div class="mb-[0.1rem]">
+          <label class="block text-[0.16rem] mb-[0.1rem]">3、身份证照片</label>
+          <div class="flex space-x-[0.2rem]">
+            <div class="upload-box">
+              <input type="file" accept="image/*" name="idCardFront" class="upload-input">
+              <div class="text-center">
+                <div class="text-[0.16rem]">正面</div>
+                <div class="text-gray-400 text-[0.2rem]">+</div>
+              </div>
+            </div>
+            <div class="upload-box">
+              <input type="file" accept="image/*" name="idCardBack" class="upload-input">
+              <div class="text-center">
+                <div class="text-[0.16rem]">反面</div>
+                <div class="text-gray-400 text-[0.2rem]">+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-[0.2rem]">
+          <label class="block text-[0.16rem] mb-[0.1rem]">4、形象照片</label>
+          <div class="upload-box">
+            <input type="file" accept="image/*" name="profilePhoto" class="upload-input">
+            <div class="text-center">
+              <div class="text-gray-400 text-[0.2rem]">+</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-[0.1rem]">
+          <label class="block text-[0.16rem] mb-[0.1rem]">5、场所实际地址（带经纬度）</label>
+          <div class="grid grid-cols-3 gap-[0.1rem] mb-[0.1rem]">
+            <input type="text" class="fx-input" name="province" placeholder="省">
+            <input type="text" class="fx-input" name="city" placeholder="市">
+            <input type="text" class="fx-input" name="district" placeholder="区">
+          </div>
+          <input type="text" class="fx-input" name="address" placeholder="具体地址">
+        </div>
+        
+        <div class="mb-[0.1rem]">
+          <label class="block text-[0.16rem] mb-[0.1rem]">5、场所图片</label>
+          <div class="grid grid-cols-4 gap-[0.1rem]">
+            <div class="upload-box w-[0.8rem] h-[0.8rem]">
+              <input type="file" accept="image/*" name="placeFront" class="upload-input">
+              <div class="text-center">
+                <div class="text-[0.14rem]">正面大门</div>
+                <div class="text-gray-400 text-[0.2rem]">+</div>
+              </div>
+            </div>
+            <div class="upload-box w-[0.8rem] h-[0.8rem]">
+              <input type="file" accept="image/*" name="placeEntrance" class="upload-input">
+              <div class="text-center">
+                <div class="text-[0.14rem]">进门全景</div>
+                <div class="text-gray-400 text-[0.2rem]">+</div>
+              </div>
+            </div>
+            <div class="upload-box w-[0.8rem] h-[0.8rem]">
+              <input type="file" accept="image/*" name="placeRoom" class="upload-input">
+              <div class="text-center">
+                <div class="text-[0.14rem]">交流茶室</div>
+                <div class="text-gray-400 text-[0.2rem]">+</div>
+              </div>
+            </div>
+            <div class="upload-box w-[0.8rem] h-[0.8rem]">
+              <input type="file" accept="image/*" name="placeOther" class="upload-input">
+              <div class="text-center">
+                <div class="text-[0.14rem]">其他</div>
+                <div class="text-gray-400 text-[0.2rem]">+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-[0.1rem]">
+          <label class="block text-[0.16rem] mb-[0.1rem]">6、有效性认证</label>
+          <input type="tel" class="fx-input mb-[0.1rem]" name="phone" placeholder="请输入手机号码">
+          <div class="flex space-x-[0.1rem]">
+            <input type="text" class="fx-input flex-1" name="verifyCode" placeholder="请输入验证码">
+            <button type="button" class="fx-button w-[1.5rem]" id="getCodeBtn">获取验证码</button>
+          </div>
+        </div>
+        
+        <button type="submit" class="fx-button mt-[0.3rem]">提交登记</button>
+      </form>
+    </div>
+  </div>
+  
+  <script>
+    // 图片上传预览
+    $('.upload-input').on('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      
+      // 验证是否为图片
+      if (!file.type.match('image.*')) {
+        openToast('请上传图片文件');
+        $(this).val('');
+        return;
+      }
+      
+      const reader = new FileReader();
+      const $parent = $(this).parent();
+      
+      reader.onload = function(e) {
+        // 移除旧预览
+        $parent.find('img').remove();
+        $parent.find('.text-center').hide();
+        
+        // 添加新预览
+        $parent.append(`<img src="${e.target.result}" class="w-full h-full" />`);
+      };
+      
+      reader.readAsDataURL(file);
+    });
+    
+    // 获取验证码
+    $('#getCodeBtn').on('click', function() {
+      const phone = $('input[name="phone"]').val();
+      if (!phone || !/^1\d{10}$/.test(phone)) {
+        openToast('请输入正确的手机号码');
+        return;
+      }
+      
+      // 倒计时
+      let countdown = 60;
+      const $btn = $(this);
+      $btn.prop('disabled', true);
+      
+      const timer = setInterval(function() {
+        countdown--;
+        $btn.text(`${countdown}秒后重试`);
+        
+        if (countdown <= 0) {
+          clearInterval(timer);
+          $btn.prop('disabled', false);
+          $btn.text('获取验证码');
+        }
+      }, 1000);
+      
+      // 这里应该有发送验证码的AJAX请求
+    });
+    
+    // 表单提交
+    $('#authForm').on('submit', function(e) {
+      e.preventDefault();
+      
+      // 验证协议是否勾选
+      if (!$('#agreement').prop('checked')) {
+        openToast('请同意服务中心加盟协议');
+        return;
+      }
+      
+      // 验证必填项
+      const requiredFields = ['realName', 'idNumber', 'phone', 'verifyCode'];
+      let isValid = true;
+      
+      requiredFields.forEach(field => {
+        if (!$(`[name="${field}"]`).val()) {
+          openToast(`请填写${$(`[name="${field}"]`).prev('label').text()}`);
+          isValid = false;
+          return false;
+        }
+      });
+      
+      // 验证图片是否上传
+      const requiredImages = ['idCardFront', 'idCardBack', 'profilePhoto'];
+      requiredImages.forEach(field => {
+        if (!$(`[name="${field}"]`)[0].files[0]) {
+          openToast(`请上传${$(`[name="${field}"]`).parent().find('div:first').text()}`);
+          isValid = false;
+          return false;
+        }
+      });
+      
+      if (!isValid) return;
+      
+      // 提交表单
+      // 这里应该有提交表单的AJAX请求
+      openToast('提交成功');
+    });
+  </script>
+</body>
+
+</html>

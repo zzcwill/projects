@@ -1,4 +1,9 @@
 # partnerh5
+- 分销销售系统h5项目
+
+# ui规范
+- 按原型 375px 设计稿开发
+- 1 px = 0.01 rem
 
 # tailwindcss文档
 - https://www.tailwindcss.cn/docs/text-decoration
