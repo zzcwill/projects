@@ -3,5 +3,5 @@
 # tailwindcss文档
 - https://www.tailwindcss.cn/docs/text-decoration
 
-# h5-日期插件-lay-picker
-- https://gitee.com/yuanyongqiang/lay-picker
+# 日期插件-laydate
+- https://www.bejson.com/doc/layui/laydate/index.html
