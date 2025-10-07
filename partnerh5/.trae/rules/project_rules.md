@@ -5,4 +5,5 @@
 5 生成页面以custom/partnerh5/demo.html为模板
 6 有input，都用form表单提交
 7 jquery不使用$(document).ready()，也不使用$(function(){});
+8 按钮不需要圆角，都是直角
 
