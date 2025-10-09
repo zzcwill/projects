@@ -1,5 +1,4 @@
 .fx-input {
-  width: 100%;
   padding: 0.1rem;
   font-size: 0.16rem;
   outline: none;
@@ -11,9 +10,7 @@
 }
 
 .fx-button {
-  width: 100%;
   padding: 0.1rem;
-  background-color: #3b82f6;
-  color: #fff;
   font-size: 0.16rem;
+  color: #fff;
 }

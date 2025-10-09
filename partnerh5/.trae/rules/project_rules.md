@@ -5,6 +5,6 @@
 5 生成页面以custom/partnerh5/demo.html为模板
 6 有input，都用form表单提交
 7 jquery不使用$(document).ready()，也不使用$(function(){});
-8 input都是直角，加fx-input类
-9 button，加fx-button类
+8 input都是直角，加fx-input类，放class第一个
+9 button，加fx-button类，放class第一个
 

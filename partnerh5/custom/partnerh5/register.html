@@ -42,8 +42,8 @@
       <div class="flex flex-col gap-[0.1rem]">
         <label class="text-[0.18rem] text-gray-700">性别</label>
         <div class="flex gap-[0.2rem]">
-          <button type="button" class="gender-btn active flex-1 border border-gray-300 py-[0.1rem] text-center fx-button" data-gender="1">男</button>
-          <button type="button" class="gender-btn flex-1 border border-gray-300 py-[0.1rem] text-center fx-button" data-gender="2">女</button>
+          <button type="button" class="gender-btn active border border-gray-300 py-[0.1rem] text-center fx-button" data-gender="1">男</button>
+          <button type="button" class="gender-btn border border-gray-300 py-[0.1rem] text-center fx-button" data-gender="2">女</button>
         </div>
         <input type="hidden" name="gender" value="1">
       </div>
@@ -57,8 +57,13 @@
         <label class="text-[0.18rem] text-gray-700">联系方式</label>
         <input type="tel" name="contact" class="w-full border border-gray-300 p-[0.1rem] text-[0.18rem] fx-input" required>
       </div>
+
+      <!-- 错误提示 -->
+      <div id="errorMessage" class="text-red-500 text-[0.14rem] mb-[0.1rem]">
+        注册失败
+      </div>      
       
-      <button type="submit" class="mt-[0.4rem] bg-[#1DA1F2] text-white py-[0.1rem] text-[0.2rem] fx-button">提交</button>
+      <button type="submit" class="fx-button w-full bg-blue-500 mt-[0.4rem]">提交</button>
     </form>
   </div>
   <script>

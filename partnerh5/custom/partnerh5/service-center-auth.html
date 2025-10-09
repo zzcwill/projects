@@ -41,6 +41,14 @@
       color: #666;
       font-size: 0.18rem;
     }
+    
+    /* 其他样式 */
+    
+    /* 验证码按钮禁用状态 */
+    #getCodeBtn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
   </style>
   <title>服务中心认证</title>
 </head>
@@ -86,7 +94,7 @@
     <div class="p-[0.1rem] bg-gray-50">
       <h2 class="text-[0.22rem] text-gray-700 font-bold mb-[0.2rem]">加盟服务中心</h2>
       
-      <form id="authForm">
+      <form id="authForm" action="#" method="post">
         <div class="mb-[0.1rem] flex items-center">
           <input type="checkbox" id="agreement" class="mr-[0.1rem]">
           <label for="agreement" class="text-[0.16rem]">我同意<span class="text-blue-500">服务中心加盟协议</span></label>
@@ -96,12 +104,12 @@
         
         <div class="mb-[0.1rem]">
           <label class="block text-[0.16rem] mb-[0.1rem]">1、负责人真实姓名</label>
-          <input type="text" class="fx-input" name="realName" placeholder="请输入">
+          <input type="text" class="fx-input w-full" name="realName" placeholder="请输入">
         </div>
         
         <div class="mb-[0.1rem]">
           <label class="block text-[0.16rem] mb-[0.1rem]">2、身份证号码</label>
-          <input type="text" class="fx-input" name="idNumber" placeholder="请输入">
+          <input type="text" class="fx-input w-full" name="idNumber" placeholder="请输入">
         </div>
         
         <div class="mb-[0.1rem]">
@@ -137,11 +145,11 @@
         <div class="mb-[0.1rem]">
           <label class="block text-[0.16rem] mb-[0.1rem]">5、场所实际地址（带经纬度）</label>
           <div class="grid grid-cols-3 gap-[0.1rem] mb-[0.1rem]">
-            <input type="text" class="fx-input" name="province" placeholder="省">
-            <input type="text" class="fx-input" name="city" placeholder="市">
-            <input type="text" class="fx-input" name="district" placeholder="区">
+            <type="text" class="fx-input" name="province" id="provinceInput" placeholder="请输入省" >
+            <input type="text" class="fx-input" name="city" id="cityInput" placeholder="请输入市">
+            <input type="text" class="fx-input" name="district" id="districtInput" placeholder="请输入区">
           </div>
-          <input type="text" class="fx-input" name="address" placeholder="具体地址">
+          <input type="text" class="fx-input w-full" name="address" placeholder="具体地址">
         </div>
         
         <div class="mb-[0.1rem]">
@@ -180,14 +188,19 @@
         
         <div class="mb-[0.1rem]">
           <label class="block text-[0.16rem] mb-[0.1rem]">6、有效性认证</label>
-          <input type="tel" class="fx-input mb-[0.1rem]" name="phone" placeholder="请输入手机号码">
-          <div class="flex space-x-[0.1rem]">
+          <input type="tel" class="fx-input w-full mb-[0.1rem]" name="phone" placeholder="请输入手机号码">
+          <div class="flex items-center">
             <input type="text" class="fx-input flex-1" name="verifyCode" placeholder="请输入验证码">
-            <button type="button" class="fx-button w-[1.5rem]" id="getCodeBtn">获取验证码</button>
+            <button type="button" id="getCodeBtn" class="fx-button ml-[0.12rem] bg-gray-100 text-gray-500 border border-gray-300 text-[0.12rem] whitespace-nowrap">获取验证码</button>
           </div>
         </div>
+
+      <!-- 错误提示 -->
+      <div id="errorMessage" class="text-red-500 text-[0.14rem] mb-[0.1rem]">
+        认证失败
+      </div>        
         
-        <button type="submit" class="fx-button mt-[0.3rem]">提交登记</button>
+        <button type="submit" class="fx-button w-full bg-blue-500 mt-[0.3rem]">提交登记</button>
       </form>
     </div>
   </div>
@@ -206,6 +219,7 @@
       }
       
       const reader = new FileReader();
+      const currenDom = $(this);
       const $parent = $(this).parent();
       
       reader.onload = function(e) {
@@ -215,10 +229,14 @@
         
         // 添加新预览
         $parent.append(`<img src="${e.target.result}" class="w-full h-full" />`);
+        // 这里加ajax
+        console.info('base64', e.target.result)
       };
       
       reader.readAsDataURL(file);
     });
+    
+    // 省份相关功能已移至独立JS文件
     
     // 获取验证码
     $('#getCodeBtn').on('click', function() {
@@ -228,63 +246,36 @@
         return;
       }
       
-      // 倒计时
-      let countdown = 60;
-      const $btn = $(this);
+      // 禁用按钮并开始倒计时
+      startCountdown();
+      
+      // 这里可以添加发送验证码的AJAX请求
+      console.log('发送验证码到手机号：' + phone);
+    });
+    
+    // 开始倒计时
+    function startCountdown() {
+      let countdown = 60; // 倒计时秒数
+      const $btn = $('#getCodeBtn');
+      
+      // 禁用按钮
       $btn.prop('disabled', true);
+      $btn.text(`${countdown}秒后重新获取`);
       
       const timer = setInterval(function() {
         countdown--;
-        $btn.text(`${countdown}秒后重试`);
+        $btn.text(`${countdown}秒后重新获取`);
         
         if (countdown <= 0) {
+          // 倒计时结束，恢复按钮状态
           clearInterval(timer);
           $btn.prop('disabled', false);
           $btn.text('获取验证码');
         }
       }, 1000);
-      
-      // 这里应该有发送验证码的AJAX请求
-    });
+    }
     
-    // 表单提交
-    $('#authForm').on('submit', function(e) {
-      e.preventDefault();
-      
-      // 验证协议是否勾选
-      if (!$('#agreement').prop('checked')) {
-        openToast('请同意服务中心加盟协议');
-        return;
-      }
-      
-      // 验证必填项
-      const requiredFields = ['realName', 'idNumber', 'phone', 'verifyCode'];
-      let isValid = true;
-      
-      requiredFields.forEach(field => {
-        if (!$(`[name="${field}"]`).val()) {
-          openToast(`请填写${$(`[name="${field}"]`).prev('label').text()}`);
-          isValid = false;
-          return false;
-        }
-      });
-      
-      // 验证图片是否上传
-      const requiredImages = ['idCardFront', 'idCardBack', 'profilePhoto'];
-      requiredImages.forEach(field => {
-        if (!$(`[name="${field}"]`)[0].files[0]) {
-          openToast(`请上传${$(`[name="${field}"]`).parent().find('div:first').text()}`);
-          isValid = false;
-          return false;
-        }
-      });
-      
-      if (!isValid) return;
-      
-      // 提交表单
-      // 这里应该有提交表单的AJAX请求
-      openToast('提交成功');
-    });
+
   </script>
 </body>
 
