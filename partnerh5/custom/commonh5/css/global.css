@@ -14,3 +14,16 @@
   font-size: 0.16rem;
   color: #fff;
 }
+
+
+/* 首页-底部菜单样式-start */
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  z-index: 100;
+}
+/* 首页-底部菜单样式-end */

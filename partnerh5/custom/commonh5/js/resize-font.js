@@ -3,6 +3,7 @@ const docEl = document.documentElement;
 const clientWidth = docEl.clientWidth;
 
 let fontSize = 100 * (clientWidth / 375);
+console.info('clientWidth_fontSize', clientWidth, fontSize);
 if (clientWidth > 750) {
   fontSize = 75;
 }

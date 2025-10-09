@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_5035182_9palhlw0urf.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .user-info {
+      background-color: #fff;
+      padding: 0.2rem;
+    }
+    .service-station {
+      display: inline-block;
+      background-color: #FFA500;
+      color: white;
+      padding: 0.05rem 0.1rem;
+      border-radius: 0.1rem;
+      font-size: 0.14rem;
+    }
+    .divider {
+      height: 1px;
+      background-color: #f0f0f0;
+      margin: 0.1rem 0;
+    }
+    .service-btn {
+      background-color: #f0f0f0;
+      padding: 0.1rem;
+      text-align: center;
+      border-radius: 0.05rem;
+    }
+    .auth-service {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.2rem 0;
+    }
+    .auth-item {
+      color: #0066cc;
+      text-align: center;
+    }
+    .order-section {
+      background-color: #fff;
+      padding: 0.2rem;
+      margin-top: 0.1rem;
+    }
+    .order-title {
+      font-weight: bold;
+      margin-bottom: 0.2rem;
+    }
+    .order-icons {
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+    }
+    .order-icon-item {
+      flex: 1;
+    }
+    .order-icon-item .iconfont {
+      font-size: 0.26rem;
+      color: #FFA500;
+      display: block;
+      margin-bottom: 0.05rem;
+    }
+    .icon-text {
+      font-size: 0.14rem;
+      margin-top: 0.05rem;
+    }
+  </style>
+  <title>个人中心</title>
+</head>
+
+<body class="bg-gray-100 text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem]">
+    <!-- 顶部用户信息区域 -->
+    <div class="user-info flex items-center">
+      <div class="mr-[0.1rem]">
+        <!-- 默认头像 -->
+        <!-- <i class="iconfont icon-partner-touxiang text-[0.8rem] text-gray-300"></i> -->
+        <img class="w-[0.8rem] h-[0.8rem] rounded-full ml-[0.1rem]" src="../../custom/commonh5/img/test.jpg">
+      </div>
+      <div class="flex-1">
+        <div class="text-[0.24rem] font-bold">SSSSS</div>
+        <div class="flex items-center mt-[0.1rem]">
+          <span class="service-station">服务工作站</span>
+        </div>
+        <div class="text-gray-500 mt-[0.1rem]">ID: 2728</div>
+      </div>
+      <div class="cursor-pointer" onclick="window.location.href='home.html'">
+        <i class="iconfont icon-partner-a-arrow-right text-[0.24rem] text-gray-400"></i>
+      </div>
+    </div>
+
+    <!-- 服务站信息和功能按钮区域 -->
+    <div class="bg-white p-[0.1rem] mt-[0.1rem]">
+      <div class="flex justify-between items-center">
+        <div class="text-[0.2rem] font-bold">xxxxxx的服务站</div>
+        <div class="text-gray-500">
+          <div>No.Z00001</div>
+          <div>No.F0001</div>
+        </div>
+        <div>
+          <button class="fx-button bg-[#FFA500] text-white w-full rounded-[0.05rem]">编辑</button>
+        </div>           
+      </div>   
+      
+      <div class="divider"></div>
+      
+      <div class="flex justify-between items-center mt-[0.2rem]">
+        <div class="service-btn cursor-pointer" onclick="window.location.href='home.html'">申请解约</div>
+        <div class="service-btn cursor-pointer" onclick="window.location.href='home.html'">手机号码变更</div>
+        <div>
+          <button class="fx-button bg-[#FFA500] text-white w-full rounded-[0.05rem]" onclick="window.location.href='home.html'">升级</button>
+        </div>
+      </div>
+      
+      <!-- 认证服务区域 -->
+      <div class="auth-service">
+        <div class="auth-item cursor-pointer" onclick="window.location.href='home.html'">
+          <div>实名认证</div>
+        </div>
+        <div class="auth-item cursor-pointer" onclick="window.location.href='home.html'">
+          <div>服务认证</div>
+        </div>
+        <div class="auth-item cursor-pointer" onclick="window.location.href='home.html'">
+          <div>形象照片</div>
+        </div>
+        <div class="auth-item cursor-pointer" onclick="window.location.href='home.html'">
+          <div>银行卡管理</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 我的订单区域 -->
+    <div class="order-section">
+      <div class="order-title">我的订单</div>
+      <div class="order-icons">
+        <div class="order-icon-item cursor-pointer" onclick="window.location.href='home.html'">
+          <i class="iconfont icon-partner-quanbu"></i>
+          <div class="icon-text">全部</div>
+        </div>
+        <div class="order-icon-item cursor-pointer" onclick="window.location.href='home.html'">
+          <i class="iconfont icon-partner-daifukuan"></i>
+          <div class="icon-text">待付款</div>
+        </div>
+        <div class="order-icon-item cursor-pointer" onclick="window.location.href='home.html'">
+          <i class="iconfont icon-partner-daifahuo"></i>
+          <div class="icon-text">待发货</div>
+        </div>
+        <div class="order-icon-item cursor-pointer" onclick="window.location.href='home.html'">
+          <i class="iconfont icon-partner-daishouhuo"></i>
+          <div class="icon-text">待收货</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部固定菜单 -->
+    <div class="fixed-bottom flex justify-around items-center">
+      <a href="home.html" id="menu-home" class="flex flex-col items-center cursor-pointer hover:opacity-80 flex-1 py-[0.1rem]">
+        <div class="text-gray-500">首页</div>
+      </a>
+      <a href="login.html" id="menu-team" class="flex flex-col items-center cursor-pointer hover:opacity-80 flex-1 py-[0.1rem]">
+        <div class="text-gray-500">团队</div>
+      </a>
+      <a href="login.html" id="menu-income" class="flex flex-col items-center cursor-pointer hover:opacity-80 flex-1 py-[0.1rem]">
+        <div class="text-gray-500">收益</div>
+      </a>
+      <a href="personal-center.html" id="menu-my" class="flex flex-col items-center cursor-pointer hover:opacity-80 flex-1 py-[0.1rem]">
+        <div class="text-blue-500 underline">我的</div>
+      </a>
+    </div>    
+  </div>
+  
+  <script>
+    // 页面加载完成后的处理
+    $(function() {
+      // 这里可以添加页面交互逻辑
+    });
+  </script>
+</body>
+
+</html>
