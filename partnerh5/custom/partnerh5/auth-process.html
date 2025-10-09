@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_5035182_9palhlw0urf.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .nav-item {
+      background-color: #E5E5E5;
+      color: #666;
+      font-size: 0.18rem;
+      padding: 0.15rem 0;
+    }
+    .nav-item.active {
+      background-color: #fff;
+      color: #333;
+      font-weight: bold;
+    }
+    .process-step {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.3rem;
+    }
+    .step-number {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.18rem;
+      color: #666;
+      background-color: #fff;
+      z-index: 2;
+    }
+    .step-content {
+      background-color: #f5f5f5;
+      border-radius: 0.1rem;
+      padding: 0.1rem;
+      margin-left: 0.1rem;
+      flex-grow: 1;
+      font-size: 0.18rem;
+    }
+    .step-status {
+      margin-left: 0.1rem;
+      font-size: 0.14rem;
+    }
+    .status-completed {
+      color: #10B981;
+    }
+    .status-pending {
+      color: #3B82F6;
+    }
+    .section-title {
+      font-size: 0.24rem;
+      font-weight: bold;
+      margin: 0.3rem 0;
+      color: #333;
+    }
+  </style>
+  <title>认证流程进度</title>
+</head>
+
+<body class="bg-gray-100 text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem]">
+    <!-- 顶部导航 -->
+    <div class="flex justify-between gap-[0.1rem]">
+      <div class="nav-item flex-1 text-center cursor-pointer" onclick="location.href='home.html'">红娘</div>
+      <div class="nav-item flex-1 text-center cursor-pointer" onclick="location.href='home.html'">服务站</div>
+      <div class="nav-item active flex-1 text-center cursor-pointer">服务中心</div>
+    </div>
+
+    <!-- 准备阶段 -->
+    <div class="bg-white p-[0.1rem] mt-[0.1rem]">
+      <div class="section-title">准备阶段</div>
+      
+      <!-- 步骤1：个人信息录入 -->
+      <div class="process-step">
+        <div class="step-number">01</div>
+        <div class="step-content">个人信息录入</div>
+        <div class="step-status">必须</div>
+        <div class="step-status status-completed">已完成</div>
+      </div>
+      
+      <!-- 步骤2：实名认证 -->
+      <div class="process-step">
+        <div class="step-number">02</div>
+        <div class="step-content">实名认证</div>
+        <div class="step-status">必须</div>
+        <div class="step-status status-completed">已完成</div>
+      </div>
+      
+      <!-- 步骤3：缴费充值 -->
+      <div class="process-step">
+        <div class="step-number">03</div>
+        <div class="step-content">缴费充值</div>
+        <div class="step-status">必须</div>
+        <div class="step-status status-completed">已完成</div>
+      </div>
+      
+      <!-- 步骤4：平台审核 -->
+      <div class="process-step">
+        <div class="step-number">04</div>
+        <div class="step-content">平台审核</div>
+        <div class="step-status">必须</div>
+        <div class="step-status status-pending">待处理</div>
+      </div>
+    </div>
+
+    <!-- 服务阶段 -->
+    <div class="bg-white p-[0.1rem] mt-[0.1rem]">
+      <div class="section-title">服务阶段</div>
+      
+      <!-- 步骤5：加入服务站 -->
+      <div class="process-step">
+        <div class="step-number">05</div>
+        <div class="step-content">加入服务站</div>
+        <div class="step-status">必须</div>
+        <div class="step-status status-pending">待处理</div>
+      </div>
+      
+      <!-- 步骤6：电子证照制作 -->
+      <div class="process-step">
+        <div class="step-number">06</div>
+        <div class="step-content">电子证照制作</div>
+        <div class="step-status">必须</div>
+        <div class="step-status status-pending">待处理</div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // 页面加载完成后的处理
+    $(function() {
+      // 可以在这里添加交互逻辑
+    });
+  </script>
+</body>
+
+</html>

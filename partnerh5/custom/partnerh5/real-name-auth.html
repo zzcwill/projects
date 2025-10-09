@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_5035182_9palhlw0urf.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .auth-input {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 0.15rem 0;
+    }
+
+    .auth-label {
+      color: #4B5563;
+      font-size: 0.18rem;
+    }
+
+    .auth-placeholder {
+      color: #9CA3AF;
+      font-size: 0.18rem;
+    }
+
+    .face-verify-option {
+      border: 1px solid #D1D5DB;
+      border-radius: 0.08rem;
+      padding: 0.15rem;
+      text-align: center;
+    }
+
+    .face-verify-option.selected {
+      border-color: #3B82F6;
+    }
+
+    .submit-btn {
+      background-color: #F59E0B;
+      border-radius: 9999px;
+      color: white;
+      font-size: 0.18rem;
+      padding: 0.15rem 0;
+      width: 100%;
+    }
+  </style>
+  <title>实名认证</title>
+</head>
+
+<body class="bg-gray-100 text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem]">
+    <!-- 糖糖提示 -->
+    <div class="bg-white p-[0.1rem] mb-[0.1rem]">
+      <div class="flex items-center">
+        <i class="iconfont icon-partner-chat-dot-round text-[0.24rem] text-gray-400 mr-[0.1rem]"></i>
+        <span class="text-gray-400">糖糖提示</span>
+      </div>
+      <p class="text-gray-400">实名认证是为了确保您登记的信息和本人真实一致</p>
+    </div>
+
+    <form id="authForm" class="w-full">
+      <!-- 姓名输入 -->
+      <div class="bg-white p-[0.1rem] mb-[0.1rem]">
+        <div class="auth-input flex justify-between items-center">
+          <div class="auth-label">真实姓名</div>
+          <input type="text" class="fx-input text-right border-none" placeholder="请输入您的姓名"
+            name="realName">
+        </div>
+
+        <!-- 身份证号输入 -->
+        <div class="auth-input flex justify-between items-center mt-[0.2rem]">
+          <div class="auth-label">身份证号</div>
+          <input type="text" class="fx-input text-right border-none" placeholder="请输入您的身份证号"
+            name="idCard">
+        </div>
+      </div>
+
+      <!-- 人脸识别选项 -->
+      <div class="bg-white p-[0.1rem] mt-[0.5rem]">
+        <h2 class="text-[0.22rem] text-gray-700 mb-[0.1rem]">人脸识别</h2>
+
+        <div class="flex justify-center">
+          <!-- 阿里验证 -->
+          <div class="face-verify-option w-[2.4rem]" data-type="ali">
+            <div class="flex items-center justify-center mb-[0.1rem]">
+              <img src="../commonh5/img/test.jpg" alt="阿里验证" class="w-[2.4rem] h-[2rem]]">
+            </div>
+            <div class="text-center">阿里验证</div>
+          </div>
+        </div>
+
+        <!-- 协议同意 -->
+        <div class="mt-[0.5rem] flex items-center">
+          <input type="checkbox" id="agreement" name="agreement" class="mr-[0.1rem]">
+          <label for="agreement" class="text-[0.16rem]">
+            我同意<a href="doc.html" class="text-blue-500">实名认证注册协议</a>
+          </label>
+        </div>
+
+        <!-- 提交按钮 -->
+        <div class="mt-[0.5rem]">
+          <button type="submit" class="fx-button submit-btn">提交审核</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // 选择验证方式
+    let selectedVerifyType = '';
+
+    $('.face-verify-option').on('click', function () {
+      $('.face-verify-option').removeClass('selected');
+      $(this).addClass('selected');
+      selectedVerifyType = $(this).data('type');
+    });
+
+    // 表单提交
+    $('#authForm').on('submit', function (e) {
+      e.preventDefault();
+
+      const realName = $('input[name="realName"]').val();
+      const idCard = $('input[name="idCard"]').val();
+      const agreement = $('#agreement').prop('checked');
+
+      // 验证表单
+      if (!realName) {
+        openToast('请输入真实姓名');
+        return;
+      }
+
+      if (!idCard) {
+        openToast('请输入身份证号');
+        return;
+      }
+
+      if (!selectedVerifyType) {
+        openToast('请选择人脸识别方式');
+        return;
+      }
+
+      if (!agreement) {
+        openToast('请同意实名认证注册协议');
+        return;
+      }
+
+      // 提交表单数据
+      const formData = {
+        realName,
+        idCard,
+        verifyType: selectedVerifyType,
+        agreement
+      };
+
+      console.log('提交的表单数据:', formData);
+      // 这里可以添加实际的表单提交逻辑，例如 AJAX 请求
+      // $.ajax({...})
+
+      openToast('提交成功');
+    });
+  </script>
+</body>
+
+</html>
