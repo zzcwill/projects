@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_5035182_9palhlw0urf.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .positive-amount {
+      color: #f56c6c;
+    }
+    .negative-amount {
+      color: #67c23a;
+    }
+    .category-item {
+      margin-bottom: 0.1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th {
+      font-weight: 500;
+      color: #606266;
+      text-align: center;
+      padding: 0.1rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    td {
+      text-align: center;
+      padding: 0.1rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+  </style>
+  <title>糖块变动明细</title>
+</head>
+
+<body class="bg-gray-100 text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem]">
+    <!-- 糖糖提示 -->
+    <div class="bg-white p-[0.1rem] mb-[0.1rem]">
+      <div class="flex items-center">
+        <i class="iconfont icon-partner-chat-dot-round text-[0.24rem] text-gray-400 mr-[0.1rem]"></i>
+        <span class="text-gray-400">糖糖提示</span>
+      </div>
+      <p class="text-gray-400">本明细数据最多显示30天内的数据信息，更多信息请联系管理员核查</p>
+    </div>
+
+    <div class="bg-white">
+      <!-- 表格布局 -->
+      <table>
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>变动前金额</th>
+            <th>变动金额</th>
+            <th>类别</th>
+          </tr>
+        </thead>
+        <tbody id="sugar-records">
+          <!-- 记录将通过JavaScript动态生成 -->
+        </tbody>
+      </table>
+      
+      <!-- 类别说明 -->
+      <div class="mt-[0.1rem] p-[0.1rem] text-gray-600">
+        <div class="text-[0.2rem] mb-[0.1rem]">类别:</div>
+        <div class="category-item">【推荐】 1推荐会员缴费</div>
+        <div class="category-item">【任务】 2摄合会员线下约见</div>
+        <div class="category-item">【奖励】 3助理顾问分成</div>
+        <div class="category-item">【赠送】 4赠送他人</div>
+        <div class="category-item">【馈赠】 5接受他人赠送</div>
+        <div class="category-item">【提现】 6银行卡提现</div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // 示例数据
+    const sugarRecords = [
+      { date: '2025-12-12', beforeAmount: '32452.00', changeAmount: '+50.00', category: '推荐' },
+      { date: '2025-12-12', beforeAmount: '32412.00', changeAmount: '+20.00', category: '任务' },
+      { date: '2025-12-12', beforeAmount: '23533.00', changeAmount: '-123.00', category: '赠送' },
+      { date: '2025-12-12', beforeAmount: '123123.00', changeAmount: '-4230.00', category: '提现' }
+    ];
+    
+    // 渲染记录
+    function renderRecords() {
+      const recordsContainer = $('#sugar-records');
+      recordsContainer.empty();
+      
+      sugarRecords.forEach(record => {
+        const isPositive = record.changeAmount.startsWith('+');
+        const amountClass = isPositive ? 'positive-amount' : 'negative-amount';
+        
+        const recordHtml = `
+          <tr>
+            <td>${record.date}</td>
+            <td>${record.beforeAmount}</td>
+            <td class="${amountClass}">${record.changeAmount}</td>
+            <td>${record.category}</td>
+          </tr>
+        `;
+        
+        recordsContainer.append(recordHtml);
+      });
+    }
+    
+    // 页面加载完成后渲染记录
+    $(function() {
+      renderRecords();
+    });
+  </script>
+</body>
+
+</html>

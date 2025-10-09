@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_5035182_9palhlw0urf.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .sugar-card {
+      /* border: 1px solid #e5e7eb; */
+    }
+
+    .status-text {
+      color: #ff0000;
+    }
+  </style>
+  <title>糖豆列表</title>
+</head>
+
+<body class="bg-gray-100 text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem]">
+    <!-- 糖糖提示 -->
+    <div class="bg-white p-[0.1rem] mb-[0.1rem]">
+      <div class="flex items-center">
+        <i class="iconfont icon-partner-chat-dot-round text-[0.24rem] text-gray-400 mr-[0.1rem]"></i>
+        <span class="text-gray-400">糖糖提示</span>
+      </div>
+      <p class="text-gray-400">糖豆是您邀请的新人数目总和，包括了您的推荐和服务的所有用户</p>
+    </div>
+
+    <!-- 糖豆数量和快速登记按钮 -->
+    <div class="sugar-card bg-white flex justify-between items-center p-[0.1rem] mb-[0.1rem]">
+      <div class="flex items-center">
+        <span class="text-gray-500 mr-[0.1rem]">糖豆:</span>
+        <span class="text-[0.36rem] font-bold text-gray-700">123</span>
+        <span class="text-gray-500 ml-[0.1rem]">枚</span>
+      </div>
+      <a href="home.html" class="fx-button border border-blue-500 text-blue-500 p-[0.1rem]">快速登记</a>
+    </div>
+
+    <!-- 用户信息和状态区域 -->
+    <div class="sugar-card bg-white p-[0.1rem]">
+      <div class="mb-[0.3rem] text-gray-600">
+        姓名 /性别/年龄 / 联系方式 /状态 / 缴费认证
+      </div>
+
+      <div class="mb-[0.1rem]">
+        <span class="text-gray-600">状态：</span>
+        <span class="status-text">登记/服务/顾问</span>
+      </div>
+
+      <div>
+        <span class="text-gray-600">缴费认证 ：</span>
+        <span class="status-text">已完成/未完成</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 页面加载完成后执行
+    $(function () {
+      // 这里可以添加页面逻辑
+    });
+  </script>
+</body>
+
+</html>
