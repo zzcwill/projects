@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_5035182_zvfvuv9pzn.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .input-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      border: 1px solid #ddd;
+      padding: 0.1rem;
+      margin-top: 0.1rem;
+    }
+
+    .btn-auto {
+      width: 100%;
+      border: 1px solid #e5e5e5;
+      border-radius: 0;
+      color: #333;
+      text-align: left;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      z-index: 1000;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .drawer.open {
+      transform: translateY(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.2rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .drawer-content {
+      height: calc(100% - 0.6rem);
+      overflow-y: auto;
+    }
+
+    .station-item {
+      padding: 0.2rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .station-item-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.1rem;
+    }
+
+    .station-item-footer {
+      display: flex;
+      justify-content: space-between;
+      color: #666;
+      font-size: 0.16rem;
+    }
+
+    .search-box {
+      position: relative;
+      padding: 0.1rem 0.2rem;
+      background: #f5f5f5;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.1rem 0.4rem 0.1rem 0.1rem;
+      border-radius: 0.2rem;
+      border: none;
+      background: #fff;
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 0.3rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #999;
+    }
+  </style>
+  <title>加入服务站</title>
+</head>
+
+<body class="bg-white text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem] p-[0.1rem]">
+    <h1 class="text-[0.20rem] font-medium text-gray-700 mb-[0.1rem] text-left">请选择</h1>
+
+    <form id="serviceStationForm">
+      <div class="mb-[0.1rem]">
+        <div class="flex items-center justify-between">
+          <label class="block text-[0.18rem] text-gray-600">服务站点：</label>
+          <button type="button" id="selectStationBtn" class="fx-button bg-[#0099cc]">选择</button>
+        </div>
+
+        <!-- 隐藏的表单字段，用于提交站点ID和名称 -->
+        <input type="hidden" name="stationId" id="stationIdInput">
+        <input type="hidden" name="stationName" id="stationNameInput">
+
+        <!-- 服务站点抽屉 -->
+        <div id="stationDrawer" class="drawer">
+          <div class="drawer-header">
+            <h2 class="text-[0.2rem] font-medium">选择站点</h2>
+            <span id="closeDrawer" class="text-[0.24rem]">✕</span>
+          </div>
+          <div class="search-box">
+            <input type="text" class="fx-input search-input" placeholder="请输入站点名称">
+            <span class="search-icon iconfont icon-partner-sousuo"></span>
+          </div>
+          <div class="drawer-content">
+            <!-- 站点列表 -->
+            <div class="station-item" data-id="1">
+              <div class="station-item-header">
+                <div class="text-[0.2rem] font-medium">NO.1</div>
+                <div class="text-[0.2rem]">xxxxxx服务站</div>
+              </div>
+              <div class="flex items-center">
+                <span class="text-[0.18rem]">五星服务站</span>
+                <span class="ml-[0.2rem] flex items-center">
+            <span class="iconfont icon-partner-touxiang mr-[0.05rem]"></span>
+            站长：杨先生
+          </span>
+              </div>
+              <div class="station-item-footer">
+                <div>红娘数量：124人</div>
+                <div>服务次数：124次</div>
+              </div>
+            </div>
+
+            <div class="station-item" data-id="2">
+              <div class="station-item-header">
+                <div class="text-[0.2rem] font-medium">NO.2</div>
+                <div class="text-[0.2rem]">xxxxxx服务站</div>
+              </div>
+              <div class="flex items-center">
+                <span class="text-[0.18rem]">五星服务站</span>
+                <span class="ml-[0.1rem] flex items-center">
+            <span class="iconfont icon-partner-touxiang mr-[0.05rem]"></span>
+            站长：杨先生
+          </span>
+              </div>
+              <div class="station-item-footer">
+                <div>红娘数量：124人</div>
+                <div>服务次数：124次</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="mb-[0.1rem]">
+        <button type="button" class="fx-button btn-auto" id="stationPlaceholder">自动补全控件</button>
+      </div> -->
+
+      <div class="mt-[0.1rem]" id="selectedStationContainer" style="display: none;">
+        <!-- 选中的站点将在这里动态添加 -->
+      </div>
+
+      <div class="mt-[0.1rem]">
+        <button type="submit" class="fx-button w-full bg-[#0099cc]">确定</button>
+      </div>
+
+
+    </form>
+  </div>
+
+  <script>
+    // 打开服务站点抽屉
+    $('#selectStationBtn').on('click', function() {
+      $('#stationDrawer').addClass('open');
+    });
+    
+    // 关闭服务站点抽屉
+    $('#closeDrawer').on('click', function() {
+      $('#stationDrawer').removeClass('open');
+    });
+    
+    // 选择服务站点
+    $('.station-item').on('click', function() {
+      const stationId = $(this).data('id');
+      const stationName = $(this).find('.station-item-header div').text();
+      
+      // 将站点ID和名称保存到表单隐藏字段
+      $('#stationIdInput').val(stationId);
+      $('#stationNameInput').val(stationName);
+      
+      // 清空已选站点列表
+      $('#selectedStationContainer').empty();
+      
+      // 添加选中的站点到列表
+      const stationItem = `
+        <div class="input-container" data-id="${stationId}">
+          <span class="selected-station-name">${stationName}</span>
+          <span class="ml-auto text-gray-400 clear-station">✕</span>
+        </div>
+      `;
+      $('#selectedStationContainer').append(stationItem).show();
+      
+      // 关闭抽屉
+      $('#stationDrawer').removeClass('open');
+      
+      // 设置选中的服务站点
+      $('#selectedStation').text(stationName);
+      $('#selectedStationContainer').show();
+      
+      // 关闭抽屉
+      $('#stationDrawer').removeClass('open');
+    });
+    
+    // 清除已选择的服务站
+    $('#clearStation').on('click', function() {
+      $('#selectedStationContainer').hide();
+    });
+  </script>
+</body>
+
+</html>
