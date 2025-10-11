@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_5035182_zvfvuv9pzn.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <title>职业合伙人缴费认证</title>
+  <style>
+    .price-display {
+      font-size: 0.24rem;
+      color: #555;
+      letter-spacing: 1px;
+    }
+    .question-link {
+      color: #3B82F6;
+      display: flex;
+      align-items: center;
+      gap: 0.06rem;
+      cursor: pointer;
+    }
+    .pay-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 0.06rem;
+    }
+    .disabled-btn {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem] p-[0.1rem]">
+    <!-- 标题与说明 -->
+    <div class="flex items-center justify-between mb-[0.1rem]">
+      <div class="text-[0.20rem] text-gray-700">职业合伙人缴费认证</div>
+      <div id="whatIsThis" class="question-link">
+        <i class="iconfont icon-partner-wenhao text-[0.2rem]"></i>
+        <span class="text-[0.16rem]">这是什么</span>
+      </div>
+    </div>
+
+    <!-- 缴费卡片 -->
+    <div class="pay-card bg-white p-[0.1rem]">
+      <!-- 价格居中，左右显示“加盟费”标签（按UI） -->
+      <div class="flex items-end mb-[0.4rem]">
+        <div class="text-gray-500 text-[0.18rem]">加盟费</div>
+        <div class="flex-1 text-center">
+          <span class="price-display">￥1314.00</span>
+        </div>
+        <div class="text-gray-500 text-[0.18rem]">加盟费</div>
+      </div>
+
+      <!-- 协议勾选 -->
+      <div class="flex items-center mb-[0.1rem]">
+        <input type="checkbox" id="agreement" class="mr-[0.1rem]">
+        <label for="agreement" class="text-[0.16rem]">
+          我同意职业合伙人缴费<a href="doc.html" class="text-blue-500">服务协议</a>
+        </label>
+      </div>
+
+      <!-- 支付按钮（仅保留微信） -->
+      <div>
+        <button id="wxPayBtn" class="fx-button w-full bg-green-500 text-white">微信缴费认证</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 说明弹窗
+    $('#whatIsThis').on('click', function () {
+      openToast('用于完成职业合伙人资格的缴费认证。');
+    });
+
+    // 初始禁用支付按钮
+    function setButtonsEnabled(enabled) {
+      const btns = ['#wxPayBtn'];
+      btns.forEach(id => {
+        const $btn = $(id);
+        if (enabled) {
+          $btn.removeClass('disabled-btn');
+        } else {
+          $btn.addClass('disabled-btn');
+        }
+        $btn.prop('disabled', !enabled);
+      });
+    }
+    setButtonsEnabled(false);
+
+    // 勾选协议后启用
+    $('#agreement').on('change', function () {
+      setButtonsEnabled($(this).prop('checked'));
+    });
+
+    // 模拟支付跳转
+    $('#wxPayBtn').on('click', function () {
+      if ($(this).prop('disabled')) return;
+      openToast('跳转到微信支付');
+    });
+
+    // 移除支付宝逻辑
+  </script>
+</body>
+
+</html>
