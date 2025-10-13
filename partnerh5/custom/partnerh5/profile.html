@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <script src="../../public/layDate-v5.3.1/laydate.js"></script>
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_5035182_zvfvuv9pzn.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <title>个人资料</title>
+  <style>
+    .section-title {
+      font-size: 0.2rem;
+      color: #333;
+    }
+    .question-link {
+      color: #3B82F6;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.06rem;
+      cursor: pointer;
+    }
+    .photo-box {
+      width: 1.6rem;
+      height: 1.3rem;
+      border: 1px solid #d1d5db;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem] p-[0.1rem]">
+    <!-- 顶部ID -->
+    <div class="flex justify-end mb-[0.1rem] text-gray-600">ID：2728</div>
+
+    <form id="profileForm" class="space-y-[0.2rem]">
+      <!-- 个人照片 -->
+      <div>
+        <div class="flex items-center justify-between mb-[0.08rem]">
+          <div class="section-title">个人照片</div>
+          <div class="question-link">
+            <i class="iconfont icon-partner-wenhao text-[0.2rem]"></i>
+            <span class="text-[0.14rem]">什么是标准照片</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-[0.1rem]">
+          <input id="photoUpload" name="photo" type="file" accept="image/*" class="hidden">
+          <div id="photoPreview" class="photo-box cursor-pointer">+</div>
+          <button type="submit" class="fx-button bg-blue-500 rounded-[0.05rem]">保存</button>
+        </div>
+      </div>
+
+      <!-- 名字 -->
+      <div>
+        <div class="section-title mb-[0.08rem]">名字</div>
+        <div class="flex items-center gap-[0.1rem]">
+          <input id="nameInput" name="name" class="fx-input flex-1" placeholder="请输入名字">
+          <button type="submit" class="fx-button bg-blue-500 rounded-[0.05rem]">保存</button>
+        </div>
+      </div>
+
+      <!-- 从业开始年份 -->
+      <div>
+        <div class="section-title mb-[0.08rem]">从业开始年份</div>
+        <div class="flex items-center gap-[0.1rem]">
+          <input id="startYear" name="startYear" class="fx-input flex-1" placeholder="请选择年份" value="2012年">
+          <button type="submit" class="fx-button bg-blue-500 rounded-[0.05rem]">保存</button>
+        </div>
+      </div>
+
+      <!-- 电子工作照 -->
+      <div>
+        <div class="flex items-center justify-between mb-[0.08rem]">
+          <div class="section-title">电子工作照</div>
+          <div class="flex items-center gap-[0.1rem]">
+            <button type="button" id="regenCard" class="fx-button bg-gray-200 text-gray-700 rounded-[0.05rem]">重新生成</button>
+            <div class="question-link">
+              <i class="iconfont icon-partner-wenhao text-[0.2rem]"></i>
+              <span class="text-[0.14rem]">什么是电子工作照</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <img id="workCardImg" src="../commonh5/img/test.jpg" class="w-[3rem] h-auto object-cover">
+        </div>
+        <!-- <div class="flex justify-end mt-[0.1rem]">
+          <button type="submit" class="fx-button bg-blue-500 rounded-[0.05rem]">保存</button>
+        </div> -->
+      </div>
+
+      <!-- 整体提交按钮 -->
+      <div class="flex justify-end">
+        <button type="submit" class="fx-button bg-blue-500 rounded-[0.05rem]">保存</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // 初始化年份选择器（只选择年）
+    laydate.render({
+      elem: '#startYear',
+      type: 'year',
+      format: 'yyyy年'
+    });
+
+    // 重新生成电子工作照（模拟）
+    $('#regenCard').on('click', function() {
+      const img = $('#workCardImg');
+      const src = img.attr('src');
+      img.attr('src', src); // 简单触发刷新
+      if (window.openToast) {
+        openToast('已重新生成');
+      }
+    });
+
+    // 照片上传与预览
+    $('#photoPreview').on('click', function() {
+      $('#photoUpload').trigger('click');
+    });
+    $('#photoUpload').on('change', function(e) {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        $('#photoPreview').html('<img src="' + evt.target.result + '" class="w-full h-full object-cover" />');
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // 表单整体提交
+    $('#profileForm').on('submit', function(e) {
+      e.preventDefault();
+      const form = document.getElementById('profileForm');
+      const formData = new FormData(form);
+      console.log('提交的表单：', Object.fromEntries(formData.entries()));
+      if (window.openToast) openToast('已提交');
+    });
+  </script>
+</body>
+
+</html>

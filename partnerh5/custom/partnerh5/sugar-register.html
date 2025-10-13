@@ -22,71 +22,65 @@
       color: white;
     }
   </style>
-  <title>快速注册</title>
+  <title>糖豆登记</title>
 </head>
 
 <body class="bg-white text-[0.18rem]">
   <div class="container mx-auto max-w-[10rem] p-[0.1rem]">
-    <h1 class="text-[0.28rem] font-bold mb-[0.5rem]">快速注册</h1>
+    <h1 class="text-[0.28rem] font-bold mb-[0.2rem]">登记信息</h1>
     
-    <form id="registerForm" class="flex flex-col gap-[0.1rem]">
-      <div class="flex justify-between items-center">
-        <div class="text-[0.18rem] text-gray-700">推荐人</div>
-        <div class="text-[0.18rem] text-gray-500">ID: 2728</div>
-      </div>
-      
+    <form id="sugarRegisterForm" class="flex flex-col gap-[0.1rem]">
       <div class="flex flex-col gap-[0.1rem]">
-        <label class="text-[0.18rem] text-gray-700">昵称</label>
-        <input type="text" name="nickname" class="w-full border border-gray-300 p-[0.1rem] text-[0.18rem] fx-input" required>
+        <label class="text-[0.18rem] text-gray-700">名字</label>
+        <input type="text" name="name" class="fx-input w-full border border-gray-300 p-[0.1rem] text-[0.18rem]" required>
       </div>
       
       <div class="flex flex-col gap-[0.1rem]">
         <label class="text-[0.18rem] text-gray-700">性别</label>
         <div class="flex gap-[0.2rem]">
-          <button type="button" class="fx-button gender-btn active border border-gray-300 py-[0.1rem] text-center" data-gender="1">男</button>
-          <button type="button" class="fx-button gender-btn border border-gray-300 py-[0.1rem] text-center" data-gender="2">女</button>
+          <button type="button" class="fx-button gender-btn active border border-gray-300 text-center w-[1.5rem]" data-gender="1">男</button>
+          <button type="button" class="fx-button gender-btn border border-gray-300 text-center w-[1.5rem]" data-gender="2">女</button>
         </div>
         <input type="hidden" name="gender" value="1">
       </div>
       
       <div class="flex flex-col gap-[0.1rem]">
         <label class="text-[0.18rem] text-gray-700">出生日期</label>
-        <input type="text" id="birthdate" name="birthdate" class="w-full border border-gray-300 p-[0.1rem] text-[0.18rem] fx-input" value="" required>
+        <input type="text" id="birthdate" name="birthdate" class="fx-input w-full border border-gray-300 p-[0.1rem] text-[0.18rem]" value="" required>
       </div>
       
       <div class="flex flex-col gap-[0.1rem]">
         <label class="text-[0.18rem] text-gray-700">联系方式</label>
-        <input type="tel" name="contact" class="w-full border border-gray-300 p-[0.1rem] text-[0.18rem] fx-input" required>
+        <input type="tel" name="contact" class="fx-input w-full border border-gray-300 p-[0.1rem] text-[0.18rem]" required>
       </div>
 
-      <!-- 错误提示 -->
-      <div id="errorMessage" class="text-red-500 text-[0.14rem] mb-[0.1rem]">
-        注册失败
-      </div>      
+      <div class="flex items-center gap-[0.1rem] mt-[0.2rem]">
+        <input type="checkbox" id="continuousRegister" name="continuousRegister" class="w-[0.2rem] h-[0.2rem]">
+        <label for="continuousRegister" class="text-[0.18rem] text-gray-700">连续登记糖豆</label>
+      </div>
       
-      <button type="submit" class="fx-button w-full bg-blue-500 mt-[0.2rem]">提交</button>
+      <button type="submit" class="fx-button w-full bg-blue-500 text-white mt-[0.2rem]">提交</button>
     </form>
+
+    <div class="mt-[0.2rem] text-center">
+      <p class="text-red-500 text-[0.18rem]">连续登记糖豆：自身页面刷新</p>
+    </div>
   </div>
+  
   <script>
     // 日期选择初始化
     laydate.render({
       elem: '#birthdate',
       theme: '#3B82F6',
       // value: '',
-      format: 'yyyy-MM-dd'      
+      format: 'yyyy-MM-dd'
     });
-  </script>  
-  <script>
+    
     // 性别选择按钮切换
     $('.gender-btn').on('click', function() {
       $('.gender-btn').removeClass('active');
       $(this).addClass('active');
       $('input[name="gender"]').val($(this).data('gender'));
-    });
-    
-    // 表单提交
-    $('#registerForm').on('submit', function(e) {
-      e.preventDefault();
     });
   </script>
 </body>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_5035182_zvfvuv9pzn.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .service-option {
+      border-radius: 0.16rem;
+      margin-bottom: 0.2rem;
+      padding: 0.3rem 0.3rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 0.02rem 0.1rem rgba(0, 0, 0, 0.05);
+      background-color: #fff;
+    }
+    
+    .service-title {
+      font-size: 0.24rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.2rem;
+    }
+    
+    .service-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.12rem;
+    }
+    
+    .service-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .service-item-label {
+      color: #666;
+      font-size: 0.18rem;
+      margin-right: 0.2rem;
+    }
+    
+    .service-item-value {
+      font-weight: 500;
+      color: #333;
+      font-size: 0.18rem;
+    }
+    
+    .arrow-icon {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding-right: 0.1rem;
+      color: #999;
+    }
+    
+    .arrow-icon i {
+      font-size: 0.24rem;
+      color: #999;
+    }
+    
+    .notice-text {
+      color: #3498db;
+      font-size: 0.16rem;
+      margin-top: 0.1rem;
+    }
+  </style>
+  <title>合作伙伴服务升级认证</title>
+</head>
+
+<body class="bg-gray-100 text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem]">
+    <!-- 实名认证提示 -->
+    <div class="bg-white text-[#3498db] text-[0.18rem] mb-[0.1rem] p-[0.2rem]">
+      2、您需要先完成实名认证。
+    </div>
+    
+    <!-- 阶段性评级规则链接 -->
+    <div class="bg-white p-[0.15rem] mb-[0.1rem] flex justify-between items-center">
+      <div class="text-[0.16rem]">点击查看：<a href="doc.html" class="text-[#3498db]">《阶段性评级规则及规定》</a></div>
+      <div class="arrow-icon">
+        <i class="iconfont icon-arrow-right"></i>
+      </div>
+    </div>
+    
+    <!-- 成为合作伙伴选项 -->
+    <div class="bg-white service-option" id="partner-option" onclick="window.location.href='home.html'">
+      <div class="flex flex-col flex-1">
+        <div class="service-title">我要成为合作伙伴</div>
+        
+        <div class="flex flex-col">
+          <div class="service-item">
+            <div class="service-item-label">软件使用费</div>
+            <div class="service-item-value">¥ 1314.00元</div>
+          </div>
+          
+          <div class="service-item">
+            <div class="service-item-label">品牌授权保障金</div>
+            <div class="service-item-value">¥ 1314.00元</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="arrow-icon">
+        <i class="iconfont icon-partner-a-arrow-right"></i>
+      </div>
+    </div>
+    
+    <!-- 开通服务站选项 -->
+    <div class="bg-white service-option" id="service-station-option" onclick="window.location.href='home.html'">
+      <div class="flex flex-col flex-1">
+        <div class="service-title">我要开通服务站</div>
+        
+        <div class="flex flex-col">
+          <div class="service-item">
+            <div class="service-item-label">品牌授权使用费</div>
+            <div class="service-item-value">¥ 2600.00元</div>
+          </div>
+          
+          <div class="service-item">
+            <div class="service-item-label">最低场地面积</div>
+            <div class="service-item-value">80平米场地</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="arrow-icon">
+        <i class="iconfont icon-partner-a-arrow-right"></i>
+      </div>
+    </div>
+    
+    <!-- 开通服务中心选项 -->
+    <div class="bg-white service-option" id="service-center-option" onclick="window.location.href='home.html'">
+      <div class="service-title">我要开通服务中心</div>
+      
+      <div class="flex flex-col flex-1">
+        <div class="service-item">
+          <div class="service-item-label">品牌授权使用费</div>
+          <div class="service-item-value">¥ 3600.00元</div>
+        </div>
+        
+        <div class="service-item">
+          <div class="service-item-label">最低场地面积</div>
+          <div class="service-item-value">200平米场地</div>
+        </div>
+      </div>
+      
+      <div class="arrow-icon">
+        <i class="iconfont icon-partner-a-arrow-right"></i>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // 点击服务选项跳转到相应页面
+    $('#partner-option').on('click', function() {
+      window.location.href = 'partner-fee-auth.html';
+    });
+    
+    $('#service-station-option').on('click', function() {
+      window.location.href = 'join-service-station.html';
+    });
+    
+    $('#service-center-option').on('click', function() {
+      window.location.href = 'service-center-auth.html';
+    });
+    
+    // 点击阶段性评级规则链接
+    $('.bg-[#f9f9f9]').on('click', function() {
+      window.location.href = 'doc.html';
+    });
+  </script>
+</body>
+
+</html>
