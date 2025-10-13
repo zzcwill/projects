@@ -1,0 +1,71 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 5035182 */
+  src: url('iconfont.woff2?t=1760333989130') format('woff2'),
+       url('iconfont.woff?t=1760333989130') format('woff'),
+       url('iconfont.ttf?t=1760333989130') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-partner-sousuo:before {
+  content: "\e602";
+}
+
+.icon-partner-touxiang:before {
+  content: "\e62c";
+}
+
+.icon-partner-a-arrow-down:before {
+  content: "\e992";
+}
+
+.icon-partner-a-arrow-left:before {
+  content: "\e993";
+}
+
+.icon-partner-a-arrow-right:before {
+  content: "\e994";
+}
+
+.icon-partner-a-arrow-up:before {
+  content: "\e995";
+}
+
+.icon-partner-wenhao:before {
+  content: "\e671";
+}
+
+.icon-partner-guanbi:before {
+  content: "\e84d";
+}
+
+.icon-partner-jia:before {
+  content: "\e620";
+}
+
+.icon-partner-daifukuan:before {
+  content: "\e608";
+}
+
+.icon-partner-daifahuo:before {
+  content: "\e612";
+}
+
+.icon-partner-quanbu:before {
+  content: "\e600";
+}
+
+.icon-partner-daishouhuo:before {
+  content: "\e61a";
+}
+
+.icon-partner-chat-dot-round:before {
+  content: "\e989";
+}
+
