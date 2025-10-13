@@ -13,24 +13,22 @@
   <link rel="stylesheet" href="../commonh5/css/global.css">
   <style>
     .service-option {
-      border-radius: 0.16rem;
       margin-bottom: 0.2rem;
-      padding: 0.3rem 0.3rem;
+      padding: 0.1rem;
       cursor: pointer;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
       position: relative;
-      box-shadow: 0 0.02rem 0.1rem rgba(0, 0, 0, 0.05);
       background-color: #fff;
     }
     
     .service-title {
-      font-size: 0.24rem;
+      font-size: 0.18rem;
       font-weight: 600;
       color: #333;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.1rem;
     }
     
     .service-item {
@@ -48,19 +46,26 @@
       color: #666;
       font-size: 0.18rem;
       margin-right: 0.2rem;
+      display: flex;
+      align-items: center;
+      width: 1.5rem;
+      flex-shrink: 0;
     }
     
     .service-item-value {
       font-weight: 500;
       color: #333;
       font-size: 0.18rem;
+      text-align: right;
+      display: flex;
+      align-items: center;
     }
     
     .arrow-icon {
       display: flex;
       align-items: center;
       height: 100%;
-      padding-right: 0.1rem;
+      padding-left: 0.1rem;
       color: #999;
     }
     
@@ -98,21 +103,22 @@
       <div class="flex flex-col flex-1">
         <div class="service-title">我要成为合作伙伴</div>
         
-        <div class="flex flex-col">
-          <div class="service-item">
-            <div class="service-item-label">软件使用费</div>
-            <div class="service-item-value">¥ 1314.00元</div>
+        <div class="flex flex-row items-center justify-between">
+          <div>
+            <div class="service-item">
+              <div class="service-item-label">软件使用费</div>
+              <div class="service-item-value">¥1314.00元</div>
+            </div>
+            
+            <div class="service-item">
+              <div class="service-item-label">品牌授权保障金</div>
+              <div class="service-item-value">¥1314.00元</div>
+            </div>
           </div>
-          
-          <div class="service-item">
-            <div class="service-item-label">品牌授权保障金</div>
-            <div class="service-item-value">¥ 1314.00元</div>
-          </div>
+          <div class="arrow-icon">
+            <i class="iconfont icon-partner-a-arrow-right"></i>
+          </div>          
         </div>
-      </div>
-      
-      <div class="arrow-icon">
-        <i class="iconfont icon-partner-a-arrow-right"></i>
       </div>
     </div>
     
@@ -121,42 +127,46 @@
       <div class="flex flex-col flex-1">
         <div class="service-title">我要开通服务站</div>
         
-        <div class="flex flex-col">
-          <div class="service-item">
-            <div class="service-item-label">品牌授权使用费</div>
-            <div class="service-item-value">¥ 2600.00元</div>
+        <div class="flex flex-row items-center justify-between">
+          <div>
+            <div class="service-item">
+              <div class="service-item-label">品牌授权使用费</div>
+              <div class="service-item-value">¥2600.00元</div>
+            </div>
+            
+            <div class="service-item">
+              <div class="service-item-label">最低场地面积</div>
+              <div class="service-item-value">80平米场地</div>
+            </div>
           </div>
-          
-          <div class="service-item">
-            <div class="service-item-label">最低场地面积</div>
-            <div class="service-item-value">80平米场地</div>
+          <div class="arrow-icon">
+            <i class="iconfont icon-partner-a-arrow-right"></i>
           </div>
         </div>
-      </div>
-      
-      <div class="arrow-icon">
-        <i class="iconfont icon-partner-a-arrow-right"></i>
       </div>
     </div>
     
     <!-- 开通服务中心选项 -->
     <div class="bg-white service-option" id="service-center-option" onclick="window.location.href='home.html'">
-      <div class="service-title">我要开通服务中心</div>
-      
       <div class="flex flex-col flex-1">
-        <div class="service-item">
-          <div class="service-item-label">品牌授权使用费</div>
-          <div class="service-item-value">¥ 3600.00元</div>
-        </div>
+        <div class="service-title">我要开通服务中心</div>
         
-        <div class="service-item">
-          <div class="service-item-label">最低场地面积</div>
-          <div class="service-item-value">200平米场地</div>
+        <div class="flex flex-row items-center justify-between">
+          <div>
+            <div class="service-item">
+              <div class="service-item-label">品牌授权使用费</div>
+              <div class="service-item-value">¥3600.00元</div>
+            </div>
+            
+            <div class="service-item">
+              <div class="service-item-label">最低场地面积</div>
+              <div class="service-item-value">200平米场地</div>
+            </div>
+          </div>
+          <div class="arrow-icon">
+            <i class="iconfont icon-partner-a-arrow-right"></i>
+          </div>
         </div>
-      </div>
-      
-      <div class="arrow-icon">
-        <i class="iconfont icon-partner-a-arrow-right"></i>
       </div>
     </div>
   </div>
