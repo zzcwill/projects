@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="//at.alicdn.com/t/c/font_5035182_zvfvuv9pzn.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .bank-card {
+      border: 1px solid #e5e5e5;
+      padding: 0.2rem;
+      margin-bottom: 0.2rem;
+      background-color: #fff;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .bank-card-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .bank-info {
+      line-height: 40px;
+    }
+
+    .action-btn {
+      background-color: #3B82F6;
+      color: white;
+      border-radius: 0.04rem;
+      line-height: 40px;
+      font-size: 0.16rem;
+      text-align: center;
+      min-width: 0.8rem;
+    }
+
+    .add-card-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      padding: 0.2rem;
+      margin-top: 0.3rem;
+    }
+
+    .add-icon {
+      color: #FF6B84;
+      margin-right: 0.1rem;
+      font-size: 0.2rem;
+    }
+
+    .add-text {
+      color: #333;
+      font-size: 0.18rem;
+    }
+  </style>
+  <title>银行卡管理</title>
+</head>
+
+<body class="bg-gray-100 text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem] p-[0.1rem]">
+    <!-- 银行卡展示区域 -->
+    <div class="bank-card-list">
+      <div class="bank-card">
+        <div class="bank-card-item">
+          <div class="bank-info">招商银行</div>
+          <div class="bank-info">付**</div>
+          <div class="bank-info">6023 **** *** **** 0123</div>
+        </div>
+        <div class="bank-card-item">
+          <div class="action-btn" id="transaction-detail">交易明细</div>
+          <div class="action-btn" id="show-full-number">完整卡号</div>
+          <div class="action-btn" id="delete-card">删除</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 添加银行卡按钮 -->
+    <div class="add-card-btn">
+      <i class="iconfont icon-partner-jia add-icon"></i>
+      <span class="add-text">添加银行卡</span>
+    </div>
+  </div>
+
+  <script>
+    $(function () {
+      // 交易明细按钮点击事件
+      $('#transaction-detail').on('click', function () {
+        // 跳转到交易明细页面
+        window.location.href = 'home.html';
+      });
+
+      // 完整卡号按钮点击事件
+      $('#show-full-number').on('click', function () {
+        // 显示完整卡号
+        console.log('显示完整卡号');
+      });
+
+      // 删除卡按钮点击事件
+      $('#delete-card').on('click', function () {
+        // 删除银行卡
+        $(this).closest('.bank-card').remove();
+      });
+
+      // 添加银行卡按钮点击事件
+      $('.add-card-btn').on('click', function () {
+        // 跳转到添加银行卡页面
+        console.log('添加银行卡');
+      });
+    });
+  </script>
+</body>
+
+</html>
