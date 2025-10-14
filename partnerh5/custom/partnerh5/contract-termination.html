@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="../commonh5/iconfont/iconfont.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .banner-container {
+      margin-bottom: 0.1rem;
+      width: 100%;
+      text-align: center;
+    }
+    .banner-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.2rem;
+      margin-top: 0.2rem;
+    }
+  </style>
+  <title>申请解约</title>
+</head>
+
+<body class="bg-gray-100 text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem]">
+    <!-- 糖糖提示 -->
+    <div class="bg-white p-[0.1rem] mb-[0.1rem]">
+      <div class="flex items-center">
+        <i class="iconfont icon-partner-chat-dot-round text-[0.24rem] text-gray-400 mr-[0.1rem]"></i>
+        <span class="text-gray-400">糖糖提示</span>
+      </div>
+      <p class="text-gray-400">两颗喜糖的红娘是终身制服务模式，一旦您脱离了我们的平台，那么您将不在继续享受当前服务，也不能重新加入。</p>
+    </div>
+
+    <div class="banner-container">
+      <img src="../commonh5/img/test.jpg" class="banner-image">
+    </div>
+    
+    <div class="banner-container">
+      <img src="../commonh5/img/test.jpg" class="banner-image">
+    </div>
+    
+    <form id="terminationForm" class="mt-[0.1rem]">
+      <div class="button-container">
+        <button type="button" id="cancelBtn" class="fx-button bg-[#0099ff] text-white w-[48%] py-[0.15rem] rounded-none">取消</button>
+        <button type="submit" id="submitBtn" class="fx-button bg-[#fff] text-[#333333] w-[48%] py-[0.15rem] rounded-none">我要退出</button>
+      </div>
+    </form>
+  </div>
+  
+  <script>
+    $(function() {
+      // 取消按钮点击事件
+      $('#cancelBtn').on('click', function() {
+        // 返回上一页或其他操作
+        history.back();
+      });
+      
+      // 表单提交事件
+      $('#terminationForm').on('submit', function(e) {
+        e.preventDefault();
+        // 这里添加提交解约申请的逻辑
+        openToast('解约申请已提交');
+      });
+    });
+  </script>
+</body>
+
+</html>

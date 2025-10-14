@@ -1,0 +1,296 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="../commonh5/iconfont/iconfont.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .card-upload {
+      border: 1px solid #e0e0e0;
+      height: 2.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-upload-icon {
+      font-size: 0.24rem;
+      color: #999;
+      margin-bottom: 0.1rem;
+    }
+    .upload-box {
+      position: relative;
+      overflow: hidden;
+    }
+    .upload-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .form-item {
+      display: flex;
+      align-items: center;
+      padding: 0.1rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .form-label {
+      width: 1.5rem;
+      color: #333;
+      font-size: 0.16rem;
+    }
+    .form-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 0.16rem;
+    }
+    .verify-code-container {
+      display: flex;
+      align-items: center;
+      padding: 0.1rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .verify-code-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 0.16rem;
+    }
+    .verify-code-btn {
+      background-color: #0099ff;
+      color: white;
+      padding: 0.1rem;
+      border-radius: 0.04rem;
+      font-size: 0.14rem;
+    }
+    .submit-btn {
+      width: 100%;
+      background-color: #0099ff;
+      color: white;
+      padding: 0.1rem;
+      border-radius: 9999px;
+      font-size: 0.18rem;
+      margin-top: 0.5rem;
+    }
+    .agreement {
+      display: flex;
+      align-items: center;
+      margin-top: 0.1rem;
+      font-size: 0.14rem;
+    }
+    .agreement-checkbox {
+      width: 0.2rem;
+      height: 0.2rem;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+      margin-right: 0.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .agreement-checkbox.checked {
+      background-color: #0099ff;
+      border-color: #0099ff;
+    }
+    .agreement-link {
+      color: #0099ff;
+    }
+  </style>
+  <title>添加银行卡</title>
+</head>
+
+<body class="bg-white text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem] p-[0.1rem]">
+    <form id="bankCardForm">
+      <!-- 银行卡图片上传区域 -->
+      <div class="card-upload upload-box">
+        <input type="file" accept="image/*" name="cardFront" class="upload-input">
+        <div class="text-center">
+          <div class="card-upload-icon">+</div>
+          <div class="text-[#999] text-[0.16rem]">银行卡正面图片</div>
+        </div>
+      </div>
+      
+      <!-- 银行卡信息 -->
+      <div class="text-[#999] text-[0.16rem] mb-[0.1rem]">银行卡信息</div>
+      
+      <!-- 持卡人姓名 -->
+      <div class="form-item">
+        <div class="form-label">持卡人姓名</div>
+        <input type="text" class="fx-input form-input" placeholder="请输入持卡人姓名" name="cardHolder">
+      </div>
+      
+      <!-- 银行卡卡号 -->
+      <div class="form-item">
+        <div class="form-label">银行卡卡号</div>
+        <input type="text" class="fx-input form-input" placeholder="请输入银行卡卡号" name="cardNumber">
+      </div>
+      
+      <!-- 开户行 -->
+      <div class="form-item">
+        <div class="form-label">开户行</div>
+        <input type="text" class="fx-input form-input" placeholder="请输入开户行" name="bankName">
+      </div>
+      
+      <!-- 银行预留手机号码 -->
+      <div class="form-item">
+        <div class="form-label">银行预留手机号码</div>
+        <input type="text" class="fx-input form-input" placeholder="请输入机号码" name="phoneNumber">
+      </div>
+      
+      <!-- 验证码 -->
+      <div class="verify-code-container">
+        <input type="text" class="fx-input verify-code-input" placeholder="请输入验证码" name="verifyCode">
+        <button type="button" class="fx-button verify-code-btn" id="sendCodeBtn">发送验证码</button>
+      </div>
+      
+      <!-- 绑定银行卡按钮 -->
+      <button type="submit" class="fx-button submit-btn">绑定银行卡</button>
+      
+      <!-- 协议勾选 -->
+      <div class="agreement">
+        <input type="checkbox" id="agreementCheckbox" name="agreement" class="agreement-checkbox">
+        <div>请仔细阅读 <a href="doc.html" class="agreement-link">《用户服务协议》</a> 及 <a href="doc.html" class="agreement-link">《隐私政策》</a></div>
+      </div>
+    </form>
+  </div>
+  
+  <script>
+    $(function() {
+      // 图片上传预览
+      $('.upload-input').on('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        // 验证是否为图片
+        if (!file.type.match('image.*')) {
+          openToast('请上传图片文件');
+          $(this).val('');
+          return;
+        }
+        
+        const reader = new FileReader();
+        const $parent = $(this).parent();
+        
+        reader.onload = function(e) {
+          // 移除旧预览
+          $parent.find('img').remove();
+          $parent.find('.text-center').hide();
+          
+          // 添加新预览
+          $parent.append(`<img src="${e.target.result}" class="w-full h-full" />`);
+          // 这里加ajax
+          console.info('base64', e.target.result)
+        };
+        
+        reader.readAsDataURL(file);
+      });
+      
+      // 发送验证码按钮点击事件
+      $('#sendCodeBtn').on('click', function() {
+        var phoneNumber = $('input[name="phoneNumber"]').val();
+        if (!phoneNumber) {
+          openToast('请先输入手机号码');
+          return;
+        }
+        
+        // 发送验证码逻辑
+        var btn = $(this);
+        btn.prop('disabled', true);
+        btn.text('发送中...');
+        
+        // 模拟发送验证码
+        setTimeout(function() {
+          btn.text('验证码已发送');
+          openToast('验证码已发送');
+          
+          // 倒计时
+          var countdown = 60;
+          var timer = setInterval(function() {
+            countdown--;
+            if (countdown <= 0) {
+              clearInterval(timer);
+              btn.prop('disabled', false);
+              btn.text('发送验证码');
+            } else {
+              btn.text(countdown + 's');
+            }
+          }, 1000);
+        }, 1000);
+      });
+      
+      // 协议勾选点击事件
+      $('#agreementCheckbox').on('click', function() {
+        $(this).toggleClass('checked');
+      });
+      
+      // 表单提交事件
+      $('#bankCardForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        // 表单验证
+        var cardHolder = $('input[name="cardHolder"]').val();
+        var cardNumber = $('input[name="cardNumber"]').val();
+        var bankName = $('input[name="bankName"]').val();
+        var phoneNumber = $('input[name="phoneNumber"]').val();
+        var verifyCode = $('input[name="verifyCode"]').val();
+        
+        if (!cardHolder) {
+          openToast('请输入持卡人姓名');
+          return;
+        }
+        
+        if (!cardNumber) {
+          openToast('请输入银行卡卡号');
+          return;
+        }
+        
+        if (!bankName) {
+          openToast('请输入开户行');
+          return;
+        }
+        
+        if (!phoneNumber) {
+          openToast('请输入手机号码');
+          return;
+        }
+        
+        if (!verifyCode) {
+          openToast('请输入验证码');
+          return;
+        }
+        
+        if (!$('#agreementCheckbox').hasClass('checked')) {
+          openToast('请阅读并同意协议');
+          return;
+        }
+        
+        // 提交表单逻辑
+        openToast('银行卡绑定成功');
+        
+        // 提交后的跳转或其他操作
+        setTimeout(function() {
+          // 可以跳转到其他页面
+          // window.location.href = 'bank-card-management.html';
+        }, 1500);
+      });
+    });
+  </script>
+</body>
+
+</html>
