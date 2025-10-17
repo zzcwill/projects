@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="../commonh5/iconfont/iconfont.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+  </style>
+  <title>银行卡提现</title>
+</head>
+
+<body class="bg-gray-100 text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem] min-h-screen">
+    <!-- 银行卡选择区域 -->
+    <div class="bg-white p-[0.1rem] border-b border-gray-100">
+      <div class="text-[0.18rem] text-gray-900 font-medium">到账银行卡</div>
+      
+      <div class="space-y-[0.1rem]">
+        <input 
+          type="text" 
+          name="bankCard" 
+          id="bankCard"
+          class="fx-input w-full text-[0.22rem] border-0 bg-transparent focus:outline-none" 
+          placeholder="请输入银行卡号"
+        />
+      </div>
+    </div>
+
+    <!-- 结算金额区域 -->
+    <div class="bg-white p-[0.1rem] mt-[0.1rem]">
+      <div class="text-[0.18rem] text-gray-900 font-medium">结算金额</div>
+      
+      <form id="withdrawForm" class="space-y-[0.1rem]">
+        <div class="relative">
+          <div class="absolute left-[0.15rem] top-1/2 transform -translate-y-1/2 text-[0.24rem] text-gray-900 font-medium">¥</div>
+          <input 
+            type="number" 
+            name="amount" 
+            id="amount"
+            class="fx-input w-full h-[0.6rem] pl-[0.4rem] pr-[0.1rem] text-[0.22rem] border-0 bg-transparent focus:outline-none" 
+            placeholder="0"
+            step="0.01"
+            min="0"
+          />
+        </div>
+      </form>
+
+      <!-- 可提现金额提示 -->
+      <div class="mt-[0.1rem] space-y-[0.08rem]">
+        <div class="text-[0.14rem] text-gray-600">
+          当前可提现金额<span>0</span>元，
+          <span class="text-blue-500">全部提现</span>
+        </div>
+        <div class="text-[0.12rem] text-orange-500">
+          *提现金额将在1个工作日内到账
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部按钮 -->
+    <div class="p-[0.2rem] mt-[0.3rem]">
+      <button 
+        type="submit" 
+        form="withdrawForm"
+        class="fx-button w-full h-[0.5rem] bg-pink-500 text-white text-[0.18rem] font-medium rounded-[0.25rem] hover:bg-pink-600 transition-colors"
+      >
+        立即结算
+      </button>
+    </div>
+  </div>
+  
+  <script>
+    // 表单提交处理
+    $('#withdrawForm').on('submit', function(e) {
+      e.preventDefault();
+      
+      const amount = $('#amount').val();
+      
+      if (!amount || parseFloat(amount) <= 0) {
+        openToast('请输入有效的提现金额');
+        return;
+      }
+      
+      // 这里可以添加提现逻辑
+      openToast('提现申请已提交');
+    });
+
+    // 全部提现点击事件
+    $('.text-blue-500').on('click', function() {
+      $('#amount').val('0');
+    });
+
+    // 银行卡输入验证
+    $('#bankCard').on('input', function() {
+      const value = $(this).val();
+      // 这里可以添加银行卡号格式验证逻辑
+    });
+  </script>
+</body>
+
+</html>
