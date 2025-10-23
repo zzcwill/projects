@@ -7,4 +7,5 @@
 7 jquery不使用$(document).ready()，也不使用$(function(){});
 8 input都是直角，加fx-input类，放class第一个
 9 button，加fx-button类，放class第一个
+10 生成的页面放/partnerh5-2目录
 

@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="../commonh5/iconfont/iconfont.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .earnings-card {
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+      border-radius: 0.12rem;
+    }
+    .earnings-item {
+      border: 1px solid #e0e0e0;
+      transition: background-color 0.2s ease;
+    }
+    .earnings-item:hover {
+      background-color: #f8f9fa;
+    }
+    .earnings-section {
+      border: 1px solid #e0e0e0;
+      border-radius: 0.08rem;
+    }
+  </style>
+  <title>我的收益</title>
+</head>
+
+<body class="bg-gray-100 text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem] bg-white min-h-screen">
+    
+    <!-- 结算中心 -->
+    <div class="earnings-card p-[0.2rem] m-[0.1rem]">
+      <div class="flex justify-between items-center mb-[0.2rem]">
+        <h2 class="text-[0.24rem] font-bold text-gray-700">结算中心</h2>
+        <button class="fx-button bg-orange-400 text-white px-[0.24rem] py-[0.08rem] rounded-full text-[0.16rem] font-medium">结算</button>
+      </div>
+      
+      <!-- 钻石显示 -->
+      <div class="text-center mb-[0.2rem]">
+        <div class="text-orange-400 text-[0.16rem] mb-[0.08rem]">钻石</div>
+        <div class="flex justify-between items-center">
+          <span class="text-gray-600 text-[0.16rem]">待结算</span>
+          <span class="text-[0.32rem] font-bold text-gray-800">123123123</span>
+          <span class="text-orange-400 text-[0.16rem] cursor-pointer">明细</span>
+        </div>
+      </div>
+      
+      <!-- 金币和积分 -->
+      <div class="flex">
+        <div class="flex-1 text-center">
+          <div class="text-[0.24rem] font-bold text-gray-800">999999999</div>
+          <div class="text-orange-400 text-[0.16rem]">金币</div>
+        </div>
+        <div class="w-[1px] bg-gray-300 mx-[0.2rem]"></div>
+        <div class="flex-1 text-center">
+          <div class="text-[0.24rem] font-bold text-gray-800">999999999</div>
+          <div class="text-orange-400 text-[0.16rem]">积分</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 收益说明和按钮区域 -->
+    <div class="earnings-card p-[0.2rem] m-[0.1rem]">
+      <div class="text-center text-gray-600 text-[0.16rem] mb-[0.15rem]">
+        3金币2银币1铜币5钻石4兑换券9积分0不明
+      </div>
+      
+      <!-- 收益按钮 -->
+      <div class="flex justify-center mb-[0.15rem]">
+        <button class="fx-button bg-white border border-gray-300 px-[0.3rem] py-[0.1rem] text-[0.16rem] text-gray-700 rounded">直推收益</button>
+      </div>
+      
+      <div class="flex justify-between gap-[0.1rem]">
+        <button class="fx-button bg-white border border-gray-300 px-[0.25rem] py-[0.1rem] text-[0.16rem] text-gray-700 rounded flex-1">间推收益</button>
+        <button class="fx-button bg-white border border-gray-300 px-[0.25rem] py-[0.1rem] text-[0.16rem] text-gray-700 rounded flex-1">任务积分</button>
+      </div>
+      
+      <!-- 说明文字 -->
+      <div class="mt-[0.15rem] text-gray-600 text-[0.14rem] leading-relaxed space-y-[0.05rem]">
+        <div>1、金币可以兑换钻石。</div>
+        <div>2、积分只能商城消费， 抵扣软件服务费</div>
+        <div>3、银币电子收益兑换为实物NFT兑换券 （可回收）</div>
+      </div>
+    </div>
+    
+    <!-- 实物收益 -->
+    <div class="p-[0.2rem] m-[0.1rem]">
+      <h3 class="text-[0.2rem] font-bold text-gray-700 mb-[0.15rem]">实物收益</h3>
+      <div class="earnings-section">
+        <div class="earnings-item flex justify-between items-center p-[0.15rem] cursor-pointer">
+          <span class="text-orange-400 text-[0.16rem]">兑换券</span>
+          <div class="flex items-center">
+            <span class="text-gray-600 text-[0.14rem] mr-[0.1rem]">数量</span>
+            <span class="text-[0.18rem] font-bold text-gray-800 mr-[0.1rem]">999999999</span>
+            <span class="text-gray-400 text-[0.16rem]">></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 电子收益 -->
+    <div class="p-[0.2rem] m-[0.1rem]">
+      <h3 class="text-[0.2rem] font-bold text-gray-700 mb-[0.15rem]">电子收益</h3>
+      
+      <!-- 第一组电子收益 -->
+      <div class="earnings-section mb-[0.15rem]">
+        
+        <!-- 推广合作伙伴津贴 -->
+        <div class="earnings-item flex justify-between items-center p-[0.15rem] border-b border-gray-200 cursor-pointer">
+          <span class="text-orange-400 text-[0.16rem]">推广合作伙伴津贴</span>
+          <div class="flex items-center">
+            <span class="text-gray-600 text-[0.14rem] mr-[0.1rem]">银币</span>
+            <span class="text-[0.18rem] font-bold text-gray-800 mr-[0.1rem]">999999999</span>
+            <span class="text-gray-400 text-[0.16rem]">></span>
+          </div>
+        </div>
+        
+        <!-- 推广单身用户奖励 -->
+        <div class="earnings-item flex justify-between items-center p-[0.15rem] border-b border-gray-200 cursor-pointer">
+          <span class="text-orange-400 text-[0.16rem]">推广单身用户奖励</span>
+          <div class="flex items-center">
+            <span class="text-gray-600 text-[0.14rem] mr-[0.1rem]">银币</span>
+            <span class="text-[0.18rem] font-bold text-gray-800 mr-[0.1rem]">999999999</span>
+            <span class="text-gray-400 text-[0.16rem]">></span>
+          </div>
+        </div>
+        
+        <!-- 团队管理奖金 -->
+        <div class="earnings-item flex justify-between items-center p-[0.15rem] border-b border-gray-200 cursor-pointer">
+          <span class="text-orange-400 text-[0.16rem]">团队管理奖金</span>
+          <div class="flex items-center">
+            <span class="text-gray-600 text-[0.14rem] mr-[0.1rem]">银币</span>
+            <span class="text-[0.18rem] font-bold text-gray-800 mr-[0.1rem]">999999999</span>
+            <span class="text-gray-400 text-[0.16rem]">></span>
+          </div>
+        </div>
+        
+        <!-- 新人培育回馈 -->
+        <div class="earnings-item flex justify-between items-center p-[0.15rem] cursor-pointer">
+          <span class="text-orange-400 text-[0.16rem]">新人培育回馈</span>
+          <div class="flex items-center">
+            <span class="text-gray-600 text-[0.14rem] mr-[0.1rem]">银币</span>
+            <span class="text-[0.18rem] font-bold text-gray-800 mr-[0.1rem]">999999999</span>
+            <span class="text-gray-400 text-[0.16rem]">></span>
+          </div>
+        </div>
+        
+      </div>
+      
+      <!-- 第二组电子收益 -->
+      <div class="earnings-section">
+        
+        <!-- 会员服务补贴 -->
+        <div class="earnings-item flex justify-between items-center p-[0.15rem] border-b border-gray-200 cursor-pointer">
+          <span class="text-orange-400 text-[0.16rem]">会员服务补贴</span>
+          <div class="flex items-center">
+            <span class="text-gray-600 text-[0.14rem] mr-[0.1rem]">银币</span>
+            <span class="text-[0.18rem] font-bold text-gray-800 mr-[0.1rem]">999999999</span>
+            <span class="text-gray-400 text-[0.16rem]">></span>
+          </div>
+        </div>
+        
+        <!-- 限时福利补贴 -->
+        <div class="earnings-item flex justify-between items-center p-[0.15rem] border-b border-gray-200 cursor-pointer">
+          <span class="text-orange-400 text-[0.16rem]">限时福利补贴</span>
+          <div class="flex items-center">
+            <span class="text-gray-600 text-[0.14rem] mr-[0.1rem]">银币</span>
+            <span class="text-[0.18rem] font-bold text-gray-800 mr-[0.1rem]">999999999</span>
+            <span class="text-gray-400 text-[0.16rem]">></span>
+          </div>
+        </div>
+        
+        <!-- 节假日补贴 -->
+        <div class="earnings-item flex justify-between items-center p-[0.15rem] cursor-pointer">
+          <span class="text-orange-400 text-[0.16rem]">节假日补贴</span>
+          <div class="flex items-center">
+            <span class="text-gray-600 text-[0.14rem] mr-[0.1rem]">银币</span>
+            <span class="text-[0.18rem] font-bold text-gray-800 mr-[0.1rem]">999999999</span>
+            <span class="text-gray-400 text-[0.16rem]">></span>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+  
+  <script>
+    // 结算按钮点击事件
+    $('.fx-button').click(function() {
+      const buttonText = $(this).text();
+      if (buttonText === '结算') {
+        // 结算逻辑
+        console.log('执行结算操作');
+        // 这里可以添加表单提交逻辑
+      } else if (buttonText === '直推收益' || buttonText === '间推收益' || buttonText === '任务积分') {
+        // 收益按钮逻辑
+        console.log('查看' + buttonText);
+        // 这里可以添加跳转或弹窗逻辑
+      }
+    });
+    
+    // 明细按钮点击事件
+    $('.text-orange-400').click(function() {
+      if ($(this).text() === '明细') {
+        console.log('查看钻石明细');
+        // 这里可以添加跳转到明细页面的逻辑
+      }
+    });
+    
+    // 收益项点击事件
+    $('.earnings-item').click(function() {
+      const itemName = $(this).find('.text-orange-400').text();
+      console.log('查看' + itemName + '详情');
+      // 这里可以添加跳转到详情页面的逻辑
+    });
+  </script>
+</body>
+
+</html>
