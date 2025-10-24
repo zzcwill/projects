@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="../commonh5/iconfont/iconfont.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <title>我的收益</title>
+  <style>
+    /* .settlement-card {
+    } */
+    .divider {
+      width: 0.01rem;
+      background-color: #f0f0f0;
+      height: 0.6rem;
+    }
+    .income-section {
+      background-color: #f2f2f2;
+      border-radius: 0;
+      margin-bottom: 0.1rem;
+    }
+    .btn-income {
+      background-color: #fff;
+      border: 1px solid #e5e5e5;
+      height: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem]">
+    <!-- 结算中心卡片 -->
+    <div class="settlement-card bg-white p-[0.1rem] mb-[0.1rem]">
+      <div class="flex justify-between items-center mb-[0.1rem]">
+        <div class="text-[0.18rem] text-gray-800">结算中心</div>
+        <button class="fx-button text-[0.14rem] bg-[#FFC069] text-white text-[0.14rem] rounded-[1rem] px-[0.2rem] py-[0.05rem]">结算</button>
+      </div>
+      
+      <div class="flex items-center mb-[0.1rem]">
+        <div class="text-gray-500 mr-[0.1rem]">钻石</div>
+        <div class="text-[0.3rem] text-gray-700">123123123</div>
+        <div class="ml-auto">
+          <a href="javascript:;" class="text-[#FFC069]">明细</a>
+        </div>
+      </div>
+      
+      <div class="text-gray-500 mb-[0.1rem]">待结算</div>
+      
+      <div class="h-[0.01rem] bg-gray-100 my-[0.1rem]"></div>
+      
+      <!-- 金币和积分区域 -->
+      <div class="flex justify-between">
+        <div class="flex-1 text-center">
+          <div class="text-[0.2rem] text-gray-800">999999999</div>
+          <div class="text-[#FFC069] mt-[0.05rem]">金币</div>
+        </div>
+        
+        <div class="divider mx-[0.1rem]"></div>
+        
+        <div class="flex-1 text-center">
+          <div class="text-[0.2rem] text-gray-800">999999999</div>
+          <div class="text-[#FFC069] mt-[0.05rem]">积分</div>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- 收益信息整体区域 -->
+    <div class="income-section bg-white p-[0.1rem]">
+      <!-- 收益类型信息 -->
+      <div class="text-center text-gray-600 text-[0.18rem] mb-[0.2rem]">
+        3金币2银币1铜币5钻石4兑换券9积分0不明
+      </div>
+      
+      <!-- 按钮区域 -->
+      <div class="mb-[0.2rem]">
+        <div class="flex flex-col gap-[0.1rem]">
+          <div class="w-full flex justify-center">
+            <button class="fx-button btn-income w-[80%] border border-gray-200 text-[#333]">直推收益</button>
+          </div>
+          <div class="flex justify-between gap-[0.1rem]">
+            <div class="w-1/2">
+              <button class="fx-button btn-income w-full border border-gray-200 text-[#333]">间推收益</button>
+            </div>
+            <div class="w-1/2">
+              <button class="fx-button btn-income w-full border border-gray-200 text-[#333]">任务积分</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 说明文本 -->
+      <div class="text-[0.16rem] text-gray-600">
+        <div class="mb-[0.05rem]">1、金币可以兑换钻石，</div>
+        <div class="mb-[0.05rem]">2、积分只能商城消费，抵扣软件服务费</div>
+        <div>3、银币电子收益兑换为实物NFT兑换券（可回收）</div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // 页面加载完成后的处理
+    $(function() {
+      // 这里可以添加页面交互逻辑
+    });
+  </script>
+</body>
+
+</html>

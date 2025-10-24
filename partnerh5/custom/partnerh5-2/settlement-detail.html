@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="../commonh5/iconfont/iconfont.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .detail-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .detail-table th {
+      font-weight: normal;
+      color: #666;
+      padding: 0.15rem 0;
+      text-align: left;
+    }
+    .detail-table td {
+      padding: 0.15rem 0;
+      text-align: left;
+    }
+    .detail-table tr {
+      border-bottom: 0.01rem solid #f0f0f0;
+    }
+    .positive-amount {
+      color: #f56c6c;
+    }
+    .negative-amount {
+      color: #67c23a;
+    }
+  </style>
+  <title>结算明细</title>
+</head>
+
+<body class="bg-gray-100 text-[0.16rem]">
+  <div class="container mx-auto max-w-[10rem]">
+    <!-- 明细记录标题 -->
+    <div class="text-[0.2rem] font-medium p-[0.1rem]">
+      明细记录
+    </div>
+
+    <!-- 明细表格 -->
+    <div class="bg-white p-[0.1rem] mb-[0.1rem]">
+      <table class="detail-table">
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>变动前金额</th>
+            <th>变动金额</th>
+            <th>类别</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2025-12-12</td>
+            <td>32452.00</td>
+            <td class="positive-amount">+50.00</td>
+            <td>推荐</td>
+          </tr>
+          <tr>
+            <td>2025-12-12</td>
+            <td>32412.00</td>
+            <td class="positive-amount">+20.00</td>
+            <td>任务</td>
+          </tr>
+          <tr>
+            <td>2025-12-12</td>
+            <td>23533.00</td>
+            <td class="negative-amount">-123.00</td>
+            <td>赠送</td>
+          </tr>
+          <tr>
+            <td>2025-12-12</td>
+            <td>123123.00</td>
+            <td class="negative-amount">-4230.00</td>
+            <td>提现</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 类别说明 -->
+    <div class="bg-white p-[0.1rem]">
+      <div class="text-[0.16rem] mb-[0.1rem]">类别：</div>
+      <div class="text-[0.14rem] text-gray-600">
+        <div class="mb-[0.1rem]">1货币津贴（直）</div>
+        <div class="mb-[0.1rem]">2货币津贴（活）</div>
+        <div class="mb-[0.1rem]">3培育补贴</div>
+        <div class="mb-[0.1rem]">4物质补贴</div>
+        <div class="mb-[0.1rem]">5服务补贴</div>
+        <div>6限时福利补贴</div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    $(function() {
+      // 这里可以添加数据加载和交互逻辑
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="../commonh5/iconfont/iconfont.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .coupon-item {
+      background-color: #fff;
+      margin-bottom: 0.1rem;
+      border-radius: 0.05rem;
+    }
+    
+    .tab-active {
+      color: #333;
+      font-weight: bold;
+      position: relative;
+    }
+    
+    .tab-active::after {
+      content: '';
+      position: absolute;
+      bottom: -0.1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0.3rem;
+      height: 0.04rem;
+      background-color: #333;
+      border-radius: 0.02rem;
+    }
+    
+    .exchange-nft-btn {
+      background-color: #4299e1;
+      color: white;
+      border-radius: 0.05rem;
+    }
+    
+    .waiting-tag {
+      background-color: #f6ad55;
+      color: white;
+      border-radius: 0.05rem;
+      padding: 0.05rem 0.1rem;
+      font-size: 0.14rem;
+    }
+  </style>
+  <title>我的兑换券</title>
+</head>
+
+<body class="bg-gray-100 text-[0.18rem]">
+  <div class="container mx-auto max-w-[10rem]">
+    <!-- 我的收益部分 -->
+    <div class="bg-white p-[0.1rem] mb-[0.1rem]">
+      <div class="text-[0.24rem] text-gray-700 font-bold mb-[0.2rem]">我的收益</div>
+      <div class="flex justify-between items-center">
+        <div class="flex flex-col items-center">
+          <div class="text-gray-500 mb-[0.1rem]">待兑换</div>
+          <div class="flex items-center">
+            <div class="text-[0.4rem] text-gray-700">31</div>
+          </div>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="text-[#f6ad55] mb-[0.1rem]">礼券</div>
+          <div class="text-[0.4rem] text-gray-700">31</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 标签导航 -->
+    <div class="bg-white p-[0.1rem] flex">
+      <div class="tab-active flex-1 text-center pb-[0.1rem]">我的券包</div>
+      <div class="flex-1 text-center text-gray-500 pb-[0.1rem]">明细记录</div>
+    </div>
+    
+    <!-- 券列表 -->
+    <div class="coupon-list">
+      <!-- 券项 1 -->
+      <div class="coupon-item p-[0.1rem]">
+        <div class="flex justify-between items-start mb-[0.1rem]">
+          <div class="text-[0.2rem] font-medium text-gray-700">xxxxxx礼券</div>
+          <div class="waiting-tag">待使用</div>
+        </div>
+        
+        <div class="flex">
+          <div class="w-[1.2rem] h-[1.2rem] mr-[0.1rem] bg-gray-200 overflow-hidden shrink-0 border border-gray-300">
+            <img src="../commonh5/img/test.jpg" alt="礼券图片" class="w-full h-full object-cover">
+          </div>
+          
+          <div class="flex-1">
+            <div class="text-gray-500 text-[0.16rem] mb-[0.1rem]">说明标签说明标签说明标签说明标签说明标签说明标签说明标签</div>
+            
+            <form action="" method="post" class="mt-[0.1rem] text-right">
+              <input type="hidden" name="couponId" value="1">
+              <button type="submit" class="fx-button exchange-nft-btn w-[1.2rem] h-[0.5rem] text-center">兑换NFT</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 券项 2 -->
+      <div class="coupon-item p-[0.1rem]">
+        <div class="flex justify-between items-start mb-[0.1rem]">
+          <div class="text-[0.2rem] font-medium text-gray-700">xxxxxx礼券</div>
+          <div class="waiting-tag">待使用</div>
+        </div>
+        
+        <div class="flex">
+          <div class="w-[1.2rem] h-[1.2rem] mr-[0.1rem] bg-gray-200 overflow-hidden shrink-0 border border-gray-300">
+            <img src="../commonh5/img/test.jpg" alt="礼券图片" class="w-full h-full object-cover">
+          </div>
+          
+          <div class="flex-1">
+            <div class="text-gray-500 text-[0.16rem] mb-[0.1rem]">说明标签说明标签说明标签说明标签说明标签说明标签说明标签</div>
+            
+            <form action="" method="post" class="mt-[0.1rem] text-right">
+              <input type="hidden" name="couponId" value="2">
+              <button type="submit" class="fx-button exchange-nft-btn w-[1.2rem] h-[0.5rem] text-center">兑换NFT</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 券项 3 -->
+      <div class="coupon-item p-[0.1rem]">
+        <div class="flex justify-between items-start mb-[0.1rem]">
+          <div class="text-[0.2rem] font-medium text-gray-700">xxxxxx礼券</div>
+          <div class="waiting-tag">待使用</div>
+        </div>
+        
+        <div class="flex">
+          <div class="w-[1.2rem] h-[1.2rem] mr-[0.1rem] bg-gray-200 overflow-hidden shrink-0 border border-gray-300">
+            <img src="../commonh5/img/test.jpg" alt="礼券图片" class="w-full h-full object-cover">
+          </div>
+          
+          <div class="flex-1">
+            <div class="text-gray-500 text-[0.16rem] mb-[0.1rem]">说明标签说明标签说明标签说明标签说明标签说明标签说明标签</div>
+            
+            <form action="" method="post" class="mt-[0.1rem] text-right">
+              <input type="hidden" name="couponId" value="3">
+              <button type="submit" class="fx-button exchange-nft-btn w-[1.2rem] h-[0.5rem] text-center">兑换NFT</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 标签切换
+    $(function() {
+      // 标签点击事件
+      $('.container > div:nth-child(2) > div').on('click', function() {
+        const index = $(this).index();
+        
+        // 切换标签样式
+        $(this).addClass('tab-active').removeClass('text-gray-500')
+          .siblings().removeClass('tab-active').addClass('text-gray-500');
+        
+        // 这里可以添加内容切换逻辑
+        if (index === 0) {
+          // 显示我的券包
+          $('.coupon-list').show();
+        } else {
+          // 显示明细记录（这里需要实际内容）
+          $('.coupon-list').hide();
+          // 如果有明细记录内容，可以在这里显示
+        }
+      });
+      
+      // 兑换NFT按钮点击事件
+      $('.exchange-nft-btn').on('click', function(e) {
+        e.preventDefault();
+        const form = $(this).closest('form');
+        const couponId = form.find('input[name="couponId"]').val();
+        
+        // 这里可以添加兑换逻辑，例如发送AJAX请求
+        console.log('兑换NFT，礼券ID:', couponId);
+        
+        // 显示兑换成功提示
+        openToast('兑换申请已提交');
+      });
+    });
+  </script>
+</body>
+
+</html>

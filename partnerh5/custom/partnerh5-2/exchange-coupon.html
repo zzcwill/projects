@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../../public/jquery-3.4.1/jquery.min.js"></script>
+  <script src="../../public/tailwindcss/tailwindcss.js"></script>
+  <script src="../commonh5/js/resize-font.js"></script>
+  <script src="../commonh5/js/openToast.js"></script>
+  <script src="../commonh5/js/methods.js"></script>
+  <link rel="stylesheet" href="../commonh5/iconfont/iconfont.css">
+  <link rel="stylesheet" href="../commonh5/css/global.css">
+  <style>
+    .coupon-item {
+      background-color: #fff;
+      margin-bottom: 0.1rem; 
+    }
+
+    .exchange-btn {
+      background-color: #09c3ff;
+      color: white;
+      border-radius: 0.05rem;
+    }
+  </style>
+  <title>兑换礼券</title>
+</head>
+
+<body class="bg-gray-100 text-[0.18rem]">
+  <!-- 礼券列表 -->
+  <div class="container mx-auto max-w-[10rem]">
+    <!-- 头部 -->
+    <div class="bg-gray-100 p-[0.1rem] flex justify-between items-center">
+      <div class="text-[0.2rem] font-bold">兑换礼券</div>
+      <div class="text-gray-500">您拥有银币：<span class="text-gray-700">195</span> (已结算)</div>
+    </div>
+
+    <!-- 礼券项 1 -->
+    <div class="coupon-item p-[0.1rem] flex justify-between items-center">
+      <div class="flex items-center">
+        <div class="w-[1rem] h-[1rem] mr-[0.1rem] overflow-hidden shrink-0">
+          <img src="../commonh5/img/test.jpg" alt="礼券图片" class="w-full h-full object-cover">
+        </div>
+        <div class="mr-[0.1rem]">
+          <div class="text-[0.2rem] font-medium">xxxxxx礼券</div>
+          <div class="text-gray-500 text-[0.16rem] mt-[0.05rem]">说明标签说明标签说明标签说明标签说明标签说明标签说明标签</div>
+        </div>
+      </div>
+      <div class="flex flex-col items-end">
+        <div class="text-[0.2rem] font-medium">1882银币</div>
+        <form action="" method="post" class="mt-[0.1rem]">
+          <input type="hidden" name="couponId" value="1">
+          <button type="submit" class="fx-button exchange-btn w-[1rem] h-[0.5rem] text-center">兑换</button>
+        </form>
+      </div>
+    </div>  
+
+    <!-- 礼券项 2 -->
+    <div class="coupon-item p-[0.1rem] flex justify-between items-center">
+      <div class="flex items-center">
+        <div class="w-[1rem] h-[1rem] mr-[0.1rem] overflow-hidden shrink-0">
+          <img src="../commonh5/img/test.jpg" alt="礼券图片" class="w-full h-full object-cover">
+        </div>
+        <div class="mr-[0.1rem]">
+          <div class="text-[0.2rem] font-medium">xxxxxx礼券</div>
+          <div class="text-gray-500 text-[0.16rem] mt-[0.05rem]">说明标签说明标签说明标签说明标签说明标签说明标签说明标签</div>
+        </div>
+      </div>
+      <div class="flex flex-col items-end">
+        <div class="text-[0.2rem] font-medium">1882银币</div>
+        <form action="" method="post" class="mt-[0.1rem]">
+          <input type="hidden" name="couponId" value="1">
+          <button type="submit" class="fx-button exchange-btn w-[1rem] h-[0.5rem] text-center">兑换</button>
+        </form>
+      </div>
+    </div>      
+  </div>
+
+  <script>
+    $(function() {
+      // 兑换按钮点击事件
+      $('.exchange-btn').on('click', function(e) {
+        e.preventDefault();
+        const form = $(this).closest('form');
+        const couponId = form.find('input[name="couponId"]').val();
+        
+        // 这里可以添加兑换逻辑，例如发送AJAX请求
+        console.log('兑换礼券ID:', couponId);
+        
+        // 显示兑换成功提示
+        openToast('兑换申请已提交');
+      });
+    });
+  </script>
+</body>
+
+</html>
